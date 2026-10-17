@@ -181,11 +181,23 @@ button.label{cursor:pointer}button.label:hover{border-color:var(--gold)}
 .demo-button:hover:not(:disabled){background:#f2cf95}.demo-button>span:nth-child(2){flex:1;text-align:left}
 .demo-button strong{font-size:14px;display:block}.demo-button small{display:block;font-size:10px;margin-top:2px}
 .demo-button svg{width:24px;height:24px}.demo-button>svg{width:18px}
-.experiments-tabs{display:flex;gap:5px}
+.experiments-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .experiments-tabs button{flex:1;flex-direction:row;min-height:36px;gap:6px;border:1px solid #496170;border-radius:6px;font-size:12px;color:#bbced4}
 .experiments-tabs svg{width:18px;height:18px}
 .experiments-tabs button[aria-pressed=true]{background:#29494f;border-color:#a1cfc5;color:#e3f1e6}
-.experiments-tabs [data-exp=hop][aria-pressed=true]{background:#4f4430;border-color:#e6bb72;color:#ffe9c4}
+.experiments-tabs [data-exp=hop][aria-pressed=true],.experiments-tabs [data-exp=loop][aria-pressed=true],.experiments-tabs [data-exp=jump][aria-pressed=true]{background:#4f4430;border-color:#e6bb72;color:#ffe9c4}
+.stunt-row{display:flex;flex-direction:column;gap:4px;padding:8px 9px;border:1px solid #c9a76b66;border-radius:8px;background:#3a352633}
+.stunt-row .row-label{font-size:10px;color:var(--muted);margin-top:4px}
+.stunt-row .segmented button{font-size:10px;padding:2px 3px}
+.stunt-row .segmented button[aria-pressed=true]{background:#5b4e33;color:#ffe6bb;box-shadow:inset 0 0 0 1px #e6bb7280}
+.experiments button[aria-disabled=true]{opacity:.4;cursor:not-allowed}
+.mission ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.mission li{display:grid;grid-template-columns:18px 1fr;gap:6px;align-items:start;font-size:11px;line-height:1.5;color:#d4e2e4;padding:5px 7px;border-radius:6px;background:#0f222d88}
+.mission li b{font-weight:600}.mission li small{display:block;color:var(--muted);font-size:10px}
+.mission li i{font-style:normal;font-weight:700;text-align:center}
+.mission li.ok i{color:var(--aqua)}.mission li.no i{color:var(--coral)}.mission li.no{background:#3c2a2a66}.mission li.wait i{color:var(--muted)}
+#mission-verdict{font-size:11px!important;font-weight:650!important;color:var(--aqua)!important}#mission-verdict.no{color:var(--coral)!important}
+.is-stunt #trace{height:150px}
 .go-row{display:grid;grid-template-columns:1fr auto;gap:6px}
 .go-button{min-height:40px;border-radius:6px;font-size:13px;font-weight:650;background:#4aa39a;color:#062027!important;border:1px solid #9bd8d1}
 .go-button:hover:not(:disabled){background:#7cc9c0}
@@ -338,6 +350,8 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
 <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></symbol>
 <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-loop" viewBox="0 0 24 24"><path d="M3 20h6c6 0 10-4 10-9a6 6 0 0 0-12 0c0 2 1 4 3 4"/><path d="m8 13 2 2 2-2"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 17V7h11v10M13 10h5l4 4v3h-9M2 17h20"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M7 4q5-4 10 0"/></symbol>
 <symbol id="i-news" viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M7 9h7M7 13h7M7 16h4"/></symbol>
 </defs></svg>
 <div class="app" id="app">
@@ -367,8 +381,9 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <section class="feel-section" aria-label="駕駛座感受" data-en-label="How it feels in the seat"><div class="feel-heading"><h3 data-en="How hard does the seat push?">坐在駕駛座，推背感多大？</h3><span data-en="Watch the kid and the air freshener">看小朋友和香氛吊飾</span></div>
 <div class="feel-pair"><div class="feel-room" id="feel-you"><div class="feel-label"><i style="background:#9bd8d1"></i><span id="feel-you-name"></span></div><div id="feel-you-svg"></div><strong class="feel-word" id="feel-you-word"></strong></div>
 <div class="feel-room" id="feel-ref" hidden><div class="feel-label"><i style="background:#ee9c8b"></i><span id="feel-ref-name"></span></div><div class="ref-choices"><small data-en="Rival car">對手車款</small><div class="segmented" role="group" aria-label="對手車款" data-en-label="Rival car" id="ref-options"></div></div><div id="feel-ref-svg"></div><strong class="feel-word" id="feel-ref-word"></strong></div></div></section>
+<section class="mission" id="mission" hidden aria-live="polite"><h3 class="data-title"><span style="font-size:11px;color:var(--gold);font-weight:550" data-en="Mission check">任務檢查</span><span id="mission-verdict"></span></h3><ul id="mission-list"></ul></section>
 <div class="insight"><svg><use href="#i-spark"/></svg><span id="insight"></span></div>
-<section aria-label="成績單" data-en-label="Scorecard"><h3 class="data-title"><span style="font-size:11px;color:var(--gold);font-weight:550" data-en="Scorecard">成績單</span><span data-en="Teaching model · updates instantly">教學模型 · 即時計算</span></h3><table class="scorecard" id="scorecard"></table></section>
+<section aria-label="成績單" data-en-label="Scorecard" id="score-box"><h3 class="data-title"><span style="font-size:11px;color:var(--gold);font-weight:550" data-en="Scorecard">成績單</span><span data-en="Teaching model · updates instantly">教學模型 · 即時計算</span></h3><table class="scorecard" id="scorecard"></table></section>
 <section aria-label="速度曲線" data-en-label="Speed trace"><div class="chart-header"><span id="chart-title"></span><div class="legend"><span id="legend-you"></span><span class="ref" id="legend-ref"></span></div></div><canvas id="trace" role="img" aria-label="速度與時間的曲線" data-en-label="Speed versus time"></canvas><div class="chart-foot"><span>0 s</span><span id="chart-scale"></span><span id="chart-end"></span></div>
 <div id="limit-box"><div class="chart-header" style="margin-top:8px"><span data-en="0–100 km/h: what held the car back?">0→100 km/h，是誰在限制加速？</span></div><div class="limit-bar" id="limit-bar"></div><div class="limit-legend" id="limit-legend"></div></div></section>
 <p class="model-note" data-en="Teaching model, not Tesla data. Headline figures follow the 15 Oct 2026 reveal; fan, tank, battery and mass values are estimates. The car is drawn to scale only roughly; the 400 m strip is to scale.">教學用簡化模型，非特斯拉官方數據。版本設定依 2026/10/15 發表會公開資訊調校；風扇、氣瓶、電池與重量為推估。車身外型為示意，400 公尺賽道為真實比例。</p>
@@ -377,8 +392,10 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <aside class="panel" id="panel" aria-label="實驗控制台" data-en-label="Experiment console">
 <div class="panel-heading"><div><span class="panel-kicker" data-en="Build your own Roadster">改裝你的 Roadster</span><h2 id="panel-title"></h2></div><span class="live" id="live"></span></div>
 <button class="demo-button" id="reveal-demo"><svg><use href="#i-rocket"/></svg><span><strong data-en="Replay the reveal launch">重現發表會起跑</strong><small data-en="Rocket version, 0–60 mph in slow motion">Rocket 版本・慢動作看 0–60 mph</small></span><svg><use href="#i-play"/></svg></button>
-<div class="experiments-tabs" role="group" aria-label="選擇實驗" data-en-label="Choose a test"><button data-exp="launch" aria-pressed="true"><svg><use href="#i-flag"/></svg><span data-en="Launch">起跑衝刺</span></button><button data-exp="hop" aria-pressed="false"><svg><use href="#i-rocket"/></svg><span data-en="Thruster hop">噴氣跳躍</span></button></div>
+<div class="experiments-tabs" role="group" aria-label="選擇實驗" data-en-label="Choose a test"><button data-exp="launch" aria-pressed="true"><svg><use href="#i-flag"/></svg><span data-en="Launch">起跑衝刺</span></button><button data-exp="hop" aria-pressed="false"><svg><use href="#i-rocket"/></svg><span data-en="Thruster hop">噴氣跳躍</span></button><button data-exp="loop" aria-pressed="false"><svg><use href="#i-loop"/></svg><span data-en="Wall ramp">貼牆坡道</span></button><button data-exp="jump" aria-pressed="false"><svg><use href="#i-truck"/></svg><span data-en="Fleet jump">飛越車隊</span></button></div>
 <div class="burn-row" id="burn-row" hidden><span data-en="Burn time (thrusters pointing down)">噴氣時間（噴嘴朝下）</span><div class="segmented" role="group" aria-label="噴氣時間" data-en-label="Burn time"><button data-burn="0.2" aria-pressed="false">0.2 s</button><button data-burn="0.4" aria-pressed="true">0.4 s</button><button data-burn="0.8" aria-pressed="false">0.8 s</button></div></div>
+<div class="stunt-row" id="loop-row" hidden><div class="control-head"><label for="s-loop-speed"><svg aria-hidden="true"><use href="#i-loop"/></svg><span data-en="Climbing speed (autopilot)">爬坡速度（自動駕駛定速）</span></label><output id="o-loop-speed"></output></div><input class="slider" id="s-loop-speed" type="range" min="15" max="80" step="5"><div class="ticks"><span data-en="15 crawl">15 慢慢爬</span><span data-en="80 charge">80 快速衝</span></div><span class="row-label" data-en="Ramp size">坡道大小</span><div class="segmented" role="group" aria-label="坡道大小" data-en-label="Ramp size"><button data-radius="6"><span data-en="Small · 12 m">小・高 12 m</span></button><button data-radius="10.5"><span data-en="Reveal · 21 m">發表會・21 m</span></button><button data-radius="15"><span data-en="Huge · 30 m">巨大・30 m</span></button></div></div>
+<div class="stunt-row" id="jump-row" hidden><div class="control-head"><label for="s-jump-speed"><svg aria-hidden="true"><use href="#i-truck"/></svg><span data-en="Take-off speed">起跳車速</span></label><output id="o-jump-speed"></output></div><input class="slider" id="s-jump-speed" type="range" min="20" max="90" step="2"><div class="ticks"><span data-en="20 slow">20 慢</span><span data-en="90 fast">90 快</span></div><span class="row-label" data-en="Lift burn (nozzles down)">上升噴氣時間（噴嘴朝下）</span><div class="segmented" role="group" aria-label="上升噴氣時間" data-en-label="Lift burn"><button data-jburn="0.3">0.3 s</button><button data-jburn="0.5">0.5 s</button><button data-jburn="0.7">0.7 s</button><button data-jburn="1">1.0 s</button></div><span class="row-label" data-en="Barrel roll in the air">空中桶滾</span><div class="segmented" role="group" aria-label="空中桶滾" data-en-label="Barrel roll"><button data-roll="true"><span data-en="Roll (like the reveal)">翻一圈（發表會）</span></button><button data-roll="false"><span data-en="No roll">不翻</span></button></div></div>
 <div class="go-row"><button class="go-button" id="go"></button><button class="restart" id="restart"><svg><use href="#i-reset"/></svg><span data-en="Back to start">回起點</span></button></div>
 <div class="trims"><div class="section-title"><span style="font-size:11px;color:var(--gold);letter-spacing:.06em" data-en="Reveal versions">發表會的三種版本</span><span data-en="tap to load">點一下載入</span></div><div class="segmented" role="group" aria-label="版本" data-en-label="Version" id="trim-options"></div><small class="trim-note" id="trim-note"></small></div>
 <div class="section-title"><span style="font-size:11px;color:var(--gold);letter-spacing:.06em" data-en="Components">零件參數</span><span data-en="move one at a time">一次只改一個，最容易看出差別</span></div>
@@ -415,6 +432,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <p>每 1/480 秒計算一次牛頓第二定律。後輪能推多大力，取三者中最小的：<strong>輪胎抓地力</strong>、<strong>馬達扭力</strong>、<strong>馬達功率 ÷ 速度</strong>；馬達轉到 23,500 rpm 時由齒輪比決定極速。推進器的推力直接加上去，不經過輪胎，直到氣瓶用完。</p>
 <div class="equation">m·a = F<sub>後輪</sub> + F<sub>推進器</sub> − F<sub>風阻</sub> − F<sub>滾阻</sub><br>F<sub>後輪</sub> ≤ μ ×（後輪負重 + 風扇下壓力的後輪部分 + 加速時的重量轉移）<br>F<sub>後輪</sub> ≤ 扭力 × 齒輪比 ÷ 輪半徑 ・ F<sub>後輪</sub> ≤ 功率 ÷ 速度<br>噴氣時間 ≈ 可用空氣質量 ÷（推力 ÷ 650 m/s）</div>
 <p style="margin-top:10px">推估值：車身（不含電池）1,080 kg、駕駛 75 kg、電池每 kWh 6 kg、氣瓶每公升 0.6 kg 外加 0.55 kg 的高壓空氣（約 690 bar）、可用空氣 85%、噴氣速度 650 m/s、後輪靜態負重 56%、輪半徑 0.355 m、迎風面積 1.75 m²、滾動阻力係數 0.013。續航以 110 km/h 定速計算。風扇耗電以每 4,700 kgf 約 80 kW 估算。這些數字讓三個版本接近官方 0–60 mph 宣稱，但都不是特斯拉公布的資料。</p>
+<h3>發表會的兩個特技</h3><p><strong>貼牆坡道：</strong>車子沿著像半個雲霄飛車迴圈的弧形坡道往上爬，頂端約 21 公尺、幾乎倒過來（約 170°）。特斯拉說底盤風扇最多能產生約 2 g 的吸力，讓車倒著也貼得住；接著冷氣推進器把車推離坡道，前方推進器幫它翻正，再落地。本實驗用「自動駕駛定速」爬坡，檢查三件事：坡道推輪子的力 N = m·v²/R + 風扇吸力 + m·g·cosθ 是否一直大於 0、後輪抓地力 μ×N 是否推得贏重力，以及推進器的空氣夠不夠翻正和剎車。</p><p><strong>飛越車隊：</strong>車子飛過並排停放的 Cybercab、Model 3、Model Y、Cybertruck 和 4.1 公尺高的 Semi，最高約 7–8 公尺，還在空中桶滾一圈。本實驗用車底噴嘴朝下噴氣起飛，之後是拋體運動；車子的外形會跟每台車的高度比對，桶滾時車身變「高」會吃掉間距。車輛排列順序、間距、坡道寬度與噴嘴配置都是示意，並非發表會實際尺寸。</p>
 <h3>噴流裡的「馬赫環」</h3><p>高壓空氣從噴嘴衝出時比音速還快，壓力又比外面的空氣高，噴流會一下膨脹、一下被壓回去，形成一串菱形的震波，叫做「馬赫環」（shock diamonds）。第一個馬赫環離噴嘴約 x ≈ 0.67 × 噴嘴直徑 × √(噴嘴壓力 ÷ 大氣壓)。本實驗假設每個噴嘴直徑 4 cm、推力係數 1.5，用推力反推噴嘴壓力：推力越大，壓力越高，馬赫環越拉開。注意：冷空氣不會像火箭火焰那樣發光，現實中要靠水氣凝結或紋影攝影才看得見；發表會報導也沒有提到。畫面上的亮點是為了教學而標出位置。</p>
 <h3>小朋友的表情代表什麼？</h3><p>香氛吊飾的角度就是「加速度 ÷ 重力」的反正切，和真實車上吊飾的物理一樣。推背感的 g 值是模型算出的水平加速度除以 9.81；表情只是比喻。太空梭升空約 3 g、一般人在雲霄飛車上約 1–1.5 g 水平加速度。</p>
 <h3>資料與延伸閱讀</h3></div>
@@ -436,10 +454,11 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <p>Newton's second law, every 1/480 s. The rear tires push with the smallest of <strong>tire grip</strong>, <strong>motor torque</strong> and <strong>motor power ÷ speed</strong>; at 23,500 rpm the gear ratio caps the top speed. Thruster force is added directly, bypassing the tires, until the tank is empty.</p>
 <div class="equation">m·a = F<sub>rear</sub> + F<sub>thrust</sub> − F<sub>drag</sub> − F<sub>rolling</sub><br>F<sub>rear</sub> ≤ μ × (rear load + rear share of fan downforce + weight transfer)<br>F<sub>rear</sub> ≤ torque × gear ÷ wheel radius · F<sub>rear</sub> ≤ power ÷ speed<br>burn time ≈ usable air mass ÷ (thrust ÷ 650 m/s)</div>
 <p style="margin-top:10px">Estimates: body without battery 1,080 kg, driver 75 kg, 6 kg per kWh, tank 0.6 kg per litre plus 0.55 kg of air at ≈690 bar, 85% usable air, 650 m/s exhaust, 56% static rear load, 0.355 m wheel radius, 1.75 m² frontal area, rolling coefficient 0.013. Range is a steady 110 km/h cruise. Fan power is ≈80 kW per 4,700 kgf. These values bring the three versions close to Tesla's 0–60 claims, but none of them are Tesla data.</p>
+<h3>The two reveal stunts</h3><p><strong>Wall ramp:</strong> the car climbed a curved ramp shaped like half a roller-coaster loop to about 21 m, nearly upside down (about 170°). Tesla says the underbody fans can pull up to about 2 g, so the car sticks even inverted; cold-gas thrusters then pushed it off and front thrusters turned it upright to land. This lab climbs at a constant autopilot speed and checks three things: whether the ramp keeps pressing on the wheels, N = m·v²/R + fan suction + m·g·cosθ &gt; 0; whether rear-tire grip μ×N can beat gravity; and whether the air lasts for the flip and the braking burn.</p><p><strong>Fleet jump:</strong> the car leapt over a parked Cybercab, Model 3, Model Y, Cybertruck and the 4.1 m Semi, peaking around 7–8 m, with a barrel roll. Here the down nozzles lift the car, then it follows projectile motion; the car’s outline is checked against each vehicle’s height, and rolling makes the car taller and eats into the gap. Vehicle order, spacing, ramp width and nozzle layout are illustrative, not the reveal’s exact dimensions.</p>
 <h3>Mach diamonds in the jet</h3><p>Compressed air leaves the nozzle faster than sound and at a higher pressure than the air around it, so the jet expands, gets squeezed back, and repeats, forming a chain of diamond-shaped shock waves. The first one sits about x ≈ 0.67 × nozzle diameter × √(nozzle pressure ÷ atmospheric pressure) from the nozzle. This lab assumes 4 cm nozzles and a thrust coefficient of 1.5 and works the nozzle pressure out from the thrust: more thrust, higher pressure, wider spacing. Cold air does not glow like a rocket flame; in real life you only see the diamonds through condensation or schlieren photography, and the reveal coverage does not mention them. The bright beads mark where they would be.</p>
 <h3>What do the faces mean?</h3><p>The air freshener hangs at arctan(acceleration ÷ gravity), exactly like in a real car. The g number is the model's forward acceleration ÷ 9.81; the faces are just a metaphor. A Space Shuttle launch peaks around 3 g.</p>
 <h3>Sources and further reading</h3></div>
-<div class="source-links"><a href="https://www.tesla.com/roadster" target="_blank" rel="noopener">Tesla｜Roadster</a><a href="https://electrek.co/2026/10/15/tesla-unveils-cyberfied-new-roadster-kickflip/" target="_blank" rel="noopener">Electrek｜Tesla unveils Cyberfied new Roadster that can kickflip</a><a href="https://electrek.co/2026/10/15/an-updated-technical-look-at-teslas-kick-flipping-0-60-in-1s-next-gen-roadster/" target="_blank" rel="noopener">Electrek｜A technical look at the kick-flipping Roadster</a><a href="https://www.hagerty.com/media/news/new-tesla-roadster-revealed-and-it-flies/" target="_blank" rel="noopener">Hagerty｜New Tesla Roadster revealed, and it flies</a><a href="https://insideevs.com/news/812242/tesla-roadster-2026-specs/" target="_blank" rel="noopener">InsideEVs｜Tesla Roadster full specs</a><a href="https://www.teslarati.com/tesla-roadster-specs-configurations/" target="_blank" rel="noopener">Teslarati｜Three configs, one can fly</a><a href="https://www.teslarati.com/tesla-roadster-downforce-fan-system/" target="_blank" rel="noopener">Teslarati｜Roadster fan system and thrusters</a><a href="https://evxl.co/2026/10/16/tesla-roadster-everything-we-know/" target="_blank" rel="noopener">EVXL｜Everything we know</a><a href="https://theevreport.com/tesla-roadster-unveil-spacex-cold-gas-thrusters" target="_blank" rel="noopener">The EV Report｜SpaceX cold-gas thrusters</a><a href="https://www.notateslaapp.com/news/4840/new-tesla-roadster-specs-battery-range-speed-trims-and-more" target="_blank" rel="noopener">Not a Tesla App｜Battery, range, speed, trims</a><a href="https://en.wikipedia.org/wiki/Shock_diamond" target="_blank" rel="noopener">Wikipedia｜Shock diamond（馬赫環）</a></div>
+<div class="source-links"><a href="https://www.tesla.com/roadster" target="_blank" rel="noopener">Tesla｜Roadster</a><a href="https://electrek.co/2026/10/15/tesla-unveils-cyberfied-new-roadster-kickflip/" target="_blank" rel="noopener">Electrek｜Tesla unveils Cyberfied new Roadster that can kickflip</a><a href="https://electrek.co/2026/10/15/an-updated-technical-look-at-teslas-kick-flipping-0-60-in-1s-next-gen-roadster/" target="_blank" rel="noopener">Electrek｜A technical look at the kick-flipping Roadster</a><a href="https://www.hagerty.com/media/news/new-tesla-roadster-revealed-and-it-flies/" target="_blank" rel="noopener">Hagerty｜New Tesla Roadster revealed, and it flies</a><a href="https://insideevs.com/news/812242/tesla-roadster-2026-specs/" target="_blank" rel="noopener">InsideEVs｜Tesla Roadster full specs</a><a href="https://www.teslarati.com/tesla-roadster-specs-configurations/" target="_blank" rel="noopener">Teslarati｜Three configs, one can fly</a><a href="https://www.teslarati.com/tesla-roadster-downforce-fan-system/" target="_blank" rel="noopener">Teslarati｜Roadster fan system and thrusters</a><a href="https://evxl.co/2026/10/16/tesla-roadster-everything-we-know/" target="_blank" rel="noopener">EVXL｜Everything we know</a><a href="https://theevreport.com/tesla-roadster-unveil-spacex-cold-gas-thrusters" target="_blank" rel="noopener">The EV Report｜SpaceX cold-gas thrusters</a><a href="https://www.notateslaapp.com/news/4840/new-tesla-roadster-specs-battery-range-speed-trims-and-more" target="_blank" rel="noopener">Not a Tesla App｜Battery, range, speed, trims</a><a href="https://en.wikipedia.org/wiki/Shock_diamond" target="_blank" rel="noopener">Wikipedia｜Shock diamond（馬赫環）</a><a href="https://insideevs.com/news/812152/tesla-roadster-backflip-suction-2g/" target="_blank" rel="noopener">InsideEVs｜All the tricks the Roadster did（2 g suction）</a><a href="https://www.nbcnews.com/tech/tech-news/elon-musk-shows-flying-tesla-roadster-years-delays-rcna603905" target="_blank" rel="noopener">NBC News｜Flying Roadster over five Teslas</a><a href="https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/" target="_blank" rel="noopener">TechCrunch｜Flies and falls with style</a></div>
 <p class="model-note" style="margin-top:14px" data-en="Science, Well Heard is not affiliated with Tesla. Tesla and Roadster are trademarks of Tesla, Inc.">科學好好聽與特斯拉公司無關；Tesla 與 Roadster 為 Tesla, Inc. 的商標。</p>
 </dialog>
 <div class="sr" id="announce" aria-live="polite"></div>
@@ -497,7 +516,99 @@ function summary(c,burn=.4){
   const m=mass(c),W=m*G,run=launch(c,true),top=topSpeed(c),r=range(c),h=hop(c,burn);
   return {mass:m,air:airMass(c),run,top,range:r,hop:h,tw:c.thrust*1000/W,ceiling:c.fan*G/W,cornerG:c.mu*(W+c.fan*G)/W,fanKw:fanPower(c),burnMax:c.thrust>0?airMass(c)/(c.thrust*1000/VE):0,gripG:c.mu*REAR*(W+c.fan*G)/(1-c.mu*H_L)/m/G};
 }
-return {G,RW,MPH60,KMH100,QUARTER,ROLLOUT,mass,airMass,maxSpeedRpm,fanPower,forces,topSpeed,range,launchState,launchStep,launch,hopState,hopStep,hop,summary};
+return {K:{VE,REAR,CRR,ETA,TORQUE,RW,H_L},G,RW,MPH60,KMH100,QUARTER,ROLLOUT,mass,airMass,maxSpeedRpm,fanPower,forces,topSpeed,range,launchState,launchStep,launch,hopState,hopStep,hop,summary};
+})();
+// Reveal stunts in the car's vertical plane: x forward, y up (metres), pitch about z, roll about x.
+// Loop: run-up, then a circular ramp from 0° to 170°; the track must keep pressing the wheels
+// (N = m·v²/R + fan suction + m·g·cos θ ≥ 0) and the rear tires must out-push gravity along it.
+// Jump: run-up, lift burn with the down nozzles, optional barrel roll, then a braking burn to land.
+const RoadsterStunts=(()=>{
+const P=RoadsterPhysics,G=P.G,K=P.K,LOOP_END=170*Math.PI/180,HALF_L=2.2,MID_H=.55,HALF_W=1;
+const VEHICLES=[{key:'cybercab',name:'Cybercab',w:1.9,h:1.4},{key:'model3',name:'Model 3',w:1.85,h:1.44},{key:'semi',name:'Semi',w:2.6,h:4.1},{key:'modely',name:'Model Y',w:1.92,h:1.62},{key:'cybertruck',name:'Cybertruck',w:2.2,h:1.8}];
+const JUMP_FIRST=10,JUMP_GAP=.9,RUNUP={loop:40,jump:60};
+let x=JUMP_FIRST;const LINEUP=VEHICLES.map(v=>{const o={...v,x0:x,x1:x+v.w};x+=v.w+JUMP_GAP;return o;});
+const JUMP_END=LINEUP[LINEUP.length-1].x1;
+const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
+function init(c,kind,opt){const air=P.airMass(c);return {kind,t:0,phase:'runup',x:-RUNUP[kind],y:0,vx:0,vy:0,v:0,theta:0,pitch:0,omega:0,roll:0,rollRate:0,air,mDry:P.mass(c)-air,firing:{rear:false,down:false,front:false},gSeat:1,minGrip:Infinity,topV:null,peak:0,lifted:false,burnLeft:0,pushLeft:0,rollStarted:false,dist:0,still:0,fell:false,targetPitch:null,outcome:null,landV:0,clearance:Infinity,hit:null,done:false,path:[]};}
+function m(s){return s.mDry+s.air;}
+function useAir(s,F,h){if(s.air<=0||F<=0)return 0;const need=F/K.VE*h;if(need>=s.air){const f=s.air/need;s.air=0;return F*f;}s.air-=need;return F;}
+// Ground run-up with the wheels only, holding the target speed once reached.
+function runup(s,c,h,target,start){
+  const f=P.forces(c,s.v,m(s),0,true);let a=(f.drive-f.drag-f.roll)/m(s);
+  if(s.v>=target)a=Math.min(0,a);s.v=Math.min(Math.max(target,s.v),s.v+a*h);if(s.v>target)s.v=target;
+  s.x+=s.v*h;s.dist+=s.v*h;s.vx=s.v;s.gSeat=1;s.ax=a;if(s.x>=start){s.phase=s.kind==='loop'?'ramp':'lift';}
+}
+function landTime(s){const d=s.vy*s.vy+2*G*Math.max(0,s.y);return Math.max(.2,(s.vy+Math.sqrt(d))/G);}
+// Thrust-assisted flight shared by both stunts: attitude control with the front nozzles,
+// then a suicide burn with the down nozzles once the car is roughly upright.
+function flight(s,c,h,opt){
+  const T=c.thrust*1000,mass=m(s),inertiaArm=.221*T/mass;s.firing={rear:false,down:false,front:false};
+  let ay=-G,ax=-.5*1.2*c.cd*1.75*s.vx*Math.abs(s.vx)/mass;
+  // Lift burn (jump) or push-off from the inverted ramp (loop).
+  if(s.burnLeft>0){const F=useAir(s,T,h);s.burnLeft-=h;if(F>0){ay+=F/mass*Math.cos(s.pitch)*Math.cos(s.roll);ax-=F/mass*Math.sin(s.pitch);s.firing.down=true;}}
+  else if(s.pushLeft>0){const F=useAir(s,T*.6,h);s.pushLeft-=h;if(F>0){ay+=F/mass*Math.cos(s.pitch);ax-=F/mass*Math.sin(s.pitch);s.firing.down=true;}}
+  const tl=landTime(s);
+  // Pitch: rotate on to the next upright angle before touchdown.
+  if(s.targetPitch==null)s.targetPitch=s.kind==='loop'?2*Math.PI*Math.ceil(s.pitch/(2*Math.PI)):0;const targetPitch=s.targetPitch;
+  if(T>0&&s.air>0&&s.burnLeft<=0&&s.pushLeft<=0){const want=(targetPitch-s.pitch)/Math.max(.25,tl-.15),alpha=Math.max(-inertiaArm,Math.min(inertiaArm,(want-s.omega)*5));if(Math.abs(alpha)>.05){const used=useAir(s,.2*T*Math.abs(alpha)/inertiaArm,h);if(used>0){s.omega+=alpha*used/(.2*T*Math.abs(alpha)/inertiaArm)*h;s.firing.front=true;}}}
+  // Roll (jump): one full barrel roll after the lift burn.
+  if(s.kind==='jump'&&opt.roll&&s.burnLeft<=0&&s.lifted){if(!s.rollStarted&&T>0&&s.air>0){s.rollStarted=true;}
+    if(s.rollStarted){const rollArm=.36*T/mass,want=(2*Math.PI-s.roll)/Math.max(.25,tl-.35),alpha=Math.max(-rollArm,Math.min(rollArm,(want-s.rollRate)*5));if(Math.abs(alpha)>.05&&s.air>0){const used=useAir(s,.2*T*Math.abs(alpha)/rollArm,h);if(used>0){s.rollRate+=alpha*used/(.2*T*Math.abs(alpha)/rollArm)*h;s.firing.front=true;}}}}
+  // Braking burn when roughly upright.
+  const err=Math.abs(wrap(s.pitch))+Math.abs(wrap(s.roll));
+  if(T>0&&s.air>0&&s.burnLeft<=0&&s.pushLeft<=0&&err<.7&&s.vy<-1){const ab=T*Math.cos(err)/mass-G,fire=ab>.5?s.y<=s.vy*s.vy/(2*ab)+.6:s.y<14;if(fire){const F=useAir(s,T,h);if(F>0){ay+=F/mass*Math.cos(err);s.firing.down=true;}}}
+  s.vx+=ax*h;s.vy+=ay*h;s.x+=s.vx*h;s.y+=s.vy*h;s.pitch+=s.omega*h;s.roll+=s.rollRate*h;
+  s.gSeat=(ay+G)/G;s.peak=Math.max(s.peak,s.y);s.v=Math.hypot(s.vx,s.vy);if(s.y>.02)s.lifted=true;
+}
+function land(s){
+  const pe=Math.abs(wrap(s.pitch)),re=Math.abs(wrap(s.roll));s.landV=Math.max(0,-s.vy);s.y=0;s.done=true;s.gSeat=1;
+  s.outcome=pe>.6?'roof':re>.6?'side':s.landV<=4?'perfect':s.landV<=8?'hard':'crash';
+  if(s.outcome==='perfect'||s.outcome==='hard'){s.pitch=Math.round(s.pitch/(2*Math.PI))*2*Math.PI;s.roll=Math.round(s.roll/(2*Math.PI))*2*Math.PI;}
+  s.vx=0;s.vy=0;s.omega=0;s.rollRate=0;s.v=0;
+}
+function loopStep(s,c,h,opt){
+  if(s.done)return s;s.t+=h;const R=opt.radius;
+  if(s.phase==='runup'){runup(s,c,h,opt.speed/3.6,0);if(s.phase==='ramp')s.theta=0;}
+  else if(s.phase==='ramp'){
+    const mass=m(s),DF=c.fan*G,N=mass*s.v*s.v/R+DF+mass*G*Math.cos(s.theta);
+    s.minGrip=Math.min(s.minGrip,N/(mass*G));
+    if(N<0){s.phase='flight';s.fell=true;}
+    else{
+      const torque=K.TORQUE*c.gear/K.RW*K.ETA,power=c.power*1000*K.ETA/Math.max(Math.abs(s.v),.5),traction=c.mu*K.REAR*N;
+      // Autopilot holds the chosen climbing speed; tires and motor may not manage it.
+      const drag=.5*1.2*c.cd*1.75*s.v*s.v*Math.sign(s.v),roll=K.CRR*N*Math.sign(s.v),hold=mass*G*Math.sin(s.theta)+drag+roll+mass*(opt.speed/3.6-s.v)*3;
+      if(s.v<0)s.sliding=true;const drive=s.sliding?0:Math.max(0,Math.min(hold,torque,power,traction));s.tractionShort=hold>traction;s.maxTheta=Math.max(s.maxTheta||0,s.theta);
+      const a=(drive-drag-roll)/mass-G*Math.sin(s.theta);s.v+=a*h;s.theta+=s.v/R*h;s.dist+=s.v*h;s.gSeat=s.v*s.v/(R*G)+Math.cos(s.theta);s.ax=a;
+      if(s.theta<=0&&s.v<0){s.theta=0;s.done=true;s.outcome='slid';s.x=0;s.y=0;s.pitch=0;s.v=0;return s;}
+      if(s.theta>=LOOP_END){s.theta=LOOP_END;s.phase='flight';s.topV=s.v;s.pushLeft=c.thrust>0?.15:0;}
+    }
+    s.x=R*Math.sin(s.theta);s.y=R*(1-Math.cos(s.theta));s.pitch=s.theta;s.peak=Math.max(s.peak,s.y);
+    if(s.phase==='flight'){s.vx=s.v*Math.cos(s.theta);s.vy=s.v*Math.sin(s.theta);s.omega=s.v/R;s.lifted=true;}
+  }
+  else{flight(s,c,h,opt);if(s.y<=0&&s.vy<0)land(s);}
+  if(s.t>60){s.done=true;s.outcome=s.outcome||'stuck';}
+  return s;
+}
+function bottom(s){return s.y+MID_H-(MID_H*Math.abs(Math.cos(s.roll))+HALF_W*Math.abs(Math.sin(s.roll)));}
+function jumpStep(s,c,h,opt){
+  if(s.done)return s;s.t+=h;
+  if(s.phase==='runup'){runup(s,c,h,opt.speed/3.6,0);if(s.phase==='lift'){s.burnLeft=c.thrust>0&&s.air>0?opt.burn:0;s.phase='flight';}}
+  else{
+    if(!s.lifted&&s.burnLeft<=0&&s.y<=0){s.vy=0;s.x+=s.vx*h;s.dist+=s.vx*h;s.gSeat=1;}
+    else{flight(s,c,h,opt);if(s.y<0&&!s.lifted){s.y=0;s.vy=Math.max(0,s.vy);}}
+    // Clearance over each parked vehicle.
+    const b=bottom(s);for(const v of LINEUP){if(s.x+HALF_L>v.x0&&s.x-HALF_L<v.x1){s.clearance=Math.min(s.clearance,b-v.h);if(b<v.h){s.done=true;s.outcome='hit';s.hit=v.key;s.vx=s.vy=0;s.v=0;s.firing={rear:false,down:false,front:false};return s;}}}
+    if(s.lifted&&s.y<=0&&s.vy<0)land(s);
+  }
+  if(s.t>60){s.done=true;s.outcome=s.outcome||'stuck';}
+  return s;
+}
+function step(s,c,h,opt){return s.kind==='loop'?loopStep(s,c,h,opt):jumpStep(s,c,h,opt);}
+function simulate(c,kind,opt){const s=init(c,kind,opt);let next=0;while(!s.done){step(s,c,1/240,opt);if(s.t>=next){s.path.push({t:s.t,x:s.x,y:s.y,v:s.v,g:s.gSeat});next+=1/30;}}s.path.push({t:s.t,x:s.x,y:s.y,v:s.v,g:s.gSeat});return s;}
+const SUCCESS=o=>o==='perfect'||o==='hard';
+// Overall result: the stunt counts only if the car did the trick and landed on its wheels.
+function verdict(s){if(s.kind==='loop'){if(s.outcome==='slid')return s.outcome;if(s.fell)return SUCCESS(s.outcome)?'fellSafe':'fell';return s.outcome;}return s.outcome;}
+return {VEHICLES,LINEUP,JUMP_END,LOOP_END,RUNUP,init,step,simulate,SUCCESS,verdict,bottom};
 })();
 </script>
 <script>
@@ -538,14 +649,17 @@ const COMPONENTS=[
 ];
 const LIMITS={grip:{c:'#9bd8d1',name:['輪胎抓地力','Tire grip']},torque:{c:'#e6bb72',name:['馬達扭力','Motor torque']},power:{c:'#ee9c8b',name:['馬達功率','Motor power']},rpm:{c:'#b9a6e6',name:['轉速上限','Rev limit']}};
 
-const state={mode:'free',view:'overview',exp:'launch',trim:'performance',cfg:{...TRIMS.performance},ref:'supercar',burn:.4,speed:'auto',countdown:0,paused:false,phase:'ready',time:0,
+const state={mode:'free',view:'overview',exp:'launch',trim:'performance',cfg:{...TRIMS.performance},ref:'supercar',burn:.4,speed:'auto',countdown:0,stunt:{loop:{speed:40,radius:10.5},jump:{speed:54,burn:.5,roll:true}},stuntSum:null,paused:false,phase:'ready',time:0,
   runs:null,trace:{you:[],ref:[]},sum:null,refSum:null,change:null,changedKey:null,engine:null};
 window.lab={state,go,reset:resetRun,setView,setMode,setExp,applyTrim};
 let toastTimer,acc=0,last=performance.now(),lastUi=0;
 
 function cfgYou(){return physics(state.cfg);}
 function cfgRef(){return physics(TRIMS[state.ref]);}
-function recompute(){state.sum=P.summary(cfgYou(),state.burn);state.refSum=P.summary(cfgRef(),state.burn);}
+const ST=RoadsterStunts;
+const isStunt=()=>state.exp==='loop'||state.exp==='jump';
+function stuntOpt(){return state.stunt[state.exp];}
+function recompute(){state.sum=P.summary(cfgYou(),state.burn);state.refSum=P.summary(cfgRef(),state.burn);state.stuntSum=isStunt()?ST.simulate(cfgYou(),state.exp,stuntOpt()):null;}
 
 // ---------- Language ----------
 function applyStatic(){
@@ -556,7 +670,7 @@ function applyStatic(){
   $$('[data-en-alt]').forEach(el=>{if(el.dataset.zhAlt==null)el.dataset.zhAlt=el.alt;el.alt=lang==='en'?el.dataset.enAlt:el.dataset.zhAlt;});
   $('lang-zh').setAttribute('aria-pressed',String(lang!=='en'));$('lang-en').setAttribute('aria-pressed',String(lang==='en'));
 }
-function setLanguage(next){lang=next;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();renderAll();state.engine?.setView(false);}
+function setLanguage(next){lang=next;clearTimeout(toastTimer);$('toast').hidden=true;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();renderAll();state.engine?.setView(false);}
 $('lang-zh').onclick=()=>setLanguage('zh-Hant');$('lang-en').onclick=()=>setLanguage('en');
 
 // ---------- Panel ----------
@@ -588,31 +702,58 @@ function buildRefButtons(){const box=$('ref-options');box.replaceChildren();for(
 function matchTrim(){for(const k of ['performance','thrust','rocket']){const t=TRIMS[k];if(Object.keys(t).every(key=>t[key]===state.cfg[key]))return k;}return 'custom';}
 
 const METRICS=[
- {key:'kmh100',name:['0–100 km/h','0–100 km/h'],get:s=>s.run.marks.kmh100,unit:'s',d:2,lower:true},
- {key:'top',name:['極速','Top speed'],get:s=>s.top.v*3.6,unit:'km/h',d:0},
- {key:'range',name:['續航','Range'],get:s=>s.range.km,unit:'km',d:0},
- {key:'mass',name:['車重','Mass'],get:s=>s.mass,unit:'kg',d:0,lower:true},
- {key:'hop',name:['跳躍高度','Hop height'],get:s=>s.hop.peak,unit:'m',d:1},
- {key:'ceiling',name:['倒吊力','Ceiling grip'],get:s=>s.ceiling,unit:'×',d:2}
+ {key:'kmh100',name:['0–100 km/h','0–100 km/h'],get:b=>b.sum.run.marks.kmh100,unit:'s',d:2,lower:true},
+ {key:'top',name:['極速','Top speed'],get:b=>b.sum.top.v*3.6,unit:'km/h',d:0},
+ {key:'range',name:['續航','Range'],get:b=>b.sum.range.km,unit:'km',d:0},
+ {key:'mass',name:['車重','Mass'],get:b=>b.sum.mass,unit:'kg',d:0,lower:true},
+ {key:'hop',name:['跳躍高度','Hop height'],get:b=>b.sum.hop.peak,unit:'m',d:1},
+ {key:'ceiling',name:['倒吊力','Ceiling grip'],get:b=>b.sum.ceiling,unit:'×',d:2}
 ];
+const fin=v=>isFinite(v)?Math.max(0,v):0;
+const STUNT_METRICS={
+ loop:[{key:'ok',name:['任務','Mission'],ok:true},{key:'grip',name:['最小貼地力','Lowest track grip'],get:b=>fin(b.stunt.minGrip),unit:'g',d:2},{key:'peak',name:['爬到高度','Height reached'],get:b=>b.stunt.peak,unit:'m',d:1},{key:'land',name:['落地速度','Landing speed'],get:b=>b.stunt.landV,unit:'m/s',d:1,lower:true},{key:'air',name:['剩餘空氣','Air left'],get:b=>b.stunt.air,unit:'kg',d:0},{key:'mass',name:['車重','Mass'],get:b=>b.sum.mass,unit:'kg',d:0,lower:true}],
+ jump:[{key:'ok',name:['任務','Mission'],ok:true},{key:'peak',name:['最高高度','Peak height'],get:b=>b.stunt.peak,unit:'m',d:1},{key:'clear',name:['離車頂最近','Closest clearance'],get:b=>fin(b.stunt.clearance),unit:'m',d:2},{key:'land',name:['落地速度','Landing speed'],get:b=>b.stunt.landV,unit:'m/s',d:1,lower:true},{key:'air',name:['剩餘空氣','Air left'],get:b=>b.stunt.air,unit:'kg',d:0},{key:'mass',name:['車重','Mass'],get:b=>b.sum.mass,unit:'kg',d:0,lower:true}]
+};
+const stuntWin=s=>{const v=ST.verdict(s);return v==='perfect'||v==='hard';};
+function bundle(){return {sum:state.sum,stunt:state.stuntSum,exp:state.exp};}
 function setComponent(key,value){
   if(state.cfg[key]===value)return;
-  const before=state.sum,from=state.cfg[key];
+  const before=bundle(),from=state.cfg[key];
   state.cfg[key]=value;state.trim=matchTrim();recompute();
-  const prev=state.change&&state.change.key===key?state.change:null;
-  state.change={key,from:prev?prev.from:from,to:value,before:prev?prev.before:before,after:state.sum};state.changedKey=key;
+  const prev=state.change&&state.change.key===key&&state.change.before.exp===state.exp?state.change:null;
+  state.change={key,from:prev?prev.from:from,to:value,before:prev?prev.before:before,after:bundle()};state.changedKey=key;
   resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();
 }
-function applyTrim(k){state.cfg={...TRIMS[k]};state.trim=k;state.change=null;state.changedKey=null;recompute();resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();toast(state.exp==='hop'?T(`已載入 ${trimName(k)} 版本。按「點火！」看看它跳多高。`,`${trimName(k)} loaded. Press Ignite to see how high it hops.`):T(`已載入 ${trimName(k)} 版本。按「起跑！」看看它多快。`,`${trimName(k)} loaded. Press Launch to see how quick it is.`));}
+function setStunt(key,value){
+  const o=stuntOpt();if(o[key]===value)return;const before=bundle(),from=o[key];o[key]=value;recompute();
+  const id='s-'+key,prev=state.change&&state.change.key===id&&state.change.before.exp===state.exp?state.change:null;
+  state.change={key:id,from:prev?prev.from:from,to:value,before:prev?prev.before:before,after:bundle()};state.changedKey=null;
+  resetRun(false);syncStunt();renderAll();state.engine?.setView(false);
+}
+function syncStunt(){
+  const l=state.stunt.loop,j=state.stunt.jump;
+  $('s-loop-speed').value=l.speed;paintRange($('s-loop-speed'));$('o-loop-speed').innerHTML=`${l.speed}<small>km/h</small>`;
+  $('s-jump-speed').value=j.speed;paintRange($('s-jump-speed'));$('o-jump-speed').innerHTML=`${j.speed}<small>km/h</small>`;
+  $$('[data-radius]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.radius===l.radius)));
+  $$('[data-jburn]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.jburn===j.burn)));
+  $$('[data-roll]').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.roll==='true')===j.roll)));
+}
+$('s-loop-speed').oninput=e=>setStunt('speed',+e.target.value);$('s-jump-speed').oninput=e=>setStunt('speed',+e.target.value);
+$$('[data-radius]').forEach(b=>b.onclick=()=>setStunt('radius',+b.dataset.radius));
+$$('[data-jburn]').forEach(b=>b.onclick=()=>setStunt('burn',+b.dataset.jburn));
+$$('[data-roll]').forEach(b=>b.onclick=()=>setStunt('roll',b.dataset.roll==='true'));
+function applyTrim(k){state.cfg={...TRIMS[k]};state.trim=k;state.change=null;state.changedKey=null;recompute();resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();toast(isStunt()?T(`已載入 ${trimName(k)} 版本。看看左邊的任務檢查，再按「${goLabel()}」。`,`${trimName(k)} loaded. Check the mission list, then press ${goLabel()}.`):state.exp==='hop'?T(`已載入 ${trimName(k)} 版本。按「點火！」看看它跳多高。`,`${trimName(k)} loaded. Press Ignite to see how high it hops.`):T(`已載入 ${trimName(k)} 版本。按「起跑！」看看它多快。`,`${trimName(k)} loaded. Press Launch to see how quick it is.`));}
 
-function componentText(key,v){const c=COMPONENTS.find(x=>x.key===key);if(c)return `${c.show(v)} ${c.unit}`;return v?T('輕量材料','light materials'):T('一般鋼鋁','steel & aluminium');}
-function componentName(key){const c=COMPONENTS.find(x=>x.key===key);return c?c.name[lang==='en'?1:0]:T('車身材料','Body material');}
+function componentText(key,v){const c=COMPONENTS.find(x=>x.key===key);if(c)return `${c.show(v)} ${c.unit}`;if(key==='s-speed')return `${v} km/h`;if(key==='s-radius')return `${fmt(v*2*.99)} m`;if(key==='s-burn')return `${v} s`;if(key==='s-roll')return v?T('翻一圈','roll'):T('不翻','no roll');return v?T('輕量材料','light materials'):T('一般鋼鋁','steel & aluminium');}
+function componentName(key){const c=COMPONENTS.find(x=>x.key===key);if(c)return c.name[lang==='en'?1:0];return {'s-speed':state.exp==='loop'?T('爬坡速度','Climbing speed'):T('起跳車速','Take-off speed'),'s-radius':T('坡道高度','Ramp height'),'s-burn':T('上升噴氣','Lift burn'),'s-roll':T('空中桶滾','Barrel roll')}[key]||T('車身材料','Body material');}
 function renderImpact(){
   const ch=state.change;
   if(!ch){$('impact-what').textContent=T('還沒改','nothing yet');$('impact-chips').replaceChildren();$('impact-copy').textContent=T('拉動任何一個零件，這裡會比較「改之前」和「改之後」。','Move any component and this card compares before and after.');return;}
   $('impact-what').textContent=`${componentName(ch.key)}${T('：',': ')}${componentText(ch.key,ch.from)} → ${componentText(ch.key,ch.to)}`;
   const box=$('impact-chips');box.replaceChildren();
-  for(const m of METRICS){
+  const list=isStunt()&&ch.after.stunt&&ch.before.stunt?STUNT_METRICS[state.exp]:METRICS;
+  for(const m of list){
+    if(m.ok){const a=stuntWin(ch.before.stunt),b=stuntWin(ch.after.stunt),el=document.createElement('div');el.className=a===b?'':b?'better':'worse';el.innerHTML=`<span>${m.name[lang==='en'?1:0]}</span><b>${a===b?(b?T('仍成功','still OK'):T('仍失敗','still fails')):b?T('失敗 → 成功','fail → OK'):T('成功 → 失敗','OK → fail')}</b>`;box.append(el);continue;}
     const a=m.get(ch.before),b=m.get(ch.after),diff=b-a,eps=m.d===0?.5:m.d===1?.05:.005;
     let cls='',txt=T('不變','same');
     if(Math.abs(diff)>=eps){const better=m.lower?diff<0:diff>0;cls=better?'better':'worse';txt=(diff>0?'+':'−')+fmt(Math.abs(diff),m.d)+' '+m.unit;}
@@ -621,7 +762,11 @@ function renderImpact(){
   $('impact-copy').innerHTML=impactExplain(ch);
 }
 function impactExplain(ch){
-  const s=ch.after,b=ch.before,d100=s.run.marks.kmh100-b.run.marks.kmh100,up=ch.to>ch.from;
+  if(isStunt()&&ch.after.stunt)return stuntExplain(ch.after.stunt)+(ch.key.startsWith('s-')?'':' '+(componentCopy(ch)||''));
+  return componentCopy(ch,true);
+}
+function componentCopy(ch,withTail){
+  const s=ch.after.sum,b=ch.before.sum,d100=s.run.marks.kmh100-b.run.marks.kmh100,up=ch.to>ch.from;
   const limit=dominantLimit(s.run.limits);
   const tail=Math.abs(d100)<.01&&!['thrust','tank'].includes(ch.key)?T(`起步幾乎沒變：0→100 km/h 主要被「${LIMITS[limit].name[0]}」限制。`,`Launch barely changed: 0–100 km/h is mostly limited by ${LIMITS[limit].name[1].toLowerCase()}.`):'';
   const copy={
@@ -635,7 +780,50 @@ function impactExplain(ch){
     cd:T('風阻係數越小，空氣越容易滑過車身：高速時更省力，極速和續航都會提升。','A lower drag coefficient lets air slip past: less effort at speed, more top speed and range.'),
     light:T('輕量材料讓整台車變輕。只靠輪胎時差別不大（輪胎負重也一起變輕），但推進器推同樣的力，車越輕加速越猛。','Lighter materials cut mass. With tires alone it matters less (less load on the tires too), but the same thruster force accelerates a lighter car harder.')
   }[ch.key]||'';
-  return copy+(tail?' '+tail:'');
+  return copy+(withTail&&tail?' '+tail:'');
+}
+function stuntExplain(s){
+  const v=ST.verdict(s),c=state.cfg,o=stuntOpt(),R=o.radius;
+  if(s.kind==='loop')return {
+    slid:T(`爬到 ${fmt(s.peak,1)} m 就滑下來了：輪胎推不贏重力。坡道越陡，輪胎越要被壓緊——加大吸地風扇或輪胎抓地，或用更快的速度讓離心力幫忙壓。`,`It slid back after ${fmt(s.peak,1)} m: the tires could not out-push gravity. The steeper the ramp, the harder the tires must be pressed — add fan suction or tire grip, or go faster so the curve presses them.`),
+    fell:T(`倒過來時坡道已經壓不住車子（貼地力 < 0），車子從牆上掉下來。需要：速度² ÷ 半徑 + 風扇吸力 ÷ 質量 > 重力。`,`Upside down, the ramp could no longer press on the wheels (grip < 0) and the car fell off. You need speed² ÷ radius + fan suction ÷ mass > gravity.`),
+    fellSafe:T('車子在半路掉下牆，幸好推進器把它翻正、減速落地。但它沒有爬到頂端，任務不算完成。','The car dropped off the wall halfway; the thrusters still flipped it and braked the fall, but it never reached the top.'),
+    roof:c.thrust>0?T('爬到頂端了，但空氣不夠把車翻正就落地了。加大氣瓶或推進器。','It reached the top, but ran out of air before turning upright. Add tank or thrust.'):T('爬到頂端了！但沒有推進器，車子只能倒著掉下來。發表會靠前方推進器把車翻正。','It reached the top! With no thrusters it can only fall upside down. At the reveal, front thrusters turned the car upright.'),
+    crash:T(`翻正了，但從 ${fmt(s.peak,0)} m 掉下來太快（${fmt(s.landV,1)} m/s）。推力或空氣不夠剎住。`,`Upright, but falling from ${fmt(s.peak,0)} m it hit at ${fmt(s.landV,1)} m/s — not enough thrust or air to brake.`),
+    hard:T(`成功，但落地有點重（${fmt(s.landV,1)} m/s）。`,`Made it, with a firm landing (${fmt(s.landV,1)} m/s).`),
+    perfect:T(`完美！倒掛時貼地力最低 ${fmt(s.minGrip,2)} g（大於 0 就不會掉），推進器翻正後以 ${fmt(s.landV,1)} m/s 輕輕落地。`,`Perfect! Track grip never dropped below ${fmt(s.minGrip,2)} g while inverted (above 0 means it stays on), and the thrusters set it down at ${fmt(s.landV,1)} m/s.`),
+    stuck:T('時間到了還沒完成。','Ran out of time.')}[v]||'';
+  const hitName=s.hit?ST.VEHICLES.find(x=>x.key===s.hit).name:'';
+  return {
+    hit:!s.lifted?T(`沒有飛起來，直接撞上 ${hitName}。推重比要大於 1，車子才離得開地面。`,`It never left the ground and drove into the ${hitName}. Thrust-to-weight must exceed 1.`):T(`撞到 ${hitName}！${s.x<ST.LINEUP[2].x0?'太早撞上：起飛後爬升不夠快，試試更長的噴氣或更慢的車速。':'飛不夠遠或不夠高：噴久一點、或讓車速快一點，水平距離 = 車速 × 飛行時間。'}`,`Hit the ${hitName}! ${s.x<ST.LINEUP[2].x0?'Too early: it did not climb fast enough. Try a longer burn or a slower approach.':'Not far or high enough: burn longer or go faster — distance = speed × time in the air.'}`),
+    roof:T('翻過車隊了，但落地時車頭朝下。','Cleared the fleet but landed nose-down.'),side:T('桶滾沒有轉完，車子側著落地。空氣不夠，或飛行時間太短。','The barrel roll did not finish and it landed on its side — not enough air or hang time.'),
+    crash:T(`越過車隊，但落地太重（${fmt(s.landV,1)} m/s）：剩下的空氣不夠剎車。`,`Cleared the fleet but landed too hard (${fmt(s.landV,1)} m/s): not enough air left to brake.`),
+    hard:T(`成功越過！落地 ${fmt(s.landV,1)} m/s，有點重。`,`Cleared it! A firm ${fmt(s.landV,1)} m/s landing.`),
+    perfect:T(`完美飛越！最高 ${fmt(s.peak,1)} m，離車頂最近 ${fmt(s.clearance,2)} m，落地 ${fmt(s.landV,1)} m/s。`,`Perfect! Peak ${fmt(s.peak,1)} m, closest clearance ${fmt(s.clearance,2)} m, landing at ${fmt(s.landV,1)} m/s.`),
+    stuck:T('時間到了還沒完成。','Ran out of time.')}[v]||'';
+}
+function missionItems(s){
+  const c=state.cfg,v=ST.verdict(s),mass=state.sum.mass,landed=s.done&&v!=='slid'&&v!=='hit'&&v!=='stuck',items=[];
+  const item=(ok,title,detail)=>items.push({ok,title,detail});
+  if(s.kind==='loop'){const R=stuntOpt().radius,top=s.topV!=null;
+    item(top||s.fell?(!s.fell):false,T(`爬到 ${fmt(2*R*.99,0)} m 高的頂端`,`Reach the ${fmt(2*R*.99,0)} m top`),top?T(`頂端速度 ${fmt(s.topV*3.6)} km/h`,`${fmt(s.topV*3.6)} km/h at the top`):v==='slid'?T(`只爬到 ${fmt(s.peak,1)} m 就滑下來`,`Slid back from ${fmt(s.peak,1)} m`):T(`在 ${fmt(s.peak,1)} m 掉下來`,`Dropped off at ${fmt(s.peak,1)} m`));
+    item(!s.fell&&v!=='slid',T('倒掛時貼得住','Stay on while upside down'),T(`最低貼地力 ${fmt(fin(s.minGrip),2)} g（要 > 0）・風扇吸力 ${fmt(c.fan*P.G/(mass*P.G),2)} g`,`Lowest track grip ${fmt(fin(s.minGrip),2)} g (needs > 0) · fan suction ${fmt(c.fan/mass,2)} g`));
+    item(landed&&v!=='roof'&&v!=='side',T('在空中翻正','Turn upright in the air'),c.thrust>0?T(`前方推進器負責轉身・推力 ${fmt(c.thrust)} kN`,`Front nozzles turn the car · ${fmt(c.thrust)} kN`):T('沒有推進器，無法翻正','No thrusters, cannot turn over'));
+    item(landed&&(v==='perfect'||v==='hard'||v==='fellSafe'),T('安全落地','Land safely'),landed?T(`落地速度 ${fmt(s.landV,1)} m/s（8 以下算安全）・剩 ${fmt(s.air)} kg 空氣`,`Touchdown ${fmt(s.landV,1)} m/s (≤ 8 is safe) · ${fmt(s.air)} kg air left`):T('還沒落地','Not landed'));
+  }else{
+    const tw=c.thrust*1000/(mass*P.G);
+    item(tw>1&&s.lifted,T('離開地面','Leave the ground'),T(`推重比 ${fmt(tw,2)}（要 > 1）`,`Thrust-to-weight ${fmt(tw,2)} (needs > 1)`));
+    item(v!=='hit'&&s.lifted,T('越過 5 台車（最高的是 4.1 m 的 Semi）','Clear 5 vehicles (tallest: the 4.1 m Semi)'),v==='hit'?T(`撞上 ${ST.VEHICLES.find(x=>x.key===s.hit).name}`,`Hit the ${ST.VEHICLES.find(x=>x.key===s.hit).name}`):T(`最高 ${fmt(s.peak,1)} m・離車頂最近 ${fmt(fin(s.clearance),2)} m`,`Peak ${fmt(s.peak,1)} m · closest clearance ${fmt(fin(s.clearance),2)} m`));
+    if(stuntOpt().roll)item(landed&&v!=='side',T('空中桶滾一圈','Barrel roll'),T('翻滾時車身變「高」，會吃掉離車頂的距離','Rolling makes the car taller, eating into clearance'));
+    item(landed&&(v==='perfect'||v==='hard'),T('安全落地','Land safely'),landed?T(`落地速度 ${fmt(s.landV,1)} m/s・剩 ${fmt(s.air)} kg 空氣`,`Touchdown ${fmt(s.landV,1)} m/s · ${fmt(s.air)} kg air left`):T('還沒落地','Not landed'));
+  }
+  return items;
+}
+function renderMission(){
+  const show=isStunt()&&state.stuntSum;$('mission').hidden=!show;$('score-box').hidden=!!show;$('workspace').classList.toggle('is-stunt',!!show);if(!show)return;
+  const s=state.stuntSum,win=stuntWin(s);
+  $('mission-verdict').textContent=win?T('預測：成功 ✓','Forecast: success ✓'):T('預測：失敗 ✗','Forecast: fail ✗');$('mission-verdict').classList.toggle('no',!win);
+  $('mission-list').innerHTML=missionItems(s).map(it=>`<li class="${it.ok?'ok':'no'}"><i>${it.ok?'✓':'✗'}</i><span><b>${it.title}</b><small>${it.detail}</small></span></li>`).join('');
 }
 function dominantLimit(l){let best='grip',v=-1;for(const k in l)if(l[k]>v){v=l[k];best=k;}return best;}
 
@@ -669,6 +857,7 @@ function renderLimits(){
   if(thr>.005){const s=document.createElement('span');s.style.setProperty('--c','#f4f0e6');s.textContent=T(`推進器貢獻推力 ${fmt(thr*100)}%`,`Thrusters gave ${fmt(thr*100)}% of the push`);legend.append(s);}
 }
 function renderInsight(){
+  if(isStunt()&&state.stuntSum){const s=state.stuntSum,win=stuntWin(s);$('insight').innerHTML=(win?'':`<strong>${T('哪裡出問題？','What went wrong?')}</strong> `)+stuntExplain(s);return;}
   const s=state.sum,limit=dominantLimit(s.run.limits),name=LIMITS[limit].name[lang==='en'?1:0];let msg;
   if(state.exp==='hop'){
     msg=s.air<=0&&state.cfg.thrust>0?T('氣瓶是 0 公升：推進器沒有空氣可以噴，車子不會動。把「高壓氣瓶」調大。','The tank is 0 L: the thrusters have no air to blow, so nothing happens. Raise Air tank.'):s.tw<=1?T(`推重比只有 <strong>${fmt(s.tw,2)}</strong>：推力比車重還小，朝下噴也離不開地面。加大推進器，或讓車變輕。`,`Thrust-to-weight is only <strong>${fmt(s.tw,2)}</strong>: the push is smaller than the weight, so the car stays put. Add thrust or lose weight.`)
@@ -692,18 +881,23 @@ function renderView(){
   const v=VIEWS[state.view],i=lang==='en'?1:0,compare=state.mode==='compare';
   let title=v.title[i],desc=v.desc[i];
   if(compare){title=T('同一條線起跑，<br>誰先到？','Same start line.<br>Who gets there first?');desc=T(`白色車是你的「${trimName(state.trim)}」，灰色車是對手「${trimName(state.ref)}」。`,`White car: your ${trimName(state.trim)}. Grey car: the rival ${trimName(state.ref)}.`);}
+  else if(state.exp==='loop'&&state.view==='overview'){title=T('爬上牆，倒過來，<br>再翻身落地。','Up the wall, upside down,<br>flip and land.');desc=T('發表會的第一個橋段：車子沿著半圓坡道爬到 21 公尺高、幾乎倒過來，再用推進器翻正落地。','The reveal\'s first stunt: the car climbs a curved ramp to 21 m, nearly upside down, then thrusters flip it upright to land.');}
+  else if(state.exp==='jump'&&state.view==='overview'){title=T('飛越整個<br>特斯拉車隊。','Leap over the<br>whole Tesla fleet.');desc=T('發表會的第二個橋段：飛過 Cybercab、Model 3、4.1 公尺高的 Semi、Model Y 和 Cybertruck，還在空中翻一圈。','The reveal\'s second stunt: over a Cybercab, Model 3, the 4.1 m Semi, Model Y and Cybertruck, with a barrel roll.');}
   else if(state.exp==='hop'&&state.view==='overview'){title=T('推力大於重量，<br>就能離地。','Thrust beats weight,<br>wheels leave the ground.');desc=T('噴嘴朝下噴氣。推重比大於 1，車子才跳得起來。','Nozzles point down. Above a thrust-to-weight of 1, the car hops.');}
   $('scene-title').innerHTML=title;$('scene-description').textContent=desc;$('view-number').textContent=compare?T('雙車對照 / 400 公尺直線','Head-to-head / 400 m strip'):v.num[i];
   const kv=state.exp==='hop'&&state.view==='overview'?VIEWS.thrust:v;
   $('knowledge-title').textContent=kv.k[i];$('knowledge-copy').innerHTML=`${kv.kc[i]}<span class="formula">${kv===VIEWS.grip&&lang==='en'?'a ≤ μ · g · (1 + downforce ÷ weight)':kv===VIEWS.thrust&&lang==='en'?'thrust-to-weight = thrust ÷ (m · g)':kv.f}</span>`;
+  if(state.exp==='loop'&&state.view==='overview'){$('knowledge-title').textContent=T('為什麼倒過來不會掉？','Why doesn\'t it fall off?');$('knowledge-copy').innerHTML=T('轉彎需要向心力 m·v²/R。坡道推輪子的力等於「離心需要的力 + 風扇吸力 − 重力」，只要還大於 0，車子就貼得住。','A curve needs m·v²/R toward its centre. The ramp\'s push on the wheels is that plus fan suction minus gravity; while it stays above 0, the car sticks.')+'<span class="formula">N = m·v²/R + '+T('吸力','suction')+' + m·g·cosθ > 0</span>';}
+  if(state.exp==='jump'&&state.view==='overview'){$('knowledge-title').textContent=T('拋體運動','Projectile motion');$('knowledge-copy').innerHTML=T('推進器只負責往上推一下。之後水平速度幾乎不變，垂直方向被重力拉回來：飛多遠 = 車速 × 在空中的時間。','The thrusters only give an upward kick. After that the horizontal speed stays almost the same while gravity pulls it down: distance = speed × time in the air.')+'<span class="formula">'+T('距離 = 車速 × 飛行時間','distance = speed × hang time')+'</span>';}
   $('knowledge').hidden=compare;
   $('scale-text').textContent=state.view==='overview'||compare?T('車輛外型為示意；賽道與跳躍高度為真實比例','Car shape is illustrative; strip and hop height are to scale'):T('零件位置與大小為示意','Part sizes and positions are illustrative');
   $$('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view&&!compare)));
 }
 function renderHeader(){
-  $('panel-title').textContent=state.exp==='hop'?T('推力夠不夠讓它飛？','Enough thrust to fly?'):state.mode==='compare'?T('改一個零件，誰先到？','Change one part. Who wins?'):T('改一個零件，差多少？','Change one part. How much faster?');
-  $('go').textContent=state.exp==='hop'?T('點火！','Ignite!'):T('起跑！','Launch!');$('go').classList.toggle('is-hop',state.exp==='hop');
-  $('burn-row').hidden=state.exp!=='hop';
+  $('panel-title').textContent=state.exp==='loop'?T('哪些零件讓它貼得住牆？','Which parts keep it on the wall?'):state.exp==='jump'?T('飛得過整個車隊嗎？','Can it clear the fleet?'):state.exp==='hop'?T('推力夠不夠讓它飛？','Enough thrust to fly?'):state.mode==='compare'?T('改一個零件，誰先到？','Change one part. Who wins?'):T('改一個零件，差多少？','Change one part. How much faster?');
+  $('go').textContent=goLabel();$('go').classList.toggle('is-hop',state.exp!=='launch');
+  $('burn-row').hidden=state.exp!=='hop';$('loop-row').hidden=state.exp!=='loop';$('jump-row').hidden=state.exp!=='jump';
+  const cmp=document.querySelector('[data-mode=compare]');cmp.setAttribute('aria-disabled',String(isStunt()));cmp.title=isStunt()?T('這個實驗只有 Roadster','This test is Roadster-only'):'';
   $$('[data-exp]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.exp===state.exp)));
   $$('[data-burn]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.burn===state.burn)));
   $$('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
@@ -713,18 +907,19 @@ function renderHeader(){
   $('feel-ref-name').textContent=trimName(state.ref);
   $('legend-you').textContent=trimName(state.trim);$('legend-ref').textContent=trimName(state.ref);$('legend-ref').hidden=state.mode!=='compare';
   $('speed').textContent=speedLabel();$('speed').setAttribute('aria-label',T(`模擬速度，目前 ${speedLabel()}`,`Simulation speed: ${speedLabel()}`));
-  $('limit-box').hidden=state.exp==='hop';
+  $('limit-box').hidden=state.exp!=='launch';
   setLive();
 }
+function goLabel(){return state.exp==='loop'?T('衝上坡道！','Hit the ramp!'):state.exp==='jump'?T('起飛！','Take off!'):state.exp==='hop'?T('點火！','Ignite!'):T('起跑！','Launch!');}
 function speedLabel(){return state.speed==='auto'?T('自動','Auto'):state.speed===1?'1×':state.speed===.5?'½×':state.speed===.25?'¼×':'1/10×';}
 // Auto: 0.2× until 100 km/h so a sub-second launch is visible, then ramp to real time.
-function simSpeed(){if(state.speed!=='auto')return state.speed;const r=state.runs;if(!r)return 1;if(state.exp==='hop')return .35;const v=Math.max(r.you.v,state.mode==='compare'?r.ref.v:0);return v<P.KMH100?.2:Math.min(1,.2+.8*(v-P.KMH100)/(55-P.KMH100));}
+function simSpeed(){if(state.speed!=='auto')return state.speed;const r=state.runs;if(!r)return 1;if(isStunt())return .8;if(state.exp==='hop')return .35;const v=Math.max(r.you.v,state.mode==='compare'?r.ref.v:0);return v<P.KMH100?.2:Math.min(1,.2+.8*(v-P.KMH100)/(55-P.KMH100));}
 // Mach diamonds: per-nozzle pressure from thrust (4 cm nozzles, thrust coefficient 1.5),
 // first diamond at x ≈ 0.67 · D · √(p0 / p_atm).
 const NOZZLE_D=.04;
 function machInfo(c,hop){const n=hop?6:4,F=c.thrust*1000/n,p0=F/(1.5*Math.PI*(NOZZLE_D/2)**2)/1e5;return {p0,s:.67*NOZZLE_D*Math.sqrt(Math.max(1.9,p0)/1.013)};}
-function setLive(){$('live').textContent=state.paused?T('已暫停','Paused'):state.phase==='running'?(state.exp==='hop'?T('噴氣中','Firing'):T('衝刺中','Running')):state.phase==='done'?T('完成！','Done!'):T('準備起跑','Ready');}
-function renderAll(){renderHeader();renderView();renderScore();renderLimits();renderInsight();renderImpact();updateCue();drawChart();updateFeel(true);}
+function setLive(){$('live').textContent=state.paused?T('已暫停','Paused'):state.phase==='running'?(isStunt()?T('特技進行中','Stunt running'):state.exp==='hop'?T('噴氣中','Firing'):T('衝刺中','Running')):state.phase==='done'?T('完成！','Done!'):T('準備起跑','Ready');}
+function renderAll(){renderHeader();renderView();renderScore();renderLimits();renderMission();renderInsight();renderImpact();updateCue();drawChart();updateFeel(true);}
 
 // ---------- Runs ----------
 function resetRun(announce=true){
@@ -737,7 +932,7 @@ function resetRun(announce=true){
 function go(){
   resetRun(false);
   const you=cfgYou(),ref=cfgRef();
-  state.runs=state.exp==='hop'?{you:P.hopState(you),ref:P.hopState(ref)}:{you:P.launchState(you),ref:P.launchState(ref)};
+  state.runs=isStunt()?{you:ST.init(you,state.exp,stuntOpt()),ref:{done:true}}:state.exp==='hop'?{you:P.hopState(you),ref:P.hopState(ref)}:{you:P.launchState(you),ref:P.launchState(ref)};
   state.phase='running';state.countdown=reduced?0:1.2;setPaused(false);state.engine?.resetCamera();
   if(state.exp==='hop'&&state.sum.tw<=1)toast(T('推力比車重小……看看會發生什麼事？','Thrust is less than weight… what will happen?'));
   if(state.exp==='hop'&&state.sum.air<=0&&state.cfg.thrust>0)toast(T('氣瓶是空的！推進器噴不出東西。','The tank is empty! Nothing to blow.'));
@@ -745,21 +940,26 @@ function go(){
 }
 function stepRun(h){
   const r=state.runs;if(!r)return;const you=cfgYou(),ref=cfgRef(),compare=state.mode==='compare';
+  if(isStunt()){ST.step(r.you,you,h,stuntOpt());state.time+=h;if(r.you.done){state.phase='done';setLive();const win=stuntWin(r.you);toast((win?'✓ ':'✗ ')+stuntExplain(r.you));}return;}
   if(state.exp==='hop'){if(!r.you.done)P.hopStep(r.you,you,h,state.burn);if(compare&&!r.ref.done)P.hopStep(r.ref,ref,h,state.burn);}
   else{if(!r.you.done)P.launchStep(r.you,you,h);if(compare&&!r.ref.done)P.launchStep(r.ref,ref,h);}
   state.time+=h;
   for(const k of ['you','ref'])if(r[k].done){r[k].a=0;if(state.exp==='launch')r[k].v=0;}
   if(r.you.done&&(!compare||r.ref.done)){state.phase='done';setLive();toast(state.exp==='hop'?(r.you.lifted?T(`落地！最高 ${fmt(r.you.peak,1)} 公尺。`,`Landed! Peak ${fmt(r.you.peak,1)} m.`):T('沒有離地：推力不夠大。','No lift-off: not enough thrust.')):T('衝過 400 公尺！看看左邊的成績單和曲線。','Past 400 m! Check the scorecard and the trace.'));}
 }
-function record(){const r=state.runs;if(!r)return;for(const k of ['you','ref']){const s=r[k];if(k==='ref'&&state.mode!=='compare')continue;const tr=state.trace[k],last=tr[tr.length-1];if(!last||s.t-last.t>=1/90)tr.push(state.exp==='hop'?{t:s.t,v:s.y}:{t:s.t,v:s.v,limit:s.limit});}}
+function record(){const r=state.runs;if(!r)return;if(isStunt()){const tr=state.trace.you,s=r.you,last=tr[tr.length-1];if(!last||s.t-last.t>=1/30)tr.push({t:s.t,x:s.x,y:s.y});return;}for(const k of ['you','ref']){const s=r[k];if(k==='ref'&&state.mode!=='compare')continue;const tr=state.trace[k],last=tr[tr.length-1];if(!last||s.t-last.t>=1/90)tr.push(state.exp==='hop'?{t:s.t,v:s.y}:{t:s.t,v:s.v,limit:s.limit});}}
 function updateCue(){
   const r=state.runs,cue=$('run-cue');
   $('knowledge').hidden=state.mode==='compare'||(!!r&&state.exp==='launch');
   if(!r){cue.hidden=true;return;}
   cue.hidden=false;const you=r.you,hop=state.exp==='hop';cue.classList.toggle('is-hop',hop);
   cue.classList.toggle('is-count',state.countdown>0);
-  if(state.countdown>0){$('cue-label').textContent=hop?T('準備點火','Ready to ignite'):T('準備起跑','Get ready');$('cue-main').textContent=String(Math.ceil(state.countdown/.4));$('cue-a').textContent='';$('cue-b').textContent='';$('cue-progress').style.transform='scaleX(0)';return;}
+  if(state.countdown>0){$('cue-label').textContent=isStunt()?T('準備出發','Get ready'):hop?T('準備點火','Ready to ignite'):T('準備起跑','Get ready');$('cue-main').textContent=String(Math.ceil(state.countdown/.4));$('cue-a').textContent='';$('cue-b').textContent='';$('cue-progress').style.transform='scaleX(0)';return;}
   const slow=simSpeed()<.99&&!you.done?`<span class="slowmo">${T('慢動作','slow-mo')} ×${fmt(simSpeed(),simSpeed()<.5?1:2)}</span>`:'';
+  if(isStunt()){const phase={runup:T('助跑中','Run-up'),ramp:T('爬坡中','On the ramp'),lift:T('起飛','Lift-off'),flight:you.firing?.down?T('噴氣中','Firing'):you.firing?.front?T('推進器轉身中','Turning with thrusters'):T('飛行中','In the air')}[you.phase]||'';
+    $('cue-label').innerHTML=(you.done?(stuntWin(you)?T('任務成功！','Success!'):T('任務失敗','Failed')):phase)+slow;$('cue-main').innerHTML=`${fmt(Math.max(0,you.y),1)}<span>m</span>`;
+    $('cue-a').textContent=you.done?(you.outcome==='hit'?T(`撞上 ${ST.VEHICLES.find(x=>x.key===you.hit).name}`,`Hit the ${ST.VEHICLES.find(x=>x.key===you.hit).name}`):you.outcome==='slid'?T(`爬到 ${fmt(you.peak,1)} m 滑下來`,`Slid back from ${fmt(you.peak,1)} m`):T(`落地 ${fmt(you.landV,1)} m/s`,`Touchdown ${fmt(you.landV,1)} m/s`)):`${fmt(you.v*3.6)} km/h`;$('cue-b').textContent=T(`空氣 ${fmt(you.air)} kg`,`Air ${fmt(you.air)} kg`);
+    $('cue-progress').style.transform=`scaleX(${you.airMax?you.air/you.airMax:P.airMass(cfgYou())>0?you.air/P.airMass(cfgYou()):0})`;return;}
   if(hop){$('cue-label').innerHTML=T('高度','Height')+slow;$('cue-main').innerHTML=`${fmt(you.y,2)}<span>m</span>`;$('cue-a').textContent=you.firing?T('噴氣中','Firing'):you.done?(you.lifted?T('已落地','Landed'):state.cfg.thrust>0&&state.sum.air<=0?T('氣瓶是空的，噴不出氣','Empty tank, nothing to blow'):T('推力不夠，沒有離地','Not enough thrust to lift')):you.lifted?T('自由落體','Falling'):T('等待離地','On the ground');$('cue-b').textContent=state.mode==='compare'?`${trimName(state.ref)} ${fmt(r.ref.y,2)} m`:`${fmt(you.t,2)} s`;$('cue-progress').style.transform=`scaleX(${Math.min(1,you.peak/Math.max(.5,state.sum.hop.peak))})`;return;}
   if(you.done&&you.marks.quarter!=null){$('cue-label').textContent=T('400 公尺成績','Quarter-mile result');$('cue-main').innerHTML=`${fmt(you.marks.quarter,2)}<span>s</span>`;$('cue-a').textContent=T(`終點時速 ${fmt(you.marks.trap*3.6)} km/h`,`Trap speed ${fmt(you.marks.trap*3.6)} km/h`);$('cue-b').textContent=state.mode==='compare'&&r.ref.marks.quarter!=null?`${trimName(state.ref)} ${fmt(r.ref.marks.quarter,2)} s`:'';$('cue-progress').style.transform='scaleX(1)';return;}
   $('cue-label').innerHTML=(you.firing?T('速度・推進器噴射中','Speed · thrusters firing'):T('速度','Speed'))+slow;
@@ -776,9 +976,9 @@ const streakOffset={you:0,ref:0};
 function updateFeel(force=false){
   for(const key of ['you','ref']){
     if(key==='ref'&&state.mode!=='compare')continue;
-    const s=state.runs?.[key],hop=state.exp==='hop';
-    const a=s?(hop?0:s.a):0,ay=s&&hop?s.a+P.G:P.G,g=a/P.G,gv=ay/P.G;
-    const v=s?(hop?0:s.v):0;
+    const stunt=isStunt(),s=stunt&&key==='ref'?null:state.runs?.[key],hop=state.exp==='hop'||stunt;
+    const a=s?(hop?(stunt&&s.phase==='runup'?s.ax||0:0):s.a):0,ay=s&&hop?(stunt?s.gSeat*P.G:s.a+P.G):P.G,g=a/P.G,gv=ay/P.G;
+    const v=s?(hop?(stunt&&s.phase==='runup'?s.v:0):s.v):0;
     streakOffset[key]=(streakOffset[key]+v*.9)%480;
     $('streak-'+key).querySelectorAll('path').forEach((p,i)=>p.style.strokeDashoffset=String(streakOffset[key]*(1+i*.3)));
     const lean=Math.min(1,g/4.5);
@@ -788,14 +988,15 @@ function updateFeel(force=false){
     const ang=Math.atan2(a,P.G)*180/Math.PI;$('pend-'+key).setAttribute('transform',`rotate(${ang.toFixed(1)} 122 12)`);
     const lift=hop&&s?Math.max(-6,Math.min(6,(gv-1)*2.2)):0;$('lift-'+key).setAttribute('transform',`translate(0,${lift.toFixed(2)})`);
     $('arrow-'+key).setAttribute('d',`M140 90H${(140-Math.min(110,g*24)).toFixed(1)}`);
-    const shown=hop?gv:g;$('g-'+key).textContent=`${fmt(shown,2)} g`;
+    const shown=hop&&!(stunt&&s?.phase==='runup')?gv:g;$('g-'+key).textContent=`${fmt(shown,2)} g`;
     // Launch: forward g from 0 up. Hop: vertical g centred on 1 g (sitting still).
     const level=hop?(shown<.3?0:shown<.95?1:shown<1.05?2:shown<2?3:4):(shown<.3?0:shown<1?1:shown<1.6?2:shown<3?3:4);
     $('mouth-'+key).setAttribute('d',['M45 54q4 3 7 0','M45 55h7','M45 54a3 3 0 1 0 6 0a3 3 0 1 0-6 0','M44 53q4 6 9 0z','M43 52q5 9 11 0z'][hop?[2,1,0,3,4][level]:level]);
     const words=hop?[T('失重飄浮中！','Weightless!'),T('有點飄','A little floaty'),T('穩穩坐著','Sitting steady'),T('被往下壓','Pressed down'),T('像火箭升空！','Like a rocket launch!')]:[T('輕鬆坐著','Relaxed'),T('被推向椅背','Pushed into the seat'),T('比雲霄飛車還猛','Wilder than a roller coaster'),T('像太空梭升空','Like a Space Shuttle launch'),T('超過太空梭的 3 g！','More than a Shuttle\'s 3 g!')];
     let word=words[level];if(hop&&s&&s.done&&s.lifted)word=T('平安落地','Landed safely');
+    if(stunt&&s&&!s.done&&gv<-.15)word=T('倒吊在安全帶上！','Hanging in the seatbelt!');if(stunt&&s?.done&&!stuntWin(s))word=T('任務失敗','Failed');
     if(!s&&!force)continue;
-    $(`feel-${key}-word`).textContent=s?`${word} · ${fmt(shown,2)} g`:hop?T('按「點火！」感受上下的 g','Press Ignite to feel the lift'):T('按「起跑！」感受推背感','Press Launch to feel the push');
+    $(`feel-${key}-word`).textContent=s?`${word} · ${fmt(shown,2)} g`:isStunt()?T(`按「${goLabel()}」感受上下的 g`,`Press ${goLabel()} to feel the g`):hop?T('按「點火！」感受上下的 g','Press Ignite to feel the lift'):T('按「起跑！」感受推背感','Press Launch to feel the push');
   }
 }
 
@@ -804,6 +1005,7 @@ function drawChart(){
   const c=$('trace'),r=c.getBoundingClientRect();if(!r.width||!r.height)return;
   const dpr=Math.min(devicePixelRatio,2);if(c.width!==Math.round(r.width*dpr)||c.height!==Math.round(r.height*dpr)){c.width=Math.round(r.width*dpr);c.height=Math.round(r.height*dpr);}
   const ctx=c.getContext('2d'),w=r.width,h=r.height;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  if(isStunt()&&state.stuntSum){drawStuntChart(ctx,w,h);return;}
   const hop=state.exp==='hop',compare=state.mode==='compare';
   const full={you:hop?null:state.sum.run.trace,ref:hop?null:state.refSum.run.trace};
   let tMax,yMax;
@@ -825,11 +1027,25 @@ function drawChart(){
   $('chart-end').textContent=`${fmt(tMax,1)} s`;
 }
 
+function drawStuntChart(ctx,w,h){
+  const s=state.stuntSum,loop=s.kind==='loop',R=stuntOpt().radius,pts=s.path,live=state.runs?state.trace.you:null;
+  let x0=-12,x1=loop?R+4:ST.JUMP_END+8,y1=loop?2*R+3:6;for(const p of pts){x0=Math.min(x0,p.x-3);x1=Math.max(x1,p.x+3);y1=Math.max(y1,p.y+2);}
+  const sc=Math.min(w/(x1-x0),(h-8)/y1),X=x=>(x-x0)*sc+(w-(x1-x0)*sc)/2,Y=y=>h-4-y*sc;
+  ctx.strokeStyle='#7d929c';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,Y(0));ctx.lineTo(w,Y(0));ctx.stroke();
+  ctx.fillStyle='#9fb0bb';ctx.font='9px system-ui';
+  if(loop){ctx.strokeStyle='#c9cfd1';ctx.lineWidth=2.5;ctx.beginPath();for(let a=0;a<=ST.LOOP_END+.001;a+=.05){const x=R*Math.sin(a),y=R*(1-Math.cos(a));a?ctx.lineTo(X(x),Y(y)):ctx.moveTo(X(x),Y(y));}ctx.stroke();ctx.fillText(`${fmt(2*R*.99,0)} m`,X(R*Math.sin(ST.LOOP_END))+4,Y(2*R*.99)+8);}
+  else for(const v of ST.LINEUP){ctx.fillStyle=v.key==='semi'?'#c9cfd155':'#9fb0bb44';ctx.fillRect(X(v.x0),Y(v.h),(v.x1-v.x0)*sc,v.h*sc);ctx.fillStyle='#c9d6db';ctx.save();ctx.translate(X((v.x0+v.x1)/2)+3,Y(v.h)-3);ctx.rotate(-Math.PI/2);ctx.fillText(v.name,0,0);ctx.restore();}
+  const line=(list,color,width,dash)=>{if(!list||list.length<2)return;ctx.setLineDash(dash||[]);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();list.forEach((p,i)=>i?ctx.lineTo(X(p.x),Y(Math.max(0,p.y))):ctx.moveTo(X(p.x),Y(Math.max(0,p.y))));ctx.stroke();ctx.setLineDash([]);};
+  const win=stuntWin(s);line(pts,win?'#9bd8d1aa':'#ee9c8baa',1.4,live?[3,3]:null);if(live)line(live,'#9bd8d1',2.2);
+  const end=pts[pts.length-1];ctx.fillStyle=win?'#9bd8d1':'#ee9c8b';ctx.beginPath();ctx.arc(X(end.x),Y(Math.max(0,end.y)),3.5,0,Math.PI*2);ctx.fill();
+  $('chart-title').textContent=T('側面看軌跡（虛線＝預測）','Side view of the path (dashed = forecast)');
+  $('chart-scale').textContent=T(`最高 ${fmt(s.peak,1)} m`,`Peak ${fmt(s.peak,1)} m`);$('chart-end').textContent=T(`寬 ${fmt(x1-x0)} m`,`${fmt(x1-x0)} m wide`);
+}
 // ---------- Controls ----------
 function toast(msg){$('toast').textContent=msg;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,3600);$('announce').textContent=msg;}
 function setPaused(v){state.paused=v;$('pause').innerHTML=`<svg><use href="#i-${v?'play':'pause'}"/></svg>`;$('pause').setAttribute('aria-label',v?T('繼續模擬','Resume'):T('暫停模擬','Pause'));setLive();}
-function setExp(e){state.exp=e;resetRun(false);renderAll();state.engine?.setView();}
-function setMode(m){state.mode=m;resetRun(false);if(m==='compare')state.view='overview';renderAll();state.engine?.setView();}
+function setExp(e){state.exp=e;if(isStunt()){state.mode='free';state.view='overview';}recompute();resetRun(false);syncStunt();renderAll();state.engine?.setView();if(isStunt()&&!(state.cfg.thrust>0))toast(T('提示：這個特技需要冷氣推進器。發表會用的是 Rocket 版本，可以先載入它再慢慢改。','Tip: this stunt needs cold-gas thrusters. The reveal used the Rocket version — load it, then experiment.'));}
+function setMode(m){if(m==='compare'&&isStunt()){toast(T('貼牆坡道和飛越車隊只有 Roadster 自己表演，先換回「起跑衝刺」或「噴氣跳躍」再來對照。','The wall ramp and fleet jump are Roadster-only. Switch to Launch or Thruster hop to compare.'));return;}state.mode=m;resetRun(false);if(m==='compare')state.view='overview';renderAll();state.engine?.setView();}
 function setView(v){state.view=v;if(state.mode==='compare'){state.mode='free';resetRun(false);}renderAll();state.engine?.setView();}
 $$('[data-exp]').forEach(b=>b.onclick=()=>setExp(b.dataset.exp));
 $$('[data-burn]').forEach(b=>b.onclick=()=>{state.burn=+b.dataset.burn;recompute();resetRun(false);renderAll();});
@@ -838,7 +1054,7 @@ $$('[data-view]').forEach(b=>b.onclick=()=>{setView(b.dataset.view);if(innerWidt
 $('go').onclick=go;$('restart').onclick=()=>resetRun(true);
 $('pause').onclick=()=>setPaused(!state.paused);
 $('speed').onclick=()=>{const order=['auto',1,.5,.25,.1];state.speed=order[(order.indexOf(state.speed)+1)%order.length];renderHeader();};
-$('reveal-demo').onclick=()=>{applyTrim('rocket');state.exp='launch';state.speed='auto';if(state.mode!=='compare'){state.view='overview';}renderAll();state.engine?.setView();go();toast(T('Rocket 版本：前 100 km/h 用 0.2 倍慢動作，之後加速到真實速度。','Rocket version: 0.2× slow motion to 100 km/h, then real time.'));};
+$('reveal-demo').onclick=()=>{applyTrim('rocket');state.exp='launch';recompute();state.speed='auto';if(state.mode!=='compare'){state.view='overview';}renderAll();state.engine?.setView();go();toast(T('Rocket 版本：前 100 km/h 用 0.2 倍慢動作，之後加速到真實速度。','Rocket version: 0.2× slow motion to 100 km/h, then real time.'));};
 $('reset-view').onclick=()=>state.engine?.resetCamera();
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if($('app').requestFullscreen)await $('app').requestFullscreen();else toast(T('此瀏覽器不支援全螢幕。','Full screen is not supported here.'));}catch{toast(T('目前無法切換全螢幕。','Cannot switch to full screen right now.'));}};
 for(const id of ['about-open','about-mobile','specs-open'])$(id).onclick=()=>$('about').showModal();
@@ -856,7 +1072,7 @@ function frame(now){
 }
 document.addEventListener('visibilitychange',()=>{last=performance.now();});
 
-recompute();applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();setPaused(false);renderAll();requestAnimationFrame(frame);
+recompute();applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();syncStunt();setPaused(false);renderAll();requestAnimationFrame(frame);
 
 // ---------- 3D scene ----------
 window.startRoadster=async function(){const timeout=setTimeout(()=>{if(!state.engine){$('loading').hidden=true;$('fallback').hidden=false;}},15000);try{const THREE=await import('three'),{OrbitControls}=await import('three/addons/controls/OrbitControls.js'),{RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');state.engine=buildScene(THREE,OrbitControls,RoomEnvironment);clearTimeout(timeout);$('loading').hidden=true;$('fallback').hidden=true;state.engine.setView();}catch(e){clearTimeout(timeout);console.error('3D initialization:',e);$('loading').hidden=true;$('fallback').hidden=false;}};
@@ -866,7 +1082,7 @@ const canvas=$('scene'),stage=$('stage'),scene=new T3.Scene(),renderer=new T3.We
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.setClearColor(0x2d4652,0);renderer.outputColorSpace=T3.SRGBColorSpace;renderer.toneMapping=T3.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T3.PCFSoftShadowMap;
 scene.fog=new T3.Fog(0x7b7466,60,560);
 const camera=new T3.PerspectiveCamera(36,1,.05,1500),controls=new OrbitControls(camera,canvas);
-controls.enableDamping=true;controls.dampingFactor=.07;controls.enablePan=false;controls.minDistance=3;controls.maxDistance=60;controls.maxPolarAngle=Math.PI*.495;
+controls.enableDamping=true;controls.dampingFactor=.07;controls.enablePan=false;controls.minDistance=3;controls.maxDistance=130;controls.maxPolarAngle=Math.PI*.495;
 const phoneInput=matchMedia('(max-width:1200px), (pointer:coarse)');
 function syncPhoneInput(){controls.enableZoom=!phoneInput.matches;controls.touches.ONE=T3.TOUCH.ROTATE;controls.touches.TWO=phoneInput.matches?null:T3.TOUCH.DOLLY_PAN;}
 phoneInput.addEventListener('change',syncPhoneInput);syncPhoneInput();
@@ -964,6 +1180,44 @@ function makeCar(paint,accent){
   return {root,chassis,body,bodyMat,cabin,glassMat,wheels,fans,fanGroup,underGlow,skirts,nozzles,inside,seats,tank,bands,battery,motors,gears,arrows,tireArrows,fanAngle:0,gearAngle:0};
 }
 const you=makeCar(0xeef0ec,0x9bd8d1),rival=makeCar(0x5c646a,0xee9c8b);
+// Stunts happen off the drag strip: sim x is measured from STUNT_X on a parallel pad.
+const STUNT_X=-200,STUNT_Z=0;
+const pad=new T3.Mesh(new T3.PlaneGeometry(220,16),new T3.MeshStandardMaterial({map:noiseTexture('#3a4045',[['#2b3135',1200,1.4],['#4a5157',800,1.2]],55,4),roughness:.9}));pad.rotation.x=-Math.PI/2;pad.position.set(STUNT_X-20,.006,STUNT_Z);pad.receiveShadow=true;scene.add(pad);
+function rod(a,b,r,material){const d=new T3.Vector3().subVectors(b,a),m=new T3.Mesh(new T3.CylinderGeometry(r,r,d.length(),8),material);m.position.copy(a).addScaledVector(d,.5);m.quaternion.setFromUnitVectors(new T3.Vector3(0,1,0),d.normalize());m.castShadow=true;return m;}
+const rampGroup=new T3.Group();scene.add(rampGroup);let rampR=null;
+const rampMat=new T3.MeshStandardMaterial({color:0x9aa3a6,metalness:.35,roughness:.55,side:T3.DoubleSide}),steelMat=mat(0x5f6b70,.6,.4),stripeMat=new T3.MeshBasicMaterial({color:0xe6bb72,side:T3.DoubleSide});
+function buildRamp(R){
+  if(rampR===R)return;rampR=R;rampGroup.clear();
+  const N=72,W=2.1,T=.35,pos=[],idx=[],end=RoadsterStunts.LOOP_END;
+  const P=a=>[R*Math.sin(a),R*(1-Math.cos(a))],Nrm=a=>[-Math.sin(a),Math.cos(a)];
+  for(let i=0;i<=N;i++){const a=-.03+(end+.05)*i/N,[x,y]=P(a),[nx,ny]=Nrm(a);for(const z of [-W,W])pos.push(x,y,z);for(const z of [-W,W])pos.push(x-nx*T,y-ny*T,z);}
+  for(let i=0;i<N;i++){const a=i*4,b=(i+1)*4;idx.push(a,a+1,b+1,a,b+1,b, a+2,b+2,b+3,a+2,b+3,a+3, a,b,b+2,a,b+2,a+2, a+1,a+3,b+3,a+1,b+3,b+1);}
+  const g=new T3.BufferGeometry();g.setAttribute('position',new T3.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();
+  const deck=new T3.Mesh(g,rampMat);deck.castShadow=deck.receiveShadow=true;rampGroup.add(deck);
+  // Centre stripe and rails follow the arc.
+  for(const [z,wid,m] of [[0,.12,stripeMat]]){const sp=[],si=[];for(let i=0;i<=N;i++){const a=-.03+(end+.05)*i/N,[x,y]=P(a),[nx,ny]=Nrm(a);sp.push(x+nx*.01,y+ny*.01,z-wid,x+nx*.01,y+ny*.01,z+wid);}for(let i=0;i<N;i++)si.push(i*2,i*2+1,i*2+3,i*2,i*2+3,i*2+2);const sg=new T3.BufferGeometry();sg.setAttribute('position',new T3.Float32BufferAttribute(sp,3));sg.setIndex(si);rampGroup.add(new T3.Mesh(sg,m));}
+  for(const z of [-W-.05,W+.05])for(let i=0;i<N;i+=2){const a0=-.03+(end+.05)*i/N,a1=-.03+(end+.05)*(i+2)/N,[x0,y0]=P(a0),[x1,y1]=P(a1),[nx0,ny0]=Nrm(a0),[nx1,ny1]=Nrm(a1);rampGroup.add(rod(new T3.Vector3(x0+nx0*.45,y0+ny0*.45,z),new T3.Vector3(x1+nx1*.45,y1+ny1*.45,z),.04,steelMat));}
+  // Columns under the rising half, a tower behind, and beams to the overhang.
+  for(const deg of [25,45,65,85])for(const z of [-W+.3,W-.3]){const a=deg*Math.PI/180,[x,y]=P(a),[nx,ny]=Nrm(a);rampGroup.add(rod(new T3.Vector3(x-nx*T,0,z),new T3.Vector3(x-nx*T,y-ny*T,z),.12,steelMat));}
+  const tx=R+1.6,top=2*R+1.2;for(const z of [-W-.6,W+.6])rampGroup.add(rod(new T3.Vector3(tx,0,z),new T3.Vector3(tx,top,z),.22,steelMat));
+  for(let y=3;y<top;y+=3)rampGroup.add(rod(new T3.Vector3(tx,y,-W-.6),new T3.Vector3(tx,y,W+.6),.08,steelMat));
+  for(const deg of [105,130,155])for(const z of [-W+.3,W-.3]){const a=deg*Math.PI/180,[x,y]=P(a),[nx,ny]=Nrm(a);rampGroup.add(rod(new T3.Vector3(x-nx*T,y-ny*T,z),new T3.Vector3(tx,Math.min(top,y-ny*T),z*1.2),.1,steelMat));}
+  rampGroup.position.set(STUNT_X,0,STUNT_Z);
+}
+// Five parked vehicles, broadside to the jump: width along x, length along z.
+const fleet=new T3.Group();scene.add(fleet);
+function vehicle(v){
+  const g=new T3.Group(),w=v.x1-v.x0,dark=mat(0x1b2126,.3,.35),tire=mat(0x16181a,0,.9);
+  const box=(sx,sy,sz,y,z,material)=>{const m=new T3.Mesh(new T3.BoxGeometry(sx,sy,sz),material);m.position.set(0,y,z);m.castShadow=m.receiveShadow=true;g.add(m);return m;};
+  const wheels=(r,zs)=>{for(const z of zs)for(const x of [-w/2+.15,w/2-.15]){const t=new T3.Mesh(new T3.CylinderGeometry(r,r,.28,20),tire);t.rotation.z=Math.PI/2;t.position.set(x,r,z);g.add(t);}};
+  if(v.key==='semi'){const white=mat(0xe9edee,.3,.35);box(w*.92,1.1,7.2,1.05,0,mat(0x2b3237,.5,.5));box(w,2.55,3.4,2.75,2.2,white);const nose=new T3.Mesh(new T3.CylinderGeometry(.01,1,1,4,1),white);nose.scale.set(w*.72,1.6,1.4);nose.rotation.set(Math.PI/2,Math.PI/4,0);nose.position.set(0,2.4,4.2);g.add(nose);box(w*.96,.9,1.2,3.4,3.55,dark);box(w*.9,.25,3,4.0,1.9,white);wheels(.52,[3.2,-1.2,-2.6]);}
+  else if(v.key==='cybertruck'){const sh=new T3.Shape();sh.moveTo(-2.85,.5);sh.lineTo(2.85,.5);sh.lineTo(2.85,1.15);sh.lineTo(.25,v.h);sh.lineTo(-2.85,1.3);sh.closePath();const geo=new T3.ExtrudeGeometry(sh,{depth:w,bevelEnabled:false});geo.translate(0,0,-w/2);const m=new T3.Mesh(geo,new T3.MeshStandardMaterial({color:0xb9bec2,metalness:.85,roughness:.3,flatShading:true}));m.rotation.y=Math.PI/2;m.castShadow=true;g.add(m);box(w*.98,.28,1.6,1.45,.9,dark);wheels(.45,[1.9,-1.9]);}
+  else{const color={model3:0x2f4f8f,modely:0xa83434,cybercab:0xd6c08a}[v.key],L={model3:4.7,modely:4.75,cybercab:3.6}[v.key],paint=new T3.MeshStandardMaterial({color,metalness:.5,roughness:.3});
+    box(w,.62,L,.62,0,paint);const cab=box(w*.84,v.h-.93,L*.52,(.93+v.h)/2,-L*.04,dark);cab.scale.x=1;wheels(.36,[L*.32,-L*.32]);}
+  g.position.set(STUNT_X+(v.x0+v.x1)/2,0,STUNT_Z);return g;
+}
+for(const v of RoadsterStunts.LINEUP)fleet.add(vehicle(v));
+const landingMark=new T3.Mesh(new T3.RingGeometry(1.6,1.9,40),new T3.MeshBasicMaterial({color:0xe6bb72,transparent:true,opacity:.7,side:T3.DoubleSide}));landingMark.rotation.x=-Math.PI/2;landingMark.position.y=.02;scene.add(landingMark);
 
 // World-space puffs: the car drives away from them, which reads as speed.
 const PMAX=700,pPos=new Float32Array(PMAX*3),pVel=new Float32Array(PMAX*3),pAlpha=new Float32Array(PMAX),pSize=new Float32Array(PMAX),pLife=new Float32Array(PMAX),pMax=new Float32Array(PMAX),pA0=new Float32Array(PMAX),pGrow=new Float32Array(PMAX);let pNext=0;
@@ -973,7 +1227,9 @@ const puffs=new T3.Points(pGeo,pMat);puffs.frustumCulled=false;scene.add(puffs);
 function puff(x,y,z,vx,vy,vz,size,life,alpha,grow=1.2){const i=pNext;pNext=(pNext+1)%PMAX;pPos.set([x,y,z],i*3);pVel.set([vx,vy,vz],i*3);pSize[i]=size;pLife[i]=pMax[i]=life;pA0[i]=alpha;pGrow[i]=grow;}
 function updatePuffs(dt){for(let i=0;i<PMAX;i++){if(pLife[i]<=0){pAlpha[i]=0;continue;}pLife[i]-=dt;const k=Math.max(0,pLife[i]/pMax[i]);for(let j=0;j<3;j++){pPos[i*3+j]+=pVel[i*3+j]*dt;pVel[i*3+j]*=Math.max(0,1-dt*1.8);}pPos[i*3+1]=Math.max(.05,pPos[i*3+1]);pSize[i]+=pGrow[i]*dt;pAlpha[i]=pA0[i]*k*Math.min(1,(1-k)*8);}pGeo.attributes.position.needsUpdate=true;pGeo.attributes.alpha.needsUpdate=true;pGeo.attributes.size.needsUpdate=true;}
 const tmpV=new T3.Vector3();
-function emit(car,run,c,dts){if(!run||dts<=0||!car.root.visible)return;const hop=state.exp==='hop',x0=car.root.position.x,z0=car.root.position.z,rnd=()=>Math.random()-.5;
+function emit(car,run,c,dts){if(!run||dts<=0||!car.root.visible)return;
+  if(isStunt()){if(run.firing?.down){const rnd=()=>Math.random()-.5;car.nozzles.forEach(nz=>{if(nz.dir!=='down')return;nz.g.getWorldPosition(tmpV);const n=Math.ceil(dts*30);for(let i=0;i<n;i++){if(tmpV.y<3)puff(tmpV.x+rnd()*.6,.1,tmpV.z+rnd()*.6,rnd()*9,.4+Math.random(),rnd()*9,.7,1.2,.28,1.8);else puff(tmpV.x,tmpV.y-.3,tmpV.z,rnd()*1.5,-5-Math.random()*3,rnd()*1.5,.35,.6,.25,1.2);}});}return;}
+  const hop=state.exp==='hop',x0=car.root.position.x,z0=car.root.position.z,rnd=()=>Math.random()-.5;
   if(!hop&&run.v>.2&&run.v<26&&run.a>4){const n=Math.min(6,Math.ceil(run.a*dts*14));for(let i=0;i<n;i++)for(const s of [-1,1])puff(x0-1.55+rnd()*.3,.15,z0+s*.84+rnd()*.2,-1.5+rnd(),.6+Math.random()*.6,s*(.4+Math.random()*.6),.5,1.4+Math.random()*.6,.32,1.6);}
   if(run.firing){car.nozzles.forEach(nz=>{if(hop?nz.dir!=='down':nz.dir!=='rear')return;nz.g.getWorldPosition(tmpV);const n=Math.ceil(dts*45);for(let i=0;i<n;i++){if(hop)puff(tmpV.x+rnd()*.6,.1,tmpV.z+rnd()*.6,rnd()*9,.4+Math.random(),rnd()*9,.7,1.2,.28,1.8);else puff(tmpV.x-.4,tmpV.y,tmpV.z+rnd()*.1,-6-Math.random()*4,rnd()*.8,rnd()*.8,.35,.8,.3,1.4);}});}
 }
@@ -1000,14 +1256,19 @@ function label(text,kind,point,action){const el=document.createElement(action?'b
 const L=(car,x,y,z)=>()=>car.chassis.localToWorld(new T3.Vector3(x,y,z));
 function setXray(car,on){car.bodyMat.transparent=on;car.bodyMat.opacity=on?.16:1;car.bodyMat.depthWrite=!on;car.glassMat.opacity=on?.18:.95;car.bodyMat.needsUpdate=true;car.glassMat.needsUpdate=true;car.inside.visible=on||state.view==='power';}
 function setView(reset=true){
-  const compare=state.mode==='compare',v=state.view;rival.root.visible=compare;
+  const compare=state.mode==='compare',v=state.view,stunt=isStunt();rival.root.visible=compare;
+  if(state.exp==='loop')buildRamp(stuntOpt().radius);rampGroup.visible=state.exp==='loop';fleet.visible=state.exp==='jump';pad.visible=stunt;
+  landingMark.visible=stunt&&!!state.stuntSum;if(landingMark.visible){const e=state.stuntSum.path[state.stuntSum.path.length-1];landingMark.position.set(STUNT_X+e.x,.02,STUNT_Z);landingMark.material.color.set(stuntWin(state.stuntSum)?0x9bd8d1:0xee9c8b);}
   you.root.position.z=compare?2.4:0;rival.root.position.z=-2.4;
   const xray=!compare&&(v==='grip'||v==='thrust'||v==='power');setXray(you,xray);setXray(rival,false);
   you.inside.visible=xray;rival.inside.visible=false;
   you.underGlow.visible=!compare&&v==='grip';you.arrows.forEach(a=>a.visible=!compare&&v==='grip');you.tireArrows.forEach(a=>a.visible=!compare&&v==='grip');rival.arrows.forEach(a=>a.visible=false);rival.tireArrows.forEach(a=>a.visible=false);rival.underGlow.visible=false;
   const showTank=xray&&v!=='grip'&&state.cfg.tank>0,showPower=xray&&v!=='thrust';you.tank.visible=showTank;you.bands.forEach(b=>b.visible=showTank);you.battery.visible=showPower&&state.cfg.battery>0;you.motors.forEach(m=>m.visible=showPower);you.gears.forEach(g=>g.visible=showPower);you.seats.forEach((s,i)=>s.visible=xray&&v!=='grip'&&(state.cfg.seats===1?i===2:i<2));
   clearLabels();const c=state.cfg,i=lang==='en';
-  if(compare){for(const [car,isYou] of [[you,true],[rival,false]]){const el=label('',isYou?'car-label':'car-label coral',L(car,0,1.6,0));el.innerHTML=`<strong>${isYou?T('你的車','Your car'):T('對手','Rival')}</strong><span>${trimName(isYou?state.trim:state.ref)}</span>`;}}
+  if(stunt&&v==='overview'){const W=(x,y,z=0)=>()=>new T3.Vector3(STUNT_X+x,y,STUNT_Z+z);
+    if(state.exp==='loop'){const R=stuntOpt().radius,s=state.stuntSum;label(T(`頂端 ${fmt(2*R*.99,0)} m・幾乎倒過來（170°）`,`Top ${fmt(2*R*.99,0)} m · nearly inverted (170°)`),'gold',W(R*Math.sin(RoadsterStunts.LOOP_END),2*R+.8,0));label(T(`風扇吸力 ${fmt(c.fan/state.sum.mass,2)} g`,`Fan suction ${fmt(c.fan/state.sum.mass,2)} g`),c.fan/state.sum.mass>=1?'gold':'',W(R*.98,R,2.4));label(T(`最低貼地力 ${fmt(fin(s.minGrip),2)} g`,`Lowest track grip ${fmt(fin(s.minGrip),2)} g`),s.fell||RoadsterStunts.verdict(s)==='slid'?'coral':'',W(R*.6,R*1.75,2.4));}
+    else for(const ve of RoadsterStunts.LINEUP)label(`${ve.name}・${fmt(ve.h,1)} m`,ve.key==='semi'?'gold':'',W((ve.x0+ve.x1)/2,ve.h+.5,0));}
+  else if(compare){for(const [car,isYou] of [[you,true],[rival,false]]){const el=label('',isYou?'car-label':'car-label coral',L(car,0,1.6,0));el.innerHTML=`<strong>${isYou?T('你的車','Your car'):T('對手','Rival')}</strong><span>${trimName(isYou?state.trim:state.ref)}</span>`;}}
   else if(v==='overview'&&state.exp==='hop'){if(c.thrust>0)label(T(`推重比 ${fmt(state.sum.tw,2)}`,`Thrust/weight ${fmt(state.sum.tw,2)}`),state.sum.tw>1?'gold':'coral',L(you,0,-.1,.9));else label(T('沒有推進器：把「冷氣推進器」調大','No thrusters: raise Cold-gas thrust'),'coral',L(you,0,1.3,0));}
   else if(v==='overview'){label(T('隱藏頭燈・三角角燈','Hidden headlights'),'',L(you,2.1,.55,.7));label(T('太空面罩金色玻璃','Visor-gold glass'),'gold',L(you,.1,1.15,0));label(T('全寬尾燈','Full-width taillight'),'',L(you,-2.25,.8,0));label(T('吸地風扇 →','Suction fans →'),'',L(you,-2.25,.4,.3),()=>setViewFromTag('grip'));if(c.thrust>0)label(T('推進器噴嘴 →','Thruster nozzles →'),'gold',L(you,-2.2,.45,.8),()=>setViewFromTag('thrust'));label(T('雙後馬達 →','Twin rear motors →'),'',L(you,-1.3,.6,.95),()=>setViewFromTag('power'));}
   else if(v==='grip'){label(c.fan>0?T(`4 顆風扇・下壓力 ${fmt(c.fan)} kgf`,`4 fans · ${fmt(c.fan)} kgf downforce`):T('風扇關閉','Fans off'),'gold',L(you,-2.3,.45,0));label(T('側裙：把車底封起來','Skirts seal the floor'),'',L(you,.3,.08,.8));label(T(`只有後輪出力・μ ${c.mu.toFixed(2)}`,`Only rear tires push · μ ${c.mu.toFixed(2)}`),'',L(you,-1.4,.1,1));label(T(`倒吊力 ${fmt(state.sum.ceiling,2)}×${state.sum.ceiling>=1?' ✓':''}`,`Ceiling grip ${fmt(state.sum.ceiling,2)}×${state.sum.ceiling>=1?' ✓':''}`),state.sum.ceiling>=1?'gold':'coral',L(you,.4,2.3,0));}
@@ -1017,9 +1278,10 @@ function setView(reset=true){
 }
 function setViewFromTag(v){window.lab.setView(v);}
 // ---------- Camera ----------
-let transition=null,follow=0,lagA=0;
+let transition=null,follow=0,lagA=0,focusY=0,focusX=0;
 function cameraPose(){const narrow=stage.clientWidth<640,k=narrow?1.45:1,compare=state.mode==='compare',v=state.view;
   const dx=narrow?0:1;
+  if(isStunt()&&v==='overview'){if(state.exp==='loop'){const R=stuntOpt().radius,s=R/10.5;return {pos:[STUNT_X+(3+2*dx)*s,10*s,(38*s+6)*k],target:[STUNT_X+(5+2*dx)*s,10*s,0]};}return {pos:[STUNT_X+12,5,30*k],target:[STUNT_X+12-3*dx,4,0]};}
   const chase=state.runs&&state.exp==='launch'&&(compare||v==='overview');
   if(chase)return compare?{pos:[-7.6*k,1.75,7.4*k],target:[3.2,.7,0]}:{pos:[-5.6*k,1.3,4.2*k],target:[2.6,.62,0]};
   if(compare)return {pos:[7.5*k,4.6*k,13.5*k],target:[-1.6*dx,.9,-.4]};
@@ -1028,7 +1290,7 @@ function cameraPose(){const narrow=stage.clientWidth<640,k=narrow?1.45:1,compare
   if(v==='thrust')return {pos:[-7.4*k,2.6*k,6.2*k],target:[.2*dx,.75,-1.2*dx]};
   if(v==='power')return {pos:[3.2*k,5.2*k,5.6*k],target:[-1.1*dx,.3,-.6*dx]};
   return {pos:[6.6*k,2.5*k,8.2*k],target:[-1.3*dx,.75,-.2]};}
-function resetCamera(immediate=false){const p=cameraPose(),to=new T3.Vector3(...p.pos),tt=new T3.Vector3(...p.target);to.x+=follow;tt.x+=follow;if(immediate||reduced){camera.position.copy(to);controls.target.copy(tt);controls.update();transition=null;}else transition={from:camera.position.clone(),to,targetFrom:controls.target.clone(),targetTo:tt,t:0};}
+function resetCamera(immediate=false){const p=cameraPose(),to=new T3.Vector3(...p.pos),tt=new T3.Vector3(...p.target);if(!(isStunt()&&state.view==='overview')){to.x+=follow;tt.x+=follow;}focusY=0;focusX=0;if(immediate||reduced){camera.position.copy(to);controls.target.copy(tt);controls.update();transition=null;}else transition={from:camera.position.clone(),to,targetFrom:controls.target.clone(),targetTo:tt,t:0};}
 controls.addEventListener('start',()=>transition=null);
 const projected=new T3.Vector3();
 function positionLabels(){
@@ -1047,7 +1309,19 @@ canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('fallback').
 function key(k){if(k==='Home'){resetCamera();return;}transition=null;const off=camera.position.clone().sub(controls.target),sph=new T3.Spherical().setFromVector3(off);if(k==='ArrowLeft')sph.theta-=.12;if(k==='ArrowRight')sph.theta+=.12;if(k==='ArrowUp')sph.phi-=.09;if(k==='ArrowDown')sph.phi+=.09;if(k==='+'||k==='=')sph.radius*=.9;if(k==='-')sph.radius*=1.1;sph.radius=T3.MathUtils.clamp(sph.radius,controls.minDistance,controls.maxDistance);sph.phi=T3.MathUtils.clamp(sph.phi,.01,controls.maxPolarAngle);camera.position.copy(controls.target).add(new T3.Vector3().setFromSpherical(sph));controls.update();}
 // ---------- Frame ----------
 let visualTime=0;
+function poseStunt(car,run,c,dt){
+  const kind=state.exp,s=run||{x:-RoadsterStunts.RUNUP[kind],y:0,pitch:0,roll:0,v:0,dist:0,firing:{},phase:'runup'};
+  // Pitch about the wheel contact point; roll about the body's middle (0.55 m up).
+  const ps=s.roll||0;car.root.position.set(STUNT_X+s.x,0,STUNT_Z);car.chassis.position.set(0,s.y+.55*(1-Math.cos(ps)),-.55*Math.sin(ps));car.chassis.rotation.set(ps,0,s.pitch||0,'ZXY');
+  const roll=(s.dist||0)/P.RW,blur=Math.min(.78,Math.max(0,((s.phase==='runup'||s.phase==='ramp'?s.v:0)-4)/22));car.wheels.forEach(w=>{w.spin.rotation.z=-roll;w.blur.material.opacity=blur;w.spokes.forEach(q=>q.visible=blur<.55);});
+  const fanSpeed=c.fan/4700*(s.phase==='ramp'?60:18);car.fanAngle+=dt*fanSpeed*(state.paused?0:1);car.fans.forEach(f=>f.rotation.x=car.fanAngle);
+  const fd=!!s.firing?.down,ff=!!s.firing?.front,flicker=.85+Math.random()*.3,len=(.5+c.thrust/80*1.6)*flicker,mi=machInfo(c,true);
+  car.nozzles.forEach(n=>{const on=n.dir==='down'&&(fd||(ff&&n.g.position.x>1));n.plume.visible=on;if(on){const l=fd?len:len*.5;n.plume.scale.set(1,l,1);n.plume.position.y=-l/2-.05;}
+    let dist=.06;n.diamonds.forEach((d,k)=>{const cell=mi.s*(1-k*.07);dist+=cell;d.visible=on&&fd&&dist<len+.1;if(!d.visible)return;const along=cell*.34,across=.04+.016*(1-k/6);d.position.set(0,-dist,0);d.scale.set(across,along,across);d.material.opacity=.9*(1-k/6.5)*(.85+Math.random()*.15);});});
+}
 function poseCar(car,run,c,dt){
+  if(isStunt()){if(car===you)poseStunt(car,run,c,dt);return;}
+  car.chassis.rotation.set(0,0,0);car.chassis.position.z=0;
   const hop=state.exp==='hop',x=run&&!hop?run.x:0,y=run&&hop?run.y:0,v=run&&!hop?run.v:0,a=run?run.a:0;
   car.root.position.x=x;car.chassis.position.y=y;
   car.chassis.rotation.z=hop?0:Math.max(-.03,Math.min(.05,a*.0022));
@@ -1059,26 +1333,33 @@ function poseCar(car,run,c,dt){
   car.nozzles.forEach(n=>{const on=firing&&(hop?n.dir==='down':n.dir==='rear');n.plume.visible=on;if(on){n.plume.scale.set(1,len,1);if(n.dir==='rear')n.plume.position.x=-len/2-.05;else n.plume.position.y=-len/2-.05;}
     let dist=.06;n.diamonds.forEach((d,k)=>{const cell=mi.s*(1-k*.07);dist+=cell;d.visible=on&&dist<len+.1;if(!d.visible)return;const along=cell*.34,across=.04+.016*(1-k/6);if(n.dir==='rear'){d.position.set(-dist,0,0);d.scale.set(along,across,across);}else{d.position.set(0,-dist,0);d.scale.set(across,along,across);}d.material.opacity=.9*(1-k/6.5)*(.85+Math.random()*.15);});});
 }
+// Move the camera and its target together, including any transition still in flight.
+function shiftView(dx,dy){for(const v of [camera.position,controls.target,...(transition?[transition.from,transition.to,transition.targetFrom,transition.targetTo]:[])]){v.x+=dx;v.y+=dy;}}
 function render(dt){
   if(transition){transition.t=Math.min(1,transition.t+dt*1.65);const t=1-(1-transition.t)**3;camera.position.lerpVectors(transition.from,transition.to,t);controls.target.lerpVectors(transition.targetFrom,transition.targetTo,t);if(transition.t>=1)transition=null;}
   if(!state.paused)visualTime+=dt;
   const r=state.runs,compare=state.mode==='compare';
   poseCar(you,r?.you,state.cfg,dt);poseCar(rival,compare?r?.ref:null,TRIMS[state.ref],dt);
-  const hop=state.exp==='hop',lead=r&&!hop?(compare?Math.max(r.you.x,r.ref.x)*.5+Math.min(r.you.x,r.ref.x)*.5:r.you.x):0;
+  const hop=state.exp==='hop',launch=state.exp==='launch',lead=r&&launch?(compare?Math.max(r.you.x,r.ref.x)*.5+Math.min(r.you.x,r.ref.x)*.5:r.you.x):0;
   // The camera trails a little under hard acceleration, so the car surges ahead.
-  lagA+=((r&&!hop?r.you.a:0)-lagA)*Math.min(1,dt*3);const goal=lead-Math.max(0,Math.min(2.4,lagA*.06));
+  lagA+=((r&&launch?r.you.a||0:0)-lagA)*Math.min(1,dt*3);const goal=lead-Math.max(0,Math.min(2.4,lagA*.06));
   const dx=goal-follow;if(Math.abs(dx)>1e-6){camera.position.x+=dx;controls.target.x+=dx;if(transition){transition.to.x+=dx;transition.targetTo.x+=dx;transition.from.x+=dx;transition.targetFrom.x+=dx;}follow=goal;}
   if(hop&&r){const ty=Math.min(r.you.y,30)*.6+(state.view==='overview'?1.6:.5);const dy=(ty-controls.target.y)*Math.min(1,dt*4);controls.target.y+=dy;camera.position.y+=dy;}
+  // Stunts: lift the view when the car climbs above the frame (fleet jump with long burns).
+  if(isStunt()&&state.view==='overview'){const want=r&&state.exp==='jump'?Math.max(0,r.you.y-7)*.7:0,dy=(want-focusY)*Math.min(1,dt*3);
+    const wantX=!r?0:state.exp==='jump'?Math.max(-12,Math.min(40,r.you.x-12)):Math.max(-40,Math.min(0,r.you.x-2)),dxs=(wantX-focusX)*Math.min(1,dt*2.5);
+    focusX+=dxs;focusY+=dy;shiftView(dxs,dy);}
+  if(isStunt()&&state.view!=='overview'){const p=you.root.position,dxs=p.x-controls.target.x,dys=(you.chassis.position.y+.6)-controls.target.y;controls.target.x+=dxs;camera.position.x+=dxs;controls.target.y+=dys;camera.position.y+=dys;}
   controls.update();
-  const dts=state.paused?0:dt*simSpeed(),firing=!!(r?.you.firing||(compare&&r?.ref.firing));
+  const dts=state.paused?0:dt*simSpeed(),firing=launch&&!!(r?.you.firing||(compare&&r?.ref.firing));
   emit(you,r?.you,state.cfg,dts);if(compare)emit(rival,r?.ref,TRIMS[state.ref],dts);updatePuffs(dts);
-  const vRun=r&&!hop?Math.max(r.you.v,compare?r.ref.v:0):0,vK=vRun*3.6,racing=state.phase==='running'&&!hop;
+  const vRun=r&&launch?Math.max(r.you.v,compare?r.ref.v:0):0,vK=vRun*3.6,racing=state.phase==='running'&&launch;
   const fov=36+(racing?20*Math.min(1,Math.max(0,(vK-20)/330))+(firing?4:0):0);if(Math.abs(fov-camera.fov)>.01){camera.fov+=(fov-camera.fov)*Math.min(1,dt*3);camera.updateProjectionMatrix();}
   pMat.uniforms.scale.value=renderer.domElement.height/(2*Math.tan(camera.fov*Math.PI/360));
   sun.position.set(follow-14,18,12);sun.target.position.set(follow,0,0);
   // Grip view: arrows grow with downforce; tire arrows show the push the rear tires can give.
   if(you.arrows[0].visible){const df=state.cfg.fan/4700;you.arrows.forEach(a=>{a.setLength(.25+df*1.6,.22,.16);a.position.y=.95+(.25+df*1.6);});you.underGlow.material.opacity=.08+df*.35;const g=state.sum.gripG;you.tireArrows.forEach(a=>a.setLength(.3+g*.5,.18,.14));}
-  const speedV=r&&!hop?(compare?(r.you.v+r.ref.v)/2:r.you.v):0;streakLines.visible=speedV>2;
+  const speedV=r&&launch?(compare?(r.you.v+r.ref.v)/2:r.you.v):0;streakLines.visible=speedV>2;
   if(streakLines.visible){streakLines.material.opacity=Math.min(.55,speedV/70);const move=speedV*dts;for(let i=0;i<streakCount;i++){const s=streaks[i];s.x-=move*s.s;if(s.x<-30)s.x+=60;const n=i*6,len=.3+speedV*.04;streakArr[n]=follow+s.x;streakArr[n+1]=s.y;streakArr[n+2]=s.z;streakArr[n+3]=follow+s.x+len;streakArr[n+4]=s.y;streakArr[n+5]=s.z;}streakGeo.attributes.position.needsUpdate=true;}
   scene.updateMatrixWorld();positionLabels();
   // Small shake grows with speed and thruster firing; skipped for reduced motion.
