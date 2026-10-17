@@ -130,7 +130,7 @@ button.label{cursor:pointer}button.label:hover{border-color:var(--gold)}
 .feel-heading{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;flex-wrap:wrap}
 .feel-heading h3{font-size:13px;font-weight:550}.feel-heading>span{font-size:9px;color:var(--gold)}
 .feel-pair{display:grid;grid-template-columns:1fr;gap:8px}
-.is-comparing .feel-pair{grid-template-columns:1fr 1fr}
+.is-comparing .feel-pair{grid-template-columns:1fr 1fr;align-items:start}
 .feel-room{min-width:0;text-align:center;padding:6px 6px 5px;border:1px solid #608784;border-radius:9px;background:#102d3844}
 #feel-ref{border-color:#936c64;background:#3c2d2938}
 .feel-label{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;font-weight:600;margin-bottom:3px;color:#d3e1df}.feel-label i{width:6px;height:6px;border-radius:50%;flex-shrink:0}
@@ -271,7 +271,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
   .desktop-gesture{display:none}.mobile-gesture{display:inline}
   .observation{max-height:170px}.is-comparing .observation{max-height:150px}
 }
-@media(min-width:761px) and (max-width:1000px){.brand p{display:none}.top{padding:0 16px}.experiments button{padding:0 10px;font-size:12px}.news-strip{padding:0 16px}}
+@media(min-width:761px) and (max-width:1000px){.brand p{display:none}.brand img{width:92px;height:37px}.brand-symbol{display:none}.brand h1{font-size:17px;letter-spacing:.02em}.top{padding:0 16px}.experiments button{padding:0 10px;font-size:12px}.news-strip{padding:0 16px}}
 
 /* Phone: one compact header, then stage, observations, controls. */
 @media(max-width:760px){
@@ -550,7 +550,7 @@ function applyStatic(){
   $$('[data-en-alt]').forEach(el=>{if(el.dataset.zhAlt==null)el.dataset.zhAlt=el.alt;el.alt=lang==='en'?el.dataset.enAlt:el.dataset.zhAlt;});
   $('lang-zh').setAttribute('aria-pressed',String(lang!=='en'));$('lang-en').setAttribute('aria-pressed',String(lang==='en'));
 }
-function setLanguage(next){lang=next;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildComponents();buildTrimButtons();buildRefButtons();renderAll();state.engine?.setView(false);}
+function setLanguage(next){lang=next;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();renderAll();state.engine?.setView(false);}
 $('lang-zh').onclick=()=>setLanguage('zh-Hant');$('lang-en').onclick=()=>setLanguage('en');
 
 // ---------- Panel ----------
@@ -597,7 +597,7 @@ function setComponent(key,value){
   state.change={key,from:prev?prev.from:from,to:value,before:prev?prev.before:before,after:state.sum};state.changedKey=key;
   resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();
 }
-function applyTrim(k){state.cfg={...TRIMS[k]};state.trim=k;state.change=null;state.changedKey=null;recompute();resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();toast(T(`已載入 ${trimName(k)} 版本。按「起跑！」看看它多快。`,`${trimName(k)} loaded. Press Launch to see how quick it is.`));}
+function applyTrim(k){state.cfg={...TRIMS[k]};state.trim=k;state.change=null;state.changedKey=null;recompute();resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();toast(state.exp==='hop'?T(`已載入 ${trimName(k)} 版本。按「點火！」看看它跳多高。`,`${trimName(k)} loaded. Press Ignite to see how high it hops.`):T(`已載入 ${trimName(k)} 版本。按「起跑！」看看它多快。`,`${trimName(k)} loaded. Press Launch to see how quick it is.`));}
 
 function componentText(key,v){const c=COMPONENTS.find(x=>x.key===key);if(c)return `${c.show(v)} ${c.unit}`;return v?T('輕量材料','light materials'):T('一般鋼鋁','steel & aluminium');}
 function componentName(key){const c=COMPONENTS.find(x=>x.key===key);return c?c.name[lang==='en'?1:0]:T('車身材料','Body material');}
@@ -665,7 +665,7 @@ function renderLimits(){
 function renderInsight(){
   const s=state.sum,limit=dominantLimit(s.run.limits),name=LIMITS[limit].name[lang==='en'?1:0];let msg;
   if(state.exp==='hop'){
-    msg=s.tw<=1?T(`推重比只有 <strong>${fmt(s.tw,2)}</strong>：推力比車重還小，朝下噴也離不開地面。加大推進器，或讓車變輕。`,`Thrust-to-weight is only <strong>${fmt(s.tw,2)}</strong>: the push is smaller than the weight, so the car stays put. Add thrust or lose weight.`)
+    msg=s.air<=0&&state.cfg.thrust>0?T('氣瓶是 0 公升：推進器沒有空氣可以噴，車子不會動。把「高壓氣瓶」調大。','The tank is 0 L: the thrusters have no air to blow, so nothing happens. Raise Air tank.'):s.tw<=1?T(`推重比只有 <strong>${fmt(s.tw,2)}</strong>：推力比車重還小，朝下噴也離不開地面。加大推進器，或讓車變輕。`,`Thrust-to-weight is only <strong>${fmt(s.tw,2)}</strong>: the push is smaller than the weight, so the car stays put. Add thrust or lose weight.`)
     :T(`推重比 <strong>${fmt(s.tw,2)}</strong> 大於 1，噴氣時往上加速；氣噴完後就像丟出去的球一樣落下。噴 ${state.burn} 秒可跳約 <strong>${fmt(s.hop.peak,1)} 公尺</strong>。`,`Thrust-to-weight <strong>${fmt(s.tw,2)}</strong> is above 1, so it climbs while firing, then falls like a thrown ball. A ${state.burn} s burst reaches about <strong>${fmt(s.hop.peak,1)} m</strong>.`);
   }else if(state.mode==='compare'){
     const a=s.run.marks.kmh100,b=state.refSum.run.marks.kmh100,diff=b-a;
@@ -688,7 +688,8 @@ function renderView(){
   if(compare){title=T('同一條線起跑，<br>誰先到？','Same start line.<br>Who gets there first?');desc=T(`白色車是你的「${trimName(state.trim)}」，灰色車是對手「${trimName(state.ref)}」。`,`White car: your ${trimName(state.trim)}. Grey car: the rival ${trimName(state.ref)}.`);}
   else if(state.exp==='hop'&&state.view==='overview'){title=T('推力大於重量，<br>就能離地。','Thrust beats weight,<br>wheels leave the ground.');desc=T('噴嘴朝下噴氣。推重比大於 1，車子才跳得起來。','Nozzles point down. Above a thrust-to-weight of 1, the car hops.');}
   $('scene-title').innerHTML=title;$('scene-description').textContent=desc;$('view-number').textContent=compare?T('雙車對照 / 400 公尺直線','Head-to-head / 400 m strip'):v.num[i];
-  $('knowledge-title').textContent=v.k[i];$('knowledge-copy').innerHTML=`${v.kc[i]}<span class="formula">${state.view==='grip'&&lang==='en'?'a ≤ μ · g · (1 + downforce ÷ weight)':state.view==='thrust'&&lang==='en'?'thrust-to-weight = thrust ÷ (m · g)':v.f}</span>`;
+  const kv=state.exp==='hop'&&state.view==='overview'?VIEWS.thrust:v;
+  $('knowledge-title').textContent=kv.k[i];$('knowledge-copy').innerHTML=`${kv.kc[i]}<span class="formula">${kv===VIEWS.grip&&lang==='en'?'a ≤ μ · g · (1 + downforce ÷ weight)':kv===VIEWS.thrust&&lang==='en'?'thrust-to-weight = thrust ÷ (m · g)':kv.f}</span>`;
   $('knowledge').hidden=compare;
   $('scale-text').textContent=state.view==='overview'||compare?T('車輛外型為示意；賽道與跳躍高度為真實比例','Car shape is illustrative; strip and hop height are to scale'):T('零件位置與大小為示意','Part sizes and positions are illustrative');
   $$('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view&&!compare)));
@@ -742,7 +743,7 @@ function updateCue(){
   const r=state.runs,cue=$('run-cue');
   if(!r){cue.hidden=true;return;}
   cue.hidden=false;const you=r.you,hop=state.exp==='hop';cue.classList.toggle('is-hop',hop);
-  if(hop){$('cue-label').textContent=T('高度','Height');$('cue-main').innerHTML=`${fmt(you.y,2)}<span>m</span>`;$('cue-a').textContent=you.firing?T('噴氣中','Firing'):you.lifted?T('自由落體','Falling'):T('等待離地','On the ground');$('cue-b').textContent=state.mode==='compare'?`${trimName(state.ref)} ${fmt(r.ref.y,2)} m`:`${fmt(you.t,2)} s`;$('cue-progress').style.transform=`scaleX(${Math.min(1,you.peak/Math.max(.5,state.sum.hop.peak))})`;return;}
+  if(hop){$('cue-label').textContent=T('高度','Height');$('cue-main').innerHTML=`${fmt(you.y,2)}<span>m</span>`;$('cue-a').textContent=you.firing?T('噴氣中','Firing'):you.done?(you.lifted?T('已落地','Landed'):state.cfg.thrust>0&&state.sum.air<=0?T('氣瓶是空的，噴不出氣','Empty tank, nothing to blow'):T('推力不夠，沒有離地','Not enough thrust to lift')):you.lifted?T('自由落體','Falling'):T('等待離地','On the ground');$('cue-b').textContent=state.mode==='compare'?`${trimName(state.ref)} ${fmt(r.ref.y,2)} m`:`${fmt(you.t,2)} s`;$('cue-progress').style.transform=`scaleX(${Math.min(1,you.peak/Math.max(.5,state.sum.hop.peak))})`;return;}
   if(you.done&&you.marks.quarter!=null){$('cue-label').textContent=T('400 公尺成績','Quarter-mile result');$('cue-main').innerHTML=`${fmt(you.marks.quarter,2)}<span>s</span>`;$('cue-a').textContent=T(`終點時速 ${fmt(you.marks.trap*3.6)} km/h`,`Trap speed ${fmt(you.marks.trap*3.6)} km/h`);$('cue-b').textContent=state.mode==='compare'&&r.ref.marks.quarter!=null?`${trimName(state.ref)} ${fmt(r.ref.marks.quarter,2)} s`:'';$('cue-progress').style.transform='scaleX(1)';return;}
   $('cue-label').textContent=you.firing?T('速度・推進器噴射中','Speed · thrusters firing'):T('速度','Speed');
   $('cue-main').innerHTML=`${fmt(you.v*3.6)}<span>km/h</span>`;
@@ -759,7 +760,7 @@ function updateFeel(force=false){
   for(const key of ['you','ref']){
     if(key==='ref'&&state.mode!=='compare')continue;
     const s=state.runs?.[key],hop=state.exp==='hop';
-    const a=s?(hop?0:s.a):0,ay=s&&hop?s.a+P.G*(s.y>0||s.firing?1:1):P.G,g=a/P.G,gv=ay/P.G;
+    const a=s?(hop?0:s.a):0,ay=s&&hop?s.a+P.G:P.G,g=a/P.G,gv=ay/P.G;
     const v=s?(hop?0:s.v):0;
     streakOffset[key]=(streakOffset[key]+v*.9)%480;
     $('streak-'+key).querySelectorAll('path').forEach((p,i)=>p.style.strokeDashoffset=String(streakOffset[key]*(1+i*.3)));
@@ -771,12 +772,13 @@ function updateFeel(force=false){
     const lift=hop&&s?Math.max(-6,Math.min(6,(gv-1)*2.2)):0;$('lift-'+key).setAttribute('transform',`translate(0,${lift.toFixed(2)})`);
     $('arrow-'+key).setAttribute('d',`M140 90H${(140-Math.min(110,g*24)).toFixed(1)}`);
     const shown=hop?gv:g;$('g-'+key).textContent=`${fmt(shown,2)} g`;
-    const level=shown<.3?0:shown<1?1:shown<1.6?2:shown<3?3:4;
-    $('mouth-'+key).setAttribute('d',['M45 54q4 3 7 0','M45 55h7','M45 54a3 3 0 1 0 6 0a3 3 0 1 0-6 0','M44 53q4 6 9 0z','M43 52q5 9 11 0z'][hop&&!s?.firing&&s?.lifted?2:level]);
-    const words=hop?[T('穩穩坐著','Sitting steady'),T('有點飄','A little floaty'),T('被往下壓','Pressed down'),T('像電梯急升','Like a fast elevator'),T('像火箭升空！','Like a rocket launch!')]:[T('輕鬆坐著','Relaxed'),T('被推向椅背','Pushed into the seat'),T('比雲霄飛車還猛','Wilder than a roller coaster'),T('像太空梭升空','Like a Space Shuttle launch'),T('超過太空梭的 3 g！','More than a Shuttle\'s 3 g!')];
-    let word=words[level];if(hop&&s&&s.lifted&&!s.firing)word=T('失重飄浮中！','Weightless!');
+    // Launch: forward g from 0 up. Hop: vertical g centred on 1 g (sitting still).
+    const level=hop?(shown<.3?0:shown<.95?1:shown<1.05?2:shown<2?3:4):(shown<.3?0:shown<1?1:shown<1.6?2:shown<3?3:4);
+    $('mouth-'+key).setAttribute('d',['M45 54q4 3 7 0','M45 55h7','M45 54a3 3 0 1 0 6 0a3 3 0 1 0-6 0','M44 53q4 6 9 0z','M43 52q5 9 11 0z'][hop?[2,1,0,3,4][level]:level]);
+    const words=hop?[T('失重飄浮中！','Weightless!'),T('有點飄','A little floaty'),T('穩穩坐著','Sitting steady'),T('被往下壓','Pressed down'),T('像火箭升空！','Like a rocket launch!')]:[T('輕鬆坐著','Relaxed'),T('被推向椅背','Pushed into the seat'),T('比雲霄飛車還猛','Wilder than a roller coaster'),T('像太空梭升空','Like a Space Shuttle launch'),T('超過太空梭的 3 g！','More than a Shuttle\'s 3 g!')];
+    let word=words[level];if(hop&&s&&s.done&&s.lifted)word=T('平安落地','Landed safely');
     if(!s&&!force)continue;
-    $(`feel-${key}-word`).textContent=s?`${word} · ${fmt(shown,2)} g`:T('按「起跑！」感受推背感','Press Launch to feel the push');
+    $(`feel-${key}-word`).textContent=s?`${word} · ${fmt(shown,2)} g`:hop?T('按「點火！」感受上下的 g','Press Ignite to feel the lift'):T('按「起跑！」感受推背感','Press Launch to feel the push');
   }
 }
 
@@ -868,8 +870,8 @@ const startLine=new T3.Mesh(new T3.PlaneGeometry(.35,9.6),goldLine);startLine.ro
 const finish=new T3.Mesh(new T3.PlaneGeometry(1.2,9.6),new T3.MeshBasicMaterial({map:checker()}));finish.rotation.x=-Math.PI/2;finish.position.set(P.QUARTER,.014,0);scene.add(finish);
 for(const [x,label] of [[100,'100 m'],[200,'200 m'],[300,'300 m'],[P.QUARTER,'400 m']]){for(const z of [-6.2,6.2]){const post=new T3.Mesh(new T3.CylinderGeometry(.06,.06,2.2,8),mat(0xbfc9cc,.4,.4));post.position.set(x,1.1,z);scene.add(post);const board=new T3.Mesh(new T3.PlaneGeometry(2,.75),new T3.MeshBasicMaterial({map:textTexture(label),side:T3.DoubleSide}));board.position.set(x,2.4,z);board.rotation.y=-Math.PI/2;scene.add(board);}}
 const backdrop=new T3.Group();scene.add(backdrop);
-const mesaMat=mat(0x5d5a55,0,1);for(let i=0;i<14;i++){const w=60+Math.random()*120,hgt=8+Math.random()*16,m=new T3.Mesh(new T3.BoxGeometry(w,hgt,40),mesaMat);m.position.set(-300+i*80+Math.random()*30,hgt/2-1,-380-Math.random()*120);backdrop.add(m);}
-const towerMat=mat(0xc9cfd1,.6,.35);for(const [x,z,hgt] of [[120,-150,46],[160,-170,30],[260,-210,38]]){const t=new T3.Mesh(new T3.CylinderGeometry(2.4,3,hgt,10),towerMat);t.position.set(x,hgt/2,z);t.castShadow=true;backdrop.add(t);const frame=new T3.Mesh(new T3.BoxGeometry(5,hgt*1.1,5),new T3.MeshStandardMaterial({color:0x50606a,wireframe:true}));frame.position.set(x+5,hgt*.55,z);backdrop.add(frame);}
+const mesaMat=mat(0x5d5a55,0,1);for(let i=0;i<14;i++){const w=60+Math.random()*120,hgt=3+Math.random()*7,m=new T3.Mesh(new T3.BoxGeometry(w,hgt,40),mesaMat);m.position.set(-300+i*80+Math.random()*30,hgt/2-1,-380-Math.random()*120);backdrop.add(m);}
+const towerMat=mat(0x7f8a8f,.5,.45);for(const [x,z,hgt] of [[120,-150,46],[160,-170,30],[260,-210,38]]){const t=new T3.Mesh(new T3.CylinderGeometry(2.4,3,hgt,10),towerMat);t.position.set(x,hgt/2,z);t.castShadow=true;backdrop.add(t);const frame=new T3.Mesh(new T3.BoxGeometry(5,hgt*1.1,5),new T3.MeshStandardMaterial({color:0x50606a,wireframe:true}));frame.position.set(x+5,hgt*.55,z);backdrop.add(frame);}
 
 // ---------- The car ----------
 const ST=[[2.24,.17,.55,.30,.72,.36,.50,.37],[2.05,.14,.66,.36,.86,.52,.68,.50],[1.75,.13,.68,.44,.92,.68,.80,.58],[1.35,.13,.68,.48,.93,.72,.82,.62],[.95,.13,.68,.48,.92,.72,.80,.68],[.40,.12,.70,.47,.90,.70,.76,.72],[-.30,.12,.70,.48,.90,.72,.78,.74],[-.95,.13,.70,.53,.95,.84,.86,.80],[-1.40,.14,.70,.55,.96,.86,.86,.83],[-1.85,.18,.68,.56,.93,.85,.84,.83],[-2.20,.30,.62,.58,.88,.80,.80,.79]];
@@ -906,10 +908,10 @@ function makeCar(paint,accent){
   const underGlow=new T3.Mesh(new T3.PlaneGeometry(3.6,1.35),new T3.MeshBasicMaterial({color:0x9bd8d1,transparent:true,opacity:.0,depthWrite:false,side:T3.DoubleSide}));underGlow.rotation.x=-Math.PI/2;underGlow.position.set(-.1,.05,0);chassis.add(underGlow);
   const skirts=[];for(const z of [-.69,.69]){const sk=new T3.Mesh(new T3.BoxGeometry(2.1,.12,.03),dark);sk.position.set(0,.12,z);chassis.add(sk);skirts.push(sk);}
   // Ten cold-gas nozzles: four rear-facing, six facing down.
-  const nozzles=[],nozzleMat=mat(0xc9a65c,.9,.25),plumeMat=new T3.MeshBasicMaterial({color:0xdff6ff,transparent:true,opacity:.55,depthWrite:false,blending:T3.AdditiveBlending});
+  const nozzles=[],nozzleMat=mat(0xc9a65c,.9,.25),plumeMat=new T3.MeshBasicMaterial({color:0xcfeeff,transparent:true,opacity:.26,depthWrite:false,blending:T3.AdditiveBlending});
   const NOZ=[[-2.23,.5,-.36,'rear'],[-2.23,.5,.36,'rear'],[-2.21,.24,-.74,'rear'],[-2.21,.24,.74,'rear'],[1.55,.12,-.5,'down'],[1.55,.12,.5,'down'],[0,.12,-.62,'down'],[0,.12,.62,'down'],[-1.75,.15,-.45,'down'],[-1.75,.15,.45,'down']];
   for(const [x,y,z,dir] of NOZ){const g=new T3.Group();g.position.set(x,y,z);const n=new T3.Mesh(new T3.CylinderGeometry(.035,.07,.12,12),nozzleMat);const plume=new T3.Mesh(new T3.ConeGeometry(.16,1,16,1,true),plumeMat);plume.visible=false;
-    if(dir==='rear'){n.rotation.z=Math.PI/2;plume.rotation.z=Math.PI/2;plume.position.x=-.55;}else{plume.rotation.z=Math.PI;plume.position.y=-.55;n.position.y=-.02;}
+    if(dir==='rear'){n.rotation.z=Math.PI/2;plume.rotation.z=-Math.PI/2;plume.position.x=-.55;}else{plume.position.y=-.55;n.position.y=-.02;}
     g.add(n,plume);chassis.add(g);nozzles.push({g,plume,dir});}
   // Inside: seats, air tank, battery, two rear motors with planetary gears.
   const inside=new T3.Group();chassis.add(inside);
