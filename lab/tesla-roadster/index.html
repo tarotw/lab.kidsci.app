@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTQ2VCBJEH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MTQ2VCBJEH');
+</script>
+<link rel="canonical" href="https://kidsci.app/lab/tesla-roadster/">
+<meta property="og:url" content="https://kidsci.app/lab/tesla-roadster/">
+<meta name="theme-color" content="#101e2b">
+<title>Roadster 超跑動力實驗室｜科學好好聽</title>
+<meta name="description" content="科學好好聽 Roadster 超跑動力實驗室：依 2026 年 10 月 15 日特斯拉新一代 Roadster 發表資訊，親手調整輪胎、吸地風扇、冷氣推進器、氣瓶、馬達、齒輪比、電池與風阻，看每個零件如何改變起步加速、極速、續航與噴氣跳躍。Tesla Roadster Lab: tune each component and see how it changes acceleration, top speed, range and lift-off.">
+<meta name="keywords" content="Tesla Roadster,特斯拉,Roadster 2,超跑,電動車,加速度,抓地力,下壓力,吸地風扇,冷氣推進器,推重比,牛頓第二定律,功率,齒輪比,續航,科學好好聽,親子科學,STEM教育,fan car,cold gas thruster,downforce,thrust-to-weight,interactive science">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Roadster 超跑動力實驗室｜科學好好聽",
+  "alternateName": "Roadster Power Lab | Science, Well Heard",
+  "description": "依 2026 年 10 月 15 日特斯拉新一代 Roadster 發表資訊，親手調整車輛零件，看抓地力、下壓力、推力、功率與重量如何改變加速、極速、續航與跳躍。",
+  "inLanguage": ["zh-Hant","en"],
+  "learningResourceType": "Interactive simulation",
+  "interactivityType": "active",
+  "isAccessibleForFree": true,
+  "about": [
+    {"@type": "Thing","name": "Tesla Roadster (2026 reveal)"},
+    {"@type": "Thing","name": "牛頓第二定律 / Newton's second law"},
+    {"@type": "Thing","name": "抓地力與下壓力 / Grip and downforce"},
+    {"@type": "Thing","name": "推重比 / Thrust-to-weight ratio"}
+  ]
+}
+</script>
+<meta property="og:title" content="Roadster 超跑動力實驗室｜一個零件，差多少？"><meta property="og:description" content="輪胎、吸地風扇、冷氣推進器、馬達與電池：親手改裝 2026 新一代 Roadster，看見每個零件的科學。"><meta property="og:type" content="website"><meta property="og:locale" content="zh_TW"><meta property="og:image" content="https://kidsci.app/science-good-listen.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23101e2b'/%3E%3Cpath d='M5 30l7-7 13-3 13 3 5 4v5H5z' fill='%238ed1ce'/%3E%3Ccircle cx='14' cy='32' r='4' fill='%23e6bb72'/%3E%3Ccircle cx='35' cy='32' r='4' fill='%23e6bb72'/%3E%3C/svg%3E">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<style>
+:root{color-scheme:dark;--ink:#101e2b;--panel:#142330;--line:#344754;--text:#eef1ee;--muted:#adbdc7;--aqua:#9bd8d1;--gold:#e6bb72;--coral:#ee9c8b;--violet:#b9a6e6;--font:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{margin:0;width:100%;height:100%;background:var(--ink);color:var(--text);font-family:var(--font)}
+body{overflow:hidden;font-size:14px}
+button,input,select{font:inherit}button,a,input,summary{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer;color:inherit;border:0;background:none;min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+button:disabled{opacity:.4;cursor:default}button:hover:not(:disabled){color:var(--aqua)}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,canvas:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+a{color:var(--aqua);text-underline-offset:4px}
+svg{width:20px;height:20px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3,p{margin:0}p{line-height:1.8}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+html[lang=en] .zh,html:not([lang=en]) .en{display:none!important}
+
+/* Frame: header, news strip, three-column workspace, view nav. Same rhythm as the Taipei 101 lab. */
+.app{height:100dvh;display:grid;grid-template-rows:86px 58px minmax(0,1fr) 88px;grid-template-columns:minmax(0,1fr);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.top{display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid var(--line);gap:16px;background:#07101e;z-index:15;min-width:0}
+.brand{display:flex;gap:10px;align-items:center;min-width:0}.brand img{width:116px;height:46px;object-fit:contain;border-radius:9px;filter:drop-shadow(0 4px 12px #0008)}
+.brand-symbol{width:34px;height:34px;color:var(--gold)}.brand-title{min-width:0}
+.brand h1{font-size:21px;font-weight:600;letter-spacing:.07em;white-space:nowrap}.brand p{color:var(--muted);font-size:11px;letter-spacing:.08em;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[lang=en] .brand h1{letter-spacing:.02em}
+.experiments{display:flex;gap:5px;background:#09172470;border:1px solid #344754;border-radius:30px;padding:4px;flex-shrink:0}
+.experiments button{border-radius:23px;padding:0 15px;font-size:13px;min-height:36px;color:var(--muted);white-space:nowrap}
+.experiments button[aria-pressed=true]{background:#3c535e;color:#fff}.experiments .short{display:none}
+.head-actions{display:flex;gap:9px;align-items:center;flex-shrink:0}
+.icon-button{width:40px;min-height:40px;border:1px solid var(--line);border-radius:50%;background:#152432}
+.lang-switch{display:flex;align-items:center;height:44px;padding:3px;border:1px solid #29364a;border-radius:22px;background:#0c1929}
+.lang-switch button{min-width:44px;height:36px;min-height:36px;padding:0 10px;border-radius:18px;color:#8fa4ba;font-size:12px;font-weight:650}
+.lang-switch button[aria-pressed=true]{background:#294659;color:#c9f3f1;box-shadow:inset 0 0 0 1px #66aeb455}
+
+.news-strip{display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:12px;background:linear-gradient(90deg,#302b22,#1f3038 65%);border-bottom:1px solid #8c70424d;z-index:4;min-width:0}
+.news-heading{display:flex;align-items:center;gap:12px;min-width:0}
+.news-icon{width:34px;height:34px;display:grid;place-items:center;border:1px solid #ba9555;border-radius:50%;color:var(--gold);background:#77602c1a;flex-shrink:0}
+.news-icon svg{width:18px;height:18px}
+.news-heading>div{min-width:0}.news-heading small{display:block;color:#e5c897;font-size:10px;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.news-heading strong{font-size:13px;font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.news-actions{display:flex;gap:14px;align-items:center;flex-shrink:0}
+.news-actions button{border:1px solid #dfb36b;background:#d9ae62;color:#1d2b32;font-weight:650;border-radius:20px;min-height:34px;padding:0 18px;font-size:12px}
+.news-actions button:hover:not(:disabled){background:#f4d9a9;color:#20373e}
+.news-actions a{font-size:11px;color:#eed29c;text-decoration:none;white-space:nowrap}
+
+.workspace{display:grid;grid-template-columns:310px minmax(0,1fr) 340px;min-height:0;min-width:0}
+.stage{grid-column:2;grid-row:1;position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 55% 78%,#c7a27a40,transparent 55%),linear-gradient(172deg,#14273b 0%,#2d4652 46%,#7b7466 78%,#8d7d68 100%)}
+#scene{display:block;width:100%;height:100%;touch-action:none;outline-offset:-4px}
+.stage:after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 -75px 80px -55px #0c1c2b}
+.scene-copy{position:absolute;top:22px;left:22px;z-index:2;pointer-events:none;max-width:min(360px,calc(100% - 120px))}
+.location{font-size:10px;letter-spacing:.14em;color:#bed1da;display:flex;gap:8px;align-items:center;margin-bottom:14px}
+.location:before{content:"";height:5px;width:5px;border-radius:50%;background:var(--aqua);box-shadow:0 0 10px #9bd8d170}
+.scene-copy h2{font-size:clamp(24px,2.4vw,36px);line-height:1.35;font-weight:500;letter-spacing:.06em;text-shadow:0 3px 26px #182d3c}
+html[lang=en] .scene-copy h2{letter-spacing:-.01em;line-height:1.15}
+.scene-copy p{margin-top:10px;font-size:12px;color:#cad5db;max-width:260px;line-height:1.8;text-shadow:0 2px 14px #182d3c}
+.scene-copy .view-number{display:block;margin-top:14px;font-size:10px;letter-spacing:.11em;color:#9caeba}
+.scene-toptools{position:absolute;right:20px;top:22px;display:flex;gap:8px;z-index:3}
+.scene-toptools .icon-button{background:#182a38b3;backdrop-filter:blur(12px)}
+#about-mobile{display:none}
+.labels{position:absolute;inset:0;pointer-events:none;z-index:2}
+.label{position:absolute;white-space:nowrap;transform:translate(-50%,-50%);background:#122735d9;border:1px solid #829f9f70;backdrop-filter:blur(8px);border-radius:5px;padding:7px 11px;min-height:34px;font-size:11px;box-shadow:0 3px 18px #06172244;pointer-events:auto;display:inline-flex;align-items:center;gap:7px;color:var(--text)}
+.label:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--aqua);flex-shrink:0}
+.label.gold{border-color:#d8b57680;color:#f2d69f}.label.gold:before{background:var(--gold)}
+.label.coral{color:var(--coral);border-color:#ee9c8b80}.label.coral:before{background:var(--coral)}
+.label.car-label{flex-direction:column;align-items:flex-start;gap:2px;padding:6px 9px}.label.car-label:before{display:none}.car-label strong{font-weight:600}.car-label span{font-size:9px;color:var(--muted)}
+button.label{cursor:pointer}button.label:hover{border-color:var(--gold)}
+.magnify{position:absolute;left:22px;bottom:52px;color:#bbced6;font-size:10px;z-index:2;display:flex;gap:8px;align-items:center;pointer-events:none}.magnify i{width:22px;height:1px;background:#adc6cc}
+.knowledge{position:absolute;left:22px;bottom:84px;max-width:260px;border-left:2px solid #d4ae6b;padding:4px 0 4px 14px;pointer-events:none;z-index:2;background:linear-gradient(90deg,#142a38b0,transparent)}
+.knowledge h3{font-size:13px;font-weight:500;color:#ebd3a4;margin-bottom:6px}.knowledge p{font-size:11px;color:#c8d6db;line-height:1.8}
+.knowledge .formula{display:block;margin-top:6px;font-size:12px;color:#f2d69f;font-variant-numeric:tabular-nums}
+.stage-bottom{position:absolute;left:22px;right:20px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:3;pointer-events:none}
+.stage-bottom p{color:#b2c7d1;font-size:10px;line-height:1.6}
+.mobile-gesture{display:none}
+.run-cue{position:absolute;right:20px;top:76px;z-index:3;padding:12px 15px;width:230px;background:#183340e8;border:1px solid #9bd8d180;border-radius:9px;box-shadow:0 10px 30px #10243155;pointer-events:none}
+.run-cue small{display:block;font-size:10px;color:#bcd3d6}
+.run-cue strong{display:block;font-size:30px;font-weight:450;font-variant-numeric:tabular-nums;color:#e8fbf6;line-height:1.25}
+.run-cue strong span{font-size:12px;color:var(--muted);margin-left:5px}
+.run-cue .cue-row{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:#d6e6e5;font-variant-numeric:tabular-nums;margin-top:3px}
+.run-cue .cue-row b{font-weight:500;color:var(--coral)}
+.run-cue.is-hop{border-color:#e6bb7290;background:#3b3529e8}
+.cue-progress{height:3px;margin-top:9px;background:#3f5b62;overflow:hidden;border-radius:3px}.cue-progress i{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:var(--aqua)}
+.toast{position:absolute;z-index:7;left:50%;top:22px;transform:translateX(-50%);font-size:12px;background:#e0e9df;color:#183038;padding:12px 20px;max-width:80%;border-radius:6px;box-shadow:0 5px 25px #081a3766;pointer-events:none}
+.loading{position:absolute;inset:0;z-index:8;background:#182c3be8;display:flex;flex-direction:column;gap:22px;justify-content:center;align-items:center;color:#cbdedc;font-size:13px}
+.loader-car{width:74px;height:22px;border:1px solid #b2d2cf;clip-path:polygon(0 100%,8% 55%,38% 18%,62% 12%,92% 45%,100% 100%);background:repeating-linear-gradient(90deg,transparent 0 7px,#8ed1ce77 8px 9px);animation:breathe 1.4s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.25}}
+.fallback{position:absolute;inset:0;overflow:auto;background:#132939f5;z-index:9;padding:35px;line-height:1.9}
+.fallback h2{font-size:23px;margin-bottom:15px}.fallback p{color:#bacdd6;max-width:520px}
+.fallback button{border:1px solid #8fb8b8;padding:0 18px;border-radius:5px;margin:15px 0}.fallback ul{padding-left:20px;max-width:560px;color:#c6d6dc}.fallback li{margin:10px 0}
+
+/* Left: observation dock. Right: controls only. */
+.dock{grid-column:1;grid-row:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#64877f transparent;padding:14px 12px;border-right:1px solid var(--line);background:linear-gradient(155deg,#102b38,#132632);display:flex;flex-direction:column;gap:12px}
+.dock>*{flex-shrink:0}
+.feel-heading{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.feel-heading h3{font-size:13px;font-weight:550}.feel-heading>span{font-size:9px;color:var(--gold)}
+.feel-pair{display:grid;grid-template-columns:1fr;gap:8px}
+.is-comparing .feel-pair{grid-template-columns:1fr 1fr}
+.feel-room{min-width:0;text-align:center;padding:6px 6px 5px;border:1px solid #608784;border-radius:9px;background:#102d3844}
+#feel-ref{border-color:#936c64;background:#3c2d2938}
+.feel-label{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;font-weight:600;margin-bottom:3px;color:#d3e1df}.feel-label i{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.observation{display:block;width:100%;height:auto;max-height:128px;stroke-linejoin:round;stroke-linecap:round}
+.is-comparing .observation{max-height:118px}
+.feel-word{display:block;color:var(--aqua);font-size:12px;font-weight:550;margin:2px 0 0;font-variant-numeric:tabular-nums}
+#feel-ref .feel-word{color:var(--coral)}
+.ref-choices{margin:4px 0 5px;text-align:left}
+.ref-choices small{font-size:9px;color:var(--muted)}
+.segmented{display:flex;gap:3px;margin-top:3px;border:1px solid #3a4b58;padding:2px;border-radius:6px}
+.segmented button{flex:1;font-size:11px;color:var(--muted);min-height:30px;border-radius:4px;padding:2px 4px;white-space:nowrap}
+.segmented button[aria-pressed=true]{background:#334953;color:var(--text)}
+.ref-choices .segmented{flex-wrap:wrap}.ref-choices .segmented button{flex:1 1 45%;font-size:10px;min-height:28px}
+.ref-choices .segmented button[aria-pressed=true]{background:#63483f;color:#fff0e8;box-shadow:inset 0 0 0 1px #ee9c8b80}
+.data-title{font-size:11px;font-weight:550;color:var(--gold);margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.data-title span{font-size:9px;color:var(--muted);font-weight:400}
+.scorecard{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.scorecard th,.scorecard td{padding:3px 2px;border-bottom:1px solid #2c4350;font-size:11px;text-align:right;font-weight:400}
+.scorecard th{color:#c0d1d6;text-align:left;font-size:10px}
+.scorecard thead th{font-size:9px;color:var(--muted);text-align:right;border-bottom-color:#47606b}
+.scorecard thead th:first-child{text-align:left}
+.scorecard td.you{color:#d8f6ef;font-size:13px}.scorecard td.ref{color:#f6c8bc;font-size:13px}
+.scorecard td small{font-size:9px;color:var(--muted);margin-left:2px}
+.scorecard tr.win td.you{color:var(--aqua);font-weight:600}
+.scorecard .note-row th{font-size:9px;color:var(--muted)}
+.chart-header{display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#b3c6cf;margin-bottom:4px;gap:6px;flex-wrap:wrap}
+.legend{display:flex;gap:10px;font-size:9px}.legend span:before{content:"";display:inline-block;width:10px;height:2px;background:var(--aqua);vertical-align:middle;margin-right:4px}.legend span.ref:before{background:var(--coral)}
+#trace{width:100%;height:108px;display:block}
+.chart-foot{display:flex;justify-content:space-between;font-size:9px;color:#9fb0bb;margin-top:3px;font-variant-numeric:tabular-nums}
+.limit-bar{display:flex;height:9px;border-radius:5px;overflow:hidden;background:#2a3f4a;margin-top:6px}
+.limit-bar i{display:block;height:100%}
+.limit-legend{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:9px;color:#bccbd1;margin-top:5px}
+.limit-legend span{display:inline-flex;align-items:center;gap:4px}.limit-legend span:before{content:"";width:8px;height:8px;border-radius:2px;background:var(--c)}
+.insight{display:flex;align-items:flex-start;gap:9px;background:#29403f50;border:1px solid #52796e66;padding:9px 10px;border-radius:6px;font-size:11px;color:#c7dfd2;line-height:1.65}
+.insight svg{color:var(--gold);width:18px;height:18px;margin-top:1px}.insight strong{font-weight:550;color:#edcea0}
+.model-note{font-size:9px;color:#97aab8;line-height:1.7}
+
+.panel{grid-column:3;grid-row:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#4a6571 transparent;border-left:1px solid var(--line);background:linear-gradient(160deg,#1c3440,#142530 68%);padding:12px 15px 10px;display:flex;flex-direction:column;gap:10px}
+.panel>*{flex-shrink:0}
+.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.panel-kicker{font-size:10px;color:var(--gold);letter-spacing:.08em}
+.panel-heading h2{font-size:21px;font-weight:550;letter-spacing:.03em;margin-top:2px;line-height:1.3}
+.live{font-size:9px;color:var(--aqua);display:flex;align-items:center;gap:6px;max-width:100px;line-height:1.5;flex-shrink:0}.live:before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.demo-button{padding:8px 12px;background:#e6bb72;color:#23333b!important;border:1px solid #f2d298;border-radius:9px;justify-content:flex-start;gap:11px;min-height:46px;box-shadow:0 4px 20px #0002;width:100%}
+.demo-button:hover:not(:disabled){background:#f2cf95}.demo-button>span:nth-child(2){flex:1;text-align:left}
+.demo-button strong{font-size:14px;display:block}.demo-button small{display:block;font-size:10px;margin-top:2px}
+.demo-button svg{width:24px;height:24px}.demo-button>svg{width:18px}
+.experiments-tabs{display:flex;gap:5px}
+.experiments-tabs button{flex:1;flex-direction:row;min-height:36px;gap:6px;border:1px solid #496170;border-radius:6px;font-size:12px;color:#bbced4}
+.experiments-tabs svg{width:18px;height:18px}
+.experiments-tabs button[aria-pressed=true]{background:#29494f;border-color:#a1cfc5;color:#e3f1e6}
+.experiments-tabs [data-exp=hop][aria-pressed=true]{background:#4f4430;border-color:#e6bb72;color:#ffe9c4}
+.go-row{display:grid;grid-template-columns:1fr auto;gap:6px}
+.go-button{min-height:40px;border-radius:6px;font-size:13px;font-weight:650;background:#4aa39a;color:#062027!important;border:1px solid #9bd8d1}
+.go-button:hover:not(:disabled){background:#7cc9c0}
+.go-button.is-hop{background:#d49a4e;border-color:#f2d298}
+.go-row .restart{min-height:40px;padding:0 12px;border:1px solid #526f7c;border-radius:6px;font-size:11px;color:#d2e2e4}
+.burn-row{font-size:10px;color:var(--muted)}
+.trims small.trim-note{display:block;font-size:10px;color:#c9b996;margin-top:5px;line-height:1.5;min-height:15px}
+.trims .segmented button{font-size:11px}
+.trims .segmented button[aria-pressed=true]{background:#5b4e33;color:#ffe6bb;box-shadow:inset 0 0 0 1px #e6bb7280}
+.section-title{font-size:11px;color:var(--gold);letter-spacing:.06em;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.section-title span{font-size:9px;color:var(--muted);letter-spacing:0}
+.components{display:flex;flex-direction:column;gap:6px}
+.component{padding:7px 9px 4px;border:1px solid #33505b;border-radius:8px;background:#11283466;transition:border-color .2s,background .2s}
+.component.is-changed{border-color:#e6bb72aa;background:#3b392a55}
+.control-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px}
+.control-head label{display:flex;align-items:center;gap:7px;min-width:0}
+.control-head label svg{width:17px;height:17px;color:var(--aqua)}
+.control-head output{font-size:18px;color:var(--text);font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap}
+.control-head output small{font-size:10px;color:var(--muted);margin-left:4px}
+.effects{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.effects span{font-size:9px;color:#bfe4dc;border:1px solid #4b6e6c;border-radius:9px;padding:0 6px;line-height:16px}
+.slider{appearance:none;-webkit-appearance:none;width:100%;height:22px;background:none;cursor:pointer;margin:3px 0 0;accent-color:var(--aqua)}
+.slider::-webkit-slider-runnable-track{height:3px;border-radius:3px;background:linear-gradient(to right,var(--aqua) var(--fill,50%),#3c5260 var(--fill,50%))}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:15px;height:15px;border-radius:50%;margin-top:-6px;background:#d0efdf;box-shadow:0 0 0 4px #9bd8d114}
+.slider::-moz-range-track{height:3px;background:#3c5260;border-radius:3px}.slider::-moz-range-progress{height:3px;background:var(--aqua)}
+.slider::-moz-range-thumb{border:0;background:#d0efdf;width:15px;height:15px;border-radius:50%}
+.ticks{display:flex;justify-content:space-between;color:#9db1be;font-size:9px;gap:8px}
+.material-row .segmented button{font-size:10px}
+.impact{padding:9px 10px;border:1px solid #c9a76b88;border-radius:8px;background:linear-gradient(135deg,#3a3526aa,#1d3139)}
+.impact h3{font-size:12px;font-weight:550;color:#f2d69f;display:flex;justify-content:space-between;gap:8px}
+.impact h3 span{font-size:10px;color:#e8dcc3;font-weight:400;font-variant-numeric:tabular-nums}
+.impact-chips{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:7px 0 6px}
+.impact-chips div{font-size:10px;color:var(--muted);background:#0f222d88;border-radius:5px;padding:4px 6px;display:flex;justify-content:space-between;gap:4px;font-variant-numeric:tabular-nums}
+.impact-chips b{font-weight:550;color:#c9d6db}.impact-chips .better b{color:var(--aqua)}.impact-chips .worse b{color:var(--coral)}
+.impact p{font-size:10px;line-height:1.65;color:#dccfb3}
+.panel-bottom{margin-top:auto;padding-top:8px;border-top:1px solid #45616a;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.panel-bottom p{font-size:9px;color:#dec99f;line-height:1.5}
+.playback{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.playback .icon-button{width:34px;min-height:34px;background:#132331aa}
+.speed-button{padding:0 10px;border:1px solid var(--line);border-radius:22px;font-size:11px;min-height:34px;font-variant-numeric:tabular-nums}
+.clock{font-variant-numeric:tabular-nums;color:#c2d4db;font-size:11px;min-width:52px;text-align:right}
+
+.bottom{display:flex;align-items:stretch;padding:0 26px;padding-bottom:env(safe-area-inset-bottom,0px);border-top:1px solid var(--line);background:#101e2b;z-index:5;gap:25px;min-width:0}
+.nav-caption{display:flex;align-items:center;gap:11px;padding-right:24px;border-right:1px solid var(--line);color:#a9bdc6;font-size:11px;white-space:nowrap}.nav-caption svg{color:var(--aqua);width:26px;height:26px}
+.views{display:flex;flex:1;gap:8px;min-width:0}
+.view-button{position:relative;flex:1;justify-content:flex-start;gap:14px;padding:12px 17px;color:#a8bfc8;min-width:0}
+.view-button:before{position:absolute;content:"";height:2px;background:transparent;left:16px;right:16px;top:-1px}
+.view-button[aria-pressed=true]{color:#e4eae5;background:linear-gradient(#91c9c512,transparent)}.view-button[aria-pressed=true]:before{background:var(--aqua)}
+.view-button svg{width:31px;height:31px;stroke-width:1.2;color:#8dcac5}.view-button:nth-child(3) svg{color:var(--gold)}
+.view-button strong{font-size:13px;display:block;text-align:left;font-weight:500;white-space:nowrap}
+.view-button small{display:block;font-size:10px;color:#9bafb9;margin-top:5px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.view-button>span{min-width:0}
+
+.dialog{background:#162a37;color:var(--text);border:1px solid #63838c;border-radius:12px;padding:30px;max-width:760px;width:calc(100% - 28px);max-height:86dvh;overflow:auto;line-height:1.8;overscroll-behavior:contain}
+.dialog::backdrop{background:#03121bd4;backdrop-filter:blur(7px)}
+.dialog-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:16px}
+.dialog h2{font-size:22px;font-weight:500}.dialog h3{font-size:15px;margin:22px 0 8px;color:#e4c695}
+.dialog p,.dialog li{font-size:13px;color:#c0d0d7;line-height:1.9}.dialog ul{padding-left:20px}
+.dialog .icon-button{flex-shrink:0}
+.spec-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
+.spec-table th,.spec-table td{border-bottom:1px solid #31495a;padding:7px 6px;text-align:left;vertical-align:top;color:#c9d7dc;font-weight:400}
+.spec-table th{color:#e9d4ac;font-weight:500;white-space:nowrap}
+.spec-table td:last-child{font-size:11px;color:#9fb4bd}
+.tag{display:inline-block;font-size:10px;border-radius:9px;padding:0 7px;margin-left:4px;border:1px solid #9bd8d170;color:#bfe9e1}
+.tag.warn{border-color:#ee9c8b80;color:#f4c0b2}
+.dialog .equation{padding:12px 14px;background:#0f1f2b;border-radius:4px;line-height:2;overflow:auto;font-size:12px;color:#c5dbd9}
+.dialog .source-links{display:grid;font-size:12px;gap:4px}
+.help-keys{display:grid;grid-template-columns:1fr 1fr;gap:9px;font-size:12px;color:var(--muted)}
+kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-radius:3px}
+
+/* Desktop height steps */
+@media(min-width:1201px) and (max-height:820px){.app{grid-template-rows:76px 50px minmax(0,1fr) 70px}.panel{gap:7px;padding-top:9px}.panel-heading h2{font-size:18px}.panel-kicker{font-size:9px}.demo-button{min-height:40px}.demo-button small{display:none}.component{padding:5px 8px 3px}.effects{display:none}.view-button small{margin-top:3px}.bottom .view-button svg{width:25px;height:25px}.observation{max-height:120px}.knowledge{display:none}}
+@media(min-width:1201px) and (max-height:700px){.ticks{display:none}.panel-kicker,.panel-bottom p{display:none}.view-button small{display:none}}
+@media(min-width:1201px) and (max-width:1400px){.workspace{grid-template-columns:290px minmax(0,1fr) 320px}.top{padding:0 22px}.brand p{max-width:240px}.view-button{padding:12px 10px;gap:10px}.nav-caption{display:none}}
+
+/* Tablet: stage on top, dock and controls side by side. */
+@media(max-width:1200px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100dvh;grid-template-rows:86px 58px auto 72px}
+  .workspace{grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:auto auto}
+  .stage{grid-column:1/-1;grid-row:1;height:60dvh;min-height:440px}
+  .dock{grid-column:1;grid-row:2;overflow:visible;border-right:1px solid var(--line);padding:18px}
+  .panel{grid-column:2;grid-row:2;overflow:visible;padding:18px}
+  .nav-caption{display:none}.bottom{padding:0 12px;gap:8px}.view-button{gap:10px;padding:12px}.view-button small{font-size:9px}
+  #scene{touch-action:pan-y pinch-zoom!important}
+  .desktop-gesture{display:none}.mobile-gesture{display:inline}
+  .observation{max-height:170px}.is-comparing .observation{max-height:150px}
+}
+@media(min-width:761px) and (max-width:1000px){.brand p{display:none}.top{padding:0 16px}.experiments button{padding:0 10px;font-size:12px}.news-strip{padding:0 16px}}
+
+/* Phone: one compact header, then stage, observations, controls. */
+@media(max-width:760px){
+  .app{grid-template-rows:calc(60px + env(safe-area-inset-top,0px)) 59px auto auto}
+  .top{position:sticky;top:0;display:grid;grid-template-columns:minmax(60px,1fr) auto auto;height:calc(60px + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) 10px 0;gap:7px}
+  .brand-title,.brand-symbol{display:none}.brand img{width:90px;height:36px}
+  .head-actions{display:contents}#about-open{display:none}
+  .experiments{grid-column:2;height:44px;padding:2px;gap:0;align-self:center}
+  .experiments button{height:38px;min-height:38px;padding:0 10px;font-size:12px}
+  .experiments .long-mode{display:none}.experiments .short{display:inline}
+  .lang-switch{grid-column:3;align-self:center;height:44px;padding:2px}
+  .lang-switch button{height:38px;min-height:38px;min-width:35px;padding:0 6px}
+  .news-strip{padding:0 12px;gap:8px}.news-icon{width:28px;height:28px}.news-heading small{font-size:8px}.news-heading strong{font-size:11px}
+  .news-actions a{display:none}.news-actions button{font-size:11px;padding:0 11px;min-height:36px}
+  .workspace{display:flex;flex-direction:column}
+  .stage{order:1;height:clamp(320px,52svh,440px);min-height:320px}
+  .dock{order:2;border-right:0;border-bottom:1px solid var(--line);padding:14px}
+  .panel{order:3;border-left:0;padding:16px 14px;gap:12px}
+  .scene-copy{top:14px;left:14px;max-width:calc(100% - 70px)}
+  .scene-copy h2,html[lang=en] .scene-copy h2{font-size:19px;line-height:1.3;letter-spacing:0}
+  .scene-copy p{font-size:10px;line-height:1.5;margin-top:5px;max-width:220px}
+  .location,.view-number{display:none!important}
+  .scene-toptools{top:12px;right:10px;flex-direction:column;gap:6px}.scene-toptools .icon-button{width:40px;min-height:40px}
+  #about-mobile{display:inline-flex}
+  .knowledge{display:none}
+  .magnify{left:14px;bottom:34px;font-size:9px}
+  .stage-bottom{left:14px;right:14px;bottom:10px}
+  .run-cue{top:auto;bottom:58px;right:10px;width:178px;padding:8px 10px}.run-cue strong{font-size:22px}
+  .label{font-size:9px;padding:5px 8px;min-height:28px}
+  .bottom{position:relative;padding:0 6px;gap:0;min-height:72px}
+  .views{gap:0}.view-button{padding:8px 4px;justify-content:center;flex-direction:column;gap:5px}
+  .view-button svg{width:23px;height:23px}.view-button strong{font-size:10px;text-align:center;white-space:normal;line-height:1.3}.view-button small{display:none}
+  .slider{height:40px}
+  .segmented button,.experiments-tabs button{min-height:44px}
+  .playback .icon-button,.speed-button{min-height:44px}.playback .icon-button{width:44px}
+  .help-keys{grid-template-columns:1fr}
+  .dialog{padding:20px}
+}
+@media(max-width:360px){.top{padding-left:8px;padding-right:8px;gap:5px}.brand img{width:74px;height:32px}.experiments button{padding:0 7px;font-size:11px}.lang-switch button{min-width:32px;padding:0 5px;font-size:11px}.is-comparing .feel-pair{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" style="display:none"><defs>
+<symbol id="i-car" viewBox="0 0 32 32"><path d="M2 21l5-5 9-2 9 2 5 4v3H2zM8 16l4-4h8l5 4"/><circle cx="9" cy="23" r="3"/><circle cx="24" cy="23" r="3"/></symbol>
+<symbol id="i-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.6"/><path d="M12 10.4C11 7 12 4.5 14.5 4.2M13.5 12.6c3.2 1.2 4.7 3.3 3.7 5.6M10.5 12.6C8 14.8 5.5 15 4.4 12.9"/></symbol>
+<symbol id="i-jet" viewBox="0 0 24 24"><path d="M14 8h6v8h-6zM14 10H9l-3-2M14 14H9l-3 2M6 12H2"/></symbol>
+<symbol id="i-tank" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="5"/><path d="M10 4V2h4v2M6 10h12M6 15h12"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 5 14h6l-1 8 8-12h-6z"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10 2.1 2.1M4.9 19.1 7 17m10-10 2.1-2.1"/><circle cx="12" cy="12" r="7"/></symbol>
+<symbol id="i-battery" viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10v4M7 10v4m4-4v4m4-4v4"/></symbol>
+<symbol id="i-wind" viewBox="0 0 32 32"><path d="M3 10h19c7 0 7-8 2-8-3 0-4 2-4 4M3 16h24M3 22h15c8 0 8 8 2 8-3 0-4-2-4-4"/></symbol>
+<symbol id="i-tire" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2m0 14v2M3 12h2m14 0h2"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 22V3m0 1h13l-3 4 3 4H5"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 2c4 3 5 8 3 13H9C7 10 8 5 12 2zM9 15l-3 3 1 3 3-2m5-4 3 3-1 3-3-2M12 8v.1"/></symbol>
+<symbol id="i-weight" viewBox="0 0 24 24"><path d="M7 8h10l3 13H4zM9 8a3 3 0 1 1 6 0"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.2"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5m6 0h5v5M4 15v5h5m6 0h5v-5"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 10 7-10 7z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-news" viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M7 9h7M7 13h7M7 16h4"/></symbol>
+</defs></svg>
+<div class="app" id="app">
+<header class="top"><div class="brand"><a href="https://www.facebook.com/profile.php?id=61577975781160" target="_blank" rel="noopener noreferrer" aria-label="科學好好聽 Facebook" data-en-label="Science, Well Heard on Facebook"><img src="science-good-listen.png" alt="科學好好聽" data-en-alt="Science, Well Heard" width="116" height="46"></a><svg class="brand-symbol" aria-hidden="true"><use href="#i-car"/></svg><div class="brand-title"><h1 data-en="Roadster Power Lab">Roadster 超跑動力實驗室</h1><p data-en="Change one part. See the physics.">一個零件，改變整台車的科學。</p></div></div>
+<nav class="experiments" aria-label="實驗模式" data-en-label="Experiment mode"><button data-mode="free" aria-pressed="true"><span class="long-mode" data-en="Free play">自由探索</span><span class="short" data-en="Free">探索</span></button><button data-mode="compare" aria-pressed="false"><span class="long-mode" data-en="Head-to-head">雙車對照</span><span class="short" data-en="Race">對照</span></button></nav>
+<div class="head-actions"><div class="lang-switch" role="group" aria-label="語言 Language"><button id="lang-zh" aria-pressed="true">中</button><button id="lang-en" aria-pressed="false">EN</button></div><button class="icon-button" id="about-open" aria-label="操作說明與資料來源" data-en-label="Controls and sources"><svg><use href="#i-info"/></svg></button></div></header>
+
+<section class="news-strip" aria-label="發表會速報" data-en-label="Reveal briefing"><div class="news-heading"><span class="news-icon"><svg><use href="#i-news"/></svg></span><div><small data-en="Revealed 15 Oct 2026 · SpaceX test site, McGregor, Texas">2026.10.15 發表 · 美國德州 SpaceX McGregor 試驗場</small><strong data-en="Next-gen Tesla Roadster: three versions, and one of them hops into the air">特斯拉新一代 Roadster：三種版本，其中一台會「飛」</strong></div></div><div class="news-actions"><button id="specs-open"><span data-en="Specs & sources">規格與資料來源</span></button><a href="https://podcasts.apple.com/tw/podcast/id1812447277" target="_blank" rel="noopener noreferrer" data-en="Science, Well Heard podcast ↗">科學好好聽 Podcast ↗</a></div></section>
+
+<main class="workspace" id="workspace">
+<section class="stage" id="stage" aria-label="Roadster 互動 3D 模型" data-en-label="Interactive 3D Roadster">
+<canvas id="scene" tabindex="0" aria-label="可旋轉的 3D 模型。拖曳轉動，滾輪縮放；方向鍵旋轉，加減鍵縮放，Home 回到預設視角。" data-en-label="Rotatable 3D model. Drag to orbit, scroll to zoom; arrow keys rotate, plus and minus zoom, Home resets the view."></canvas>
+<div class="scene-copy"><div class="location" id="location">McGregor, Texas　31.40° N / 97.43° W</div><h2 id="scene-title"></h2><p id="scene-description"></p><span class="view-number" id="view-number"></span></div>
+<div class="scene-toptools"><button class="icon-button" id="about-mobile" aria-label="操作說明與資料來源" data-en-label="Controls and sources"><svg><use href="#i-info"/></svg></button><button class="icon-button" id="reset-view" aria-label="回到預設視角" data-en-label="Reset view"><svg><use href="#i-reset"/></svg></button><button class="icon-button" id="fullscreen" aria-label="全螢幕" data-en-label="Full screen"><svg><use href="#i-expand"/></svg></button></div>
+<div class="labels" id="labels"></div>
+<div class="run-cue" id="run-cue" hidden><small id="cue-label"></small><strong id="cue-main"></strong><div class="cue-row"><span id="cue-a"></span><b id="cue-b"></b></div><div class="cue-progress"><i id="cue-progress"></i></div></div>
+<aside class="knowledge" id="knowledge"><h3 id="knowledge-title"></h3><p id="knowledge-copy"></p></aside>
+<div class="magnify" id="scale-note"><i></i><span id="scale-text"></span></div>
+<div class="stage-bottom"><p><span class="desktop-gesture" data-en="Drag to orbit · scroll to zoom · tap a tag to explore">拖曳旋轉 · 滾動縮放 · 點選標記，看看零件的秘密</span><span class="mobile-gesture" data-en="↕ Scroll for controls · ↔ swipe to turn">↕ 上下滑看控制　↔ 左右滑轉模型</span></p></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<div class="loading" id="loading"><div class="loader-car"></div><span data-en="Assembling your Roadster…">正在組裝你的 Roadster…</span></div>
+<section class="fallback" id="fallback" hidden><h2 data-en="Start with three secrets">先從三個工程秘密開始</h2><p data-en="The 3D view could not start. Check your connection and use a WebGL 2 browser; the controls and charts still work.">3D 畫面暫時無法啟動。請確認網路連線，並使用支援 WebGL 2 的瀏覽器；控制台、成績單與曲線仍可操作。</p><button onclick="location.reload()" data-en="Reload 3D">重新載入 3D</button><ul class="zh"><li><strong>吸地風扇：</strong>把車子底下的空氣抽走，大氣把車往下壓，輪胎抓得更牢。</li><li><strong>冷氣推進器：</strong>噴出高壓空氣，反作用力直接推車，不需要靠輪胎。</li><li><strong>功率與齒輪：</strong>起步靠扭力和抓地力，高速靠功率；齒輪比決定極速。</li></ul><ul class="en"><li><strong>Suction fans:</strong> pull air from under the car so the atmosphere presses it down and the tires grip harder.</li><li><strong>Cold-gas thrusters:</strong> blast compressed air; the reaction pushes the car without using the tires.</li><li><strong>Power and gearing:</strong> launch depends on torque and grip; speed depends on power, and gearing sets the top speed.</li></ul></section>
+</section>
+
+<aside class="dock" id="dock" aria-label="駕駛座感受與成績單" data-en-label="Driver's seat and scorecard">
+<section class="feel-section" aria-label="駕駛座感受" data-en-label="How it feels in the seat"><div class="feel-heading"><h3 data-en="How hard does the seat push?">坐在駕駛座，推背感多大？</h3><span data-en="Watch the kid and the air freshener">看小朋友和香氛吊飾</span></div>
+<div class="feel-pair"><div class="feel-room" id="feel-you"><div class="feel-label"><i style="background:#9bd8d1"></i><span id="feel-you-name"></span></div><div id="feel-you-svg"></div><strong class="feel-word" id="feel-you-word"></strong></div>
+<div class="feel-room" id="feel-ref" hidden><div class="feel-label"><i style="background:#ee9c8b"></i><span id="feel-ref-name"></span></div><div class="ref-choices"><small data-en="Rival car">對手車款</small><div class="segmented" role="group" aria-label="對手車款" data-en-label="Rival car" id="ref-options"></div></div><div id="feel-ref-svg"></div><strong class="feel-word" id="feel-ref-word"></strong></div></div></section>
+<div class="insight"><svg><use href="#i-spark"/></svg><span id="insight"></span></div>
+<section aria-label="成績單" data-en-label="Scorecard"><h3 class="data-title"><span style="font-size:11px;color:var(--gold);font-weight:550" data-en="Scorecard">成績單</span><span data-en="Teaching model · updates instantly">教學模型 · 即時計算</span></h3><table class="scorecard" id="scorecard"></table></section>
+<section aria-label="速度曲線" data-en-label="Speed trace"><div class="chart-header"><span id="chart-title"></span><div class="legend"><span id="legend-you"></span><span class="ref" id="legend-ref"></span></div></div><canvas id="trace" role="img" aria-label="速度與時間的曲線" data-en-label="Speed versus time"></canvas><div class="chart-foot"><span>0 s</span><span id="chart-scale"></span><span id="chart-end"></span></div>
+<div id="limit-box"><div class="chart-header" style="margin-top:8px"><span data-en="0–100 km/h: what held the car back?">0→100 km/h，是誰在限制加速？</span></div><div class="limit-bar" id="limit-bar"></div><div class="limit-legend" id="limit-legend"></div></div></section>
+<p class="model-note" data-en="Teaching model, not Tesla data. Headline figures follow the 15 Oct 2026 reveal; fan, tank, battery and mass values are estimates. The car is drawn to scale only roughly; the 400 m strip is to scale.">教學用簡化模型，非特斯拉官方數據。版本設定依 2026/10/15 發表會公開資訊調校；風扇、氣瓶、電池與重量為推估。車身外型為示意，400 公尺賽道為真實比例。</p>
+</aside>
+
+<aside class="panel" id="panel" aria-label="實驗控制台" data-en-label="Experiment console">
+<div class="panel-heading"><div><span class="panel-kicker" data-en="Build your own Roadster">改裝你的 Roadster</span><h2 id="panel-title"></h2></div><span class="live" id="live"></span></div>
+<button class="demo-button" id="reveal-demo"><svg><use href="#i-rocket"/></svg><span><strong data-en="Replay the reveal launch">重現發表會起跑</strong><small data-en="Rocket version, 0–60 mph in slow motion">Rocket 版本・慢動作看 0–60 mph</small></span><svg><use href="#i-play"/></svg></button>
+<div class="experiments-tabs" role="group" aria-label="選擇實驗" data-en-label="Choose a test"><button data-exp="launch" aria-pressed="true"><svg><use href="#i-flag"/></svg><span data-en="Launch">起跑衝刺</span></button><button data-exp="hop" aria-pressed="false"><svg><use href="#i-rocket"/></svg><span data-en="Thruster hop">噴氣跳躍</span></button></div>
+<div class="burn-row" id="burn-row" hidden><span data-en="Burn time (thrusters pointing down)">噴氣時間（噴嘴朝下）</span><div class="segmented" role="group" aria-label="噴氣時間" data-en-label="Burn time"><button data-burn="0.2" aria-pressed="false">0.2 s</button><button data-burn="0.4" aria-pressed="true">0.4 s</button><button data-burn="0.8" aria-pressed="false">0.8 s</button></div></div>
+<div class="go-row"><button class="go-button" id="go"></button><button class="restart" id="restart"><svg><use href="#i-reset"/></svg><span data-en="Back to start">回起點</span></button></div>
+<div class="trims"><div class="section-title"><span style="font-size:11px;color:var(--gold);letter-spacing:.06em" data-en="Reveal versions">發表會的三種版本</span><span data-en="tap to load">點一下載入</span></div><div class="segmented" role="group" aria-label="版本" data-en-label="Version" id="trim-options"></div><small class="trim-note" id="trim-note"></small></div>
+<div class="section-title"><span style="font-size:11px;color:var(--gold);letter-spacing:.06em" data-en="Components">零件參數</span><span data-en="move one at a time">一次只改一個，最容易看出差別</span></div>
+<div class="components" id="components"></div>
+<div class="impact" id="impact" aria-live="polite"><h3><span style="font-size:12px;color:#f2d69f;font-weight:550" data-en="What your last change did">剛剛的改變，造成了什麼？</span><span id="impact-what"></span></h3><div class="impact-chips" id="impact-chips"></div><p id="impact-copy"></p></div>
+<div class="panel-bottom"><p id="panel-note" data-en="Sub-second launches are hard to see — try slow motion.">起跑不到一秒很難看清楚，試試慢動作。</p><div class="playback"><button class="icon-button" id="pause" aria-label="暫停模擬" data-en-label="Pause"><svg><use href="#i-pause"/></svg></button><button class="speed-button" id="speed"></button><span class="clock" id="clock">0.00 s</span></div></div>
+</aside>
+</main>
+
+<footer class="bottom"><div class="nav-caption"><svg><use href="#i-spark"/></svg><span data-en="Pick a view, find a secret">換個角度，發現秘密</span></div><nav class="views" aria-label="探索視角" data-en-label="Views">
+<button class="view-button" data-view="overview" aria-pressed="true"><svg><use href="#i-car"/></svg><span><strong data-en="The reveal car">發表會的 Roadster</strong><small data-en="Hidden lights, visor glass">隱藏頭燈與太空面罩玻璃</small></span></button>
+<button class="view-button" data-view="grip" aria-pressed="false"><svg><use href="#i-fan"/></svg><span><strong data-en="Fans & tires">吸地風扇與輪胎</strong><small data-en="Why grip has a ceiling">抓地力的天花板</small></span></button>
+<button class="view-button" data-view="thrust" aria-pressed="false"><svg><use href="#i-jet"/></svg><span><strong data-en="Cold-gas thrusters">冷氣推進器</strong><small data-en="Push without the tires">不靠輪胎也能推</small></span></button>
+<button class="view-button" data-view="power" aria-pressed="false"><svg><use href="#i-battery"/></svg><span><strong data-en="Battery & motors">電池與雙馬達</strong><small data-en="Power = force × speed">功率 = 力 × 速度</small></span></button>
+</nav></footer>
+</div>
+
+<dialog id="about" class="dialog"><div class="dialog-head"><h2 data-en="A car, a lot of physics.">一台車，一堆物理。</h2><button class="icon-button" id="about-close" aria-label="關閉說明" data-en-label="Close"><svg><use href="#i-close"/></svg></button></div>
+<div class="zh">
+<p>選一個版本，或自己拉動零件參數，再按「起跑！」或「點火！」。右下角的「剛剛的改變」會告訴你：你動的那個零件，讓加速、極速、續航、車重和跳躍高度各變了多少。<strong>一次只改一個零件</strong>，最容易找到原因。「雙車對照」讓你的改裝車和發表會版本（或一般跑車）並排起跑。</p>
+<h3>操作小抄</h3><div class="help-keys"><span>拖曳：旋轉視角</span><span>滾輪 / 雙指：縮放</span><span>畫布方向鍵：旋轉</span><span><kbd>＋</kbd> <kbd>−</kbd>：縮放</span><span><kbd>Home</kbd>：回到預設視角</span><span><kbd>空白</kbd>：暫停 / 繼續</span></div>
+<h3>2026/10/15 發表會：已知與未知</h3>
+<table class="spec-table"><tr><th>版本</th><td>Performance（可上路・雙座）、Thrust（賽道版・後置冷氣推進器）、Rocket（單座・不可上公路・唯一「能飛」的版本，僅受邀）<span class="tag">官方</span></td><td>Tesla 官網</td></tr>
+<tr><th>0–60 mph</th><td>Performance &lt;1.6 s、Thrust &lt;0.9 s、Rocket &lt;0.59 s；現場示範 0.81 s<span class="tag">官方宣稱</span></td><td>以「扣除 1 英尺滾動」方式計時，未經第三方驗證</td></tr>
+<tr><th>動力</th><td>兩具後馬達，各自驅動一個後輪，各配 8.4:1 行星齒輪、無差速器；合計 &gt;1 MW（約 1,341 hp）、約 1,400 N·m；後輪驅動<span class="tag">報導</span></td><td>Hagerty 訪談、EVXL 整理</td></tr>
+<tr><th>極速 / 續航</th><td>&gt;230 mph（約 370 km/h）、&gt;300 英里（約 483 km）<span class="tag">報導</span></td><td>官方未給完整規格表</td></tr>
+<tr><th>車重</th><td>低於 1,700 kg；以鎂、鈦、碳纖維減重<span class="tag">報導</span></td><td>Electrek、Teslarati</td></tr>
+<tr><th>吸地風扇</th><td>多段式風扇＋地面密封，可從車底抽氣，靜止時也能倒吊；發表會畫面顯示約 4,700 kg 下壓力<span class="tag warn">存疑</span></td><td>Electrek 認為數字偏高，並估計每個風扇約 20 kW</td></tr>
+<tr><th>冷氣推進器</th><td>10 個噴嘴，高壓空氣瓶位於座椅後方；氣瓶 200 L 或 600 L、壓力約 10,000 psi，推力 &gt;80 kN，各家說法不一<span class="tag warn">說法分歧</span></td><td>InsideEVs、The EV Report、Electrek</td></tr>
+<tr><th>外型</th><td>隱藏式頭燈、全寬尾燈、平貼式空力；靈感來自 SR-71 與 F-35；Ano White 航太塗裝、仿太空衣面罩的金色玻璃<span class="tag">官方＋報導</span></td><td>Tesla 官網、Electrek、Teslarati</td></tr>
+<tr><th>電池</th><td>未公布。有報導稱約 150 kWh、4680 電芯<span class="tag warn">未證實</span></td><td>本實驗預設 100 kWh，可對應 &gt;300 英里續航</td></tr>
+<tr><th>價格 / 量產</th><td>未公布售價；預約金 Performance 5 萬美元、Thrust 25 萬美元；預計 2028 年量產<span class="tag">報導</span></td><td>EVXL、The EV Report</td></tr></table>
+<h3>模型怎麼算？</h3>
+<p>每 1/480 秒計算一次牛頓第二定律。後輪能推多大力，取三者中最小的：<strong>輪胎抓地力</strong>、<strong>馬達扭力</strong>、<strong>馬達功率 ÷ 速度</strong>；馬達轉到 23,500 rpm 時由齒輪比決定極速。推進器的推力直接加上去，不經過輪胎，直到氣瓶用完。</p>
+<div class="equation">m·a = F<sub>後輪</sub> + F<sub>推進器</sub> − F<sub>風阻</sub> − F<sub>滾阻</sub><br>F<sub>後輪</sub> ≤ μ ×（後輪負重 + 風扇下壓力的後輪部分 + 加速時的重量轉移）<br>F<sub>後輪</sub> ≤ 扭力 × 齒輪比 ÷ 輪半徑 ・ F<sub>後輪</sub> ≤ 功率 ÷ 速度<br>噴氣時間 ≈ 可用空氣質量 ÷（推力 ÷ 650 m/s）</div>
+<p style="margin-top:10px">推估值：車身（不含電池）1,080 kg、駕駛 75 kg、電池每 kWh 6 kg、氣瓶每公升 0.6 kg 外加 0.55 kg 的高壓空氣（約 690 bar）、可用空氣 85%、噴氣速度 650 m/s、後輪靜態負重 56%、輪半徑 0.355 m、迎風面積 1.75 m²、滾動阻力係數 0.013。續航以 110 km/h 定速計算。風扇耗電以每 4,700 kgf 約 80 kW 估算。這些數字讓三個版本接近官方 0–60 mph 宣稱，但都不是特斯拉公布的資料。</p>
+<h3>小朋友的表情代表什麼？</h3><p>香氛吊飾的角度就是「加速度 ÷ 重力」的反正切，和真實車上吊飾的物理一樣。推背感的 g 值是模型算出的水平加速度除以 9.81；表情只是比喻。太空梭升空約 3 g、一般人在雲霄飛車上約 1–1.5 g 水平加速度。</p>
+<h3>資料與延伸閱讀</h3></div>
+<div class="en">
+<p>Pick a version or move the component sliders, then press Launch or Ignite. The “What your last change did” card shows how the part you just moved changed acceleration, top speed, range, weight and hop height. <strong>Change one part at a time</strong> to find the cause. Head-to-head races your build against a reveal version or an ordinary sports car.</p>
+<h3>Controls</h3><div class="help-keys"><span>Drag: orbit</span><span>Wheel / pinch: zoom</span><span>Arrow keys on canvas: orbit</span><span><kbd>+</kbd> <kbd>−</kbd>: zoom</span><span><kbd>Home</kbd>: reset view</span><span><kbd>Space</kbd>: pause / resume</span></div>
+<h3>The 15 Oct 2026 reveal: known and unknown</h3>
+<table class="spec-table"><tr><th>Versions</th><td>Performance (road, two seats), Thrust (track, rear cold-gas thrusters), Rocket (single seat, not road legal, the only “air ready” version, invitation only)<span class="tag">Official</span></td><td>tesla.com</td></tr>
+<tr><th>0–60 mph</th><td>Performance &lt;1.6 s, Thrust &lt;0.9 s, Rocket &lt;0.59 s; 0.81 s shown live<span class="tag">Claimed</span></td><td>1-ft rollout timing, not independently verified</td></tr>
+<tr><th>Power</th><td>Two rear motors, one per rear wheel, each with an 8.4:1 planetary set and no differential; &gt;1 MW (≈1,341 hp), ≈1,400 N·m; rear-wheel drive<span class="tag">Reported</span></td><td>Hagerty interview, EVXL</td></tr>
+<tr><th>Top speed / range</th><td>&gt;230 mph, &gt;300 miles<span class="tag">Reported</span></td><td>No full spec sheet yet</td></tr>
+<tr><th>Mass</th><td>Under 1,700 kg; magnesium, titanium, carbon fibre<span class="tag">Reported</span></td><td>Electrek, Teslarati</td></tr>
+<tr><th>Suction fans</th><td>Multi-mode fans plus ground seal pull air from under the car, enough to hang upside down while stationary; on-screen readout ≈4,700 kg<span class="tag warn">Disputed</span></td><td>Electrek doubts the figure and estimates ≈20 kW per fan</td></tr>
+<tr><th>Thrusters</th><td>10 nozzles fed by a compressed-air tank behind the seats; 200 L vs 600 L, ≈10,000 psi, &gt;80 kN reported<span class="tag warn">Conflicting</span></td><td>InsideEVs, The EV Report, Electrek</td></tr>
+<tr><th>Design</th><td>Hidden headlights, full-length taillight, flush aero; SR-71 and F-35 inspired; Ano White aerospace paint, gold visor-style glass<span class="tag">Official + reported</span></td><td>tesla.com, Electrek, Teslarati</td></tr>
+<tr><th>Battery</th><td>Not announced; one report says ≈150 kWh with 4680 cells<span class="tag warn">Unconfirmed</span></td><td>This lab defaults to 100 kWh, matching &gt;300 miles</td></tr>
+<tr><th>Price / production</th><td>No price; deposits $50,000 (Performance) and $250,000 (Thrust); production planned for 2028<span class="tag">Reported</span></td><td>EVXL, The EV Report</td></tr></table>
+<h3>How the model works</h3>
+<p>Newton's second law, every 1/480 s. The rear tires push with the smallest of <strong>tire grip</strong>, <strong>motor torque</strong> and <strong>motor power ÷ speed</strong>; at 23,500 rpm the gear ratio caps the top speed. Thruster force is added directly, bypassing the tires, until the tank is empty.</p>
+<div class="equation">m·a = F<sub>rear</sub> + F<sub>thrust</sub> − F<sub>drag</sub> − F<sub>rolling</sub><br>F<sub>rear</sub> ≤ μ × (rear load + rear share of fan downforce + weight transfer)<br>F<sub>rear</sub> ≤ torque × gear ÷ wheel radius · F<sub>rear</sub> ≤ power ÷ speed<br>burn time ≈ usable air mass ÷ (thrust ÷ 650 m/s)</div>
+<p style="margin-top:10px">Estimates: body without battery 1,080 kg, driver 75 kg, 6 kg per kWh, tank 0.6 kg per litre plus 0.55 kg of air at ≈690 bar, 85% usable air, 650 m/s exhaust, 56% static rear load, 0.355 m wheel radius, 1.75 m² frontal area, rolling coefficient 0.013. Range is a steady 110 km/h cruise. Fan power is ≈80 kW per 4,700 kgf. These values bring the three versions close to Tesla's 0–60 claims, but none of them are Tesla data.</p>
+<h3>What do the faces mean?</h3><p>The air freshener hangs at arctan(acceleration ÷ gravity), exactly like in a real car. The g number is the model's forward acceleration ÷ 9.81; the faces are just a metaphor. A Space Shuttle launch peaks around 3 g.</p>
+<h3>Sources and further reading</h3></div>
+<div class="source-links"><a href="https://www.tesla.com/roadster" target="_blank" rel="noopener">Tesla｜Roadster</a><a href="https://electrek.co/2026/10/15/tesla-unveils-cyberfied-new-roadster-kickflip/" target="_blank" rel="noopener">Electrek｜Tesla unveils Cyberfied new Roadster that can kickflip</a><a href="https://electrek.co/2026/10/15/an-updated-technical-look-at-teslas-kick-flipping-0-60-in-1s-next-gen-roadster/" target="_blank" rel="noopener">Electrek｜A technical look at the kick-flipping Roadster</a><a href="https://www.hagerty.com/media/news/new-tesla-roadster-revealed-and-it-flies/" target="_blank" rel="noopener">Hagerty｜New Tesla Roadster revealed, and it flies</a><a href="https://insideevs.com/news/812242/tesla-roadster-2026-specs/" target="_blank" rel="noopener">InsideEVs｜Tesla Roadster full specs</a><a href="https://www.teslarati.com/tesla-roadster-specs-configurations/" target="_blank" rel="noopener">Teslarati｜Three configs, one can fly</a><a href="https://www.teslarati.com/tesla-roadster-downforce-fan-system/" target="_blank" rel="noopener">Teslarati｜Roadster fan system and thrusters</a><a href="https://evxl.co/2026/10/16/tesla-roadster-everything-we-know/" target="_blank" rel="noopener">EVXL｜Everything we know</a><a href="https://theevreport.com/tesla-roadster-unveil-spacex-cold-gas-thrusters" target="_blank" rel="noopener">The EV Report｜SpaceX cold-gas thrusters</a><a href="https://www.notateslaapp.com/news/4840/new-tesla-roadster-specs-battery-range-speed-trims-and-more" target="_blank" rel="noopener">Not a Tesla App｜Battery, range, speed, trims</a></div>
+<p class="model-note" style="margin-top:14px" data-en="Science, Well Heard is not affiliated with Tesla. Tesla and Roadster are trademarks of Tesla, Inc.">科學好好聽與特斯拉公司無關；Tesla 與 Roadster 為 Tesla, Inc. 的商標。</p>
+</dialog>
+<div class="sr" id="announce" aria-live="polite"></div>
+<noscript><p style="position:fixed;inset:80px 20px auto;z-index:100;background:#142b38;padding:30px">請啟用 JavaScript 以操作 3D 實驗室。Please enable JavaScript to use the lab.</p></noscript>
+
+<script id="physics">
+// Teaching model: one rear-drive car on flat ground, SI units (m, s, kg, N).
+// Tire grip, fan suction, cold-gas thrust, motor torque/power and rpm limits compete each step.
+const RoadsterPhysics=(()=>{
+const G=9.81,RHO=1.2,AREA=1.75,RW=.355,MOTOR_RPM=23500,TORQUE=1400,ETA=.92,CRR=.013,REAR=.56,H_L=.17;
+const AIR_KG_PER_L=.55,TANK_KG_PER_L=.6,VE=650,USABLE_AIR=.85,PACK_KG_PER_KWH=6,DRIVER=75;
+const MPH60=26.8224,KMH100=100/3.6,QUARTER=402.336,ROLLOUT=.3048;
+function mass(c){return c.body+c.battery*PACK_KG_PER_KWH+c.tank*(TANK_KG_PER_L+AIR_KG_PER_L)+DRIVER;}
+function airMass(c){return c.tank*AIR_KG_PER_L*USABLE_AIR;}
+function maxSpeedRpm(c){return MOTOR_RPM*2*Math.PI/60/c.gear*RW;}
+function fanPower(c){return 80*(c.fan/4700)**1.5;}
+// Rear tires carry REAR of the load plus weight transfer H_L * (net push).
+function forces(c,v,m,thrust,fanOn=true){
+  const W=m*G,DF=fanOn?c.fan*G:0,drag=.5*RHO*c.cd*AREA*v*v,roll=CRR*(W+DF);
+  const torque=TORQUE*c.gear/RW*ETA,power=c.power*1000*ETA/Math.max(v,.5);
+  const traction=Math.max(0,c.mu*(REAR*(W+DF)+H_L*(thrust-drag-roll))/(1-c.mu*H_L));
+  let drive=Math.min(torque,power,traction),limit=traction<=Math.min(torque,power)?'grip':torque<=power?'torque':'power';
+  if(v>=maxSpeedRpm(c)-.05){drive=Math.min(drive,drag+roll);limit='rpm';}
+  return {drive,limit,drag,roll,DF};
+}
+function topSpeed(c){const m=mass(c)-airMass(c),vmax=maxSpeedRpm(c),f=v=>{const r=forces(c,v,m,0,false);return Math.min(c.power*1000*ETA/v,TORQUE*c.gear/RW*ETA)-r.drag-r.roll;};if(f(vmax)>0)return {v:vmax,limit:'rpm'};let lo=1,hi=vmax;for(let i=0;i<60;i++){const mid=(lo+hi)/2;f(mid)>0?lo=mid:hi=mid;}return {v:lo,limit:'drag'};}
+// Steady 110 km/h cruise plus 1.5 kW of accessories, 88% drivetrain efficiency, 95% usable pack.
+function range(c){if(!c.battery)return {km:0,whkm:0};const v=110/3.6,m=mass(c),drag=.5*RHO*c.cd*AREA*v*v,roll=CRR*m*G,wh=((drag+roll)/.88+1500/v)/3.6;return {km:c.battery*.95*1000/wh,whkm:wh};}
+function launchState(c){return {t:0,x:0,v:0,a:0,air:airMass(c),limit:'grip',firing:false,marks:{},peakG:0,done:false,thrustImpulse:0,impulse:0,limits:{grip:0,torque:0,power:0,rpm:0}};}
+function launchStep(s,c,h){
+  const m=mass(c)-airMass(c)+s.air,firing=s.air>0&&c.thrust>0,T=firing?c.thrust*1000:0;
+  const f=forces(c,s.v,m,T);s.a=(f.drive+T-f.drag-f.roll)/m;s.limit=f.limit;s.firing=firing;
+  if(firing)s.air=Math.max(0,s.air-T/VE*h);
+  if(s.v<KMH100){s.limits[f.limit]+=h;s.thrustImpulse+=T*h;s.impulse+=(f.drive+T)*h;}
+  const v0=s.v,x0=s.x;s.v=Math.max(0,s.v+s.a*h);s.x+=(v0+s.v)/2*h;s.t+=h;s.peakG=Math.max(s.peakG,s.a/G);
+  const cross=(key,target,a0,a1)=>{if(s.marks[key]==null&&a1>=target)s.marks[key]=s.t-h+h*(target-a0)/Math.max(1e-9,a1-a0);};
+  cross('rollout',ROLLOUT,x0,s.x);cross('mph60',MPH60,v0,s.v);cross('kmh100',KMH100,v0,s.v);cross('kmh200',200/3.6,v0,s.v);
+  if(s.marks.quarter==null&&s.x>=QUARTER){cross('quarter',QUARTER,x0,s.x);s.marks.trap=s.v;}
+  if(s.x>=QUARTER+60||s.t>=30)s.done=true;return s;
+}
+function launch(c,record=false){const s=launchState(c),trace=[];let next=0;while(!s.done){launchStep(s,c,1/480);if(record&&s.t>=next){trace.push({t:s.t,v:s.v,limit:s.limit,firing:s.firing});next+=1/60;}}s.trace=trace;return s;}
+// Hop: thrusters point down for `burn` seconds (or until the tank is empty), fans off.
+function hopState(c){return {t:0,y:0,vy:0,a:0,air:airMass(c),firing:false,peak:0,landed:false,lifted:false,done:false};}
+function hopStep(s,c,h,burn){
+  const m=mass(c)-airMass(c)+s.air,firing=s.air>0&&c.thrust>0&&s.t<burn,T=firing?c.thrust*1000:0;s.firing=firing;
+  if(firing)s.air=Math.max(0,s.air-T/VE*h);
+  let a=T/m-G;if(s.y<=0&&a<=0&&s.vy<=0){a=0;s.vy=0;}
+  s.a=a;s.vy+=a*h;s.y=Math.max(0,s.y+s.vy*h);s.t+=h;
+  if(s.y>.005)s.lifted=true;s.peak=Math.max(s.peak,s.y);
+  if((s.lifted&&s.y<=0)||(!s.lifted&&s.t>=burn+.6)||s.t>20){s.landed=s.lifted;s.done=true;s.y=0;s.vy=0;}
+  return s;
+}
+function hop(c,burn){const s=hopState(c);while(!s.done)hopStep(s,c,1/480,burn);return s;}
+function summary(c,burn=.4){
+  const m=mass(c),W=m*G,run=launch(c,true),top=topSpeed(c),r=range(c),h=hop(c,burn);
+  return {mass:m,air:airMass(c),run,top,range:r,hop:h,tw:c.thrust*1000/W,ceiling:c.fan*G/W,cornerG:c.mu*(W+c.fan*G)/W,fanKw:fanPower(c),burnMax:c.thrust>0?airMass(c)/(c.thrust*1000/VE):0,gripG:c.mu*REAR*(W+c.fan*G)/(1-c.mu*H_L)/m/G};
+}
+return {G,RW,MPH60,KMH100,QUARTER,ROLLOUT,mass,airMass,maxSpeedRpm,fanPower,forces,topSpeed,range,launchState,launchStep,launch,hopState,hopStep,hop,summary};
+})();
+</script>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),$$=s=>[...document.querySelectorAll(s)];
+const P=RoadsterPhysics,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lang='zh-Hant';try{if(localStorage.getItem('science-lab-language')==='en')lang='en';}catch{}
+const T=(zh,en)=>lang==='en'?en:zh;
+const fmt=(v,d=0)=>Number(v).toLocaleString(lang==='en'?'en-US':'zh-TW',{minimumFractionDigits:d,maximumFractionDigits:d});
+
+// ---------- Car configurations ----------
+const BASE={light:true,seats:2,battery:100,power:1000,gear:8.4,mu:1.2,cd:.30,fan:2000,thrust:0,tank:0};
+const TRIMS={
+  performance:{...BASE},
+  thrust:{...BASE,thrust:30,tank:150},
+  rocket:{...BASE,seats:1,fan:2500,thrust:60,tank:300},
+  supercar:{light:false,seats:2,battery:0,power:480,gear:9.5,mu:1.05,cd:.34,fan:0,thrust:0,tank:0,petrol:true}
+};
+const TRIM_INFO={
+  performance:{name:['Performance','Performance'],note:['可上路・雙座・預約金 5 萬美元・官方 0–60 mph < 1.6 s','Road legal · two seats · $50k deposit · claimed 0–60 mph < 1.6 s']},
+  thrust:{name:['Thrust','Thrust'],note:['賽道版・後置冷氣推進器・預約金 25 萬美元・官方 < 0.9 s','Track version · rear cold-gas thrusters · $250k deposit · claimed < 0.9 s']},
+  rocket:{name:['Rocket','Rocket'],note:['單座・不可上公路・唯一能「飛」・僅受邀・官方 < 0.59 s','Single seat · not road legal · the one that flies · invite only · claimed < 0.59 s']},
+  supercar:{name:['一般跑車','Sports car'],note:['示意：後驅汽油跑車，沒有風扇與推進器','Illustrative rear-drive petrol sports car, no fans or thrusters']},
+  custom:{name:['自訂改裝','Custom'],note:['你的改裝版：和發表會設定不同了','Your own build: no longer a reveal setting']}
+};
+const trimName=k=>TRIM_INFO[k].name[lang==='en'?1:0];
+function physics(c){return {...c,body:c.petrol?1450:(c.light?1080:1330)-(c.seats===1?60:0)};}
+
+const COMPONENTS=[
+ {key:'mu',icon:'tire',name:['輪胎抓地','Tire grip'],min:.8,max:1.6,step:.05,show:v=>v.toFixed(2),unit:'μ',ticks:[['一般輪胎 0.8','Street 0.8'],['熱熔賽車胎 1.6','Race slick 1.6']],effects:[['起步','Launch'],['過彎','Cornering']]},
+ {key:'fan',icon:'fan',name:['吸地風扇','Suction fans'],min:0,max:4700,step:100,show:v=>fmt(v),unit:'kgf',ticks:[['關閉','Off'],['4,700 發表會畫面','4,700 on-screen']],effects:[['抓地力','Grip'],['倒吊','Ceiling'],['耗電','Power use']]},
+ {key:'thrust',icon:'jet',name:['冷氣推進器','Cold-gas thrust'],min:0,max:80,step:5,show:v=>fmt(v),unit:'kN',ticks:[['無','None'],['80 kN 報導值','80 kN reported']],effects:[['爆發加速','Burst'],['飛起來','Lift-off']]},
+ {key:'tank',icon:'tank',name:['高壓氣瓶','Air tank'],min:0,max:600,step:25,show:v=>fmt(v),unit:'L',ticks:[['0','0'],['600 L','600 L']],effects:[['噴氣時間','Burn time'],['車重','Weight']]},
+ {key:'power',icon:'bolt',name:['馬達總功率','Motor power'],min:300,max:1200,step:50,show:v=>fmt(v),unit:'kW',ticks:[['300','300'],['1 MW ≈ 1,341 hp','1 MW ≈ 1,341 hp']],effects:[['高速加速','High-speed pull'],['極速','Top speed']]},
+ {key:'gear',icon:'gear',name:['齒輪比','Gear ratio'],min:6,max:12,step:.1,show:v=>v.toFixed(1),unit:': 1',ticks:[['6 衝極速','6 · faster'],['12 大扭力','12 · more torque']],effects:[['輪上扭力','Wheel torque'],['極速','Top speed']]},
+ {key:'battery',icon:'battery',name:['電池容量','Battery'],min:50,max:200,step:5,show:v=>fmt(v),unit:'kWh',ticks:[['50','50'],['200','200']],effects:[['續航','Range'],['車重','Weight']]},
+ {key:'cd',icon:'wind',name:['風阻係數','Drag coefficient'],min:.22,max:.45,step:.01,show:v=>v.toFixed(2),unit:'Cd',ticks:[['0.22 很滑順','0.22 sleek'],['0.45 方方的','0.45 boxy']],effects:[['極速','Top speed'],['續航','Range']]}
+];
+const LIMITS={grip:{c:'#9bd8d1',name:['輪胎抓地力','Tire grip']},torque:{c:'#e6bb72',name:['馬達扭力','Motor torque']},power:{c:'#ee9c8b',name:['馬達功率','Motor power']},rpm:{c:'#b9a6e6',name:['轉速上限','Rev limit']}};
+
+const state={mode:'free',view:'overview',exp:'launch',trim:'performance',cfg:{...TRIMS.performance},ref:'supercar',burn:.4,speed:.25,paused:false,phase:'ready',time:0,
+  runs:null,trace:{you:[],ref:[]},sum:null,refSum:null,change:null,changedKey:null,engine:null};
+window.lab={state,go,reset:resetRun,setView,setMode,setExp,applyTrim};
+let toastTimer,acc=0,last=performance.now(),lastUi=0;
+
+function cfgYou(){return physics(state.cfg);}
+function cfgRef(){return physics(TRIMS[state.ref]);}
+function recompute(){state.sum=P.summary(cfgYou(),state.burn);state.refSum=P.summary(cfgRef(),state.burn);}
+
+// ---------- Language ----------
+function applyStatic(){
+  document.documentElement.lang=lang;
+  document.title=T('Roadster 超跑動力實驗室｜科學好好聽','Roadster Power Lab | Science, Well Heard');
+  $$('[data-en]').forEach(el=>{if(el.dataset.zh==null)el.dataset.zh=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.zh;});
+  $$('[data-en-label]').forEach(el=>{if(el.dataset.zhLabel==null)el.dataset.zhLabel=el.getAttribute('aria-label');el.setAttribute('aria-label',lang==='en'?el.dataset.enLabel:el.dataset.zhLabel);});
+  $$('[data-en-alt]').forEach(el=>{if(el.dataset.zhAlt==null)el.dataset.zhAlt=el.alt;el.alt=lang==='en'?el.dataset.enAlt:el.dataset.zhAlt;});
+  $('lang-zh').setAttribute('aria-pressed',String(lang!=='en'));$('lang-en').setAttribute('aria-pressed',String(lang==='en'));
+}
+function setLanguage(next){lang=next;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildComponents();buildTrimButtons();buildRefButtons();renderAll();state.engine?.setView(false);}
+$('lang-zh').onclick=()=>setLanguage('zh-Hant');$('lang-en').onclick=()=>setLanguage('en');
+
+// ---------- Panel ----------
+function paintRange(el){el.style.setProperty('--fill',100*(el.value-el.min)/(el.max-el.min)+'%');}
+function buildComponents(){
+  const box=$('components');box.replaceChildren();
+  for(const c of COMPONENTS){
+    const i=lang==='en'?1:0,row=document.createElement('div');row.className='component';row.dataset.key=c.key;
+    row.innerHTML=`<div class="control-head"><label for="c-${c.key}"><svg aria-hidden="true"><use href="#i-${c.icon}"/></svg><span>${c.name[i]}</span></label><output for="c-${c.key}" id="o-${c.key}"></output></div><input class="slider" id="c-${c.key}" type="range" min="${c.min}" max="${c.max}" step="${c.step}"><div class="ticks"><span>${c.ticks[0][i]}</span><span>${c.ticks[1][i]}</span></div><div class="effects">${c.effects.map(e=>`<span>${T('影響','Affects')}・${e[i]}</span>`).join('')}</div>`;
+    box.append(row);
+    const input=row.querySelector('input');
+    input.oninput=()=>setComponent(c.key,+input.value);
+  }
+  const mat=document.createElement('div');mat.className='component material-row';mat.dataset.key='light';
+  mat.innerHTML=`<div class="control-head"><label><svg aria-hidden="true"><use href="#i-weight"/></svg><span>${T('車身材料','Body material')}</span></label><output id="o-light"></output></div><div class="segmented" role="group" aria-label="${T('車身材料','Body material')}"><button data-light="true">${T('鎂・鈦・碳纖維','Mg · Ti · carbon')}</button><button data-light="false">${T('一般鋼鋁','Steel & aluminium')}</button></div><div class="effects"><span>${T('影響','Affects')}・${T('車重','Weight')}</span><span>${T('影響','Affects')}・${T('推進器效果','Thruster effect')}</span></div>`;
+  box.append(mat);
+  mat.querySelectorAll('[data-light]').forEach(b=>b.onclick=()=>setComponent('light',b.dataset.light==='true'));
+  syncComponents();
+}
+function syncComponents(){
+  for(const c of COMPONENTS){const input=$('c-'+c.key);if(!input)continue;input.value=state.cfg[c.key];paintRange(input);$('o-'+c.key).innerHTML=`${c.show(state.cfg[c.key])}<small>${c.unit}</small>`;}
+  $$('[data-light]').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.light==='true')===state.cfg.light)));
+  $('o-light').innerHTML=`${fmt(physics(state.cfg).body)}<small>kg</small>`;
+  $$('.component').forEach(r=>r.classList.toggle('is-changed',r.dataset.key===state.changedKey));
+}
+function buildTrimButtons(){const box=$('trim-options');box.replaceChildren();for(const k of ['performance','thrust','rocket']){const b=document.createElement('button');b.dataset.trim=k;b.textContent=trimName(k);b.onclick=()=>applyTrim(k);box.append(b);}syncTrim();}
+function syncTrim(){$$('[data-trim]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.trim===state.trim)));$('trim-note').textContent=TRIM_INFO[state.trim].note[lang==='en'?1:0];}
+function buildRefButtons(){const box=$('ref-options');box.replaceChildren();for(const k of ['supercar','performance','thrust','rocket']){const b=document.createElement('button');b.dataset.ref=k;b.textContent=trimName(k);b.onclick=()=>{state.ref=k;recompute();resetRun(false);renderAll();state.engine?.setView(false);};box.append(b);}}
+function matchTrim(){for(const k of ['performance','thrust','rocket']){const t=TRIMS[k];if(Object.keys(t).every(key=>t[key]===state.cfg[key]))return k;}return 'custom';}
+
+const METRICS=[
+ {key:'kmh100',name:['0–100 km/h','0–100 km/h'],get:s=>s.run.marks.kmh100,unit:'s',d:2,lower:true},
+ {key:'top',name:['極速','Top speed'],get:s=>s.top.v*3.6,unit:'km/h',d:0},
+ {key:'range',name:['續航','Range'],get:s=>s.range.km,unit:'km',d:0},
+ {key:'mass',name:['車重','Mass'],get:s=>s.mass,unit:'kg',d:0,lower:true},
+ {key:'hop',name:['跳躍高度','Hop height'],get:s=>s.hop.peak,unit:'m',d:1},
+ {key:'ceiling',name:['倒吊力','Ceiling grip'],get:s=>s.ceiling,unit:'×',d:2}
+];
+function setComponent(key,value){
+  if(state.cfg[key]===value)return;
+  const before=state.sum,from=state.cfg[key];
+  state.cfg[key]=value;state.trim=matchTrim();recompute();
+  const prev=state.change&&state.change.key===key?state.change:null;
+  state.change={key,from:prev?prev.from:from,to:value,before:prev?prev.before:before,after:state.sum};state.changedKey=key;
+  resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();
+}
+function applyTrim(k){state.cfg={...TRIMS[k]};state.trim=k;state.change=null;state.changedKey=null;recompute();resetRun(false);syncComponents();syncTrim();renderAll();state.engine?.syncCar();toast(T(`已載入 ${trimName(k)} 版本。按「起跑！」看看它多快。`,`${trimName(k)} loaded. Press Launch to see how quick it is.`));}
+
+function componentText(key,v){const c=COMPONENTS.find(x=>x.key===key);if(c)return `${c.show(v)} ${c.unit}`;return v?T('輕量材料','light materials'):T('一般鋼鋁','steel & aluminium');}
+function componentName(key){const c=COMPONENTS.find(x=>x.key===key);return c?c.name[lang==='en'?1:0]:T('車身材料','Body material');}
+function renderImpact(){
+  const ch=state.change;
+  if(!ch){$('impact-what').textContent=T('還沒改','nothing yet');$('impact-chips').replaceChildren();$('impact-copy').textContent=T('拉動任何一個零件，這裡會比較「改之前」和「改之後」。','Move any component and this card compares before and after.');return;}
+  $('impact-what').textContent=`${componentName(ch.key)}${T('：',': ')}${componentText(ch.key,ch.from)} → ${componentText(ch.key,ch.to)}`;
+  const box=$('impact-chips');box.replaceChildren();
+  for(const m of METRICS){
+    const a=m.get(ch.before),b=m.get(ch.after),diff=b-a,eps=m.d===0?.5:m.d===1?.05:.005;
+    let cls='',txt=T('不變','same');
+    if(Math.abs(diff)>=eps){const better=m.lower?diff<0:diff>0;cls=better?'better':'worse';txt=(diff>0?'+':'−')+fmt(Math.abs(diff),m.d)+' '+m.unit;}
+    const el=document.createElement('div');el.className=cls;el.innerHTML=`<span>${m.name[lang==='en'?1:0]}</span><b>${txt}</b>`;box.append(el);
+  }
+  $('impact-copy').innerHTML=impactExplain(ch);
+}
+function impactExplain(ch){
+  const s=ch.after,b=ch.before,d100=s.run.marks.kmh100-b.run.marks.kmh100,up=ch.to>ch.from;
+  const limit=dominantLimit(s.run.limits);
+  const tail=Math.abs(d100)<.01&&!['thrust','tank'].includes(ch.key)?T(`起步幾乎沒變：0→100 km/h 主要被「${LIMITS[limit].name[0]}」限制。`,`Launch barely changed: 0–100 km/h is mostly limited by ${LIMITS[limit].name[1].toLowerCase()}.`):'';
+  const copy={
+    mu:T('輪胎越黏，起步時能推得越用力；但如果馬達扭力先到極限，再黏也沒用。','Stickier tires can push harder at launch, until motor torque becomes the ceiling.'),
+    fan:T(`風扇把車底空氣抽走，大氣把車壓向地面：輪胎被壓得越緊，抓地力越大。現在下壓力是車重的 ${fmt(s.ceiling,2)} 倍${s.ceiling>=1?'，大於 1，理論上可以倒吊在天花板！':'，還不夠倒吊。'}風扇約耗電 ${fmt(s.fanKw,0)} kW。`,`Fans suck air from under the car, so the atmosphere presses it down and the tires grip harder. Downforce is now ${fmt(s.ceiling,2)}× the weight${s.ceiling>=1?' — above 1, so in theory it can hang from a ceiling!':', not yet enough to hang upside down.'} The fans use about ${fmt(s.fanKw,0)} kW.`),
+    thrust:s.air<=0&&ch.to>0?T('沒有高壓氣瓶，推進器沒有空氣可以噴！把氣瓶也調大。','No air tank, so the thrusters have nothing to blow! Add some tank volume.'):T(`推進器直接把車往前推，不經過輪胎，所以能突破抓地力的天花板。推重比 ${fmt(s.tw,2)}${s.tw>1?'：推力大於重量，朝下噴就能離地。':'：推力還小於重量，朝下噴也飛不起來。'}`,`Thrusters push the car directly, bypassing the tires, so they break through the grip ceiling. Thrust-to-weight ${fmt(s.tw,2)}${s.tw>1?': more than the weight, so pointing down lifts the car.':': less than the weight, so it cannot lift off.'}`),
+    tank:T(`氣瓶越大，噴得越久（全力約 ${fmt(s.burnMax,2)} 秒）；但高壓氣瓶和裡面的空氣都很重。`,`A bigger tank burns longer (≈${fmt(s.burnMax,2)} s at full thrust), but the tank and the air inside are heavy.`),
+    power:T('功率 = 力 × 速度。速度越快，同樣的功率能給的推力越小，所以功率主要影響高速時的加速和極速。','Power = force × speed. The faster you go, the less push the same power gives, so power matters most at high speed.'),
+    gear:T(`齒輪比越大，輪子得到的扭力越大，但馬達會更早轉到 23,500 rpm 的上限，極速變成 ${fmt(s.top.v*3.6)} km/h。`,`A higher ratio gives the wheels more torque, but the motor hits its 23,500 rpm limit sooner: top speed is now ${fmt(s.top.v*3.6)} km/h.`),
+    battery:T(`電池越大跑得越遠；但每 1 kWh 約重 6 kg。續航 ${fmt(s.range.km)} km。`,`A bigger battery goes farther, but each kWh weighs about 6 kg. Range: ${fmt(s.range.km)} km.`),
+    cd:T('風阻係數越小，空氣越容易滑過車身：高速時更省力，極速和續航都會提升。','A lower drag coefficient lets air slip past: less effort at speed, more top speed and range.'),
+    light:T('輕量材料讓整台車變輕。只靠輪胎時差別不大（輪胎負重也一起變輕），但推進器推同樣的力，車越輕加速越猛。','Lighter materials cut mass. With tires alone it matters less (less load on the tires too), but the same thruster force accelerates a lighter car harder.')
+  }[ch.key]||'';
+  return copy+(tail?' '+tail:'');
+}
+function dominantLimit(l){let best='grip',v=-1;for(const k in l)if(l[k]>v){v=l[k];best=k;}return best;}
+
+function renderScore(){
+  const you=state.sum,ref=state.refSum,compare=state.mode==='compare',tab=$('scorecard');
+  const rows=[
+   [T('0–100 km/h','0–100 km/h'),s=>s.run.marks.kmh100,2,'s',true],
+   [T('0–60 mph（扣 1 英尺）','0–60 mph (1-ft rollout)'),s=>s.run.marks.mph60-s.run.marks.rollout,2,'s',true],
+   [T('400 公尺','Quarter mile'),s=>s.run.marks.quarter,2,'s',true],
+   [T('極速','Top speed'),s=>s.top.v*3.6,0,'km/h',false],
+   [T('續航（110 km/h）','Range at 110 km/h'),s=>s.range.km,0,'km',false],
+   [T('車重（含駕駛）','Mass with driver'),s=>s.mass,0,'kg',true],
+   [T('最大推背感','Peak push'),s=>s.run.peakG,2,'g',false],
+   [T('最大過彎','Cornering grip'),s=>s.cornerG,2,'g',false],
+   [T('倒吊力（下壓力÷重量）','Ceiling grip (downforce ÷ weight)'),s=>s.ceiling,2,'×',false],
+   [T(`噴氣跳躍（${state.burn} s）`,`Thruster hop (${state.burn} s)`),s=>s.hop.peak,1,'m',false]
+  ];
+  let html=`<thead><tr><th>${T('項目','Item')}</th><th>${trimName(state.trim)}</th>${compare?`<th>${trimName(state.ref)}</th>`:''}</tr></thead><tbody>`;
+  for(const [name,get,d,unit,lower] of rows){
+    const a=get(you),b=get(ref),na=!(isFinite(a))||(unit==='km'&&a<=0),nb=!(isFinite(b))||(unit==='km'&&b<=0);
+    const win=compare&&!na&&!nb&&Math.abs(a-b)>1e-6&&(lower?a<b:a>b);
+    html+=`<tr class="${win?'win':''}"><th>${name}</th><td class="you">${na?'—':fmt(a,d)}<small>${na?'':unit}</small></td>${compare?`<td class="ref">${nb?'—':fmt(b,d)}<small>${nb?'':unit}</small></td>`:''}</tr>`;
+  }
+  tab.innerHTML=html+'</tbody>';
+}
+function renderLimits(){
+  const l=state.sum.run.limits,total=Object.values(l).reduce((a,b)=>a+b,0)||1,bar=$('limit-bar'),legend=$('limit-legend');
+  bar.replaceChildren();legend.replaceChildren();
+  for(const k in LIMITS){const share=l[k]/total;if(share<.005)continue;const i=document.createElement('i');i.style.width=share*100+'%';i.style.background=LIMITS[k].c;bar.append(i);const s=document.createElement('span');s.style.setProperty('--c',LIMITS[k].c);s.textContent=`${LIMITS[k].name[lang==='en'?1:0]} ${fmt(share*100)}%`;legend.append(s);}
+  const r=state.sum.run,thr=r.impulse>0?r.thrustImpulse/r.impulse:0;
+  if(thr>.005){const s=document.createElement('span');s.style.setProperty('--c','#f4f0e6');s.textContent=T(`推進器貢獻推力 ${fmt(thr*100)}%`,`Thrusters gave ${fmt(thr*100)}% of the push`);legend.append(s);}
+}
+function renderInsight(){
+  const s=state.sum,limit=dominantLimit(s.run.limits),name=LIMITS[limit].name[lang==='en'?1:0];let msg;
+  if(state.exp==='hop'){
+    msg=s.tw<=1?T(`推重比只有 <strong>${fmt(s.tw,2)}</strong>：推力比車重還小，朝下噴也離不開地面。加大推進器，或讓車變輕。`,`Thrust-to-weight is only <strong>${fmt(s.tw,2)}</strong>: the push is smaller than the weight, so the car stays put. Add thrust or lose weight.`)
+    :T(`推重比 <strong>${fmt(s.tw,2)}</strong> 大於 1，噴氣時往上加速；氣噴完後就像丟出去的球一樣落下。噴 ${state.burn} 秒可跳約 <strong>${fmt(s.hop.peak,1)} 公尺</strong>。`,`Thrust-to-weight <strong>${fmt(s.tw,2)}</strong> is above 1, so it climbs while firing, then falls like a thrown ball. A ${state.burn} s burst reaches about <strong>${fmt(s.hop.peak,1)} m</strong>.`);
+  }else if(state.mode==='compare'){
+    const a=s.run.marks.kmh100,b=state.refSum.run.marks.kmh100,diff=b-a;
+    msg=Math.abs(diff)<.005?T('兩台車 0→100 km/h 幾乎一樣快。試著只改一個零件，看誰會贏。','Both cars hit 100 km/h at about the same time. Change one part and see who wins.'):T(`0→100 km/h，${trimName(state.trim)} 比 ${trimName(state.ref)} <strong>${diff>0?'快':'慢'} ${fmt(Math.abs(diff),2)} 秒</strong>。你的車主要被「${name}」限制。`,`To 100 km/h, ${trimName(state.trim)} is <strong>${fmt(Math.abs(diff),2)} s ${diff>0?'quicker':'slower'}</strong> than ${trimName(state.ref)}. Your car is mostly limited by ${name.toLowerCase()}.`);
+  }else{
+    const tips={grip:T('想更快？加大輪胎抓地或吸地風扇，或用推進器跳過輪胎。','Want more? Add tire grip or fan suction, or use thrusters to bypass the tires.'),torque:T('想更快？抓地力已經夠了，試試推進器，或提高齒輪比讓輪子扭力更大。','Want more? Grip is enough now; try thrusters or a higher gear ratio for more wheel torque.'),power:T('想更快？加大馬達功率。','Want more? Add motor power.'),rpm:T('馬達轉到上限了，試著降低齒輪比。','The motor is at its rev limit; try a lower gear ratio.')};
+    msg=T(`0→100 km/h 要 <strong>${fmt(s.run.marks.kmh100,2)} 秒</strong>，最大推背感 ${fmt(s.run.peakG,2)} g。主要限制：<strong>${name}</strong>。`,`0–100 km/h takes <strong>${fmt(s.run.marks.kmh100,2)} s</strong>, peak push ${fmt(s.run.peakG,2)} g. Main limit: <strong>${name.toLowerCase()}</strong>.`)+' '+tips[limit];
+  }
+  $('insight').innerHTML=msg;
+}
+const VIEWS={
+ overview:{title:['一台車，<br>一堆物理。','One car.<br>A lot of physics.'],desc:['2026 年 10 月 15 日發表的新一代 Roadster：每一個零件，都在和牛頓第二定律討價還價。','The Roadster revealed on 15 Oct 2026: every part is bargaining with Newton\'s second law.'],num:['全景 / 外型與發表會版本','Overview / design and reveal versions'],k:['外型的秘密','Design secrets'],kc:['靈感來自 SR-71 黑鳥偵察機與 F-35：頭燈藏起來、尾燈拉成一整條、表面平貼，讓空氣滑順通過。','Inspired by the SR-71 and F-35: hidden headlights, one full-width taillight and flush surfaces let air slip past.'],f:'F = m · a'},
+ grip:{title:['抓地力，<br>有天花板。','Grip has<br>a ceiling.'],desc:['輪胎能推的力，最多是「摩擦係數 × 壓在輪胎上的力」。風扇把車吸向地面，天花板就變高。','Tires can push at most μ × the force pressing on them. Fans suck the car down and raise that ceiling.'],num:['車底 / 4 顆吸地風扇與後輪','Underside / four fans and the rear tires'],k:['為什麼要吸地？','Why suck the car down?'],kc:['車越重，輪胎越抓地，但也越難推動，兩者抵銷。風扇製造的下壓力不增加質量，只增加抓地。','A heavier car grips more but is harder to push; it cancels out. Fan downforce adds grip without adding mass.'],f:'a ≤ μ · g · (1 + 下壓力 ÷ 重量)'},
+ thrust:{title:['不靠輪胎，<br>也能推。','No tires needed<br>to push.'],desc:['高壓空氣從噴嘴往後噴，空氣被推出去，車子就被反推向前：這是牛頓第三定律。','Compressed air blasts backwards; push the air out and the air pushes the car forward. Newton\'s third law.'],num:['車尾 / 10 個噴嘴與高壓氣瓶','Rear / ten nozzles and the air tank'],k:['推力 vs 重量','Thrust vs weight'],kc:['噴嘴朝下時，推力要大於重量（推重比 > 1）才能離地。氣瓶裡的空氣只夠噴一兩秒。','Pointing down, thrust must beat weight (ratio > 1) to lift off. The tank only lasts a second or two.'],f:'推重比 = 推力 ÷ (m · g)'},
+ power:{title:['起步靠扭力，<br>高速靠功率。','Torque to launch,<br>power to fly.'],desc:['兩顆後馬達各推一個後輪，經過 8.4:1 行星齒輪。電池越大跑越遠，也越重。','Two rear motors, one per wheel, through 8.4:1 planetary gears. A bigger battery goes farther and weighs more.'],num:['車體透視 / 電池、馬達與齒輪','X-ray / battery, motors and gears'],k:['功率 = 力 × 速度','Power = force × speed'],kc:['同樣 1 MW，在 10 km/h 能推很大力，在 300 km/h 只剩一點點。齒輪比決定馬達轉到極限時車速多快。','The same 1 MW pushes hard at 10 km/h but gently at 300 km/h. The gear ratio decides how fast the car is at the motor\'s rev limit.'],f:'P = F · v'}
+};
+function renderView(){
+  const v=VIEWS[state.view],i=lang==='en'?1:0,compare=state.mode==='compare';
+  let title=v.title[i],desc=v.desc[i];
+  if(compare){title=T('同一條線起跑，<br>誰先到？','Same start line.<br>Who gets there first?');desc=T(`白色車是你的「${trimName(state.trim)}」，灰色車是對手「${trimName(state.ref)}」。`,`White car: your ${trimName(state.trim)}. Grey car: the rival ${trimName(state.ref)}.`);}
+  else if(state.exp==='hop'&&state.view==='overview'){title=T('推力大於重量，<br>就能離地。','Thrust beats weight,<br>wheels leave the ground.');desc=T('噴嘴朝下噴氣。推重比大於 1，車子才跳得起來。','Nozzles point down. Above a thrust-to-weight of 1, the car hops.');}
+  $('scene-title').innerHTML=title;$('scene-description').textContent=desc;$('view-number').textContent=compare?T('雙車對照 / 400 公尺直線','Head-to-head / 400 m strip'):v.num[i];
+  $('knowledge-title').textContent=v.k[i];$('knowledge-copy').innerHTML=`${v.kc[i]}<span class="formula">${state.view==='grip'&&lang==='en'?'a ≤ μ · g · (1 + downforce ÷ weight)':state.view==='thrust'&&lang==='en'?'thrust-to-weight = thrust ÷ (m · g)':v.f}</span>`;
+  $('knowledge').hidden=compare;
+  $('scale-text').textContent=state.view==='overview'||compare?T('車輛外型為示意；賽道與跳躍高度為真實比例','Car shape is illustrative; strip and hop height are to scale'):T('零件位置與大小為示意','Part sizes and positions are illustrative');
+  $$('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view&&!compare)));
+}
+function renderHeader(){
+  $('panel-title').textContent=state.exp==='hop'?T('推力夠不夠讓它飛？','Enough thrust to fly?'):state.mode==='compare'?T('改一個零件，誰先到？','Change one part. Who wins?'):T('改一個零件，差多少？','Change one part. How much faster?');
+  $('go').textContent=state.exp==='hop'?T('點火！','Ignite!'):T('起跑！','Launch!');$('go').classList.toggle('is-hop',state.exp==='hop');
+  $('burn-row').hidden=state.exp!=='hop';
+  $$('[data-exp]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.exp===state.exp)));
+  $$('[data-burn]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.burn===state.burn)));
+  $$('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
+  $$('[data-ref]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.ref===state.ref)));
+  $('workspace').classList.toggle('is-comparing',state.mode==='compare');$('feel-ref').hidden=state.mode!=='compare';
+  $('feel-you-name').textContent=trimName(state.trim);
+  $('feel-ref-name').textContent=trimName(state.ref);
+  $('legend-you').textContent=trimName(state.trim);$('legend-ref').textContent=trimName(state.ref);$('legend-ref').hidden=state.mode!=='compare';
+  $('speed').textContent=speedLabel();$('speed').setAttribute('aria-label',T(`模擬速度，目前 ${speedLabel()}`,`Simulation speed: ${speedLabel()}`));
+  $('limit-box').hidden=state.exp==='hop';
+  setLive();
+}
+function speedLabel(){return state.speed===1?'1×':state.speed===.5?'½×':state.speed===.25?'¼×':'1/10×';}
+function setLive(){$('live').textContent=state.paused?T('已暫停','Paused'):state.phase==='running'?(state.exp==='hop'?T('噴氣中','Firing'):T('衝刺中','Running')):state.phase==='done'?T('完成！','Done!'):T('準備起跑','Ready');}
+function renderAll(){renderHeader();renderView();renderScore();renderLimits();renderInsight();renderImpact();updateCue();drawChart();updateFeel(true);}
+
+// ---------- Runs ----------
+function resetRun(announce=true){
+  state.phase='ready';state.time=0;state.runs=null;state.trace={you:[],ref:[]};acc=0;
+  if(announce)toast(T('回到起點。','Back to the start line.'));
+  if(state.exp==='hop')state.engine?.resetCamera();
+  updateCue();setLive();
+}
+function go(){
+  resetRun(false);
+  const you=cfgYou(),ref=cfgRef();
+  state.runs=state.exp==='hop'?{you:P.hopState(you),ref:P.hopState(ref)}:{you:P.launchState(you),ref:P.launchState(ref)};
+  state.phase='running';setPaused(false);
+  if(state.exp==='hop'&&state.sum.tw<=1)toast(T('推力比車重小……看看會發生什麼事？','Thrust is less than weight… what will happen?'));
+  if(state.exp==='hop'&&state.sum.air<=0&&state.cfg.thrust>0)toast(T('氣瓶是空的！推進器噴不出東西。','The tank is empty! Nothing to blow.'));
+  if(innerWidth<=760)$('stage').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+}
+function stepRun(h){
+  const r=state.runs;if(!r)return;const you=cfgYou(),ref=cfgRef(),compare=state.mode==='compare';
+  if(state.exp==='hop'){if(!r.you.done)P.hopStep(r.you,you,h,state.burn);if(compare&&!r.ref.done)P.hopStep(r.ref,ref,h,state.burn);}
+  else{if(!r.you.done)P.launchStep(r.you,you,h);if(compare&&!r.ref.done)P.launchStep(r.ref,ref,h);}
+  state.time+=h;
+  for(const k of ['you','ref'])if(r[k].done){r[k].a=0;if(state.exp==='launch')r[k].v=0;}
+  if(r.you.done&&(!compare||r.ref.done)){state.phase='done';setLive();toast(state.exp==='hop'?(r.you.lifted?T(`落地！最高 ${fmt(r.you.peak,1)} 公尺。`,`Landed! Peak ${fmt(r.you.peak,1)} m.`):T('沒有離地：推力不夠大。','No lift-off: not enough thrust.')):T('衝過 400 公尺！看看左邊的成績單和曲線。','Past 400 m! Check the scorecard and the trace.'));}
+}
+function record(){const r=state.runs;if(!r)return;for(const k of ['you','ref']){const s=r[k];if(k==='ref'&&state.mode!=='compare')continue;const tr=state.trace[k],last=tr[tr.length-1];if(!last||s.t-last.t>=1/90)tr.push(state.exp==='hop'?{t:s.t,v:s.y}:{t:s.t,v:s.v,limit:s.limit});}}
+function updateCue(){
+  const r=state.runs,cue=$('run-cue');
+  if(!r){cue.hidden=true;return;}
+  cue.hidden=false;const you=r.you,hop=state.exp==='hop';cue.classList.toggle('is-hop',hop);
+  if(hop){$('cue-label').textContent=T('高度','Height');$('cue-main').innerHTML=`${fmt(you.y,2)}<span>m</span>`;$('cue-a').textContent=you.firing?T('噴氣中','Firing'):you.lifted?T('自由落體','Falling'):T('等待離地','On the ground');$('cue-b').textContent=state.mode==='compare'?`${trimName(state.ref)} ${fmt(r.ref.y,2)} m`:`${fmt(you.t,2)} s`;$('cue-progress').style.transform=`scaleX(${Math.min(1,you.peak/Math.max(.5,state.sum.hop.peak))})`;return;}
+  if(you.done&&you.marks.quarter!=null){$('cue-label').textContent=T('400 公尺成績','Quarter-mile result');$('cue-main').innerHTML=`${fmt(you.marks.quarter,2)}<span>s</span>`;$('cue-a').textContent=T(`終點時速 ${fmt(you.marks.trap*3.6)} km/h`,`Trap speed ${fmt(you.marks.trap*3.6)} km/h`);$('cue-b').textContent=state.mode==='compare'&&r.ref.marks.quarter!=null?`${trimName(state.ref)} ${fmt(r.ref.marks.quarter,2)} s`:'';$('cue-progress').style.transform='scaleX(1)';return;}
+  $('cue-label').textContent=you.firing?T('速度・推進器噴射中','Speed · thrusters firing'):T('速度','Speed');
+  $('cue-main').innerHTML=`${fmt(you.v*3.6)}<span>km/h</span>`;
+  const m=you.marks;$('cue-a').textContent=m.kmh100!=null?`0–100 ${fmt(m.kmh100,2)} s`:`${fmt(you.t,2)} s · ${fmt(you.x)} m`;
+  $('cue-b').textContent=state.mode==='compare'?`${trimName(state.ref)} ${fmt(r.ref.v*3.6)} km/h`:'';
+  $('cue-progress').style.transform=`scaleX(${Math.min(1,you.x/P.QUARTER)})`;
+}
+
+// ---------- Observation windows ----------
+function feelSVG(key,color){return `<svg class="observation" viewBox="0 0 150 112" role="img" aria-label="${T('駕駛被加速度推向椅背','The driver pressed into the seat')}"><defs><clipPath id="clip-${key}"><path d="M5 108V40Q9 8 46 5H130Q145 5 145 21V108Z"/></clipPath></defs><g clip-path="url(#clip-${key})"><rect width="150" height="112" fill="#203b4a"/><g id="sky-${key}"><path d="M0 52 18 38 31 45 52 30 70 44 92 34 112 46 134 31 150 40V60H0Z" fill="#3c5966" opacity=".55"/></g><g id="streak-${key}" stroke="#7fa3ab" stroke-width="1.6" opacity=".7"><path d="M-20 22H170" stroke-dasharray="16 30"/><path d="M-20 64H170" stroke-dasharray="26 22"/><path d="M-20 70H170" stroke-dasharray="8 26"/></g><path d="M0 74H150V112H0Z" fill="#162a35"/><g id="lift-${key}"><path d="M22 106 18 52Q18 40 30 40H38L44 98Z" fill="${color}" opacity=".35" stroke="${color}" stroke-width="1.2"/><g id="kid-${key}"><path d="M48 96 96 98 102 108" stroke="#d8e6de" stroke-width="5" fill="none"/><path d="M36 64Q46 58 56 64L54 98H40Z" fill="${color}"/><g id="head-${key}"><circle cx="44" cy="48" r="11" fill="#ebc59e"/><path d="M32 46Q31 30 50 33L56 44 48 40 34 42Z" fill="#27343c" id="hair-${key}"/><circle cx="48" cy="47" r="1.5" fill="#263b43"/><path d="M45 54q4 3 7 0" id="mouth-${key}" stroke="#845445" stroke-width="1.6" fill="none"/></g><path d="M50 72 88 74" id="arm-${key}" stroke="#ebc59e" stroke-width="4" fill="none"/></g><ellipse cx="94" cy="72" rx="3.5" ry="13" fill="none" stroke="#cfd9db" stroke-width="2.5"/></g><path d="M122 5V12" stroke="#d0ccc0"/><g id="pend-${key}"><path d="M122 12V30" stroke="#d0ccc0"/><path d="M122 28l-6 10h4l-5 8h14l-5-8h4z" fill="#e6bb72" stroke="#b58740"/></g><path id="arrow-${key}" d="M140 90H110" stroke="${color}" stroke-width="3" fill="none"/><text id="g-${key}" x="141" y="104" text-anchor="end" font-size="10" fill="#e8f2ef" font-family="system-ui">0.00 g</text></g><path d="M5 108V40Q9 8 46 5H130Q145 5 145 21V108Z" fill="none" stroke="#53727d"/></svg>`;}
+function buildFeel(){$('feel-you-svg').innerHTML=feelSVG('you','#9bd8d1');$('feel-ref-svg').innerHTML=feelSVG('ref','#ee9c8b');}
+const streakOffset={you:0,ref:0};
+function updateFeel(force=false){
+  for(const key of ['you','ref']){
+    if(key==='ref'&&state.mode!=='compare')continue;
+    const s=state.runs?.[key],hop=state.exp==='hop';
+    const a=s?(hop?0:s.a):0,ay=s&&hop?s.a+P.G*(s.y>0||s.firing?1:1):P.G,g=a/P.G,gv=ay/P.G;
+    const v=s?(hop?0:s.v):0;
+    streakOffset[key]=(streakOffset[key]+v*.9)%480;
+    $('streak-'+key).querySelectorAll('path').forEach((p,i)=>p.style.strokeDashoffset=String(streakOffset[key]*(1+i*.3)));
+    const lean=Math.min(1,g/4.5);
+    $('kid-'+key).setAttribute('transform',`translate(${(-lean*8).toFixed(2)},0)`);
+    $('head-'+key).setAttribute('transform',`rotate(${(-lean*24).toFixed(1)} 46 60)`);
+    $('arm-'+key).setAttribute('d',`M50 72 ${88-lean*4} ${74-lean*2}`);
+    const ang=Math.atan2(a,P.G)*180/Math.PI;$('pend-'+key).setAttribute('transform',`rotate(${ang.toFixed(1)} 122 12)`);
+    const lift=hop&&s?Math.max(-6,Math.min(6,(gv-1)*2.2)):0;$('lift-'+key).setAttribute('transform',`translate(0,${lift.toFixed(2)})`);
+    $('arrow-'+key).setAttribute('d',`M140 90H${(140-Math.min(110,g*24)).toFixed(1)}`);
+    const shown=hop?gv:g;$('g-'+key).textContent=`${fmt(shown,2)} g`;
+    const level=shown<.3?0:shown<1?1:shown<1.6?2:shown<3?3:4;
+    $('mouth-'+key).setAttribute('d',['M45 54q4 3 7 0','M45 55h7','M45 54a3 3 0 1 0 6 0a3 3 0 1 0-6 0','M44 53q4 6 9 0z','M43 52q5 9 11 0z'][hop&&!s?.firing&&s?.lifted?2:level]);
+    const words=hop?[T('穩穩坐著','Sitting steady'),T('有點飄','A little floaty'),T('被往下壓','Pressed down'),T('像電梯急升','Like a fast elevator'),T('像火箭升空！','Like a rocket launch!')]:[T('輕鬆坐著','Relaxed'),T('被推向椅背','Pushed into the seat'),T('比雲霄飛車還猛','Wilder than a roller coaster'),T('像太空梭升空','Like a Space Shuttle launch'),T('超過太空梭的 3 g！','More than a Shuttle\'s 3 g!')];
+    let word=words[level];if(hop&&s&&s.lifted&&!s.firing)word=T('失重飄浮中！','Weightless!');
+    if(!s&&!force)continue;
+    $(`feel-${key}-word`).textContent=s?`${word} · ${fmt(shown,2)} g`:T('按「起跑！」感受推背感','Press Launch to feel the push');
+  }
+}
+
+// ---------- Chart ----------
+function drawChart(){
+  const c=$('trace'),r=c.getBoundingClientRect();if(!r.width||!r.height)return;
+  const dpr=Math.min(devicePixelRatio,2);if(c.width!==Math.round(r.width*dpr)||c.height!==Math.round(r.height*dpr)){c.width=Math.round(r.width*dpr);c.height=Math.round(r.height*dpr);}
+  const ctx=c.getContext('2d'),w=r.width,h=r.height;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const hop=state.exp==='hop',compare=state.mode==='compare';
+  const full={you:hop?null:state.sum.run.trace,ref:hop?null:state.refSum.run.trace};
+  let tMax,yMax;
+  if(hop){tMax=Math.max(1.2,state.sum.hop.t,compare?state.refSum.hop.t:0)*1.05;yMax=Math.max(1,state.sum.hop.peak,compare?state.refSum.hop.peak:0)*1.15;}
+  else{const t100=Math.max(state.sum.run.marks.kmh100,compare?state.refSum.run.marks.kmh100:0);tMax=Math.min(12,Math.max(1.5,t100*2.6));yMax=0;for(const k of compare?['you','ref']:['you'])for(const p of full[k])if(p.t<=tMax)yMax=Math.max(yMax,p.v*3.6);yMax=Math.max(120,yMax*1.08);}
+  ctx.strokeStyle='#3f586766';ctx.lineWidth=1;for(let i=0;i<=4;i++){ctx.beginPath();ctx.moveTo(i*w/4,0);ctx.lineTo(i*w/4,h);ctx.stroke();}
+  const X=t=>t/tMax*w,Y=v=>h-2-v/yMax*(h-6);
+  if(!hop){ctx.setLineDash([4,4]);ctx.strokeStyle='#e6bb7299';ctx.beginPath();ctx.moveTo(0,Y(100));ctx.lineTo(w,Y(100));ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#e6bb72';ctx.font='9px system-ui';ctx.fillText('100 km/h',4,Y(100)-3);}
+  else{ctx.strokeStyle='#7d929c';ctx.beginPath();ctx.moveTo(0,Y(0));ctx.lineTo(w,Y(0));ctx.stroke();}
+  const series=(pts,color,width,alpha,limitBand)=>{if(!pts||!pts.length)return;
+    if(limitBand){for(let i=1;i<pts.length;i++){const p=pts[i];if(p.t>tMax)break;ctx.fillStyle=LIMITS[p.limit].c+'40';ctx.fillRect(X(pts[i-1].t),Y(p.v*3.6),Math.max(1,X(p.t)-X(pts[i-1].t)),h-Y(p.v*3.6));}}
+    ctx.globalAlpha=alpha;ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.beginPath();let first=true;for(const p of pts){if(p.t>tMax)break;const y=hop?Y(p.v):Y(p.v*3.6);first?ctx.moveTo(X(p.t),y):ctx.lineTo(X(p.t),y);first=false;}ctx.stroke();ctx.globalAlpha=1;};
+  const live=state.runs!=null;
+  if(!hop){series(full.you,'#9bd8d1',1.4,live?.25:1,!live);if(compare)series(full.ref,'#ee9c8b',2.6,live?.25:.9,false);}
+  else if(!live){const ghost=k=>{const c=k==='you'?cfgYou():cfgRef(),s=P.hopState(c),pts=[];while(!s.done){P.hopStep(s,c,1/240,state.burn);pts.push({t:s.t,v:s.y});}return pts;};series(ghost('you'),'#9bd8d1',1.4,.9,false);if(compare)series(ghost('ref'),'#ee9c8b',2.6,.8,false);}
+  if(live){if(compare)series(state.trace.ref,'#ee9c8b',3,1,false);series(state.trace.you,'#9bd8d1',1.8,1,!hop);}
+  $('chart-title').textContent=hop?T('高度與時間','Height vs time'):T('速度與時間（底色＝當下的限制）','Speed vs time (shading = current limit)');
+  $('chart-scale').textContent=hop?`${T('最高','max')} ${fmt(yMax/1.15,1)} m`:`${T('最高','max')} ${fmt(yMax/1.08)} km/h`;
+  $('chart-end').textContent=`${fmt(tMax,1)} s`;
+}
+
+// ---------- Controls ----------
+function toast(msg){$('toast').textContent=msg;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,3600);$('announce').textContent=msg;}
+function setPaused(v){state.paused=v;$('pause').innerHTML=`<svg><use href="#i-${v?'play':'pause'}"/></svg>`;$('pause').setAttribute('aria-label',v?T('繼續模擬','Resume'):T('暫停模擬','Pause'));setLive();}
+function setExp(e){state.exp=e;resetRun(false);renderAll();state.engine?.setView();}
+function setMode(m){state.mode=m;resetRun(false);if(m==='compare')state.view='overview';renderAll();state.engine?.setView();}
+function setView(v){state.view=v;if(state.mode==='compare'){state.mode='free';resetRun(false);}renderAll();state.engine?.setView();}
+$$('[data-exp]').forEach(b=>b.onclick=()=>setExp(b.dataset.exp));
+$$('[data-burn]').forEach(b=>b.onclick=()=>{state.burn=+b.dataset.burn;recompute();resetRun(false);renderAll();});
+$$('[data-mode]').forEach(b=>b.onclick=()=>{setMode(b.dataset.mode);if(innerWidth<=760)$('stage').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});});
+$$('[data-view]').forEach(b=>b.onclick=()=>{setView(b.dataset.view);if(innerWidth<=760)$('stage').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});});
+$('go').onclick=go;$('restart').onclick=()=>resetRun(true);
+$('pause').onclick=()=>setPaused(!state.paused);
+$('speed').onclick=()=>{state.speed=state.speed===.25?.1:state.speed===.1?1:state.speed===1?.5:.25;renderHeader();};
+$('reveal-demo').onclick=()=>{applyTrim('rocket');state.exp='launch';state.speed=.1;if(state.mode!=='compare'){state.view='overview';}renderAll();state.engine?.setView();go();toast(T('Rocket 版本 0–60 mph：以 1/10 慢動作播放。','Rocket version, 0–60 mph at 1/10 speed.'));};
+$('reset-view').onclick=()=>state.engine?.resetCamera();
+$('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if($('app').requestFullscreen)await $('app').requestFullscreen();else toast(T('此瀏覽器不支援全螢幕。','Full screen is not supported here.'));}catch{toast(T('目前無法切換全螢幕。','Cannot switch to full screen right now.'));}};
+for(const id of ['about-open','about-mobile','specs-open'])$(id).onclick=()=>$('about').showModal();
+$('about-close').onclick=()=>$('about').close();
+$('about').addEventListener('click',e=>{if(e.target===$('about')){const r=$('about').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('about').close();}});
+$('scene').addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPaused(!state.paused);}else if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(e.key)){e.preventDefault();state.engine?.key(e.key);}});
+addEventListener('resize',()=>drawChart());
+
+function frame(now){
+  requestAnimationFrame(frame);const dt=Math.min((now-last)/1000,.06);last=now;if(document.hidden)return;
+  if(state.phase==='running'&&!state.paused){acc+=dt*state.speed;const h=1/480;let n=0;while(acc>=h&&state.phase==='running'&&n<2000){stepRun(h);acc-=h;n++;}record();}
+  state.engine?.render(dt);updateFeel();
+  if(now-lastUi>80){updateCue();drawChart();$('clock').textContent=`${fmt(state.runs?.you.t||0,2)} s`;lastUi=now;}
+}
+document.addEventListener('visibilitychange',()=>{last=performance.now();});
+
+recompute();applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();setPaused(false);renderAll();requestAnimationFrame(frame);
+
+// ---------- 3D scene ----------
+window.startRoadster=async function(){const timeout=setTimeout(()=>{if(!state.engine){$('loading').hidden=true;$('fallback').hidden=false;}},15000);try{const THREE=await import('three'),{OrbitControls}=await import('three/addons/controls/OrbitControls.js'),{RoomEnvironment}=await import('three/addons/environments/RoomEnvironment.js');state.engine=buildScene(THREE,OrbitControls,RoomEnvironment);clearTimeout(timeout);$('loading').hidden=true;$('fallback').hidden=true;state.engine.setView();}catch(e){clearTimeout(timeout);console.error('3D initialization:',e);$('loading').hidden=true;$('fallback').hidden=false;}};
+
+function buildScene(T3,OrbitControls,RoomEnvironment){
+const canvas=$('scene'),stage=$('stage'),scene=new T3.Scene(),renderer=new T3.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.setClearColor(0x2d4652,0);renderer.outputColorSpace=T3.SRGBColorSpace;renderer.toneMapping=T3.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T3.PCFSoftShadowMap;
+scene.fog=new T3.Fog(0x7b7466,60,560);
+const camera=new T3.PerspectiveCamera(36,1,.05,1500),controls=new OrbitControls(camera,canvas);
+controls.enableDamping=true;controls.dampingFactor=.07;controls.enablePan=false;controls.minDistance=3;controls.maxDistance=60;controls.maxPolarAngle=Math.PI*.495;
+const phoneInput=matchMedia('(max-width:1200px), (pointer:coarse)');
+function syncPhoneInput(){controls.enableZoom=!phoneInput.matches;controls.touches.ONE=T3.TOUCH.ROTATE;controls.touches.TWO=phoneInput.matches?null:T3.TOUCH.DOLLY_PAN;}
+phoneInput.addEventListener('change',syncPhoneInput);syncPhoneInput();
+const pmrem=new T3.PMREMGenerator(renderer),envRoom=new RoomEnvironment();scene.environment=pmrem.fromScene(envRoom,.04).texture;envRoom.dispose();pmrem.dispose();
+scene.add(new T3.HemisphereLight(0xd8e8f0,0x5a4a3a,1.25));
+const sun=new T3.DirectionalLight(0xffd7a8,3.1);sun.position.set(-14,18,12);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-12,right:12,top:10,bottom:-10,near:1,far:70});sun.shadow.bias=-.0004;sun.shadow.normalBias=.03;scene.add(sun,sun.target);
+const rim=new T3.DirectionalLight(0x9bd8d1,1.1);rim.position.set(12,6,-14);scene.add(rim);
+const mat=(color,metal=.1,rough=.5,extra={})=>new T3.MeshStandardMaterial({color,metalness:metal,roughness:rough,...extra});
+
+// Ground, strip and McGregor-style backdrop.
+const ground=new T3.Mesh(new T3.PlaneGeometry(3000,3000),mat(0x4f4636,0,1));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+const strip=new T3.Mesh(new T3.PlaneGeometry(620,10),mat(0x30363b,0,.92));strip.rotation.x=-Math.PI/2;strip.position.set(290,.005,0);strip.receiveShadow=true;scene.add(strip);
+const lineMat=new T3.MeshBasicMaterial({color:0xdfe6e4}),goldLine=new T3.MeshBasicMaterial({color:0xe6bb72});
+for(const z of [-4.8,4.8]){const l=new T3.Mesh(new T3.PlaneGeometry(620,.12),lineMat);l.rotation.x=-Math.PI/2;l.position.set(290,.012,z);scene.add(l);}
+for(let x=-10;x<600;x+=8){const d=new T3.Mesh(new T3.PlaneGeometry(4,.1),lineMat);d.rotation.x=-Math.PI/2;d.position.set(x,.012,0);scene.add(d);}
+function textTexture(text,w=256,h=96,color='#eef1ee',bg='rgba(16,30,43,.86)'){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,w,h);g.strokeStyle='#e6bb72';g.lineWidth=4;g.strokeRect(2,2,w-4,h-4);g.fillStyle=color;g.font='bold 46px system-ui';g.textAlign='center';g.textBaseline='middle';g.fillText(text,w/2,h/2+2);const t=new T3.CanvasTexture(c);t.colorSpace=T3.SRGBColorSpace;return t;}
+function checker(){const c=document.createElement('canvas');c.width=64;c.height=256;const g=c.getContext('2d');for(let y=0;y<16;y++)for(let x=0;x<4;x++){g.fillStyle=(x+y)%2?'#111':'#f2f2f2';g.fillRect(x*16,y*16,16,16);}const t=new T3.CanvasTexture(c);t.colorSpace=T3.SRGBColorSpace;return t;}
+const startLine=new T3.Mesh(new T3.PlaneGeometry(.35,9.6),goldLine);startLine.rotation.x=-Math.PI/2;startLine.position.set(.0,.014,0);scene.add(startLine);
+const finish=new T3.Mesh(new T3.PlaneGeometry(1.2,9.6),new T3.MeshBasicMaterial({map:checker()}));finish.rotation.x=-Math.PI/2;finish.position.set(P.QUARTER,.014,0);scene.add(finish);
+for(const [x,label] of [[100,'100 m'],[200,'200 m'],[300,'300 m'],[P.QUARTER,'400 m']]){for(const z of [-6.2,6.2]){const post=new T3.Mesh(new T3.CylinderGeometry(.06,.06,2.2,8),mat(0xbfc9cc,.4,.4));post.position.set(x,1.1,z);scene.add(post);const board=new T3.Mesh(new T3.PlaneGeometry(2,.75),new T3.MeshBasicMaterial({map:textTexture(label),side:T3.DoubleSide}));board.position.set(x,2.4,z);board.rotation.y=-Math.PI/2;scene.add(board);}}
+const backdrop=new T3.Group();scene.add(backdrop);
+const mesaMat=mat(0x5d5a55,0,1);for(let i=0;i<14;i++){const w=60+Math.random()*120,hgt=8+Math.random()*16,m=new T3.Mesh(new T3.BoxGeometry(w,hgt,40),mesaMat);m.position.set(-300+i*80+Math.random()*30,hgt/2-1,-380-Math.random()*120);backdrop.add(m);}
+const towerMat=mat(0xc9cfd1,.6,.35);for(const [x,z,hgt] of [[120,-150,46],[160,-170,30],[260,-210,38]]){const t=new T3.Mesh(new T3.CylinderGeometry(2.4,3,hgt,10),towerMat);t.position.set(x,hgt/2,z);t.castShadow=true;backdrop.add(t);const frame=new T3.Mesh(new T3.BoxGeometry(5,hgt*1.1,5),new T3.MeshStandardMaterial({color:0x50606a,wireframe:true}));frame.position.set(x+5,hgt*.55,z);backdrop.add(frame);}
+
+// ---------- The car ----------
+const ST=[[2.24,.17,.55,.30,.72,.36,.50,.37],[2.05,.14,.66,.36,.86,.52,.68,.50],[1.75,.13,.68,.44,.92,.68,.80,.58],[1.35,.13,.68,.48,.93,.72,.82,.62],[.95,.13,.68,.48,.92,.72,.80,.68],[.40,.12,.70,.47,.90,.70,.76,.72],[-.30,.12,.70,.48,.90,.72,.78,.74],[-.95,.13,.70,.53,.95,.84,.86,.80],[-1.40,.14,.70,.55,.96,.86,.86,.83],[-1.85,.18,.68,.56,.93,.85,.84,.83],[-2.20,.30,.62,.58,.88,.80,.80,.79]];
+const CAB=[[1.05,.70,.66,.70],[.55,.66,.68,1.00],[.05,.60,.70,1.10],[-.45,.58,.72,1.10],[-.95,.62,.78,.95],[-1.35,.66,.82,.86]];
+function loft(rings){const pos=[],n=rings[0].pts.length;const push=p=>pos.push(p[0],p[1],p[2]);
+  for(let s=0;s<rings.length-1;s++){const a=rings[s],b=rings[s+1];for(let i=0;i<n;i++){const j=(i+1)%n,A=[a.x,a.pts[i][1],a.pts[i][0]],B=[a.x,a.pts[j][1],a.pts[j][0]],C=[b.x,b.pts[j][1],b.pts[j][0]],D=[b.x,b.pts[i][1],b.pts[i][0]];push(A);push(B);push(C);push(A);push(C);push(D);}}
+  for(const r of [rings[0],rings[rings.length-1]]){const cz=r.pts.reduce((s,p)=>s+p[0],0)/n,cy=r.pts.reduce((s,p)=>s+p[1],0)/n;for(let i=0;i<n;i++){const j=(i+1)%n;push([r.x,cy,cz]);push([r.x,r.pts[i][1],r.pts[i][0]]);push([r.x,r.pts[j][1],r.pts[j][0]]);}}
+  const g=new T3.BufferGeometry();g.setAttribute('position',new T3.Float32BufferAttribute(pos,3));g.computeVertexNormals();return g;}
+const bodyGeo=loft(ST.map(([x,b,wb,ys,ws,yt,wt,yc])=>({x,pts:[[0,b],[wb,b],[ws,ys],[wt,yt],[0,yc],[-wt,yt],[-ws,ys],[-wb,b]]})));
+const cabinGeo=loft(CAB.map(([x,w,base,top])=>({x,pts:[[w,base],[w*.74,top],[-w*.74,top],[-w,base]]})));
+function makeCar(paint,accent){
+  const root=new T3.Group(),chassis=new T3.Group();root.add(chassis);scene.add(root);
+  const bodyMat=new T3.MeshPhysicalMaterial({color:paint,metalness:.15,roughness:.32,clearcoat:.8,clearcoatRoughness:.2,side:T3.DoubleSide,flatShading:true});
+  const glassMat=new T3.MeshPhysicalMaterial({color:0xb08a3a,metalness:.85,roughness:.08,side:T3.DoubleSide,flatShading:true,transparent:true,opacity:.95});
+  const body=new T3.Mesh(bodyGeo,bodyMat);body.castShadow=true;body.receiveShadow=true;chassis.add(body);
+  const cabin=new T3.Mesh(cabinGeo,glassMat);cabin.castShadow=true;chassis.add(cabin);
+  const dark=mat(0x14181c,.2,.6),glow=(c,i=2.5)=>new T3.MeshStandardMaterial({color:c,emissive:c,emissiveIntensity:i});
+  const tail=new T3.Mesh(new T3.BoxGeometry(.04,.045,1.62),glow(0xff3346,3));tail.position.set(-2.215,.71,0);chassis.add(tail);
+  for(const z of [-.7,.7]){const tri=new T3.Mesh(new T3.ConeGeometry(.09,.24,3),glow(0xf4fbff,2.2));tri.rotation.z=-Math.PI/2;tri.rotation.x=Math.PI/2;tri.position.set(2.02,.5,z);chassis.add(tri);const slit=new T3.Mesh(new T3.BoxGeometry(.03,.02,.34),glow(0xdff6ff,1.6));slit.position.set(2.215,.33,z*.62);chassis.add(slit);}
+  const accentLine=new T3.Mesh(new T3.BoxGeometry(2.6,.02,.01),glow(accent,1.2));for(const z of [-.935,.935]){const a=accentLine.clone();a.position.set(-.3,.49,z);chassis.add(a);}
+  const wheels=[];
+  for(const [x,front] of [[1.35,true],[-1.4,false]])for(const z of [-.84,.84]){
+    const wg=new T3.Group();wg.position.set(x,.355,z);chassis.add(wg);const spin=new T3.Group();wg.add(spin);
+    const tw=front?.28:.33,tire=new T3.Mesh(new T3.CylinderGeometry(.355,.355,tw,32),mat(0x1a1c1e,0,.85));tire.rotation.x=Math.PI/2;tire.castShadow=true;spin.add(tire);
+    const rimMat=mat(0x8d969b,.85,.25),side=Math.sign(z);
+    const disc=new T3.Mesh(new T3.CylinderGeometry(.25,.25,.02,24),rimMat);disc.rotation.x=Math.PI/2;disc.position.z=side*(tw/2+.005);spin.add(disc);
+    for(let k=0;k<5;k++){const spoke=new T3.Mesh(new T3.BoxGeometry(.05,.21,.02),mat(0x30373b,.6,.4));spoke.position.set(Math.cos(k*1.2566)*.12,Math.sin(k*1.2566)*.12,side*(tw/2+.02));spoke.rotation.z=k*1.2566-Math.PI/2;spin.add(spoke);}
+    const cal=new T3.Mesh(new T3.BoxGeometry(.12,.08,.03),mat(accent,.3,.4));cal.position.set(front?-.17:.17,.12,side*(tw/2-.03));wg.add(cal);
+    wheels.push({spin,rear:!front,z});
+  }
+  // Four ducted suction fans side by side in the rear outlet, plus side skirts.
+  const fans=[],fanGroup=new T3.Group();chassis.add(fanGroup);
+  for(const z of [-.54,-.18,.18,.54]){const duct=new T3.Mesh(new T3.TorusGeometry(.16,.025,8,24),dark);duct.rotation.y=Math.PI/2;duct.position.set(-2.2,.4,z);fanGroup.add(duct);const rotor=new T3.Group();rotor.position.set(-2.19,.4,z);for(let k=0;k<6;k++){const blade=new T3.Mesh(new T3.BoxGeometry(.01,.14,.045),mat(0x9bd8d1,.5,.35));blade.position.y=.07;const holder=new T3.Group();holder.rotation.x=k*Math.PI/3;blade.rotation.y=.5;holder.add(blade);rotor.add(holder);}fanGroup.add(rotor);fans.push(rotor);}
+  const underGlow=new T3.Mesh(new T3.PlaneGeometry(3.6,1.35),new T3.MeshBasicMaterial({color:0x9bd8d1,transparent:true,opacity:.0,depthWrite:false,side:T3.DoubleSide}));underGlow.rotation.x=-Math.PI/2;underGlow.position.set(-.1,.05,0);chassis.add(underGlow);
+  const skirts=[];for(const z of [-.69,.69]){const sk=new T3.Mesh(new T3.BoxGeometry(2.1,.12,.03),dark);sk.position.set(0,.12,z);chassis.add(sk);skirts.push(sk);}
+  // Ten cold-gas nozzles: four rear-facing, six facing down.
+  const nozzles=[],nozzleMat=mat(0xc9a65c,.9,.25),plumeMat=new T3.MeshBasicMaterial({color:0xdff6ff,transparent:true,opacity:.55,depthWrite:false,blending:T3.AdditiveBlending});
+  const NOZ=[[-2.23,.5,-.36,'rear'],[-2.23,.5,.36,'rear'],[-2.21,.24,-.74,'rear'],[-2.21,.24,.74,'rear'],[1.55,.12,-.5,'down'],[1.55,.12,.5,'down'],[0,.12,-.62,'down'],[0,.12,.62,'down'],[-1.75,.15,-.45,'down'],[-1.75,.15,.45,'down']];
+  for(const [x,y,z,dir] of NOZ){const g=new T3.Group();g.position.set(x,y,z);const n=new T3.Mesh(new T3.CylinderGeometry(.035,.07,.12,12),nozzleMat);const plume=new T3.Mesh(new T3.ConeGeometry(.16,1,16,1,true),plumeMat);plume.visible=false;
+    if(dir==='rear'){n.rotation.z=Math.PI/2;plume.rotation.z=Math.PI/2;plume.position.x=-.55;}else{plume.rotation.z=Math.PI;plume.position.y=-.55;n.position.y=-.02;}
+    g.add(n,plume);chassis.add(g);nozzles.push({g,plume,dir});}
+  // Inside: seats, air tank, battery, two rear motors with planetary gears.
+  const inside=new T3.Group();chassis.add(inside);
+  const seatMat=mat(0x2b3338,.1,.7),seats=[];for(const z of [-.3,.3,0]){const seat=new T3.Group();const base=new T3.Mesh(new T3.BoxGeometry(.5,.1,.42),seatMat);base.position.set(-.1,.38,0);const back=new T3.Mesh(new T3.BoxGeometry(.1,.55,.42),seatMat);back.position.set(-.38,.62,0);back.rotation.z=.25;seat.add(base,back);seat.position.z=z;inside.add(seat);seats.push(seat);}
+  const tank=new T3.Mesh(new T3.CylinderGeometry(1,1,1.15,24),mat(0x3b3f45,.5,.35));tank.rotation.x=Math.PI/2;tank.position.set(-.98,.55,0);inside.add(tank);
+  const bandMat=mat(0xe6bb72,.8,.3),bands=[];for(const z of [-.4,0,.4]){const b=new T3.Mesh(new T3.TorusGeometry(1,.06,6,24),bandMat);b.position.set(-.98,.55,z);inside.add(b);bands.push(b);}
+  const battery=new T3.Mesh(new T3.BoxGeometry(1.9,1,1.15),new T3.MeshStandardMaterial({color:0x2d6f73,emissive:0x1f5b5c,emissiveIntensity:.35,metalness:.3,roughness:.5}));battery.position.set(.15,.2,0);inside.add(battery);
+  const cellLines=new T3.LineSegments(new T3.EdgesGeometry(new T3.BoxGeometry(1.9,1,1.15,8,1,4)),new T3.LineBasicMaterial({color:0x9bd8d1,transparent:true,opacity:.5}));battery.add(cellLines);
+  const motors=[],gears=[];for(const z of [-.27,.27]){const mtr=new T3.Mesh(new T3.CylinderGeometry(.14,.14,.26,20),mat(0xb7c1c6,.8,.3));mtr.rotation.x=Math.PI/2;mtr.position.set(-1.4,.36,z);inside.add(mtr);motors.push(mtr);
+    const gear=new T3.Group();gear.position.set(-1.4,.355,z*1.75);const ring=new T3.Mesh(new T3.TorusGeometry(.12,.025,8,24),mat(0xe6bb72,.85,.25));gear.add(ring);for(let k=0;k<3;k++){const pl=new T3.Mesh(new T3.CylinderGeometry(.04,.04,.04,10),mat(0xe6bb72,.85,.3));pl.rotation.x=Math.PI/2;pl.position.set(Math.cos(k*2.094)*.07,Math.sin(k*2.094)*.07,0);gear.add(pl);}inside.add(gear);gears.push(gear);
+    const shaft=new T3.Mesh(new T3.CylinderGeometry(.03,.03,.32,8),mat(0x6d777c,.7,.4));shaft.rotation.x=Math.PI/2;shaft.position.set(-1.4,.355,z*2.35);inside.add(shaft);}
+  const arrows=[];for(const x of [1.0,-.2,-1.4]){const ar=new T3.ArrowHelper(new T3.Vector3(0,-1,0),new T3.Vector3(x,2.2,0),1,0x9bd8d1,.22,.16);chassis.add(ar);arrows.push(ar);}
+  const tireArrows=[];for(const w of wheels.filter(w=>w.rear)){const ar=new T3.ArrowHelper(new T3.Vector3(1,0,0),new T3.Vector3(-1.4,.02,w.z),1,0xe6bb72,.18,.14);chassis.add(ar);tireArrows.push(ar);}
+  return {root,chassis,body,bodyMat,cabin,glassMat,wheels,fans,fanGroup,underGlow,skirts,nozzles,inside,seats,tank,bands,battery,motors,gears,arrows,tireArrows,fanAngle:0,gearAngle:0};
+}
+const you=makeCar(0xeef0ec,0x9bd8d1),rival=makeCar(0x5c646a,0xee9c8b);
+
+// Speed streaks around the camera target.
+const streakCount=160,streaks=[],streakArr=new Float32Array(streakCount*6),streakGeo=new T3.BufferGeometry();streakGeo.setAttribute('position',new T3.BufferAttribute(streakArr,3));
+for(let i=0;i<streakCount;i++)streaks.push({x:Math.random()*60-30,y:.2+Math.random()*2.6,z:(Math.random()<.5?-1:1)*(1.4+Math.random()*7),s:.7+Math.random()*.6});
+const streakLines=new T3.LineSegments(streakGeo,new T3.LineBasicMaterial({color:0xe9f6f4,transparent:true,opacity:.35}));streakLines.frustumCulled=false;scene.add(streakLines);
+
+function cfgFor(car){return car===you?state.cfg:TRIMS[state.ref];}
+function syncCar(){
+  for(const car of [you,rival]){const c=cfgFor(car),hasThrust=c.thrust>0;
+    car.nozzles.forEach(n=>n.g.visible=hasThrust);
+    const r=Math.min(.36,Math.sqrt(Math.max(1,c.tank)/1000/(Math.PI*1.15)));car.tank.visible=c.tank>0;car.tank.scale.set(r,1,r);car.bands.forEach(b=>{b.visible=c.tank>0;b.scale.set(r*1.02,r*1.02,1);});
+    const thick=Math.max(.02,c.battery/100*.12);car.battery.visible=c.battery>0;car.battery.scale.y=thick;car.battery.position.y=.13+thick/2;
+    car.fanGroup.visible=c.fan>0;car.skirts.forEach(s=>s.position.y=c.fan>0?.06:.13);
+    car.seats[0].visible=car.seats[1].visible=c.seats!==1;car.seats[2].visible=c.seats===1;
+    car.motors.forEach(m=>m.scale.setScalar(.75+c.power/1000*.25));
+  }
+  setView(false);
+}
+// ---------- Labels ----------
+const anchors=[];function clearLabels(){anchors.length=0;$('labels').replaceChildren();}
+function label(text,kind,point,action){const el=document.createElement(action?'button':'span');el.className='label '+kind;el.textContent=text;if(action){el.type='button';el.onclick=action;}$('labels').append(el);anchors.push({el,point});return el;}
+const L=(car,x,y,z)=>()=>car.chassis.localToWorld(new T3.Vector3(x,y,z));
+function setXray(car,on){car.bodyMat.transparent=on;car.bodyMat.opacity=on?.16:1;car.bodyMat.depthWrite=!on;car.glassMat.opacity=on?.18:.95;car.bodyMat.needsUpdate=true;car.glassMat.needsUpdate=true;car.inside.visible=on||state.view==='power';}
+function setView(reset=true){
+  const compare=state.mode==='compare',v=state.view;rival.root.visible=compare;
+  you.root.position.z=compare?2.4:0;rival.root.position.z=-2.4;
+  const xray=!compare&&(v==='grip'||v==='thrust'||v==='power');setXray(you,xray);setXray(rival,false);
+  you.inside.visible=xray;rival.inside.visible=false;
+  you.underGlow.visible=!compare&&v==='grip';you.arrows.forEach(a=>a.visible=!compare&&v==='grip');you.tireArrows.forEach(a=>a.visible=!compare&&v==='grip');rival.arrows.forEach(a=>a.visible=false);rival.tireArrows.forEach(a=>a.visible=false);rival.underGlow.visible=false;
+  const showTank=xray&&v!=='grip'&&state.cfg.tank>0,showPower=xray&&v!=='thrust';you.tank.visible=showTank;you.bands.forEach(b=>b.visible=showTank);you.battery.visible=showPower&&state.cfg.battery>0;you.motors.forEach(m=>m.visible=showPower);you.gears.forEach(g=>g.visible=showPower);you.seats.forEach((s,i)=>s.visible=xray&&v!=='grip'&&(state.cfg.seats===1?i===2:i<2));
+  clearLabels();const c=state.cfg,i=lang==='en';
+  if(compare){for(const [car,isYou] of [[you,true],[rival,false]]){const el=label('',isYou?'car-label':'car-label coral',L(car,0,1.6,0));el.innerHTML=`<strong>${isYou?T('你的車','Your car'):T('對手','Rival')}</strong><span>${trimName(isYou?state.trim:state.ref)}</span>`;}}
+  else if(v==='overview'&&state.exp==='hop'){if(c.thrust>0)label(T(`推重比 ${fmt(state.sum.tw,2)}`,`Thrust/weight ${fmt(state.sum.tw,2)}`),state.sum.tw>1?'gold':'coral',L(you,0,-.1,.9));else label(T('沒有推進器：把「冷氣推進器」調大','No thrusters: raise Cold-gas thrust'),'coral',L(you,0,1.3,0));}
+  else if(v==='overview'){label(T('隱藏頭燈・三角角燈','Hidden headlights'),'',L(you,2.1,.55,.7));label(T('太空面罩金色玻璃','Visor-gold glass'),'gold',L(you,.1,1.15,0));label(T('全寬尾燈','Full-width taillight'),'',L(you,-2.25,.8,0));label(T('吸地風扇 →','Suction fans →'),'',L(you,-2.25,.4,.3),()=>setViewFromTag('grip'));if(c.thrust>0)label(T('推進器噴嘴 →','Thruster nozzles →'),'gold',L(you,-2.2,.45,.8),()=>setViewFromTag('thrust'));label(T('雙後馬達 →','Twin rear motors →'),'',L(you,-1.3,.6,.95),()=>setViewFromTag('power'));}
+  else if(v==='grip'){label(c.fan>0?T(`4 顆風扇・下壓力 ${fmt(c.fan)} kgf`,`4 fans · ${fmt(c.fan)} kgf downforce`):T('風扇關閉','Fans off'),'gold',L(you,-2.3,.45,0));label(T('側裙：把車底封起來','Skirts seal the floor'),'',L(you,.3,.08,.8));label(T(`只有後輪出力・μ ${c.mu.toFixed(2)}`,`Only rear tires push · μ ${c.mu.toFixed(2)}`),'',L(you,-1.4,.1,1));label(T(`倒吊力 ${fmt(state.sum.ceiling,2)}×${state.sum.ceiling>=1?' ✓':''}`,`Ceiling grip ${fmt(state.sum.ceiling,2)}×${state.sum.ceiling>=1?' ✓':''}`),state.sum.ceiling>=1?'gold':'coral',L(you,.4,2.3,0));}
+  else if(v==='thrust'){if(c.thrust>0){label(T(`高壓氣瓶 ${fmt(c.tank)} L`,`Air tank ${fmt(c.tank)} L`),'gold',L(you,-.98,1.0,0));label(T(`10 個噴嘴・${fmt(c.thrust)} kN`,`10 nozzles · ${fmt(c.thrust)} kN`),'',L(you,-2.25,.5,.5));label(T(`推重比 ${fmt(state.sum.tw,2)}`,`Thrust/weight ${fmt(state.sum.tw,2)}`),state.sum.tw>1?'gold':'coral',L(you,0,.05,.9));}else label(T('沒有推進器：把「冷氣推進器」調大','No thrusters: raise Cold-gas thrust'),'coral',L(you,-1.5,1,0));}
+  else if(v==='power'){label(T(`電池 ${fmt(c.battery)} kWh・約 ${fmt(c.battery*6)} kg`,`Battery ${fmt(c.battery)} kWh · ≈${fmt(c.battery*6)} kg`),'',L(you,.6,.2,.6));label(T(`雙後馬達・${fmt(c.power)} kW`,`Twin rear motors · ${fmt(c.power)} kW`),'gold',L(you,-1.4,.5,0));label(T(`${c.gear.toFixed(1)}:1 行星齒輪`,`${c.gear.toFixed(1)}:1 planetary gears`),'',L(you,-1.4,.3,.6));}
+  if(reset)resetCamera();
+}
+function setViewFromTag(v){window.lab.setView(v);}
+// ---------- Camera ----------
+let transition=null,follow=0;
+function cameraPose(){const narrow=stage.clientWidth<640,k=narrow?1.45:1,compare=state.mode==='compare',v=state.view;
+  const dx=narrow?0:1;
+  if(compare)return {pos:[7.5*k,4.6*k,13.5*k],target:[-1.6*dx,.9,-.4]};
+  if(state.exp==='hop'&&v==='overview')return {pos:[7*k,2.4*k,10.5*k],target:[-1.6*dx,1.9,0]};
+  if(v==='grip')return {pos:[4.6*k,1.15*k,6.2*k],target:[-1.2*dx,.55,-.2]};
+  if(v==='thrust')return {pos:[-7.4*k,2.6*k,6.2*k],target:[.2*dx,.75,-1.2*dx]};
+  if(v==='power')return {pos:[3.2*k,5.2*k,5.6*k],target:[-1.1*dx,.3,-.6*dx]};
+  return {pos:[6.6*k,2.5*k,8.2*k],target:[-1.3*dx,.75,-.2]};}
+function resetCamera(immediate=false){const p=cameraPose(),to=new T3.Vector3(...p.pos),tt=new T3.Vector3(...p.target);to.x+=follow;tt.x+=follow;if(immediate||reduced){camera.position.copy(to);controls.target.copy(tt);controls.update();transition=null;}else transition={from:camera.position.clone(),to,targetFrom:controls.target.clone(),targetTo:tt,t:0};}
+controls.addEventListener('start',()=>transition=null);
+const projected=new T3.Vector3();
+function positionLabels(){
+  const rect=stage.getBoundingClientRect(),occupied=[],overlaps=(a,b)=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;
+  for(const sel of ['.scene-copy','.scene-toptools','.run-cue','.knowledge','.magnify','.stage-bottom','.toast']){const el=stage.querySelector(sel);if(el&&!el.hidden&&el.getClientRects().length){const r=el.getBoundingClientRect();occupied.push({left:r.left-rect.left-6,right:r.right-rect.left+6,top:r.top-rect.top-6,bottom:r.bottom-rect.top+6});}}
+  for(const a of anchors){projected.copy(a.point()).project(camera);
+    if(projected.z>=1||projected.z<=-1||Math.abs(projected.x)>1.05||Math.abs(projected.y)>.98){a.el.hidden=true;continue;}
+    a.el.hidden=false;const w=a.el.offsetWidth,h=a.el.offsetHeight,px=(projected.x*.5+.5)*rect.width,py=(-projected.y*.5+.5)*rect.height;let best=null,score=Infinity;
+    for(const dy of [0,-40,40,-80,80,-120,120])for(const dx of [0,-30,30,-60,60,-90,90]){const x=Math.max(w/2+8,Math.min(rect.width-w/2-8,px+dx)),y=Math.max(h/2+8,Math.min(rect.height-h/2-8,py+dy)),box={left:x-w/2-3,right:x+w/2+3,top:y-h/2-3,bottom:y+h/2+3},d=(x-px)**2+(y-py)**2;if(occupied.some(r=>overlaps(box,r)))continue;if(d<score){best={x,y,box};score=d;}}
+    a.el.hidden=!best;if(best){a.el.style.left=best.x+'px';a.el.style.top=best.y+'px';occupied.push(best.box);}}
+}
+let previousNarrow=null;function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();const narrow=w<640;if(previousNarrow!==null&&narrow!==previousNarrow)resetCamera(true);previousNarrow=narrow;}
+new ResizeObserver(resize).observe(stage);resize();resetCamera(true);
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('fallback').hidden=false;});canvas.addEventListener('webglcontextrestored',()=>{$('fallback').hidden=true;});
+function key(k){if(k==='Home'){resetCamera();return;}transition=null;const off=camera.position.clone().sub(controls.target),sph=new T3.Spherical().setFromVector3(off);if(k==='ArrowLeft')sph.theta-=.12;if(k==='ArrowRight')sph.theta+=.12;if(k==='ArrowUp')sph.phi-=.09;if(k==='ArrowDown')sph.phi+=.09;if(k==='+'||k==='=')sph.radius*=.9;if(k==='-')sph.radius*=1.1;sph.radius=T3.MathUtils.clamp(sph.radius,controls.minDistance,controls.maxDistance);sph.phi=T3.MathUtils.clamp(sph.phi,.01,controls.maxPolarAngle);camera.position.copy(controls.target).add(new T3.Vector3().setFromSpherical(sph));controls.update();}
+// ---------- Frame ----------
+let visualTime=0;
+function poseCar(car,run,c,dt){
+  const hop=state.exp==='hop',x=run&&!hop?run.x:0,y=run&&hop?run.y:0,v=run&&!hop?run.v:0,a=run?run.a:0;
+  car.root.position.x=x;car.chassis.position.y=y;
+  car.chassis.rotation.z=hop?0:Math.max(-.03,Math.min(.05,a*.0022));
+  const roll=x/P.RW;car.wheels.forEach(w=>w.spin.rotation.z=-roll);
+  const fanSpeed=c.fan/4700*(state.phase==='running'&&!hop?60:18);car.fanAngle+=dt*fanSpeed*(state.paused?0:1);car.fans.forEach(f=>f.rotation.x=car.fanAngle);
+  car.gearAngle=roll*c.gear;car.gears.forEach(g=>g.rotation.z=-car.gearAngle*.05);
+  const firing=!!run?.firing,flicker=.85+Math.random()*.3,len=(.5+c.thrust/80*1.6)*flicker;
+  car.nozzles.forEach(n=>{const on=firing&&(hop?n.dir==='down':n.dir==='rear');n.plume.visible=on;if(on){n.plume.scale.set(1,len,1);if(n.dir==='rear')n.plume.position.x=-len/2-.05;else n.plume.position.y=-len/2-.05;}});
+}
+function render(dt){
+  if(transition){transition.t=Math.min(1,transition.t+dt*1.65);const t=1-(1-transition.t)**3;camera.position.lerpVectors(transition.from,transition.to,t);controls.target.lerpVectors(transition.targetFrom,transition.targetTo,t);if(transition.t>=1)transition=null;}
+  if(!state.paused)visualTime+=dt;
+  const r=state.runs,compare=state.mode==='compare';
+  poseCar(you,r?.you,state.cfg,dt);poseCar(rival,compare?r?.ref:null,TRIMS[state.ref],dt);
+  const hop=state.exp==='hop',lead=r&&!hop?(compare?Math.max(r.you.x,r.ref.x)*.5+Math.min(r.you.x,r.ref.x)*.5:r.you.x):0;
+  const dx=lead-follow;if(Math.abs(dx)>1e-6){camera.position.x+=dx;controls.target.x+=dx;if(transition){transition.to.x+=dx;transition.targetTo.x+=dx;transition.from.x+=dx;transition.targetFrom.x+=dx;}follow=lead;}
+  if(hop&&r){const ty=Math.min(r.you.y,30)*.6+(state.view==='overview'?1.6:.5);const dy=(ty-controls.target.y)*Math.min(1,dt*4);controls.target.y+=dy;camera.position.y+=dy;}
+  controls.update();
+  sun.position.set(follow-14,18,12);sun.target.position.set(follow,0,0);
+  // Grip view: arrows grow with downforce; tire arrows show the push the rear tires can give.
+  if(you.arrows[0].visible){const df=state.cfg.fan/4700;you.arrows.forEach(a=>{a.setLength(.25+df*1.6,.22,.16);a.position.y=.95+(.25+df*1.6);});you.underGlow.material.opacity=.08+df*.35;const g=state.sum.gripG;you.tireArrows.forEach(a=>a.setLength(.3+g*.5,.18,.14));}
+  const speedV=r&&!hop?(compare?(r.you.v+r.ref.v)/2:r.you.v):0;streakLines.visible=speedV>2;
+  if(streakLines.visible){streakLines.material.opacity=Math.min(.5,speedV/80);const move=speedV*dt*(state.paused?0:state.speed);for(let i=0;i<streakCount;i++){const s=streaks[i];s.x-=move*s.s;if(s.x<-30)s.x+=60;const n=i*6,len=.3+speedV*.04;streakArr[n]=follow+s.x;streakArr[n+1]=s.y;streakArr[n+2]=s.z;streakArr[n+3]=follow+s.x+len;streakArr[n+4]=s.y;streakArr[n+5]=s.z;}streakGeo.attributes.position.needsUpdate=true;}
+  scene.updateMatrixWorld();positionLabels();renderer.render(scene,camera);
+}
+syncCar();
+return {render,setView,syncCar,resetCamera,key};
+}
+window.startRoadster();
+})();
+</script>
+</body></html>
