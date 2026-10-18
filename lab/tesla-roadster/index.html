@@ -384,6 +384,52 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
   .dialog{padding:20px}
 }
 @media(max-width:360px){.top{padding-left:8px;padding-right:8px;gap:5px}.brand img{width:74px;height:32px}.ui-switch button{padding:0 7px;font-size:11px}.ui-switch svg{display:none}.lang-switch button{min-width:32px;padding:0 5px;font-size:11px}.is-comparing .feel-pair{grid-template-columns:1fr}}
+/* Challenge mode on tablets and phones: the 3D view, three challenges, four tech switches and the go
+   button share one screen; the driver's seat sits below. Landscape tablets put the controls at the side. */
+@media(max-width:1200px){
+  .app.is-simple{--top-h:64px;grid-template-rows:var(--top-h) auto}
+  .app.is-simple .news-strip,.app.is-simple .game-head h2,.app.is-simple .to-expert,.app.is-simple .sound-chip{display:none}
+  .app.is-simple .workspace{display:flex;flex-direction:column}
+  .app.is-simple .stage{order:1;height:max(280px,calc(100vh - var(--top-h) - var(--game-h,340px)));height:max(280px,calc(100dvh - var(--top-h) - var(--game-h,340px)));min-height:0}
+  .app.is-simple #game{order:2;overflow:visible;border-left:0;border-top:1px solid var(--line);padding:10px 16px 12px;display:grid;gap:8px 10px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"head head" "cards cards" "techt techt" "tech tech" "go go" "hint hint";align-content:start}
+  .app.is-simple #game.has-opt{grid-template-areas:"head head" "cards cards" "techt techt" "tech tech" "opt go" "hint hint"}
+  .app.is-simple .dock{order:3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start;border-right:0;border-top:1px solid var(--line);padding:16px}
+  .game-head{grid-area:head}.challenge-cards{grid-area:cards}.tech-title{grid-area:techt}.tech-grid{grid-area:tech}.game-option{grid-area:opt;justify-content:center}.game-go{grid-area:go}.game-hint{grid-area:hint}
+  .app.is-simple .challenge-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .app.is-simple .challenge-cards button{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;min-height:64px;padding:7px 4px}
+  .app.is-simple .challenge-cards .cnum,.app.is-simple .challenge-cards small{display:none}
+  .app.is-simple .challenge-cards .ctext{flex:none}
+  .app.is-simple .tech-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .app.is-simple .tech{min-height:0;padding:9px 9px 8px;min-height:78px}
+  .app.is-simple .game-option .segmented button{min-height:44px}
+  .app.is-simple .game-go{min-height:60px;font-size:18px}
+  .app.is-simple .game-option{gap:2px}
+  .app.is-simple .game-hint{font-size:11px;line-height:1.55;min-height:3.1em}
+}
+@media(min-width:761px) and (max-width:1200px) and (orientation:landscape){
+  .app.is-simple .workspace{display:grid;grid-template-columns:minmax(0,1fr) 330px;grid-template-rows:auto auto}
+  .app.is-simple .stage{grid-column:1;grid-row:1;height:max(320px,calc(100vh - var(--top-h)));height:max(320px,calc(100dvh - var(--top-h)))}
+  .app.is-simple #game{grid-column:2;grid-row:1;max-height:max(320px,calc(100dvh - var(--top-h)));overflow-y:auto;border-top:0;border-left:1px solid var(--line);grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "cards" "techt" "tech" "go" "hint"}
+  .app.is-simple #game.has-opt{grid-template-areas:"head" "cards" "techt" "tech" "opt" "go" "hint"}
+  .app.is-simple .tech-grid{grid-template-columns:1fr 1fr}
+  .app.is-simple .challenge-cards{grid-template-columns:minmax(0,1fr)}
+  .app.is-simple .challenge-cards button{flex-direction:row;justify-content:flex-start;text-align:left;gap:9px;min-height:52px;padding:7px 10px}
+  .app.is-simple .challenge-cards .ctext{flex:1}.app.is-simple .challenge-cards small{display:block}
+  .app.is-simple .dock{grid-column:1/-1;grid-row:2}
+}
+@media(max-width:760px){
+  .app.is-simple{--top-h:calc(60px + env(safe-area-inset-top,0px))}
+  .app.is-simple #game{padding:8px 10px 10px;gap:7px 8px}
+  .app.is-simple .dock{grid-template-columns:minmax(0,1fr);padding:14px}
+  .app.is-simple .tech-grid{grid-template-columns:1fr 1fr}
+  .app.is-simple .tech{min-height:0;padding:8px 8px 7px}.app.is-simple .tech small{display:none}
+  .app.is-simple .tech strong{padding-right:38px}
+  .app.is-simple .challenge-cards button{min-height:56px}.app.is-simple .challenge-cards strong{font-size:13px}
+  .app.is-simple .game-option>span{display:none}
+  .app.is-simple .game-go{min-height:56px;font-size:16px;padding:0 8px}.app.is-simple #game.has-opt .go-pre{display:none}
+  .app.is-simple .scene-copy p{display:none}
+}
+@media(max-width:760px) and (max-height:700px){.app.is-simple .stage{height:max(220px,calc(100vh - var(--top-h) - var(--game-h,340px)));height:max(220px,calc(100dvh - var(--top-h) - var(--game-h,340px)))}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -432,7 +478,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <div class="run-cue" id="run-cue" hidden><small id="cue-label"></small><strong id="cue-main"></strong><div class="cue-row"><span id="cue-a"></span><b id="cue-b"></b></div><div class="cue-row cue-rpm"><span id="cue-rpm"></span></div><div class="cue-progress"><i id="cue-progress"></i></div></div>
 <aside class="knowledge" id="knowledge"><h3 id="knowledge-title"></h3><p id="knowledge-copy"></p></aside>
 <div class="magnify" id="scale-note"><i></i><span id="scale-text"></span></div>
-<div class="stage-bottom"><p><span class="desktop-gesture" data-en="Drag to orbit · scroll to zoom · tap a tag to explore">拖曳旋轉 · 滾動縮放 · 點選標記，看看零件的秘密</span><span class="mobile-gesture" data-en="↕ Scroll for controls · ↔ swipe to turn">↕ 上下滑看控制　↔ 左右滑轉模型</span></p></div>
+<div class="stage-bottom"><p><span class="desktop-gesture" data-en="Drag to orbit · scroll to zoom · tap a tag to explore">拖曳旋轉 · 滾動縮放 · 點選標記，看看零件的秘密</span><span class="mobile-gesture expert-only" data-en="↕ Scroll for controls · ↔ swipe to turn">↕ 上下滑看控制　↔ 左右滑轉模型</span><span class="mobile-gesture simple-only" data-en="↔ Swipe to turn the car · scroll down for the seat">↔ 左右滑轉車子・往下滑看推背感</span></p></div>
 <div class="toast" id="toast" role="status" hidden></div>
 <div class="result-banner" id="result-banner" role="status" hidden><div class="rb-stars" id="rb-stars"></div><strong id="rb-title"></strong><p id="rb-text"></p><div class="rb-actions"><button id="rb-again"><span data-en="Try again">再試一次</span></button><button id="rb-close" class="ghost"><span data-en="Close">關閉</span></button></div></div>
 <div class="loading" id="loading"><div class="loader-car"></div><span data-en="Assembling your Roadster…">正在組裝你的 Roadster…</span></div>
@@ -519,7 +565,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <p style="margin-top:10px">推估值：車身（不含電池）1,080 kg、駕駛 75 kg、電池每 kWh 6 kg、氣瓶每公升 0.6 kg 外加 0.55 kg 的高壓空氣（約 690 bar）、可用空氣 85%、噴氣速度 650 m/s、後輪靜態負重 56%、輪半徑 0.355 m、迎風面積 1.75 m²、滾動阻力係數 0.013。續航以 110 km/h 定速計算。風扇耗電以每 4,700 kgf 約 80 kW 估算。這些數字讓三個版本接近官方 0–60 mph 宣稱，但都不是特斯拉公布的資料。</p>
 <h3>發表會的兩個特技</h3><p><strong>貼牆坡道：</strong>車子沿著像半個雲霄飛車迴圈的弧形坡道往上爬，頂端約 21 公尺、幾乎倒過來（約 170°）。特斯拉說底盤風扇最多能產生約 2 g 的吸力，讓車倒著也貼得住；接著冷氣推進器把車推離坡道，前方推進器讓車身沿著車長方向左右翻轉 180°，車子翻正後車頭朝後（朝助跑來的方向）落地。本實驗用「自動駕駛定速」爬坡，檢查三件事：坡道推輪子的力 N = m·v²/R + 風扇吸力 + m·g·cosθ 是否一直大於 0、後輪抓地力 μ×N 是否推得贏重力，以及推進器的空氣夠不夠翻正和剎車。</p><p><strong>飛越車隊：</strong>車子飛過並排停放的 Cybercab、Model 3、Model Y、Cybertruck 和 4.1 公尺高的 Semi，最高約 7–8 公尺，還在空中桶滾一圈。本實驗用車底噴嘴朝下噴氣起飛，之後是拋體運動；車子的外形會跟每台車的高度比對，桶滾時車身變「高」會吃掉間距。車輛排列順序、間距、坡道寬度與噴嘴配置都是示意，並非發表會實際尺寸。</p>
 <h3>噴流裡的「馬赫環」</h3><p>高壓空氣從噴嘴衝出時比音速還快，壓力又比外面的空氣高，噴流會一下膨脹、一下被壓回去，形成一串菱形的震波，叫做「馬赫環」（shock diamonds）。第一個馬赫環離噴嘴約 x ≈ 0.67 × 噴嘴直徑 × √(噴嘴壓力 ÷ 大氣壓)。本實驗假設每個噴嘴直徑 4 cm、推力係數 1.5，用推力反推噴嘴壓力：推力越大，壓力越高，馬赫環越拉開。注意：冷空氣不會像火箭火焰那樣發光，現實中要靠水氣凝結或紋影攝影才看得見；發表會報導也沒有提到。畫面上的亮點是為了教學而標出位置。</p>
-<h3>聲音也是科學</h3><p>打開喇叭，就能「聽」到速度：馬達的高頻聲音，音高跟馬達轉速成正比（轉速 = 車速 ÷ 輪半徑 × 齒輪比），轉到 23,500 rpm 上限時音高就不再升高；風聲大小跟速度的平方有關，和空氣阻力一樣；胎噪只有輪子著地時才有，飛起來就消失；路邊標柱每 10 公尺一支，經過時「咻」一聲，越快越密。電動車本身很安靜，所以各國法規要求低速（例如時速 20 公里以下）時發出提示音，提醒行人注意。這些聲音都是瀏覽器即時合成的示意聲，不是錄下來的真實聲音。</p>
+<h3>聲音也是科學</h3><p>音效預設是開的（右上角喇叭可以關掉），用耳朵就能「聽」到速度：馬達的高頻聲音，音高跟馬達轉速成正比（轉速 = 車速 ÷ 輪半徑 × 齒輪比），轉到 23,500 rpm 上限時音高就不再升高；風聲大小跟速度的平方有關，和空氣阻力一樣；胎噪只有輪子著地時才有，飛起來就消失；路邊標柱每 10 公尺一支，經過時「咻」一聲，越快越密。電動車本身很安靜，所以各國法規要求低速（例如時速 20 公里以下）時發出提示音，提醒行人注意。這些聲音都是瀏覽器即時合成的示意聲，不是錄下來的真實聲音。</p>
 <h3>小朋友的表情代表什麼？</h3><p>香氛吊飾的角度就是「加速度 ÷ 重力」的反正切，和真實車上吊飾的物理一樣。推背感的 g 值是模型算出的水平加速度除以 9.81；表情只是比喻。太空梭升空約 3 g、一般人在雲霄飛車上約 1–1.5 g 水平加速度。</p>
 <h3>資料與延伸閱讀</h3></div>
 <div class="en">
@@ -542,7 +588,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <p style="margin-top:10px">Estimates: body without battery 1,080 kg, driver 75 kg, 6 kg per kWh, tank 0.6 kg per litre plus 0.55 kg of air at ≈690 bar, 85% usable air, 650 m/s exhaust, 56% static rear load, 0.355 m wheel radius, 1.75 m² frontal area, rolling coefficient 0.013. Range is a steady 110 km/h cruise. Fan power is ≈80 kW per 4,700 kgf. These values bring the three versions close to Tesla's 0–60 claims, but none of them are Tesla data.</p>
 <h3>The two reveal stunts</h3><p><strong>Wall ramp:</strong> the car climbed a curved ramp shaped like half a roller-coaster loop to about 21 m, nearly upside down (about 170°). Tesla says the underbody fans can pull up to about 2 g, so the car sticks even inverted; cold-gas thrusters then pushed it off and front thrusters rolled it 180° about its length, so it came down upright facing backwards, toward where it started. This lab climbs at a constant autopilot speed and checks three things: whether the ramp keeps pressing on the wheels, N = m·v²/R + fan suction + m·g·cosθ &gt; 0; whether rear-tire grip μ×N can beat gravity; and whether the air lasts for the flip and the braking burn.</p><p><strong>Fleet jump:</strong> the car leapt over a parked Cybercab, Model 3, Model Y, Cybertruck and the 4.1 m Semi, peaking around 7–8 m, with a barrel roll. Here the down nozzles lift the car, then it follows projectile motion; the car’s outline is checked against each vehicle’s height, and rolling makes the car taller and eats into the gap. Vehicle order, spacing, ramp width and nozzle layout are illustrative, not the reveal’s exact dimensions.</p>
 <h3>Mach diamonds in the jet</h3><p>Compressed air leaves the nozzle faster than sound and at a higher pressure than the air around it, so the jet expands, gets squeezed back, and repeats, forming a chain of diamond-shaped shock waves. The first one sits about x ≈ 0.67 × nozzle diameter × √(nozzle pressure ÷ atmospheric pressure) from the nozzle. This lab assumes 4 cm nozzles and a thrust coefficient of 1.5 and works the nozzle pressure out from the thrust: more thrust, higher pressure, wider spacing. Cold air does not glow like a rocket flame; in real life you only see the diamonds through condensation or schlieren photography, and the reveal coverage does not mention them. The bright beads mark where they would be.</p>
-<h3>Sound is science too</h3><p>Turn the speaker on to hear the speed: the motor whine rises in pitch with motor rpm (rpm = speed ÷ wheel radius × gear ratio) and stops rising at the 23,500 rpm limit; wind noise grows with speed squared, just like air drag; tire roar is there only while the wheels touch the ground; and each roadside post, one every 10 m, goes “whoosh” — faster speed, faster rhythm. Electric cars are so quiet that the law requires a warning sound at low speed (for example below 20 km/h) so pedestrians notice them. All sounds are synthesized live in the browser for illustration, not recordings.</p>
+<h3>Sound is science too</h3><p>Sound is on by default (the speaker button turns it off), so you can hear the speed: the motor whine rises in pitch with motor rpm (rpm = speed ÷ wheel radius × gear ratio) and stops rising at the 23,500 rpm limit; wind noise grows with speed squared, just like air drag; tire roar is there only while the wheels touch the ground; and each roadside post, one every 10 m, goes “whoosh” — faster speed, faster rhythm. Electric cars are so quiet that the law requires a warning sound at low speed (for example below 20 km/h) so pedestrians notice them. All sounds are synthesized live in the browser for illustration, not recordings.</p>
 <h3>What do the faces mean?</h3><p>The air freshener hangs at arctan(acceleration ÷ gravity), exactly like in a real car. The g number is the model's forward acceleration ÷ 9.81; the faces are just a metaphor. A Space Shuttle launch peaks around 3 g.</p>
 <h3>Sources and further reading</h3></div>
 <div class="source-links"><a href="https://www.tesla.com/roadster" target="_blank" rel="noopener">Tesla｜Roadster</a><a href="https://electrek.co/2026/10/15/tesla-unveils-cyberfied-new-roadster-kickflip/" target="_blank" rel="noopener">Electrek｜Tesla unveils Cyberfied new Roadster that can kickflip</a><a href="https://electrek.co/2026/10/15/an-updated-technical-look-at-teslas-kick-flipping-0-60-in-1s-next-gen-roadster/" target="_blank" rel="noopener">Electrek｜A technical look at the kick-flipping Roadster</a><a href="https://www.hagerty.com/media/news/new-tesla-roadster-revealed-and-it-flies/" target="_blank" rel="noopener">Hagerty｜New Tesla Roadster revealed, and it flies</a><a href="https://insideevs.com/news/812242/tesla-roadster-2026-specs/" target="_blank" rel="noopener">InsideEVs｜Tesla Roadster full specs</a><a href="https://www.teslarati.com/tesla-roadster-specs-configurations/" target="_blank" rel="noopener">Teslarati｜Three configs, one can fly</a><a href="https://www.teslarati.com/tesla-roadster-downforce-fan-system/" target="_blank" rel="noopener">Teslarati｜Roadster fan system and thrusters</a><a href="https://evxl.co/2026/10/16/tesla-roadster-everything-we-know/" target="_blank" rel="noopener">EVXL｜Everything we know</a><a href="https://theevreport.com/tesla-roadster-unveil-spacex-cold-gas-thrusters" target="_blank" rel="noopener">The EV Report｜SpaceX cold-gas thrusters</a><a href="https://www.notateslaapp.com/news/4840/new-tesla-roadster-specs-battery-range-speed-trims-and-more" target="_blank" rel="noopener">Not a Tesla App｜Battery, range, speed, trims</a><a href="https://en.wikipedia.org/wiki/Shock_diamond" target="_blank" rel="noopener">Wikipedia｜Shock diamond（馬赫環）</a><a href="https://insideevs.com/news/812152/tesla-roadster-backflip-suction-2g/" target="_blank" rel="noopener">InsideEVs｜All the tricks the Roadster did（2 g suction）</a><a href="https://www.nbcnews.com/tech/tech-news/elon-musk-shows-flying-tesla-roadster-years-delays-rcna603905" target="_blank" rel="noopener">NBC News｜Flying Roadster over five Teslas</a><a href="https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/" target="_blank" rel="noopener">TechCrunch｜Flies and falls with style</a></div>
@@ -742,7 +788,7 @@ const COMPONENTS=[
 ];
 const LIMITS={grip:{c:'#9bd8d1',name:['輪胎抓地力','Tire grip']},torque:{c:'#e6bb72',name:['馬達扭力','Motor torque']},power:{c:'#ee9c8b',name:['馬達功率','Motor power']},rpm:{c:'#b9a6e6',name:['轉速上限','Rev limit']}};
 
-const state={mode:'free',view:'overview',exp:'launch',trim:'performance',cfg:{...TRIMS.performance},ref:'supercar',burn:.4,speed:'auto',countdown:0,stunt:{loop:{speed:40,radius:10.5},jump:{speed:54,burn:.5,roll:true}},stuntSum:null,ui:'expert',stash:null,game:{challenge:'launch',tech:{fan:false,thrust:false,light:false,motor:false},loopSpeed:40,jumpBurn:.5,stars:{launch:0,loop:0,jump:0}},paused:false,phase:'ready',time:0,
+const state={mode:'free',view:'overview',exp:'launch',trim:'performance',cfg:{...TRIMS.performance},ref:'supercar',burn:.4,speed:1,countdown:0,stunt:{loop:{speed:40,radius:10.5},jump:{speed:54,burn:.5,roll:true}},stuntSum:null,ui:'expert',stash:null,game:{challenge:'launch',tech:{fan:false,thrust:false,light:false,motor:false},loopSpeed:40,jumpBurn:.5,stars:{launch:0,loop:0,jump:0}},paused:false,phase:'ready',time:0,
   runs:null,trace:{you:[],ref:[]},sum:null,refSum:null,change:null,changedKey:null,engine:null};
 window.lab={state,go,reset:resetRun,setView,setMode,setExp,applyTrim};
 let toastTimer,acc=0,last=performance.now(),lastUi=0;
@@ -1013,7 +1059,8 @@ function simSpeed(){if(state.speed!=='auto')return state.speed;const r=state.run
 // first diamond at x ≈ 0.67 · D · √(p0 / p_atm).
 const NOZZLE_D=.04;
 function machInfo(c,hop){const n=hop?6:4,F=c.thrust*1000/n,p0=F/(1.5*Math.PI*(NOZZLE_D/2)**2)/1e5;return {p0,s:.67*NOZZLE_D*Math.sqrt(Math.max(1.9,p0)/1.013)};}
-function setLive(){if(state.ui==='simple'&&$('game-go'))$('game-go').textContent=state.phase==='running'?T('挑戰中…','Running…'):{launch:T('開始挑戰：起跑！','Go: launch!'),loop:T('開始挑戰：衝上坡道！','Go: hit the ramp!'),jump:T('開始挑戰：起飛！','Go: take off!')}[state.game.challenge];$('live').textContent=state.paused?T('已暫停','Paused'):state.phase==='running'?(isStunt()?T('特技進行中','Stunt running'):state.exp==='hop'?T('噴氣中','Firing'):T('衝刺中','Running')):state.phase==='done'?T('完成！','Done!'):T('準備起跑','Ready');}
+function goText(){return state.phase==='running'?T('挑戰中…','Running…'):`<span class="go-pre">${T('開始挑戰：','Go: ')}</span>${{launch:T('起跑！','launch!'),loop:T('衝上坡道！','hit the ramp!'),jump:T('起飛！','take off!')}[state.game.challenge]}`;}
+function setLive(){if(state.ui==='simple'&&$('game-go'))$('game-go').innerHTML=goText();$('live').textContent=state.paused?T('已暫停','Paused'):state.phase==='running'?(isStunt()?T('特技進行中','Stunt running'):state.exp==='hop'?T('噴氣中','Firing'):T('衝刺中','Running')):state.phase==='done'?T('完成！','Done!'):T('準備起跑','Ready');}
 function renderAll(){renderGame();renderHeader();renderView();renderScore();renderLimits();renderMission();renderInsight();renderImpact();updateCue();drawChart();updateFeel(true);}
 
 // ---------- Runs ----------
@@ -1031,7 +1078,8 @@ function go(){
   state.phase='running';state.countdown=reduced?0:1.2;setPaused(false);if(state.countdown>0)blip(440,.12,'square',.1);state.engine?.resetCamera();
   if(state.exp==='hop'&&state.sum.tw<=1)toast(T('推力比車重小……看看會發生什麼事？','Thrust is less than weight… what will happen?'));
   if(state.exp==='hop'&&state.sum.air<=0&&state.cfg.thrust>0)toast(T('氣瓶是空的！推進器噴不出東西。','The tank is empty! Nothing to blow.'));
-  if(innerWidth<=760)$('stage').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+  if(state.ui==='simple'){if(innerWidth<=1200&&scrollY>0)scrollTo({top:0,behavior:reduced?'auto':'smooth'});}
+  else if(innerWidth<=760)$('stage').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
 }
 function stepRun(h){
   const r=state.runs;if(!r)return;const you=cfgYou(),ref=cfgRef(),compare=state.mode==='compare';
@@ -1144,7 +1192,7 @@ const LAUNCH_STARS=[2,1,.66];
 try{const saved=JSON.parse(localStorage.getItem('roadster-lab-stars')||'null');if(saved)Object.assign(state.game.stars,saved);}catch{}
 function refreshAll(){recompute();resetRun(false);syncComponents();syncTrim();syncStunt();renderAll();state.engine?.syncCar();state.engine?.setView();}
 function applyGame(){
-  const g=state.game;state.cfg=techCfg();state.trim=matchTrim();state.exp=g.challenge;state.mode='free';state.view='overview';state.speed='auto';
+  const g=state.game;state.cfg=techCfg();state.trim=matchTrim();state.exp=g.challenge;state.mode='free';state.view='overview';state.speed=1;
   Object.assign(state.stunt.loop,{speed:g.loopSpeed,radius:10.5});Object.assign(state.stunt.jump,{speed:54,burn:g.jumpBurn,roll:true});state.change=null;state.changedKey=null;refreshAll();
 }
 function setUI(ui,save=true){
@@ -1188,11 +1236,11 @@ function renderGame(){
   $$('[data-star]').forEach(e=>e.textContent=starText(g.stars[e.dataset.star]));
   const total=g.stars.launch+g.stars.loop+g.stars.jump;$('game-stars').textContent=`★ ${total} / 9`;
   $$('[data-tech]').forEach(b=>b.setAttribute('aria-pressed',String(g.tech[b.dataset.tech])));
-  $('opt-loop').hidden=g.challenge!=='loop';$('opt-jump').hidden=g.challenge!=='jump';
+  $('game').classList.toggle('has-opt',g.challenge!=='launch');$('opt-loop').hidden=g.challenge!=='loop';$('opt-jump').hidden=g.challenge!=='jump';
   $$('[data-gspeed]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.gspeed===g.loopSpeed)));
   $$('[data-gburn]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.gburn===g.jumpBurn)));
-  $('game-go').textContent=state.phase==='running'?T('挑戰中…','Running…'):{launch:T('開始挑戰：起跑！','Go: launch!'),loop:T('開始挑戰：衝上坡道！','Go: hit the ramp!'),jump:T('開始挑戰：起飛！','Go: take off!')}[g.challenge];
-  $('game-hint').textContent={launch:T('看看 0–100 km/h 要幾秒。起步太快看不清楚，會自動慢動作。','How many seconds to 100 km/h? The start plays in slow motion automatically.'),loop:T('車子要爬上 21 公尺、幾乎倒過來的坡道，再翻身落地。哪些黑科技一定要開？','The car must climb a 21 m ramp until nearly upside down, then roll over and land. Which tech is a must?'),jump:T('要飛過 4.1 公尺高的 Semi 和其他 4 台車。推力要大於重量，車子才飛得起來。','Clear the 4.1 m Semi and four other cars. Thrust must beat weight to fly.')}[g.challenge];
+  $('game-go').innerHTML=goText();
+  $('game-hint').textContent={launch:T('看看 0–100 km/h 要幾秒。這是真實時間，眼睛別眨！','How many seconds to 100 km/h? This is real time, so don’t blink!'),loop:T('車子要爬上 21 公尺、幾乎倒過來的坡道，再翻身落地。哪些黑科技一定要開？','The car must climb a 21 m ramp until nearly upside down, then roll over and land. Which tech is a must?'),jump:T('要飛過 4.1 公尺高的 Semi 和其他 4 台車。推力要大於重量，車子才飛得起來。','Clear the 4.1 m Semi and four other cars. Thrust must beat weight to fly.')}[g.challenge];
   if($('result-banner').hidden){$('gr-title').textContent=T('挑戰目標','Goal');$('gr-sub').textContent='';renderGameList(goalItems());}
 }
 $$('[data-ui]').forEach(b=>b.onclick=()=>setUI(b.dataset.ui));$('to-expert').onclick=()=>setUI('expert');
@@ -1213,7 +1261,7 @@ $$('[data-mode]').forEach(b=>b.onclick=()=>{setMode(b.dataset.mode);if(innerWidt
 $$('[data-view]').forEach(b=>b.onclick=()=>{setView(b.dataset.view);if(innerWidth<=760)$('stage').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});});
 $('go').onclick=go;$('restart').onclick=()=>resetRun(true);
 $('pause').onclick=()=>setPaused(!state.paused);
-$('speed').onclick=()=>{const order=['auto',1,.5,.25,.1];state.speed=order[(order.indexOf(state.speed)+1)%order.length];renderHeader();};
+$('speed').onclick=()=>{const order=[1,.5,.25,.1,'auto'];state.speed=order[(order.indexOf(state.speed)+1)%order.length];renderHeader();};
 $('reveal-demo').onclick=()=>{applyTrim('rocket');state.exp='launch';recompute();state.speed='auto';if(state.mode!=='compare'){state.view='overview';}renderAll();state.engine?.setView();go();toast(T('Rocket 版本：前 100 km/h 用 0.2 倍慢動作，之後加速到真實速度。','Rocket version: 0.2× slow motion to 100 km/h, then real time.'));};
 $('reset-view').onclick=()=>state.engine?.resetCamera();
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if($('app').requestFullscreen)await $('app').requestFullscreen();else toast(T('此瀏覽器不支援全螢幕。','Full screen is not supported here.'));}catch{toast(T('目前無法切換全螢幕。','Cannot switch to full screen right now.'));}};
@@ -1222,10 +1270,12 @@ $('about-close').onclick=()=>$('about').close();
 $('about').addEventListener('click',e=>{if(e.target===$('about')){const r=$('about').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('about').close();}});
 $('scene').addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPaused(!state.paused);}else if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(e.key)){e.preventDefault();state.engine?.key(e.key);}});
 addEventListener('resize',()=>drawChart());
+// Tablets and phones size the 3D view so it and the challenge controls fill exactly one screen.
+new ResizeObserver(()=>document.documentElement.style.setProperty('--game-h',$('game').offsetHeight+'px')).observe($('game'));
 
-// ---------- Sound: synthesized with Web Audio, off until the viewer turns it on ----------
-const audio={ctx:null,on:false,n:null,lastPost:null};
-try{audio.on=localStorage.getItem('roadster-lab-sound')==='on';}catch{}
+// ---------- Sound: synthesized with Web Audio, on unless the viewer turned it off ----------
+const audio={ctx:null,on:true,n:null,lastPost:null};
+try{audio.on=localStorage.getItem('roadster-lab-sound')!=='off';}catch{}
 function audioInit(){
   if(audio.ctx)return true;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;
   const ctx=new AC(),master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
@@ -1247,8 +1297,10 @@ function setSound(on,announce=true){
 }
 function syncSound(){$$('[data-sound-toggle]').forEach(b=>{b.setAttribute('aria-pressed',String(audio.on));b.setAttribute('aria-label',audio.on?T('關閉音效','Turn sound off'):T('打開音效','Turn sound on'));b.querySelector('use').setAttribute('href',audio.on?'#i-sound':'#i-sound-off');const s=b.querySelector('span');if(s)s.textContent=audio.on?T('音效：開（音高＝馬達轉速）','Sound on (pitch = motor rpm)'):T('打開音效，用耳朵聽速度','Turn on sound to hear the speed');});}
 $$('[data-sound-toggle]').forEach(b=>b.onclick=()=>setSound(!audio.on));
-// A saved "on" still needs a user gesture before the browser allows audio.
-if(audio.on)document.addEventListener('pointerdown',()=>{if(audio.on)setSound(true,false);},{once:true});
+// Browsers only allow audio after a user gesture, so sound starts on the first tap or key press.
+const UNLOCK=['pointerdown','pointerup','touchend','click','keydown'];
+function unlockAudio(){if(audio.on&&audio.ctx?.state!=='running')setSound(true,false);if(!audio.on||audio.ctx?.state==='running')UNLOCK.forEach(e=>document.removeEventListener(e,unlockAudio,true));}
+UNLOCK.forEach(e=>document.addEventListener(e,unlockAudio,true));
 document.addEventListener('visibilitychange',()=>{if(!audio.ctx)return;document.hidden?audio.ctx.suspend():audio.on&&audio.ctx.resume();});
 function blip(freq,dur,type='sine',vol=.2,when=0,slide=0){if(!audio.on||!audio.ctx)return;const c=audio.ctx,t=c.currentTime+when,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+dur);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g).connect(audio.n.master);o.start(t);o.stop(t+dur+.05);}
 function whoosh(vol){if(!audio.on||!audio.ctx)return;const c=audio.ctx,t=c.currentTime,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=audio.n.buf;f.type='bandpass';f.frequency.value=2200;f.Q.value=1.2;g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);s.connect(f).connect(g).connect(audio.n.master);s.start(t,Math.random());s.stop(t+.1);}
