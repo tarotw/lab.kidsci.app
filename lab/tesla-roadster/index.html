@@ -158,6 +158,10 @@ button.label{cursor:pointer}button.label:hover{border-color:var(--gold)}
 .run-cue strong span{font-size:12px;color:var(--muted);margin-left:5px}
 .run-cue .cue-row{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:#d6e6e5;font-variant-numeric:tabular-nums;margin-top:3px}
 .run-cue .cue-row b{font-weight:500;color:var(--coral)}
+.run-cue .cue-rpm span{font-size:10px;color:#e6bb72}
+.sound-toggle[aria-pressed=true]{border-color:#e6bb72;color:#f2d69f;background:#3b3529d9}
+.sound-chip{justify-content:flex-start;gap:8px;min-height:38px;padding:0 12px;border:1px solid #c9a76b88;border-radius:20px;font-size:12px;color:#f2d69f;align-self:flex-start}
+.sound-chip svg{width:18px;height:18px}.sound-chip[aria-pressed=true]{background:#3b3529;border-color:#e6bb72}
 .run-cue .slowmo{display:inline-block;margin-left:6px;padding:0 6px;border-radius:8px;background:#e6bb7233;color:#f2d69f;font-size:9px}
 .run-cue.is-count strong{font-size:54px;text-align:center;color:#f2d69f}
 .run-cue.is-hop{border-color:#e6bb7290;background:#3b3529e8}
@@ -398,6 +402,8 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <symbol id="i-loop" viewBox="0 0 24 24"><path d="M3 20h6c6 0 10-4 10-9a6 6 0 0 0-12 0c0 2 1 4 3 4"/><path d="m8 13 2 2 2-2"/></symbol>
 <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 17V7h11v10M13 10h5l4 4v3h-9M2 17h20"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M7 4q5-4 10 0"/></symbol>
 <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 8h10a5 5 0 0 1 4.6 7l-.8 1.8a2.5 2.5 0 0 1-4.3.3L15 15H9l-1.5 2.1a2.5 2.5 0 0 1-4.3-.3L2.4 15A5 5 0 0 1 7 8zM7 10.5v3M5.5 12h3"/><circle cx="16" cy="11" r=".8"/><circle cx="18" cy="13" r=".8"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+<symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM17 10l4 4m0-4-4 4"/></symbol>
 <symbol id="i-news" viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M7 9h7M7 13h7M7 16h4"/></symbol>
 </defs></svg>
 <div class="app" id="app">
@@ -412,9 +418,9 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <canvas id="speedfx" aria-hidden="true"></canvas>
 <canvas id="scene" tabindex="0" aria-label="可旋轉的 3D 模型。拖曳轉動，滾輪縮放；方向鍵旋轉，加減鍵縮放，Home 回到預設視角。" data-en-label="Rotatable 3D model. Drag to orbit, scroll to zoom; arrow keys rotate, plus and minus zoom, Home resets the view."></canvas>
 <div class="scene-copy"><div class="location" id="location">McGregor, Texas　31.40° N / 97.43° W</div><h2 id="scene-title"></h2><p id="scene-description"></p><span class="view-number" id="view-number"></span></div>
-<div class="scene-toptools"><button class="icon-button" id="about-mobile" aria-label="操作說明與資料來源" data-en-label="Controls and sources"><svg><use href="#i-info"/></svg></button><button class="icon-button" id="reset-view" aria-label="回到預設視角" data-en-label="Reset view"><svg><use href="#i-reset"/></svg></button><button class="icon-button" id="fullscreen" aria-label="全螢幕" data-en-label="Full screen"><svg><use href="#i-expand"/></svg></button></div>
+<div class="scene-toptools"><button class="icon-button sound-toggle" id="sound-toggle" data-sound-toggle aria-pressed="false" aria-label="打開音效"><svg><use href="#i-sound-off"/></svg></button><button class="icon-button" id="about-mobile" aria-label="操作說明與資料來源" data-en-label="Controls and sources"><svg><use href="#i-info"/></svg></button><button class="icon-button" id="reset-view" aria-label="回到預設視角" data-en-label="Reset view"><svg><use href="#i-reset"/></svg></button><button class="icon-button" id="fullscreen" aria-label="全螢幕" data-en-label="Full screen"><svg><use href="#i-expand"/></svg></button></div>
 <div class="labels" id="labels"></div>
-<div class="run-cue" id="run-cue" hidden><small id="cue-label"></small><strong id="cue-main"></strong><div class="cue-row"><span id="cue-a"></span><b id="cue-b"></b></div><div class="cue-progress"><i id="cue-progress"></i></div></div>
+<div class="run-cue" id="run-cue" hidden><small id="cue-label"></small><strong id="cue-main"></strong><div class="cue-row"><span id="cue-a"></span><b id="cue-b"></b></div><div class="cue-row cue-rpm"><span id="cue-rpm"></span></div><div class="cue-progress"><i id="cue-progress"></i></div></div>
 <aside class="knowledge" id="knowledge"><h3 id="knowledge-title"></h3><p id="knowledge-copy"></p></aside>
 <div class="magnify" id="scale-note"><i></i><span id="scale-text"></span></div>
 <div class="stage-bottom"><p><span class="desktop-gesture" data-en="Drag to orbit · scroll to zoom · tap a tag to explore">拖曳旋轉 · 滾動縮放 · 點選標記，看看零件的秘密</span><span class="mobile-gesture" data-en="↕ Scroll for controls · ↔ swipe to turn">↕ 上下滑看控制　↔ 左右滑轉模型</span></p></div>
@@ -470,6 +476,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <div class="game-option" id="opt-jump" hidden><span data-en="Upward burn">往上噴氣</span><div class="segmented" role="group" aria-label="往上噴氣" data-en-label="Upward burn"><button data-gburn="0.3"><span data-en="Short">短</span></button><button data-gburn="0.5"><span data-en="Just right">剛好</span></button><button data-gburn="0.7"><span data-en="Long">長</span></button></div></div>
 <button class="game-go" id="game-go"></button>
 <p class="game-hint" id="game-hint"></p>
+<button class="sound-chip" data-sound-toggle aria-pressed="false" aria-label="打開音效"><svg aria-hidden="true"><use href="#i-sound-off"/></svg><span></span></button>
 <button class="to-expert" id="to-expert"><span data-en="Want to tune every number? Switch to Expert mode →">想調整每個數字？切換到專家模式 →</span></button>
 </aside>
 </main>
@@ -503,6 +510,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <p style="margin-top:10px">推估值：車身（不含電池）1,080 kg、駕駛 75 kg、電池每 kWh 6 kg、氣瓶每公升 0.6 kg 外加 0.55 kg 的高壓空氣（約 690 bar）、可用空氣 85%、噴氣速度 650 m/s、後輪靜態負重 56%、輪半徑 0.355 m、迎風面積 1.75 m²、滾動阻力係數 0.013。續航以 110 km/h 定速計算。風扇耗電以每 4,700 kgf 約 80 kW 估算。這些數字讓三個版本接近官方 0–60 mph 宣稱，但都不是特斯拉公布的資料。</p>
 <h3>發表會的兩個特技</h3><p><strong>貼牆坡道：</strong>車子沿著像半個雲霄飛車迴圈的弧形坡道往上爬，頂端約 21 公尺、幾乎倒過來（約 170°）。特斯拉說底盤風扇最多能產生約 2 g 的吸力，讓車倒著也貼得住；接著冷氣推進器把車推離坡道，前方推進器讓車身沿著車長方向左右翻轉 180°，車子翻正後車頭朝後（朝助跑來的方向）落地。本實驗用「自動駕駛定速」爬坡，檢查三件事：坡道推輪子的力 N = m·v²/R + 風扇吸力 + m·g·cosθ 是否一直大於 0、後輪抓地力 μ×N 是否推得贏重力，以及推進器的空氣夠不夠翻正和剎車。</p><p><strong>飛越車隊：</strong>車子飛過並排停放的 Cybercab、Model 3、Model Y、Cybertruck 和 4.1 公尺高的 Semi，最高約 7–8 公尺，還在空中桶滾一圈。本實驗用車底噴嘴朝下噴氣起飛，之後是拋體運動；車子的外形會跟每台車的高度比對，桶滾時車身變「高」會吃掉間距。車輛排列順序、間距、坡道寬度與噴嘴配置都是示意，並非發表會實際尺寸。</p>
 <h3>噴流裡的「馬赫環」</h3><p>高壓空氣從噴嘴衝出時比音速還快，壓力又比外面的空氣高，噴流會一下膨脹、一下被壓回去，形成一串菱形的震波，叫做「馬赫環」（shock diamonds）。第一個馬赫環離噴嘴約 x ≈ 0.67 × 噴嘴直徑 × √(噴嘴壓力 ÷ 大氣壓)。本實驗假設每個噴嘴直徑 4 cm、推力係數 1.5，用推力反推噴嘴壓力：推力越大，壓力越高，馬赫環越拉開。注意：冷空氣不會像火箭火焰那樣發光，現實中要靠水氣凝結或紋影攝影才看得見；發表會報導也沒有提到。畫面上的亮點是為了教學而標出位置。</p>
+<h3>聲音也是科學</h3><p>打開喇叭，就能「聽」到速度：馬達的高頻聲音，音高跟馬達轉速成正比（轉速 = 車速 ÷ 輪半徑 × 齒輪比），轉到 23,500 rpm 上限時音高就不再升高；風聲大小跟速度的平方有關，和空氣阻力一樣；胎噪只有輪子著地時才有，飛起來就消失；路邊標柱每 10 公尺一支，經過時「咻」一聲，越快越密。電動車本身很安靜，所以各國法規要求低速（例如時速 20 公里以下）時發出提示音，提醒行人注意。這些聲音都是瀏覽器即時合成的示意聲，不是錄下來的真實聲音。</p>
 <h3>小朋友的表情代表什麼？</h3><p>香氛吊飾的角度就是「加速度 ÷ 重力」的反正切，和真實車上吊飾的物理一樣。推背感的 g 值是模型算出的水平加速度除以 9.81；表情只是比喻。太空梭升空約 3 g、一般人在雲霄飛車上約 1–1.5 g 水平加速度。</p>
 <h3>資料與延伸閱讀</h3></div>
 <div class="en">
@@ -525,6 +533,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <p style="margin-top:10px">Estimates: body without battery 1,080 kg, driver 75 kg, 6 kg per kWh, tank 0.6 kg per litre plus 0.55 kg of air at ≈690 bar, 85% usable air, 650 m/s exhaust, 56% static rear load, 0.355 m wheel radius, 1.75 m² frontal area, rolling coefficient 0.013. Range is a steady 110 km/h cruise. Fan power is ≈80 kW per 4,700 kgf. These values bring the three versions close to Tesla's 0–60 claims, but none of them are Tesla data.</p>
 <h3>The two reveal stunts</h3><p><strong>Wall ramp:</strong> the car climbed a curved ramp shaped like half a roller-coaster loop to about 21 m, nearly upside down (about 170°). Tesla says the underbody fans can pull up to about 2 g, so the car sticks even inverted; cold-gas thrusters then pushed it off and front thrusters rolled it 180° about its length, so it came down upright facing backwards, toward where it started. This lab climbs at a constant autopilot speed and checks three things: whether the ramp keeps pressing on the wheels, N = m·v²/R + fan suction + m·g·cosθ &gt; 0; whether rear-tire grip μ×N can beat gravity; and whether the air lasts for the flip and the braking burn.</p><p><strong>Fleet jump:</strong> the car leapt over a parked Cybercab, Model 3, Model Y, Cybertruck and the 4.1 m Semi, peaking around 7–8 m, with a barrel roll. Here the down nozzles lift the car, then it follows projectile motion; the car’s outline is checked against each vehicle’s height, and rolling makes the car taller and eats into the gap. Vehicle order, spacing, ramp width and nozzle layout are illustrative, not the reveal’s exact dimensions.</p>
 <h3>Mach diamonds in the jet</h3><p>Compressed air leaves the nozzle faster than sound and at a higher pressure than the air around it, so the jet expands, gets squeezed back, and repeats, forming a chain of diamond-shaped shock waves. The first one sits about x ≈ 0.67 × nozzle diameter × √(nozzle pressure ÷ atmospheric pressure) from the nozzle. This lab assumes 4 cm nozzles and a thrust coefficient of 1.5 and works the nozzle pressure out from the thrust: more thrust, higher pressure, wider spacing. Cold air does not glow like a rocket flame; in real life you only see the diamonds through condensation or schlieren photography, and the reveal coverage does not mention them. The bright beads mark where they would be.</p>
+<h3>Sound is science too</h3><p>Turn the speaker on to hear the speed: the motor whine rises in pitch with motor rpm (rpm = speed ÷ wheel radius × gear ratio) and stops rising at the 23,500 rpm limit; wind noise grows with speed squared, just like air drag; tire roar is there only while the wheels touch the ground; and each roadside post, one every 10 m, goes “whoosh” — faster speed, faster rhythm. Electric cars are so quiet that the law requires a warning sound at low speed (for example below 20 km/h) so pedestrians notice them. All sounds are synthesized live in the browser for illustration, not recordings.</p>
 <h3>What do the faces mean?</h3><p>The air freshener hangs at arctan(acceleration ÷ gravity), exactly like in a real car. The g number is the model's forward acceleration ÷ 9.81; the faces are just a metaphor. A Space Shuttle launch peaks around 3 g.</p>
 <h3>Sources and further reading</h3></div>
 <div class="source-links"><a href="https://www.tesla.com/roadster" target="_blank" rel="noopener">Tesla｜Roadster</a><a href="https://electrek.co/2026/10/15/tesla-unveils-cyberfied-new-roadster-kickflip/" target="_blank" rel="noopener">Electrek｜Tesla unveils Cyberfied new Roadster that can kickflip</a><a href="https://electrek.co/2026/10/15/an-updated-technical-look-at-teslas-kick-flipping-0-60-in-1s-next-gen-roadster/" target="_blank" rel="noopener">Electrek｜A technical look at the kick-flipping Roadster</a><a href="https://www.hagerty.com/media/news/new-tesla-roadster-revealed-and-it-flies/" target="_blank" rel="noopener">Hagerty｜New Tesla Roadster revealed, and it flies</a><a href="https://insideevs.com/news/812242/tesla-roadster-2026-specs/" target="_blank" rel="noopener">InsideEVs｜Tesla Roadster full specs</a><a href="https://www.teslarati.com/tesla-roadster-specs-configurations/" target="_blank" rel="noopener">Teslarati｜Three configs, one can fly</a><a href="https://www.teslarati.com/tesla-roadster-downforce-fan-system/" target="_blank" rel="noopener">Teslarati｜Roadster fan system and thrusters</a><a href="https://evxl.co/2026/10/16/tesla-roadster-everything-we-know/" target="_blank" rel="noopener">EVXL｜Everything we know</a><a href="https://theevreport.com/tesla-roadster-unveil-spacex-cold-gas-thrusters" target="_blank" rel="noopener">The EV Report｜SpaceX cold-gas thrusters</a><a href="https://www.notateslaapp.com/news/4840/new-tesla-roadster-specs-battery-range-speed-trims-and-more" target="_blank" rel="noopener">Not a Tesla App｜Battery, range, speed, trims</a><a href="https://en.wikipedia.org/wiki/Shock_diamond" target="_blank" rel="noopener">Wikipedia｜Shock diamond（馬赫環）</a><a href="https://insideevs.com/news/812152/tesla-roadster-backflip-suction-2g/" target="_blank" rel="noopener">InsideEVs｜All the tricks the Roadster did（2 g suction）</a><a href="https://www.nbcnews.com/tech/tech-news/elon-musk-shows-flying-tesla-roadster-years-delays-rcna603905" target="_blank" rel="noopener">NBC News｜Flying Roadster over five Teslas</a><a href="https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/" target="_blank" rel="noopener">TechCrunch｜Flies and falls with style</a></div>
@@ -745,7 +754,7 @@ function applyStatic(){
   $$('[data-en-alt]').forEach(el=>{if(el.dataset.zhAlt==null)el.dataset.zhAlt=el.alt;el.alt=lang==='en'?el.dataset.enAlt:el.dataset.zhAlt;});
   $('lang-zh').setAttribute('aria-pressed',String(lang!=='en'));$('lang-en').setAttribute('aria-pressed',String(lang==='en'));
 }
-function setLanguage(next){lang=next;clearTimeout(toastTimer);$('toast').hidden=true;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();renderAll();state.engine?.setView(false);}
+function setLanguage(next){lang=next;clearTimeout(toastTimer);$('toast').hidden=true;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();renderAll();syncSound();state.engine?.setView(false);}
 $('lang-zh').onclick=()=>setLanguage('zh-Hant');$('lang-en').onclick=()=>setLanguage('en');
 
 // ---------- Panel ----------
@@ -1010,23 +1019,24 @@ function go(){
   resetRun(false);
   const you=cfgYou(),ref=cfgRef();
   state.runs=isStunt()?{you:ST.init(you,state.exp,stuntOpt()),ref:{done:true}}:state.exp==='hop'?{you:P.hopState(you),ref:P.hopState(ref)}:{you:P.launchState(you),ref:P.launchState(ref)};
-  state.phase='running';state.countdown=reduced?0:1.2;setPaused(false);state.engine?.resetCamera();
+  state.phase='running';state.countdown=reduced?0:1.2;setPaused(false);if(state.countdown>0)blip(440,.12,'square',.1);state.engine?.resetCamera();
   if(state.exp==='hop'&&state.sum.tw<=1)toast(T('推力比車重小……看看會發生什麼事？','Thrust is less than weight… what will happen?'));
   if(state.exp==='hop'&&state.sum.air<=0&&state.cfg.thrust>0)toast(T('氣瓶是空的！推進器噴不出東西。','The tank is empty! Nothing to blow.'));
   if(innerWidth<=760)$('stage').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
 }
 function stepRun(h){
   const r=state.runs;if(!r)return;const you=cfgYou(),ref=cfgRef(),compare=state.mode==='compare';
-  if(isStunt()){ST.step(r.you,you,h,stuntOpt());state.time+=h;if(r.you.done){state.phase='done';setLive();if(state.ui==='simple')showResult(r.you);else{const win=stuntWin(r.you);toast((win?'✓ ':'✗ ')+stuntExplain(r.you));}}return;}
+  if(isStunt()){ST.step(r.you,you,h,stuntOpt());state.time+=h;if(r.you.done){state.phase='done';setLive();if(r.you.lifted&&r.you.outcome!=='hit')thud(r.you.landV);else if(r.you.outcome==='hit')blip(120,.35,'sawtooth',.25,0,50);chime(stuntWin(r.you));if(state.ui==='simple')showResult(r.you);else{const win=stuntWin(r.you);toast((win?'✓ ':'✗ ')+stuntExplain(r.you));}}return;}
   if(state.exp==='hop'){if(!r.you.done)P.hopStep(r.you,you,h,state.burn);if(compare&&!r.ref.done)P.hopStep(r.ref,ref,h,state.burn);}
   else{if(!r.you.done)P.launchStep(r.you,you,h);if(compare&&!r.ref.done)P.launchStep(r.ref,ref,h);}
   state.time+=h;
   for(const k of ['you','ref'])if(r[k].done){r[k].a=0;if(state.exp==='launch')r[k].v=0;}
-  if(r.you.done&&(!compare||r.ref.done)){state.phase='done';setLive();if(state.ui==='simple'){showResult(r.you);return;}toast(state.exp==='hop'?(r.you.lifted?T(`落地！最高 ${fmt(r.you.peak,1)} 公尺。`,`Landed! Peak ${fmt(r.you.peak,1)} m.`):T('沒有離地：推力不夠大。','No lift-off: not enough thrust.')):T('衝過 400 公尺！看看左邊的成績單和曲線。','Past 400 m! Check the scorecard and the trace.'));}
+  if(r.you.done&&(!compare||r.ref.done)){state.phase='done';setLive();if(state.exp==='hop'&&r.you.lifted)thud(2);if(state.exp==='launch')chime(state.ui!=='simple'||gameResult(r.you).win);if(state.ui==='simple'){showResult(r.you);return;}toast(state.exp==='hop'?(r.you.lifted?T(`落地！最高 ${fmt(r.you.peak,1)} 公尺。`,`Landed! Peak ${fmt(r.you.peak,1)} m.`):T('沒有離地：推力不夠大。','No lift-off: not enough thrust.')):T('衝過 400 公尺！看看左邊的成績單和曲線。','Past 400 m! Check the scorecard and the trace.'));}
 }
 function record(){const r=state.runs;if(!r)return;if(isStunt()){const tr=state.trace.you,s=r.you,last=tr[tr.length-1];if(!last||s.t-last.t>=1/30)tr.push({t:s.t,x:s.x,y:s.y});return;}for(const k of ['you','ref']){const s=r[k];if(k==='ref'&&state.mode!=='compare')continue;const tr=state.trace[k],last=tr[tr.length-1];if(!last||s.t-last.t>=1/90)tr.push(state.exp==='hop'?{t:s.t,v:s.y}:{t:s.t,v:s.v,limit:s.limit});}}
 function updateCue(){
   const r=state.runs,cue=$('run-cue');
+  {const y=r?.you,onWheels=y&&(state.exp==='launch'||(isStunt()&&(y.phase==='runup'||y.phase==='ramp')))&&!y.done;$('cue-rpm').textContent=onWheels?T(`馬達轉速 ${fmt(motorRpm(y.v))} rpm`,`Motor ${fmt(motorRpm(y.v))} rpm`):'';}
   $('knowledge').hidden=state.mode==='compare'||(!!r&&state.exp==='launch');
   if(!r){cue.hidden=true;return;}
   cue.hidden=false;const you=r.you,hop=state.exp==='hop';cue.classList.toggle('is-hop',hop);
@@ -1204,16 +1214,64 @@ $('about').addEventListener('click',e=>{if(e.target===$('about')){const r=$('abo
 $('scene').addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPaused(!state.paused);}else if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(e.key)){e.preventDefault();state.engine?.key(e.key);}});
 addEventListener('resize',()=>drawChart());
 
+// ---------- Sound: synthesized with Web Audio, off until the viewer turns it on ----------
+const audio={ctx:null,on:false,n:null,lastPost:null};
+try{audio.on=localStorage.getItem('roadster-lab-sound')==='on';}catch{}
+function audioInit(){
+  if(audio.ctx)return true;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;
+  const ctx=new AC(),master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
+  const buf=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  const noise=()=>{const s=ctx.createBufferSource();s.buffer=buf;s.loop=true;s.start();return s;},gain=()=>{const g=ctx.createGain();g.gain.value=0;return g;},filter=(type,f,q=1)=>{const b=ctx.createBiquadFilter();b.type=type;b.frequency.value=f;b.Q.value=q;return b;},osc=(type,f)=>{const o=ctx.createOscillator();o.type=type;o.frequency.value=f;o.start();return o;};
+  // Motor whine follows motor rpm; wind and tire roar are filtered noise; thrusters hiss; fans hum.
+  const whineA=osc('sawtooth',100),whineB=osc('triangle',200),whineF=filter('bandpass',400,2),whineG=gain();whineA.connect(whineF);whineB.connect(whineF);whineF.connect(whineG).connect(master);
+  const windF=filter('bandpass',500,.6),windG=gain();noise().connect(windF).connect(windG).connect(master);
+  const tireG=gain();noise().connect(filter('lowpass',260)).connect(tireG).connect(master);
+  const jetG=gain();noise().connect(filter('highpass',900)).connect(jetG).connect(master);
+  const fan=osc('square',90),fanG=gain();fan.connect(filter('lowpass',400)).connect(fanG).connect(master);
+  const avasG=gain();osc('sine',330).connect(avasG);osc('sine',495).connect(avasG);avasG.connect(master);
+  audio.ctx=ctx;audio.n={master,whineA,whineB,whineF,whineG,windF,windG,tireG,jetG,fan,fanG,avasG,buf};return true;
+}
+function setSound(on,announce=true){
+  audio.on=on;try{localStorage.setItem('roadster-lab-sound',on?'on':'off');}catch{}
+  if(on&&audioInit()){audio.ctx.resume();audio.n.master.gain.setTargetAtTime(.8,audio.ctx.currentTime,.05);}else if(audio.ctx)audio.n.master.gain.setTargetAtTime(0,audio.ctx.currentTime,.05);
+  syncSound();if(on&&announce)toast(T('音效打開了：音高＝馬達轉速，風聲＝空氣阻力。','Sound on: pitch = motor rpm, wind = air drag.'));
+}
+function syncSound(){$$('[data-sound-toggle]').forEach(b=>{b.setAttribute('aria-pressed',String(audio.on));b.setAttribute('aria-label',audio.on?T('關閉音效','Turn sound off'):T('打開音效','Turn sound on'));b.querySelector('use').setAttribute('href',audio.on?'#i-sound':'#i-sound-off');const s=b.querySelector('span');if(s)s.textContent=audio.on?T('音效：開（音高＝馬達轉速）','Sound on (pitch = motor rpm)'):T('打開音效，用耳朵聽速度','Turn on sound to hear the speed');});}
+$$('[data-sound-toggle]').forEach(b=>b.onclick=()=>setSound(!audio.on));
+// A saved "on" still needs a user gesture before the browser allows audio.
+if(audio.on)document.addEventListener('pointerdown',()=>{if(audio.on)setSound(true,false);},{once:true});
+document.addEventListener('visibilitychange',()=>{if(!audio.ctx)return;document.hidden?audio.ctx.suspend():audio.on&&audio.ctx.resume();});
+function blip(freq,dur,type='sine',vol=.2,when=0,slide=0){if(!audio.on||!audio.ctx)return;const c=audio.ctx,t=c.currentTime+when,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+dur);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g).connect(audio.n.master);o.start(t);o.stop(t+dur+.05);}
+function whoosh(vol){if(!audio.on||!audio.ctx)return;const c=audio.ctx,t=c.currentTime,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=audio.n.buf;f.type='bandpass';f.frequency.value=2200;f.Q.value=1.2;g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);s.connect(f).connect(g).connect(audio.n.master);s.start(t,Math.random());s.stop(t+.1);}
+function thud(speed){blip(90,.4,'sine',Math.min(.6,.15+speed*.05),0,38);}
+function chime(win){(win?[523,659,784,1047]:[392,330,262]).forEach((f,i)=>blip(f,.24,'triangle',.18,i*.11));}
+function audioUpdate(){
+  if(!audio.on||!audio.ctx)return;const n=audio.n,t=audio.ctx.currentTime,r=state.runs?.you,live=state.phase==='running'&&!state.paused&&state.countdown<=0,k=.08;
+  let v=0,ground=true,firing=false,accel=0;
+  if(r&&live){if(state.exp==='launch'){v=r.v;firing=!!r.firing;accel=r.a;}else if(isStunt()){v=r.v;ground=r.phase==='runup'||r.phase==='ramp';firing=!!(r.firing&&(r.firing.down||r.firing.front));accel=r.ax||0;}else{firing=!!r.firing;ground=r.y<=.01;}}
+  const cfg=state.cfg,rpm=motorRpm(v),pitch=90+rpm/23500*2400,drive=ground&&v>.3;
+  n.whineA.frequency.setTargetAtTime(pitch,t,k);n.whineB.frequency.setTargetAtTime(pitch*2.01,t,k);n.whineF.frequency.setTargetAtTime(300+rpm/23500*3000,t,k);
+  n.whineG.gain.setTargetAtTime(drive?.03+.05*Math.min(1,Math.abs(accel)/15):0,t,k);
+  n.windF.frequency.setTargetAtTime(400+v*25,t,k);n.windG.gain.setTargetAtTime(Math.min(.45,(v/65)**2*.45),t,k);
+  n.tireG.gain.setTargetAtTime(drive?Math.min(.3,v/60*.3):0,t,k);
+  n.jetG.gain.setTargetAtTime(firing?.4:0,t,.03);
+  n.fan.frequency.setTargetAtTime(60+cfg.fan/4700*120,t,.3);n.fanG.gain.setTargetAtTime(live&&cfg.fan>0?.035:0,t,.2);
+  n.avasG.gain.setTargetAtTime(drive&&v<20/3.6?.04:0,t,.1);
+  // Roadside posts stand every 10 m along the strip: one whoosh per post.
+  if(live&&r&&state.exp==='launch'){const idx=Math.floor(r.x/10);if(audio.lastPost!=null&&idx!==audio.lastPost&&v>3)whoosh(Math.min(.3,.08+v/350));audio.lastPost=idx;}else audio.lastPost=null;
+}
+function motorRpm(v){return Math.min(23500,v/P.RW*state.cfg.gear*60/(2*Math.PI));}
 function frame(now){
   requestAnimationFrame(frame);const dt=Math.min((now-last)/1000,.06);last=now;if(document.hidden)return;
-  if(state.phase==='running'&&!state.paused&&state.countdown>0)state.countdown=Math.max(0,state.countdown-dt);
+  if(state.phase==='running'&&!state.paused&&state.countdown>0){const before=Math.ceil(state.countdown/.4);state.countdown=Math.max(0,state.countdown-dt);const after=Math.ceil(state.countdown/.4);if(after!==before)blip(after>0?440:880,after>0?.12:.4,'square',.1);}
   else if(state.phase==='running'&&!state.paused){acc+=dt*simSpeed();const h=1/480;let n=0;while(acc>=h&&state.phase==='running'&&n<2000){stepRun(h);acc-=h;n++;}record();}
-  state.engine?.render(dt);updateFeel();
+  state.engine?.render(dt);updateFeel();audioUpdate();
   if(now-lastUi>80){updateCue();drawChart();$('clock').textContent=`${fmt(state.runs?.you.t||0,2)} s`;lastUi=now;}
 }
 document.addEventListener('visibilitychange',()=>{last=performance.now();});
 
 recompute();applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();syncStunt();
+syncSound();
 let savedUI='simple';try{if(localStorage.getItem('roadster-lab-ui')==='expert')savedUI='expert';}catch{}if(savedUI==='simple')setUI('simple',false);setPaused(false);renderAll();requestAnimationFrame(frame);
 
 // ---------- 3D scene ----------
