@@ -107,7 +107,7 @@ html[lang=en] .brand h1{letter-spacing:.02em}
 .game-go:hover:not(:disabled){background:#f2cf95}
 .game-hint{font-size:11px;color:#dccfb3;line-height:1.65}
 .to-expert{justify-content:flex-start;font-size:11px;color:#9bd8d1;min-height:32px;padding:0;text-decoration:underline;text-underline-offset:3px}
-.result-banner{position:absolute;z-index:6;left:50%;top:50%;transform:translate(-50%,-50%);width:min(390px,calc(100% - 32px));padding:18px 20px 16px;border-radius:14px;background:#142a38f2;border:1px solid #e6bb72;box-shadow:0 20px 60px #0009;text-align:center}
+.result-banner{position:absolute;z-index:6;left:50%;bottom:18px;transform:translateX(-50%);width:min(390px,calc(100% - 32px));padding:18px 20px 16px;border-radius:14px;background:#142a38f2;border:1px solid #e6bb72;box-shadow:0 20px 60px #0009;text-align:center}
 .result-banner.fail{border-color:#ee9c8b}
 .rb-stars{font-size:30px;letter-spacing:5px;color:var(--gold);line-height:1.1}.rb-stars .off{color:#4a5a63}
 .result-banner strong{display:block;font-size:22px;margin:4px 0 6px}.result-banner.fail strong{color:#f6c8bc}
@@ -161,6 +161,7 @@ button.label{cursor:pointer}button.label:hover{border-color:var(--gold)}
 .stage-bottom{position:absolute;left:22px;right:20px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:3;pointer-events:none}
 .stage-bottom p{color:#b2c7d1;font-size:10px;line-height:1.6}
 .mobile-gesture{display:none}
+.knowledge{transition:opacity .3s}.stage.is-running .knowledge{opacity:0}
 .run-cue{position:absolute;right:20px;top:76px;z-index:3;padding:12px 15px;width:230px;background:#183340e8;border:1px solid #9bd8d180;border-radius:9px;box-shadow:0 10px 30px #10243155;pointer-events:none}
 .run-cue small{display:block;font-size:10px;color:#bcd3d6}
 .run-cue strong{display:block;font-size:30px;font-weight:450;font-variant-numeric:tabular-nums;color:#e8fbf6;line-height:1.25}
@@ -1060,7 +1061,7 @@ function simSpeed(){if(state.speed!=='auto')return state.speed;const r=state.run
 const NOZZLE_D=.04;
 function machInfo(c,hop){const n=hop?6:4,F=c.thrust*1000/n,p0=F/(1.5*Math.PI*(NOZZLE_D/2)**2)/1e5;return {p0,s:.67*NOZZLE_D*Math.sqrt(Math.max(1.9,p0)/1.013)};}
 function goText(){return state.phase==='running'?T('挑戰中…','Running…'):`<span class="go-pre">${T('開始挑戰：','Go: ')}</span>${{launch:T('起跑！','launch!'),loop:T('衝上坡道！','hit the ramp!'),jump:T('起飛！','take off!')}[state.game.challenge]}`;}
-function setLive(){if(state.ui==='simple'&&$('game-go'))$('game-go').innerHTML=goText();$('live').textContent=state.paused?T('已暫停','Paused'):state.phase==='running'?(isStunt()?T('特技進行中','Stunt running'):state.exp==='hop'?T('噴氣中','Firing'):T('衝刺中','Running')):state.phase==='done'?T('完成！','Done!'):T('準備起跑','Ready');}
+function setLive(){$('stage').classList.toggle('is-running',state.phase==='running');if(state.ui==='simple'&&$('game-go'))$('game-go').innerHTML=goText();$('live').textContent=state.paused?T('已暫停','Paused'):state.phase==='running'?(isStunt()?T('特技進行中','Stunt running'):state.exp==='hop'?T('噴氣中','Firing'):T('衝刺中','Running')):state.phase==='done'?T('完成！','Done!'):T('準備起跑','Ready');}
 function renderAll(){renderGame();renderHeader();renderView();renderScore();renderLimits();renderMission();renderInsight();renderImpact();updateCue();drawChart();updateFeel(true);}
 
 // ---------- Runs ----------
@@ -1539,10 +1540,36 @@ function setView(reset=true){
 }
 function setViewFromTag(v){window.lab.setView(v);}
 // ---------- Camera ----------
-let transition=null,follow=0,lagA=0,focusY=0,focusX=0;
+let transition=null,follow=0,lagA=0,userCam=false,lastCar=null,visualTime=0;
+// Stunt director, like a live broadcast: a low shot behind the car at the start line, a chase cam on the
+// run-up, a wide shot of the ramp or the fleet, a tracking shot in the air and a push-in after landing.
+// Every blend is smooth in position or time, so the camera never jumps.
+let shotPhase=null,shotPrev=null,shotSince=0;
+const smooth=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);},mix3=(a,b,w)=>a.map((v,i)=>v+(b[i]-v)*w);
+function stuntShot(){
+  const k=stage.clientWidth<640?1.45:1,kind=state.exp,r=state.runs?.you,s=r||{x:-RoadsterStunts.RUNUP[kind],y:0,v:0,phase:'runup'};
+  const phase=r?.done?'done':s.phase;if(phase!==shotPhase){shotPrev=shotPhase;shotPhase=phase;shotSince=visualTime;}
+  const since=visualTime-shotSince,cx=STUNT_X+s.x,cy=Math.max(0,s.y),back=Math.min(1.6,(s.v||0)/18);
+  const chase={pos:[cx-(11+back)*k,2.6+back*.3,(3.6+back*.4)*k],target:[cx+8,1.8,0]};
+  const land={pos:[cx+5*k,3,9*k],target:[cx,.1,0]};
+  let wide,air;
+  if(kind==='loop'){const R=stuntOpt().radius,sc=R/10.5,t=[STUNT_X+R*.4+(s.x-R*.4)*.3,R*.95+(cy-R*.95)*.3,0];wide={pos:[t[0]-5*sc,R*.5,(30*sc+4)*k],target:t};
+    const at=[cx+1,cy*.7+1.4,0];air={pos:[at[0]+3,at[1]+2.5,19*k],target:at};}
+  else{const at=[cx+3,Math.max(2.2,cy*.75+1.2),0];air={pos:[at[0]+5,at[1]+2.5+cy*.2,21*k],target:at};wide=air;}
+  // Swing around the car on an arc between two shots, so the car stays in frame mid-blend.
+  const car=[cx,cy+.6,0],blend=(a,b,w)=>{if(w<=0)return a;if(w>=1)return b;const oa=a.pos.map((v,i)=>v-car[i]),ob=b.pos.map((v,i)=>v-car[i]);
+    const ta=Math.atan2(oa[2],oa[0]);let d=Math.atan2(ob[2],ob[0])-ta;d=Math.atan2(Math.sin(d),Math.cos(d));const th=ta+d*w,rr=Math.hypot(oa[0],oa[2])+(Math.hypot(ob[0],ob[2])-Math.hypot(oa[0],oa[2]))*w;
+    return {pos:[car[0]+rr*Math.cos(th),car[1]+oa[1]+(ob[1]-oa[1])*w,car[2]+rr*Math.sin(th)],target:mix3(a.target,b.target,w)};};
+  let shot;
+  if(phase==='runup')shot=blend(chase,wide,kind==='loop'?smooth(-16,-4,s.x):smooth(-14,-2,s.x));
+  else if(phase==='ramp')shot=wide;
+  else if(phase==='flight')shot=blend(wide,air,smooth(0,1.1,since));
+  else shot=blend(shotPrev==='ramp'?wide:shotPrev==='runup'?chase:air,land,smooth(0,1.4,since));
+  return shot;
+}
 function cameraPose(){const narrow=stage.clientWidth<640,k=narrow?1.45:1,compare=state.mode==='compare',v=state.view;
   const dx=narrow?0:1;
-  if(isStunt()&&v==='overview'){if(state.exp==='loop'){const R=stuntOpt().radius,s=R/10.5;return {pos:[STUNT_X+(3+2*dx)*s,10*s,(38*s+6)*k],target:[STUNT_X+(5+2*dx)*s,10*s,0]};}return {pos:[STUNT_X+12,5,30*k],target:[STUNT_X+12-3*dx,4,0]};}
+  if(isStunt()&&v==='overview')return stuntShot();
   const chase=state.runs&&state.exp==='launch'&&(compare||v==='overview');
   if(chase)return compare?{pos:[-7.6*k,1.75,7.4*k],target:[3.2,.7,0]}:{pos:[-5.6*k,1.3,4.2*k],target:[2.6,.62,0]};
   if(compare)return {pos:[7.5*k,4.6*k,13.5*k],target:[-1.6*dx,.9,-.4]};
@@ -1551,13 +1578,13 @@ function cameraPose(){const narrow=stage.clientWidth<640,k=narrow?1.45:1,compare
   if(v==='thrust')return {pos:[-7.4*k,2.6*k,6.2*k],target:[.2*dx,.75,-1.2*dx]};
   if(v==='power')return {pos:[3.2*k,5.2*k,5.6*k],target:[-1.1*dx,.3,-.6*dx]};
   return {pos:[6.6*k,2.5*k,8.2*k],target:[-1.3*dx,.75,-.2]};}
-function resetCamera(immediate=false){const p=cameraPose(),to=new T3.Vector3(...p.pos),tt=new T3.Vector3(...p.target);if(!(isStunt()&&state.view==='overview')){to.x+=follow;tt.x+=follow;}focusY=0;focusX=0;if(immediate||reduced){camera.position.copy(to);controls.target.copy(tt);controls.update();transition=null;}else transition={from:camera.position.clone(),to,targetFrom:controls.target.clone(),targetTo:tt,t:0};}
-controls.addEventListener('start',()=>transition=null);
+function resetCamera(immediate=false){userCam=false;const p=cameraPose(),to=new T3.Vector3(...p.pos),tt=new T3.Vector3(...p.target);if(!(isStunt()&&state.view==='overview')){to.x+=follow;tt.x+=follow;}if(immediate||reduced){camera.position.copy(to);controls.target.copy(tt);controls.update();transition=null;}else transition={from:camera.position.clone(),to,targetFrom:controls.target.clone(),targetTo:tt,t:0};}
+controls.addEventListener('start',()=>{transition=null;userCam=true;});
 const projected=new T3.Vector3();
 function positionLabels(){
   const rect=stage.getBoundingClientRect(),occupied=[],overlaps=(a,b)=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;
   for(const sel of ['.scene-copy','.scene-toptools','.run-cue','.knowledge','.magnify','.stage-bottom','.toast']){const el=stage.querySelector(sel);if(el&&!el.hidden&&el.getClientRects().length){const r=el.getBoundingClientRect();occupied.push({left:r.left-rect.left-6,right:r.right-rect.left+6,top:r.top-rect.top-6,bottom:r.bottom-rect.top+6});}}
-  const racing=state.runs&&state.exp==='launch'&&state.mode!=='compare'&&state.view==='overview';
+  const racing=state.view==='overview'&&state.mode!=='compare'&&(state.runs&&state.exp==='launch'||isStunt()&&state.phase==='running');
   for(const a of anchors){if(racing){a.el.hidden=true;continue;}projected.copy(a.point()).project(camera);
     if(projected.z>=1||projected.z<=-1||Math.abs(projected.x)>1.05||Math.abs(projected.y)>.98){a.el.hidden=true;continue;}
     a.el.hidden=false;const w=a.el.offsetWidth,h=a.el.offsetHeight,px=(projected.x*.5+.5)*rect.width,py=(-projected.y*.5+.5)*rect.height;let best=null,score=Infinity;
@@ -1567,9 +1594,8 @@ function positionLabels(){
 let previousNarrow=null;function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();const narrow=w<640;if(previousNarrow!==null&&narrow!==previousNarrow)resetCamera(true);previousNarrow=narrow;}
 new ResizeObserver(resize).observe(stage);resize();resetCamera(true);
 canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('fallback').hidden=false;});canvas.addEventListener('webglcontextrestored',()=>{$('fallback').hidden=true;});
-function key(k){if(k==='Home'){resetCamera();return;}transition=null;const off=camera.position.clone().sub(controls.target),sph=new T3.Spherical().setFromVector3(off);if(k==='ArrowLeft')sph.theta-=.12;if(k==='ArrowRight')sph.theta+=.12;if(k==='ArrowUp')sph.phi-=.09;if(k==='ArrowDown')sph.phi+=.09;if(k==='+'||k==='=')sph.radius*=.9;if(k==='-')sph.radius*=1.1;sph.radius=T3.MathUtils.clamp(sph.radius,controls.minDistance,controls.maxDistance);sph.phi=T3.MathUtils.clamp(sph.phi,.01,controls.maxPolarAngle);camera.position.copy(controls.target).add(new T3.Vector3().setFromSpherical(sph));controls.update();}
+function key(k){if(k==='Home'){resetCamera();return;}transition=null;userCam=true;const off=camera.position.clone().sub(controls.target),sph=new T3.Spherical().setFromVector3(off);if(k==='ArrowLeft')sph.theta-=.12;if(k==='ArrowRight')sph.theta+=.12;if(k==='ArrowUp')sph.phi-=.09;if(k==='ArrowDown')sph.phi+=.09;if(k==='+'||k==='=')sph.radius*=.9;if(k==='-')sph.radius*=1.1;sph.radius=T3.MathUtils.clamp(sph.radius,controls.minDistance,controls.maxDistance);sph.phi=T3.MathUtils.clamp(sph.phi,.01,controls.maxPolarAngle);camera.position.copy(controls.target).add(new T3.Vector3().setFromSpherical(sph));controls.update();}
 // ---------- Frame ----------
-let visualTime=0;
 function poseStunt(car,run,c,dt){
   const kind=state.exp,s=run||{x:-RoadsterStunts.RUNUP[kind],y:0,pitch:0,roll:0,v:0,dist:0,firing:{},phase:'runup'};
   // On the ramp the car pivots on its wheels; in the air it turns about its body centre (0.55 m up).
@@ -1607,16 +1633,19 @@ function render(dt){
   lagA+=((r&&launch?r.you.a||0:0)-lagA)*Math.min(1,dt*3);const goal=lead-Math.max(0,Math.min(2.4,lagA*.06));
   const dx=goal-follow;if(Math.abs(dx)>1e-6){camera.position.x+=dx;controls.target.x+=dx;if(transition){transition.to.x+=dx;transition.targetTo.x+=dx;transition.from.x+=dx;transition.targetFrom.x+=dx;}follow=goal;}
   if(hop&&r){const ty=Math.min(r.you.y,30)*.6+(state.view==='overview'?1.6:.5);const dy=(ty-controls.target.y)*Math.min(1,dt*4);controls.target.y+=dy;camera.position.y+=dy;}
-  // Stunts: lift the view when the car climbs above the frame (fleet jump with long burns).
-  if(isStunt()&&state.view==='overview'){const want=r&&state.exp==='jump'?Math.max(0,r.you.y-7)*.7:0,dy=(want-focusY)*Math.min(1,dt*3);
-    const wantX=!r?0:state.exp==='jump'?Math.max(-12,Math.min(40,r.you.x-12)):Math.max(-40,Math.min(0,r.you.x-2)),dxs=(wantX-focusX)*Math.min(1,dt*2.5);
-    focusX+=dxs;focusY+=dy;shiftView(dxs,dy);}
+  // Stunts: the director frames each moment; after the viewer orbits, the camera only follows the car.
+  if(isStunt()&&state.view==='overview'){const carX=you.root.position.x,carY=you.chassis.position.y;
+    if(transition){const p=stuntShot();transition.to.set(...p.pos);transition.targetTo.set(...p.target);}
+    else if(userCam){if(lastCar)shiftView(carX-lastCar[0],(carY-lastCar[1])*.7);}
+    else{const p=stuntShot();camera.position.set(...p.pos);controls.target.set(...p.target);}
+    lastCar=[carX,carY];}
   if(isStunt()&&state.view!=='overview'){const p=you.root.position,dxs=p.x-controls.target.x,dys=(you.chassis.position.y+.6)-controls.target.y;controls.target.x+=dxs;camera.position.x+=dxs;controls.target.y+=dys;camera.position.y+=dys;}
   controls.update();
   const dts=state.paused?0:dt*simSpeed(),firing=launch&&!!(r?.you.firing||(compare&&r?.ref.firing));
   emit(you,r?.you,state.cfg,dts);if(compare)emit(rival,r?.ref,TRIMS[state.ref],dts);updatePuffs(dts);
   const vRun=r&&launch?Math.max(r.you.v,compare?r.ref.v:0):0,vK=vRun*3.6,racing=state.phase==='running'&&launch;
-  const fov=36+(racing?20*Math.min(1,Math.max(0,(vK-20)/330))+(firing?4:0):0);if(Math.abs(fov-camera.fov)>.01){camera.fov+=(fov-camera.fov)*Math.min(1,dt*3);camera.updateProjectionMatrix();}
+  const stuntRun=isStunt()&&state.phase==='running'&&r?.you.phase==='runup'?7*Math.min(1,r.you.v/20):0;
+  const fov=36+stuntRun+(racing?20*Math.min(1,Math.max(0,(vK-20)/330))+(firing?4:0):0);if(Math.abs(fov-camera.fov)>.01){camera.fov+=(fov-camera.fov)*Math.min(1,dt*3);camera.updateProjectionMatrix();}
   pMat.uniforms.scale.value=renderer.domElement.height/(2*Math.tan(camera.fov*Math.PI/360));
   sun.position.set(follow-14,18,12);sun.target.position.set(follow,0,0);
   // Grip view: arrows grow with downforce; tire arrows show the push the rear tires can give.
