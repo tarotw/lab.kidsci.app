@@ -1214,9 +1214,9 @@ $('about').addEventListener('click',e=>{if(e.target===$('about')){const r=$('abo
 $('scene').addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();setPaused(!state.paused);}else if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(e.key)){e.preventDefault();state.engine?.key(e.key);}});
 addEventListener('resize',()=>drawChart());
 
-// ---------- Sound: synthesized with Web Audio, off until the viewer turns it on ----------
-const audio={ctx:null,on:false,n:null,lastPost:null};
-try{audio.on=localStorage.getItem('roadster-lab-sound')==='on';}catch{}
+// ---------- Sound: synthesized with Web Audio, on unless the viewer turned it off ----------
+const audio={ctx:null,on:true,n:null,lastPost:null};
+try{audio.on=localStorage.getItem('roadster-lab-sound')!=='off';}catch{}
 function audioInit(){
   if(audio.ctx)return true;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;
   const ctx=new AC(),master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
@@ -1238,8 +1238,10 @@ function setSound(on,announce=true){
 }
 function syncSound(){$$('[data-sound-toggle]').forEach(b=>{b.setAttribute('aria-pressed',String(audio.on));b.setAttribute('aria-label',audio.on?T('關閉音效','Turn sound off'):T('打開音效','Turn sound on'));b.querySelector('use').setAttribute('href',audio.on?'#i-sound':'#i-sound-off');const s=b.querySelector('span');if(s)s.textContent=audio.on?T('音效：開（音高＝馬達轉速）','Sound on (pitch = motor rpm)'):T('打開音效，用耳朵聽速度','Turn on sound to hear the speed');});}
 $$('[data-sound-toggle]').forEach(b=>b.onclick=()=>setSound(!audio.on));
-// A saved "on" still needs a user gesture before the browser allows audio.
-if(audio.on)document.addEventListener('pointerdown',()=>{if(audio.on)setSound(true,false);},{once:true});
+// Browsers only allow audio after a user gesture, so sound starts on the first tap or key press.
+const UNLOCK=['pointerdown','pointerup','touchend','click','keydown'];
+function unlockAudio(){if(audio.on&&audio.ctx?.state!=='running')setSound(true,false);if(!audio.on||audio.ctx?.state==='running')UNLOCK.forEach(e=>document.removeEventListener(e,unlockAudio,true));}
+UNLOCK.forEach(e=>document.addEventListener(e,unlockAudio,true));
 document.addEventListener('visibilitychange',()=>{if(!audio.ctx)return;document.hidden?audio.ctx.suspend():audio.on&&audio.ctx.resume();});
 function blip(freq,dur,type='sine',vol=.2,when=0,slide=0){if(!audio.on||!audio.ctx)return;const c=audio.ctx,t=c.currentTime+when,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+dur);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g).connect(audio.n.master);o.start(t);o.stop(t+dur+.05);}
 function whoosh(vol){if(!audio.on||!audio.ctx)return;const c=audio.ctx,t=c.currentTime,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=audio.n.buf;f.type='bandpass';f.frequency.value=2200;f.Q.value=1.2;g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);s.connect(f).connect(g).connect(audio.n.master);s.start(t,Math.random());s.stop(t+.1);}
