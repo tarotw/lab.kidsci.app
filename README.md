@@ -5,7 +5,7 @@
 - `/` — lab hub
 - `/solar-system/` — 太陽系探索室
 - `/taipei-101/` — 台北 101 風雨實驗室
-- `/tesla-roadster/` — Roadster 超跑動力實驗室
+- `/tesla-roaster/` — Roadster 超跑動力實驗室
 
 Add a new lab as `<slug>/index.html` and link it from `index.html`.
 
