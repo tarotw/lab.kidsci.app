@@ -41,6 +41,10 @@
     {"@type": "Thing","name": "牛頓第二定律 / Newton's second law"},
     {"@type": "Thing","name": "抓地力與下壓力 / Grip and downforce"},
     {"@type": "Thing","name": "推重比 / Thrust-to-weight ratio"}
+  ],
+  "subjectOf": [
+    {"@type": "PodcastEpisode","name": "貼地飛行的太空火箭(上)：特斯拉第二代 Roadster 的慣性與抓地力黑科技｜VIP.33","url": "https://podcasts.apple.com/tw/podcast/id1812447277?i=1000796975947"},
+    {"@type": "PodcastEpisode","name": "貼地飛行的太空火箭(下)：特斯拉第二代 Roadster 的推進器、馬赫環與牛頓第三定律｜VIP.34","url": "https://podcasts.apple.com/tw/podcast/id1812447277?i=1000796871517"}
   ]
 }
 </script>
@@ -359,7 +363,6 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
   .lang-switch{grid-column:3;align-self:center;height:44px;padding:2px}
   .lang-switch button{height:38px;min-height:38px;min-width:35px;padding:0 6px}
   .news-strip{padding:0 12px;gap:8px}.news-icon{width:28px;height:28px}.news-heading small{font-size:8px}.news-heading strong{font-size:11px}
-  .news-actions a{display:none}.news-actions button{font-size:11px;padding:0 11px;min-height:36px}
   .workspace{display:flex;flex-direction:column}
   .stage{order:1;height:clamp(320px,52svh,440px);min-height:320px}
   .dock{order:2;border-right:0;border-bottom:1px solid var(--line);padding:14px}
@@ -431,6 +434,26 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
   .app.is-simple .scene-copy p{display:none}
 }
 @media(max-width:760px) and (max-height:700px){.app.is-simple .stage{height:max(220px,calc(100vh - var(--top-h) - var(--game-h,340px)));height:max(220px,calc(100dvh - var(--top-h) - var(--game-h,340px)))}}
+.podcast-art{width:34px;height:34px;object-fit:cover;border:1px solid #d9ae62;border-radius:8px;box-shadow:0 3px 14px #0006;flex-shrink:0}
+.news-actions .listen-open{display:inline-flex;align-items:center;gap:6px}.news-actions .listen-open svg{width:15px;height:15px}
+.news-actions .specs-link{background:none;border-color:#c9a76b88;color:#eed29c;font-weight:500}.news-actions .specs-link:hover:not(:disabled){background:#77602c33;color:#f4d9a9}
+.listen-mini{display:none}.listen-mini[aria-expanded=true]{border-color:#e6bb72;color:#f2d69f}
+.player-panel{position:fixed;z-index:25;right:360px;bottom:20px;width:380px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;background:#172d3b;border:1px solid #c9a76b;border-radius:12px;box-shadow:0 18px 70px #0008}
+.player-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px 8px 13px;background:#334344}
+.player-head>span{display:flex;gap:8px;align-items:center;color:#f0d69e;font-size:13px;min-width:0}.player-head strong{font-weight:500}.player-head svg{width:18px;height:18px}
+.player-head>div{display:flex;flex-shrink:0}.player-head button{min-height:36px;width:36px;font-size:22px}.player-head button svg{width:16px;height:16px}
+#player-content{padding:10px 12px 14px;display:flex;flex-direction:column;gap:9px}
+.player-panel.is-minimized #player-content{display:none}
+.episode-pick button{min-height:36px;font-size:12px}.episode-pick button[aria-pressed=true]{background:#5b4e33;color:#ffe6bb;box-shadow:inset 0 0 0 1px #e6bb7280}
+.episode-preview{display:grid;grid-template-columns:64px minmax(0,1fr);gap:11px;align-items:center;padding:9px;border:1px solid #725f4266;border-radius:10px;background:linear-gradient(135deg,#243d48,#1a2d38)}
+.episode-preview>img{display:block;width:64px;height:64px;object-fit:cover;border-radius:8px;box-shadow:0 5px 18px #0006}
+.episode-preview>div{min-width:0}.episode-preview strong{display:block;margin:5px 0 3px;font-size:13px;line-height:1.45;font-weight:600;color:#f2e8d3}.episode-preview small{display:block;font-size:10px;line-height:1.5;color:#b8c8ce}
+.vip-badge{display:inline-flex;align-items:center;min-height:20px;padding:0 8px;border:1px solid #e6bb7299;border-radius:12px;background:#4f4430;color:#ffe6bb;font-size:9px;font-weight:650;letter-spacing:.05em}
+#apple-player{width:100%;min-width:0;border:0;border-radius:10px;background:#0f222d}
+#player-note{font-size:11px;line-height:1.6;color:#b8c8ce}#episode-link{font-size:12px;color:#eed29c}
+@media(max-width:1200px){.player-panel{right:12px;bottom:auto;top:76px;max-height:calc(100dvh - 88px)}.app.is-simple .listen-mini{display:inline-flex}}
+@media(min-width:761px) and (max-width:1200px) and (orientation:landscape){.app.is-simple .player-panel{left:12px;right:auto}}
+@media(max-width:760px){.news-heading .podcast-art{width:28px;height:28px}.news-actions .specs-link{display:none}.news-actions .listen-open{font-size:11px;padding:0 12px;min-height:36px}.player-panel{left:12px;right:12px;width:auto;margin:0 auto;max-width:420px;top:calc(68px + env(safe-area-inset-top,0px));max-height:calc(100dvh - 80px)}.player-head button{min-height:40px;width:40px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -460,6 +483,7 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 8h10a5 5 0 0 1 4.6 7l-.8 1.8a2.5 2.5 0 0 1-4.3.3L15 15H9l-1.5 2.1a2.5 2.5 0 0 1-4.3-.3L2.4 15A5 5 0 0 1 7 8zM7 10.5v3M5.5 12h3"/><circle cx="16" cy="11" r=".8"/><circle cx="18" cy="13" r=".8"/></symbol>
 <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
 <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM17 10l4 4m0-4-4 4"/></symbol>
+<symbol id="i-headphones" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3M4 13H2v7h5v-7zm16 0h2v7h-5v-7z"/></symbol>
 <symbol id="i-news" viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M7 9h7M7 13h7M7 16h4"/></symbol>
 </defs></svg>
 <div class="app" id="app">
@@ -467,14 +491,14 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <nav class="ui-switch" aria-label="介面模式" data-en-label="Interface mode"><button data-ui="simple" aria-pressed="true"><svg aria-hidden="true"><use href="#i-game"/></svg><span data-en="Challenges">挑戰模式</span></button><button data-ui="expert" aria-pressed="false"><svg aria-hidden="true"><use href="#i-gear"/></svg><span data-en="Expert">專家模式</span></button></nav>
 <div class="head-actions"><div class="lang-switch" role="group" aria-label="語言 Language"><button id="lang-zh" aria-pressed="true">中</button><button id="lang-en" aria-pressed="false">EN</button></div><button class="icon-button" id="about-open" aria-label="操作說明與資料來源" data-en-label="Controls and sources"><svg><use href="#i-info"/></svg></button></div></header>
 
-<section class="news-strip" aria-label="發表會速報" data-en-label="Reveal briefing"><div class="news-heading"><span class="news-icon"><svg><use href="#i-news"/></svg></span><div><small data-en="Revealed 15 Oct 2026 · SpaceX test site, McGregor, Texas">2026.10.15 發表 · 美國德州 SpaceX McGregor 試驗場</small><strong data-en="Next-gen Tesla Roadster: three versions, and one of them hops into the air">特斯拉新一代 Roadster：三種版本，其中一台會「飛」</strong></div></div><div class="news-actions"><button id="specs-open"><span data-en="Specs & sources">規格與資料來源</span></button><a href="https://podcasts.apple.com/tw/podcast/id1812447277" target="_blank" rel="noopener noreferrer" data-en="Science, Well Heard podcast ↗">科學好好聽 Podcast ↗</a></div></section>
+<section class="news-strip" aria-label="本集 Podcast" data-en-label="This episode"><div class="news-heading"><img class="podcast-art" src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/41/3f/f0/413ff073-a7c5-b6a0-8286-3f3dbf061111/mza_1220969070254895353.jpeg/80x80bb.webp" alt="Podcast 官方封面" data-en-alt="Official podcast artwork" width="34" height="34"><div><small data-en="Science, Well Heard · VIP.33–34 · Listen &amp; play">科學好好聽 · VIP.33–34 · 邊聽邊玩</small><strong data-en="The rocket that flies along the ground: the new Roadster's grip and thrusters">貼地飛行的太空火箭：新一代 Roadster 的抓地力與推進器</strong></div></div><div class="news-actions"><button class="listen-open" id="listen-open" aria-expanded="false" aria-controls="player-panel"><svg aria-hidden="true"><use href="#i-play"/></svg><span data-en="Listen">聽這集</span></button><button class="specs-link" id="specs-open"><span data-en="Specs &amp; sources">規格與資料來源</span></button></div></section>
 
 <main class="workspace" id="workspace">
 <section class="stage" id="stage" aria-label="Roadster 互動 3D 模型" data-en-label="Interactive 3D Roadster">
 <canvas id="speedfx" aria-hidden="true"></canvas>
 <canvas id="scene" tabindex="0" aria-label="可旋轉的 3D 模型。拖曳轉動，滾輪縮放；方向鍵旋轉，加減鍵縮放，Home 回到預設視角。" data-en-label="Rotatable 3D model. Drag to orbit, scroll to zoom; arrow keys rotate, plus and minus zoom, Home resets the view."></canvas>
 <div class="scene-copy"><div class="location" id="location">McGregor, Texas　31.40° N / 97.43° W</div><h2 id="scene-title"></h2><p id="scene-description"></p><span class="view-number" id="view-number"></span></div>
-<div class="scene-toptools"><button class="icon-button sound-toggle" id="sound-toggle" data-sound-toggle aria-pressed="false" aria-label="打開音效"><svg><use href="#i-sound-off"/></svg></button><button class="icon-button" id="about-mobile" aria-label="操作說明與資料來源" data-en-label="Controls and sources"><svg><use href="#i-info"/></svg></button><button class="icon-button" id="reset-view" aria-label="回到預設視角" data-en-label="Reset view"><svg><use href="#i-reset"/></svg></button><button class="icon-button" id="fullscreen" aria-label="全螢幕" data-en-label="Full screen"><svg><use href="#i-expand"/></svg></button></div>
+<div class="scene-toptools"><button class="icon-button listen-mini" id="listen-mini" aria-expanded="false" aria-controls="player-panel" aria-label="聽 Podcast：貼地飛行的太空火箭" data-en-label="Listen to the podcast episode"><svg><use href="#i-headphones"/></svg></button><button class="icon-button sound-toggle" id="sound-toggle" data-sound-toggle aria-pressed="false" aria-label="打開音效"><svg><use href="#i-sound-off"/></svg></button><button class="icon-button" id="about-mobile" aria-label="操作說明與資料來源" data-en-label="Controls and sources"><svg><use href="#i-info"/></svg></button><button class="icon-button" id="reset-view" aria-label="回到預設視角" data-en-label="Reset view"><svg><use href="#i-reset"/></svg></button><button class="icon-button" id="fullscreen" aria-label="全螢幕" data-en-label="Full screen"><svg><use href="#i-expand"/></svg></button></div>
 <div class="labels" id="labels"></div>
 <div class="run-cue" id="run-cue" hidden><small id="cue-label"></small><strong id="cue-main"></strong><div class="cue-row"><span id="cue-a"></span><b id="cue-b"></b></div><div class="cue-row cue-rpm"><span id="cue-rpm"></span></div><div class="cue-progress"><i id="cue-progress"></i></div></div>
 <aside class="knowledge" id="knowledge"><h3 id="knowledge-title"></h3><p id="knowledge-copy"></p></aside>
@@ -536,6 +560,10 @@ kbd{font:inherit;color:#e7e7d7;border:1px solid #607583;padding:2px 5px;border-r
 <button class="to-expert" id="to-expert"><span data-en="Want to tune every number? Switch to Expert mode →">想調整每個數字？切換到專家模式 →</span></button>
 </aside>
 </main>
+<aside class="player-panel" id="player-panel" aria-label="Podcast 播放器" data-en-label="Podcast player" hidden><div class="player-head"><span><svg aria-hidden="true"><use href="#i-headphones"/></svg><strong data-en="Listen while you play">一邊聽，一邊玩</strong></span><div><button id="player-minimize" aria-expanded="true">−</button><button id="player-close"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div></div>
+<div id="player-content"><div class="segmented episode-pick" role="group" aria-label="選擇集數" data-en-label="Pick an episode"><button data-episode="0" aria-pressed="true"><span data-en="Part 1 · VIP.33">上集 · VIP.33</span></button><button data-episode="1" aria-pressed="false"><span data-en="Part 2 · VIP.34">下集 · VIP.34</span></button></div>
+<div class="episode-preview"><img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/41/3f/f0/413ff073-a7c5-b6a0-8286-3f3dbf061111/mza_1220969070254895353.jpeg/600x600bb.webp" alt="Podcast 官方封面" data-en-alt="Official podcast artwork" width="76" height="76"><div><span class="vip-badge" data-en="VIP members">VIP 會員</span><strong id="episode-title"></strong><small id="episode-topic"></small></div></div>
+<iframe id="apple-player" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" referrerpolicy="strict-origin-when-cross-origin" height="175"></iframe><p id="player-note"></p><a id="episode-link" target="_blank" rel="noopener noreferrer"></a></div></aside>
 
 <footer class="bottom"><div class="nav-caption"><svg><use href="#i-spark"/></svg><span data-en="Pick a view, find a secret">換個角度，發現秘密</span></div><nav class="views" aria-label="探索視角" data-en-label="Views">
 <button class="view-button" data-view="overview" aria-pressed="true"><svg><use href="#i-car"/></svg><span><strong data-en="The reveal car">發表會的 Roadster</strong><small data-en="Hidden lights, visor glass">隱藏頭燈與太空面罩玻璃</small></span></button>
@@ -810,7 +838,7 @@ function applyStatic(){
   $$('[data-en-alt]').forEach(el=>{if(el.dataset.zhAlt==null)el.dataset.zhAlt=el.alt;el.alt=lang==='en'?el.dataset.enAlt:el.dataset.zhAlt;});
   $('lang-zh').setAttribute('aria-pressed',String(lang!=='en'));$('lang-en').setAttribute('aria-pressed',String(lang==='en'));
 }
-function setLanguage(next){lang=next;clearTimeout(toastTimer);$('toast').hidden=true;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();renderAll();syncSound();state.engine?.setView(false);}
+function setLanguage(next){lang=next;clearTimeout(toastTimer);$('toast').hidden=true;try{localStorage.setItem('science-lab-language',lang==='en'?'en':'zh-Hant');}catch{}applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();renderAll();syncSound();renderPlayer();state.engine?.setView(false);}
 $('lang-zh').onclick=()=>setLanguage('zh-Hant');$('lang-en').onclick=()=>setLanguage('en');
 
 // ---------- Panel ----------
@@ -1293,9 +1321,12 @@ function audioInit(){
 }
 function setSound(on,announce=true){
   audio.on=on;try{localStorage.setItem('roadster-lab-sound',on?'on':'off');}catch{}
-  if(on&&audioInit()){audio.ctx.resume();audio.n.master.gain.setTargetAtTime(.8,audio.ctx.currentTime,.05);}else if(audio.ctx)audio.n.master.gain.setTargetAtTime(0,audio.ctx.currentTime,.05);
+  if(on&&audioInit()){audio.ctx.resume();audio.n.master.gain.setTargetAtTime(soundLevel(),audio.ctx.currentTime,.05);}else if(audio.ctx)audio.n.master.gain.setTargetAtTime(0,audio.ctx.currentTime,.05);
   syncSound();if(on&&announce)toast(T('音效打開了：音高＝馬達轉速，風聲＝空氣阻力。','Sound on: pitch = motor rpm, wind = air drag.'));
 }
+// The podcast comes first: effects play quieter while its player is open.
+const soundLevel=()=>$('player-panel').hidden?.8:.25;
+function duckSound(){if(audio.on&&audio.ctx)audio.n.master.gain.setTargetAtTime(soundLevel(),audio.ctx.currentTime,.2);}
 function syncSound(){$$('[data-sound-toggle]').forEach(b=>{b.setAttribute('aria-pressed',String(audio.on));b.setAttribute('aria-label',audio.on?T('關閉音效','Turn sound off'):T('打開音效','Turn sound on'));b.querySelector('use').setAttribute('href',audio.on?'#i-sound':'#i-sound-off');const s=b.querySelector('span');if(s)s.textContent=audio.on?T('音效：開（音高＝馬達轉速）','Sound on (pitch = motor rpm)'):T('打開音效，用耳朵聽速度','Turn on sound to hear the speed');});}
 $$('[data-sound-toggle]').forEach(b=>b.onclick=()=>setSound(!audio.on));
 // Browsers only allow audio after a user gesture, so sound starts on the first tap or key press.
@@ -1334,6 +1365,28 @@ document.addEventListener('visibilitychange',()=>{last=performance.now();});
 
 recompute();applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();syncStunt();
 syncSound();
+// ---------- Podcast: listen while you play ----------
+// Apple Podcasts episode ids; without one, the player shows the show page and its latest episodes.
+const EPISODES=[
+ {vip:'VIP.33',id:'1000796975947',title:['貼地飛行的太空火箭（上）','The rocket that flies along the ground (Part 1)'],topic:['特斯拉第二代 Roadster 的慣性與抓地力黑科技','Inertia and the grip tech of the second-generation Roadster']},
+ {vip:'VIP.34',id:'1000796871517',title:['貼地飛行的太空火箭（下）','The rocket that flies along the ground (Part 2)'],topic:['推進器、馬赫環與牛頓第三定律','Thrusters, Mach diamonds and Newton’s third law']}];
+const SHOW='https://podcasts.apple.com/tw/podcast/id1812447277',player=$('player-panel');let episode=0;
+function renderPlayer(){const e=EPISODES[episode],i=lang==='en'?1:0;
+  $$('[data-episode]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.episode===episode)));
+  $('episode-title').textContent=`${e.title[i]}｜${e.vip}`;$('episode-topic').textContent=e.topic[i];
+  $('apple-player').title=T(`Apple Podcasts：${e.title[0]}`,`Apple Podcasts: ${e.title[1]}`);$('apple-player').height=e.id?175:352;
+  const local=location.protocol==='file:';$('apple-player').hidden=local;
+  $('player-note').textContent=local?T('本機檔案無法內嵌播放，請到 Apple Podcasts 收聽。','Local files cannot embed the player. Listen in Apple Podcasts.'):e.id?T('VIP 會員專屬集數：訂閱「科學好好聽」後就能在上方完整收聽，一邊聽一邊玩實驗。','A VIP members’ episode: subscribe to Science, Well Heard to hear it in full above while you play.'):T(`在節目列表找〈${e.title[0]}｜${e.vip}〉。VIP 會員專屬，訂閱「科學好好聽」後就能完整收聽。`,`Find “${e.title[1]} | ${e.vip}” in the list. VIP members only: subscribe to Science, Well Heard to hear it in full.`);
+  $('episode-link').href=e.id?`${SHOW}?i=${e.id}`:SHOW;$('episode-link').textContent=T('在 Apple Podcasts 收聽 ↗','Listen in Apple Podcasts ↗');
+  $('player-minimize').setAttribute('aria-label',player.classList.contains('is-minimized')?T('展開播放器','Expand player'):T('收合播放器','Collapse player'));$('player-close').setAttribute('aria-label',T('關閉並停止播放器','Close and stop the player'));
+  if(!player.hidden&&!local){const src=e.id?`https://embed.podcasts.apple.com/tw/podcast/id1812447277?i=${e.id}&theme=dark`:'https://embed.podcasts.apple.com/tw/podcast/id1812447277?theme=dark';if($('apple-player').getAttribute('src')!==src)$('apple-player').src=src;}}
+function setPlayerOpen(open){player.hidden=!open;if(open)player.classList.remove('is-minimized');['listen-open','listen-mini'].forEach(id=>$(id).setAttribute('aria-expanded',String(open)));$('player-minimize').textContent='−';$('player-minimize').setAttribute('aria-expanded','true');
+  if(open)renderPlayer();else $('apple-player').removeAttribute('src');duckSound();}
+$('listen-open').onclick=()=>setPlayerOpen(true);$('listen-mini').onclick=()=>setPlayerOpen(player.hidden);
+$('player-close').onclick=()=>{setPlayerOpen(false);$('listen-open').offsetParent?$('listen-open').focus():$('listen-mini').focus();};
+$('player-minimize').onclick=()=>{const m=player.classList.toggle('is-minimized');$('player-minimize').textContent=m?'+':'−';$('player-minimize').setAttribute('aria-expanded',String(!m));renderPlayer();};
+$$('[data-episode]').forEach(b=>b.onclick=()=>{episode=+b.dataset.episode;renderPlayer();});
+renderPlayer();
 let savedUI='simple';try{if(localStorage.getItem('roadster-lab-ui')==='expert')savedUI='expert';}catch{}if(savedUI==='simple')setUI('simple',false);setPaused(false);renderAll();requestAnimationFrame(frame);
 
 // ---------- 3D scene ----------
