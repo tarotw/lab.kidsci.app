@@ -41,6 +41,10 @@
     {"@type": "Thing","name": "牛頓第二定律 / Newton's second law"},
     {"@type": "Thing","name": "抓地力與下壓力 / Grip and downforce"},
     {"@type": "Thing","name": "推重比 / Thrust-to-weight ratio"}
+  ],
+  "subjectOf": [
+    {"@type": "PodcastEpisode","name": "貼地飛行的太空火箭(上)：特斯拉第二代 Roadster 的慣性與抓地力黑科技｜VIP.33","url": "https://podcasts.apple.com/tw/podcast/id1812447277?i=1000796975947"},
+    {"@type": "PodcastEpisode","name": "貼地飛行的太空火箭(下)：特斯拉第二代 Roadster 的推進器、馬赫環與牛頓第三定律｜VIP.34","url": "https://podcasts.apple.com/tw/podcast/id1812447277?i=1000796871517"}
   ]
 }
 </script>
@@ -1362,10 +1366,10 @@ document.addEventListener('visibilitychange',()=>{last=performance.now();});
 recompute();applyStatic();buildFeel();buildComponents();buildTrimButtons();buildRefButtons();syncStunt();
 syncSound();
 // ---------- Podcast: listen while you play ----------
-// Apple episode ids go in id; without one, the player shows the show page and its latest episodes.
+// Apple Podcasts episode ids; without one, the player shows the show page and its latest episodes.
 const EPISODES=[
- {vip:'VIP.33',id:null,title:['貼地飛行的太空火箭（上）','The rocket that flies along the ground (Part 1)'],topic:['特斯拉第二代 Roadster 的慣性與抓地力黑科技','Inertia and the grip tech of the second-generation Roadster']},
- {vip:'VIP.34',id:null,title:['貼地飛行的太空火箭（下）','The rocket that flies along the ground (Part 2)'],topic:['推進器、馬赫環與牛頓第三定律','Thrusters, Mach diamonds and Newton’s third law']}];
+ {vip:'VIP.33',id:'1000796975947',title:['貼地飛行的太空火箭（上）','The rocket that flies along the ground (Part 1)'],topic:['特斯拉第二代 Roadster 的慣性與抓地力黑科技','Inertia and the grip tech of the second-generation Roadster']},
+ {vip:'VIP.34',id:'1000796871517',title:['貼地飛行的太空火箭（下）','The rocket that flies along the ground (Part 2)'],topic:['推進器、馬赫環與牛頓第三定律','Thrusters, Mach diamonds and Newton’s third law']}];
 const SHOW='https://podcasts.apple.com/tw/podcast/id1812447277',player=$('player-panel');let episode=0;
 function renderPlayer(){const e=EPISODES[episode],i=lang==='en'?1:0;
   $$('[data-episode]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.episode===episode)));
