@@ -832,5 +832,39 @@
       "packagedBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
       "unchanged": true
     }
-  ]
+  ],
+  "releaseFollowup": {
+    "issue": "23 new release pages retained a local/unpublished footer label.",
+    "replacement": [
+      "科學好好聽互動實驗室",
+      "Science Good Listen interactive labs"
+    ],
+    "changedScripts": [
+      "plates/plates.js",
+      "gasrise/gasrise.js",
+      "waterlog/waterlog.js",
+      "sandgrid/sandgrid.js",
+      "tracklab/tracklab.js",
+      "heatflow/heatflow.js",
+      "ensolab/ensolab.js",
+      "seasons/seasons.js",
+      "moonview/moonview.js",
+      "mercbeat/mercbeat.js",
+      "masslab/masslab.js",
+      "marsmsg/marsmsg.js",
+      "nudgelab/nudgelab.js",
+      "areabeat/areabeat.js",
+      "aurorlab/aurorlab.js",
+      "leaflim/leaflim.js",
+      "xylem/xylem.js",
+      "seedlab/seedlab.js",
+      "camday/camday.js",
+      "bitmail/bitmail.js",
+      "classify/classify.js",
+      "netmsg/netmsg.js",
+      "evsteps/evsteps.js"
+    ],
+    "indexVersionHashesUpdated": 23,
+    "scope": "Only the 141 works first added in this release; the original four Git project directories remain untouched."
+  }
 }
