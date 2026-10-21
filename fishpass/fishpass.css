@@ -1,0 +1,45 @@
+.fishpass #plot{width:100%;height:300px;display:block;touch-action:pan-y pinch-zoom;font-family:system-ui;background:#142e33}.fishpass .view{position:sticky;top:8px;align-self:start;z-index:5}.f-reads{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:5px 12px}.f-reads span{background:#091624;border-radius:8px;padding:5px;font-size:12px}.f-reads b{display:block;font-size:22px;color:var(--cyan)}.f-note{font-size:11px;color:var(--muted);margin:5px 12px}.fishpass #status{font-size:13px;min-height:42px;margin:6px 12px 12px}.f-edges{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}.f-edges button{padding:4px;min-width:44px}.f-edges small{display:block;font-size:10px}.f-types{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.f-types button{font-size:12px;padding:5px;min-width:44px}.control-title{font-size:13px;margin:6px 0}.f-ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}.f-selects{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px}.f-selects select{display:block;width:100%;margin-top:3px}.f-condition p{font-size:12px;margin:6px 0}.f-condition span{display:block;color:var(--muted)}.fishpass .unit{text-align:left;margin:2px 0}.fishpass .controls>.f-note{margin:5px 0}.fishpass #reset{width:100%;margin-top:5px}.fishpass main>.card{max-width:1240px;margin:12px auto}.f-pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.f-pairs article{border:1px solid var(--line);border-radius:12px;padding:12px}.f-pairs p{display:flex;justify-content:space-between;gap:8px}.f-pairs b{color:var(--gold)}.fishpass .f-route{font-size:24px;color:var(--cyan)}.fishpass .podcast img{object-fit:contain}.fishpass footer a{min-height:44px;display:inline-flex;align-items:center}.fishpass .source a{overflow-wrap:anywhere}.f-table{overflow-x:auto}.f-table table{width:100%;border-collapse:collapse;font-size:12px}.f-table td,.f-table th{padding:7px;border-bottom:1px solid var(--line);text-align:left}.fishpass summary{min-height:44px;cursor:pointer}.fishpass #route,.fishpass #frontier{overflow-wrap:anywhere}
+@media(max-width:760px){.fishpass .heading{margin:6px auto}.fishpass .heading h1{font-size:21px}.fishpass .eyebrow,.fishpass .question{display:none}.fishpass #plot{height:196px}.fishpass .scene-header{font-size:11px;padding:5px 8px}.f-reads{margin:3px 8px}.f-reads span{font-size:10px;padding:3px}.f-reads b{font-size:16px}.fishpass #status{font-size:11px;min-height:34px;margin:4px 8px 7px}.f-note{font-size:10px;margin:3px 8px}.fishpass main>.card{margin:10px}.fishpass .controls{padding:10px}.fishpass .control{margin:7px 0}.f-types button{font-size:11px}.fishpass .control label{font-size:12px}}
+@media(max-width:360px){.fishpass #plot{height:165px}.fishpass .heading h1{font-size:18px}.fishpass .logo{width:70px}.fishpass .switch button{min-width:44px;font-size:11px;padding:3px 4px}.fishpass #status{font-size:10px;min-height:34px}.f-pairs{grid-template-columns:1fr}.f-edges{gap:3px}.f-types{grid-template-columns:1fr 1fr}.fishpass .control-title{font-size:11px}.f-ticks{font-size:10px}}
+@media(max-height:500px) and (min-width:600px){.fishpass #plot{height:150px}.fishpass .heading{margin:4px auto}.fishpass .heading h1{font-size:20px}.fishpass .eyebrow,.fishpass .question{display:none}.fishpass .scene-header{padding:4px 8px;font-size:10px}.f-reads{margin:3px 8px}.f-reads span{font-size:10px;padding:3px}.f-reads b{font-size:14px}.fishpass #status{font-size:10px;min-height:30px;margin:3px 8px 6px}.f-note{font-size:9px}.f-types button{font-size:11px}.fishpass .control-title{font-size:11px}}
+.f-pairs b{white-space:nowrap;flex-shrink:0}
+@media(max-width:360px){.f-edges{gap:2px}}
+
+/* 2026-10-12: fixed-size readable labels; original stream/model geometry is unchanged. */
+.fishpass-page{scroll-padding-top:calc(var(--fishpass-view-height,310px) + 16px)}
+.fishpass-page button,.fishpass-page input,.fishpass-page select,.fishpass-page summary{scroll-margin-top:8px}
+.fishpass select:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.fishpass .f-map{height:300px;position:relative;touch-action:pan-y pinch-zoom}
+.fishpass .f-map #plot{height:100%;width:100%}.fishpass #plot text{display:none}
+.fishpass .f-map-labels{position:absolute;inset:0;width:min(100%,calc(300px * 800 / 450));height:min(100%,calc((100vw - 40px) * 450 / 800));margin:auto;pointer-events:none}
+.fishpass .f-map-labels span{position:absolute;transform:translate(-50%,-50%);font-size:14px;line-height:1;font-weight:600;white-space:nowrap}
+.fishpass .f-reach-label{color:#edf4ec}.fishpass .f-block-label{color:#ffaca3;font-size:20px!important}
+.fishpass .scene-header{font-size:14px;gap:8px;padding:8px 10px;line-height:1.25}.fishpass #flow-label{flex:none;white-space:nowrap}
+.fishpass .f-scale-note{font-size:14px;line-height:1.25;color:var(--muted);text-align:center;margin:3px 8px}
+.fishpass .f-reads{margin:4px 8px}.fishpass .f-reads span{font-size:14px;line-height:1.25;padding:4px}.fishpass .f-reads b{font-size:20px}
+.fishpass .f-note,.fishpass #status,.fishpass .unit,.fishpass .control-title,.fishpass .f-condition p,.fishpass .f-selects,.fishpass .f-ticks,.fishpass .f-edges small,.fishpass .control label{font-size:14px;line-height:1.25}
+.fishpass .f-note{margin:5px 8px}.fishpass #status{margin:8px 0;min-height:0}
+.fishpass .controls{padding:10px}.fishpass .f-tool-title{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:5px}.fishpass .control-title{margin:4px 0}
+.fishpass #reset{width:auto;flex:none;margin:0;min-height:44px;font-size:14px;padding:5px 10px}
+.fishpass .f-edges{gap:3px}.fishpass .f-edges button{font-size:14px;min-height:44px;padding:4px 2px}.fishpass .f-edges small{font-size:12px}
+.fishpass .f-types button{font-size:14px;min-height:44px;padding:6px 3px;line-height:1.2}
+.fishpass .f-flow-top{display:flex;gap:8px;align-items:center;justify-content:space-between}.fishpass .f-flow-top label{min-width:0}.fishpass .number{width:70px;flex:none;min-height:44px}
+.fishpass .control{margin:7px 0}.fishpass input[type=range]{height:44px;min-height:44px}.fishpass .unit{margin:3px 0}.fishpass .f-ticks{gap:5px;flex-wrap:wrap}
+.fishpass .f-selects{margin:6px 0}.fishpass .f-selects label{line-height:1.25}.fishpass .f-selects select{min-height:44px}
+.fishpass .f-table table,.fishpass .podcast h3,.fishpass .podcast a,.fishpass .source li,.fishpass .source p{font-size:14px}
+@media(max-width:760px){
+ .fishpass .heading{display:none}.fishpass .brand .logo{width:80px;height:37px}.fishpass .topbar button{min-width:44px;min-height:44px}
+ .fishpass .f-map{height:196px}.fishpass .f-map-labels{width:min(100%,calc(196px * 800 / 450));height:min(100%,calc((100vw - 22px) * 450 / 800))}
+ .fishpass .scene-header{padding:6px 8px}.fishpass .f-reads b{font-size:18px}.fishpass .f-note{margin:4px 8px}.fishpass .f-types{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:360px){
+ .fishpass .brand .logo{width:72px}.fishpass .f-map{height:168px}.fishpass .f-map-labels{width:min(100%,calc(168px * 800 / 450));height:min(100%,calc((100vw - 22px) * 450 / 800))}
+ .fishpass .f-edges{gap:2px}.fishpass .f-edges small{font-size:14px}.fishpass .f-ticks{display:grid;grid-template-columns:repeat(2,1fr)}
+}
+@media(max-height:500px) and (min-width:600px){
+ .fishpass .heading{display:none}.fishpass .lab{grid-template-columns:minmax(0,1.2fr) minmax(300px,1fr);gap:8px}
+ .fishpass .f-map{height:150px}.fishpass .f-map-labels{width:min(100%,calc(150px * 800 / 450));height:100%}
+ .fishpass .f-types{grid-template-columns:repeat(2,minmax(0,1fr))}.fishpass .scene-header{padding:5px 8px}.fishpass .f-reads b{font-size:18px}
+ .fishpass-page{scroll-padding-top:8px}
+}
+@media(min-width:761px) and (min-height:501px){.fishpass .f-map-labels{height:100%}}

@@ -1,0 +1,37 @@
+.dodoisl #plot{width:100%;height:300px;display:block;touch-action:pan-y pinch-zoom;font-family:system-ui}.dodoisl .view{position:sticky;top:8px;align-self:start;z-index:5}.d-reads{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:5px 12px}.d-reads span{background:#091624;border-radius:8px;padding:5px;font-size:12px}.d-reads b{display:block;color:var(--cyan);font-size:24px}.dodoisl #status{font-size:13px;min-height:40px;margin:5px 12px 10px}.d-play{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.d-play button,.d-presets button{font-size:12px;padding:5px;min-width:44px}.d-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:5px 0 8px}.dodoisl .control label{display:flex;justify-content:space-between;gap:8px}.dodoisl output{color:var(--gold);min-width:45px;text-align:right}.dodoisl input[type=range]{height:44px}.dodoisl .unit{font-size:11px;text-align:left;margin:5px 0}.control-title{font-size:13px;margin:8px 0}.dodoisl #reset{width:100%}.dodoisl main>.card{max-width:1240px;margin:12px auto}.dodoisl #chart{display:block;width:100%;height:260px;touch-action:pan-y pinch-zoom}.d-legend{font-size:13px}.d-comparisons{display:grid;grid-template-columns:1fr 1fr;gap:8px}.d-comparisons[hidden]{display:none}.d-comparisons article{border:1px solid var(--line);border-radius:10px;padding:10px}.d-comparisons b{color:var(--gold)}.dodoisl dl{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.dodoisl dl>div{display:flex;justify-content:space-between;gap:7px;background:#0e2132;padding:7px;border-radius:7px}.dodoisl dd{margin:0;color:var(--cyan);font-weight:bold}.dodoisl dt{font-size:13px}.dodoisl footer a{display:inline-flex;align-items:center;min-height:44px}.dodoisl summary{min-height:44px;cursor:pointer}.dodoisl .source a{overflow-wrap:anywhere}.dodoisl .podcast img{object-fit:contain}
+@media(max-width:760px){.dodoisl .heading{margin:6px auto}.dodoisl .heading h1{font-size:20px}.dodoisl .eyebrow,.dodoisl .question{display:none}.dodoisl #plot{height:190px}.dodoisl .scene-header{font-size:11px;padding:6px 8px}.d-reads{margin:3px 8px}.d-reads span{font-size:11px;padding:3px}.d-reads b{font-size:18px}.dodoisl #status{font-size:11px;min-height:34px;margin:4px 8px 8px}.dodoisl .controls{padding:10px}.dodoisl main>.card{margin:10px}.dodoisl #chart{height:170px}.d-comparisons article{padding:7px}.d-comparisons h3{font-size:14px}.d-comparisons p{font-size:12px}.dodoisl dl{grid-template-columns:1fr}}
+@media(max-width:360px){.dodoisl .heading h1{font-size:17px}.dodoisl .logo{width:70px}.dodoisl .switch button{min-width:44px;font-size:11px;padding:3px 4px}.dodoisl #plot{height:150px}.dodoisl #status{font-size:10px}.d-play button,.d-presets button{font-size:11px}.dodoisl #chart{height:130px}}
+@media(max-height:500px) and (min-width:600px){.dodoisl #plot{height:190px}.dodoisl .heading{margin:4px auto}.dodoisl .heading h1{font-size:20px}.dodoisl .eyebrow,.dodoisl .question{display:none}.dodoisl .scene-header{font-size:10px;padding:4px 8px}.d-reads b{font-size:16px}.dodoisl #status{font-size:11px;min-height:30px;margin:3px 8px 6px}}
+
+/* Readable captions and adjacent controls; numerical model unchanged. */
+.dodoisl .d-caption{font-size:14px;line-height:1.35;margin:4px 8px}
+.dodoisl #plot>text{font-size:36px}
+.dodoisl #plot>text:first-of-type,.dodoisl #plot>text:last-of-type{display:none}
+.dodoisl .d-play button,.dodoisl .d-presets button,.dodoisl .unit,.dodoisl .control-title,.dodoisl #status,.dodoisl .d-reads span{font-size:14px}
+.dodoisl .d-reads b{font-size:20px}
+.dodoisl #status{min-height:0;margin:8px 0 0}
+.dodoisl .controls{display:flex;flex-direction:column}
+.dodoisl .number-entry-hint{order:1}
+html:has(body.dodoisl){scroll-padding-bottom:12px}
+@media(max-width:760px) and (min-height:501px){
+.dodoisl .heading{display:none}
+html:has(body.dodoisl){scroll-padding-top:calc(var(--dodoisl-view-height,320px) + 16px)}
+}
+@media(min-width:1000px) and (min-height:501px){
+.dodoisl .heading{margin:12px auto}.dodoisl .heading h1{font-size:30px}
+.dodoisl .controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 10px}
+.dodoisl .controls>:not(.control){grid-column:1/-1}
+.dodoisl .control:has(#range-predator){grid-column:1/-1}
+}
+
+@media(max-height:500px) and (min-width:600px){
+.dodoisl .heading{display:none}
+.dodoisl #plot{height:160px}
+.dodoisl .scene-header{font-size:13px;line-height:1.2;padding:2px 8px}
+.dodoisl .d-caption{line-height:1.2;margin:2px 8px}
+.dodoisl .d-reads span{line-height:1.2}
+.dodoisl .d-reads b{line-height:1.2}
+}
+
+.dodoisl [data-read],.dodoisl output{font-family:Arial,sans-serif;font-variant-numeric:tabular-nums;font-synthesis:none}
+.dodoisl [data-read]{font-weight:400}

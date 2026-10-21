@@ -1,0 +1,2 @@
+/* E09: long comparison cards need a readable phone column. */
+@media (max-width:600px){.saved{grid-template-columns:minmax(0,1fr)}}

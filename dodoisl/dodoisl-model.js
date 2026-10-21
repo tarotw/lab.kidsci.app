@@ -1,0 +1,7 @@
+'use strict';
+((root)=>{const years=30,initial={adult:60,young:20},base={harvest:0,habitat:100,predator:0},presets={base,harvest:{...base,harvest:40},habitat:{...base,habitat:40},predator:{...base,predator:80},combined:{harvest:40,habitat:40,predator:80}};
+function valid(p){for(const[k,max]of[['harvest',80],['habitat',100],['predator',100]])if(!p||!Number.isInteger(p[k])||p[k]<0||p[k]>max||p[k]%10)throw new RangeError('dodo settings');}
+function advance(s,p){valid(p);if(!s||!Number.isInteger(s.adult)||!Number.isInteger(s.young)||s.adult<0||s.young<0||s.adult+s.young>200)throw new RangeError('dodo state');const capacity=2*p.habitat,adultNatural=Math.floor(s.adult*85/100),harvested=Math.ceil(adultNatural*p.harvest/100),survivors=adultNatural-harvested,mature=Math.floor(s.young/2),born=Math.floor(survivors*8*(100-p.predator)*p.habitat/100000),rawAdult=survivors+mature,adult=Math.min(capacity,rawAdult),young=Math.min(born,Math.max(0,capacity-adult));return{adult,young,total:adult+young,capacity,adultNatural,harvested,survivors,mature,born,adultLoss:s.adult-adultNatural,youngLoss:s.young-mature,adultCrowd:rawAdult-adult,youngCrowd:born-young};}
+function run(p,n=years){valid(p);if(!Number.isInteger(n)||n<0||n>years)throw new RangeError('year');const history=[{...initial,total:80}];for(let i=0;i<n;i++)history.push(advance(history.at(-1),p));return history;}
+const api={years,initial,base,presets,valid,advance,run};root.DodoIslandModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);

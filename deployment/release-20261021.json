@@ -1,0 +1,836 @@
+{
+  "date": "2026-10-21",
+  "repository": "https://github.com/tarotw/lab.kidsci.app",
+  "baseCommit": "2a30895d833224194c6ee152c755d5c8e93c1036",
+  "newWorksCount": 141,
+  "totalUniqueWorks": 144,
+  "protectedDirectories": [
+    "solar-system",
+    "taipei-101",
+    "tesla-roadster",
+    "tesla-roaster"
+  ],
+  "secondaryHubs": [
+    "catalog/",
+    "batch01/"
+  ],
+  "newWorks": [
+    {
+      "directory": "claw",
+      "source": "claw/index.html",
+      "url": "https://lab.kidsci.app/claw/"
+    },
+    {
+      "directory": "turnlab",
+      "source": "turnlab/index.html",
+      "url": "https://lab.kidsci.app/turnlab/"
+    },
+    {
+      "directory": "tailspin",
+      "source": "tailspin/index.html",
+      "url": "https://lab.kidsci.app/tailspin/"
+    },
+    {
+      "directory": "hoofspr",
+      "source": "hoofspr/index.html",
+      "url": "https://lab.kidsci.app/hoofspr/"
+    },
+    {
+      "directory": "legmass",
+      "source": "legmass/index.html",
+      "url": "https://lab.kidsci.app/legmass/"
+    },
+    {
+      "directory": "glide",
+      "source": "glide/index.html",
+      "url": "https://lab.kidsci.app/glide/"
+    },
+    {
+      "directory": "hopbank",
+      "source": "hopbank/index.html",
+      "url": "https://lab.kidsci.app/hopbank/"
+    },
+    {
+      "directory": "tailfoot",
+      "source": "tailfoot/index.html",
+      "url": "https://lab.kidsci.app/tailfoot/"
+    },
+    {
+      "directory": "snowpaw",
+      "source": "snowpaw/index.html",
+      "url": "https://lab.kidsci.app/snowpaw/"
+    },
+    {
+      "directory": "rockbal",
+      "source": "rockbal/index.html",
+      "url": "https://lab.kidsci.app/rockbal/"
+    },
+    {
+      "directory": "footpad",
+      "source": "footpad/index.html",
+      "url": "https://lab.kidsci.app/footpad/"
+    },
+    {
+      "directory": "stridel",
+      "source": "stridel/index.html",
+      "url": "https://lab.kidsci.app/stridel/"
+    },
+    {
+      "directory": "fintask",
+      "source": "fintask/index.html",
+      "url": "https://lab.kidsci.app/fintask/"
+    },
+    {
+      "directory": "sharkup",
+      "source": "sharkup/index.html",
+      "url": "https://lab.kidsci.app/sharkup/"
+    },
+    {
+      "directory": "riblets",
+      "source": "riblets/index.html",
+      "url": "https://lab.kidsci.app/riblets/"
+    },
+    {
+      "directory": "rayfin",
+      "source": "rayfin/index.html",
+      "url": "https://lab.kidsci.app/rayfin/"
+    },
+    {
+      "directory": "whisker",
+      "source": "whisker/index.html",
+      "url": "https://lab.kidsci.app/whisker/"
+    },
+    {
+      "directory": "krill",
+      "source": "krill/index.html",
+      "url": "https://lab.kidsci.app/krill/"
+    },
+    {
+      "directory": "whalsnd",
+      "source": "whalsnd/index.html",
+      "url": "https://lab.kidsci.app/whalsnd/"
+    },
+    {
+      "directory": "mothjam",
+      "source": "mothjam/index.html",
+      "url": "https://lab.kidsci.app/mothjam/"
+    },
+    {
+      "directory": "platbill",
+      "source": "platbill/index.html",
+      "url": "https://lab.kidsci.app/platbill/"
+    },
+    {
+      "directory": "sharkel",
+      "source": "sharkel/index.html",
+      "url": "https://lab.kidsci.app/sharkel/"
+    },
+    {
+      "directory": "forktong",
+      "source": "forktong/index.html",
+      "url": "https://lab.kidsci.app/forktong/"
+    },
+    {
+      "directory": "pitheat",
+      "source": "pitheat/index.html",
+      "url": "https://lab.kidsci.app/pitheat/"
+    },
+    {
+      "directory": "tapwood",
+      "source": "tapwood/index.html",
+      "url": "https://lab.kidsci.app/tapwood/"
+    },
+    {
+      "directory": "kiwitip",
+      "source": "kiwitip/index.html",
+      "url": "https://lab.kidsci.app/kiwitip/"
+    },
+    {
+      "directory": "poleye",
+      "source": "poleye/index.html",
+      "url": "https://lab.kidsci.app/poleye/"
+    },
+    {
+      "directory": "earfan",
+      "source": "earfan/index.html",
+      "url": "https://lab.kidsci.app/earfan/"
+    },
+    {
+      "directory": "hareear",
+      "source": "hareear/index.html",
+      "url": "https://lab.kidsci.app/hareear/"
+    },
+    {
+      "directory": "pengheat",
+      "source": "pengheat/index.html",
+      "url": "https://lab.kidsci.app/pengheat/"
+    },
+    {
+      "directory": "huddle",
+      "source": "huddle/index.html",
+      "url": "https://lab.kidsci.app/huddle/"
+    },
+    {
+      "directory": "foxfur",
+      "source": "foxfur/index.html",
+      "url": "https://lab.kidsci.app/foxfur/"
+    },
+    {
+      "directory": "hibern",
+      "source": "hibern/index.html",
+      "url": "https://lab.kidsci.app/hibern/"
+    },
+    {
+      "directory": "slothday",
+      "source": "slothday/index.html",
+      "url": "https://lab.kidsci.app/slothday/"
+    },
+    {
+      "directory": "leafmeal",
+      "source": "leafmeal/index.html",
+      "url": "https://lab.kidsci.app/leafmeal/"
+    },
+    {
+      "directory": "rumen",
+      "source": "rumen/index.html",
+      "url": "https://lab.kidsci.app/rumen/"
+    },
+    {
+      "directory": "crop",
+      "source": "crop/index.html",
+      "url": "https://lab.kidsci.app/crop/"
+    },
+    {
+      "directory": "waterbal",
+      "source": "waterbal/index.html",
+      "url": "https://lab.kidsci.app/waterbal/"
+    },
+    {
+      "directory": "shrimp",
+      "source": "shrimp/index.html",
+      "url": "https://lab.kidsci.app/shrimp/"
+    },
+    {
+      "directory": "cavibub",
+      "source": "cavibub/index.html",
+      "url": "https://lab.kidsci.app/cavibub/"
+    },
+    {
+      "directory": "twistply",
+      "source": "twistply/index.html",
+      "url": "https://lab.kidsci.app/twistply/"
+    },
+    {
+      "directory": "beakcore",
+      "source": "beakcore/index.html",
+      "url": "https://lab.kidsci.app/beakcore/"
+    },
+    {
+      "directory": "scales",
+      "source": "scales/index.html",
+      "url": "https://lab.kidsci.app/scales/"
+    },
+    {
+      "directory": "chamcol",
+      "source": "chamcol/index.html",
+      "url": "https://lab.kidsci.app/chamcol/"
+    },
+    {
+      "directory": "wingcol",
+      "source": "wingcol/index.html",
+      "url": "https://lab.kidsci.app/wingcol/"
+    },
+    {
+      "directory": "mound",
+      "source": "mound/index.html",
+      "url": "https://lab.kidsci.app/mound/"
+    },
+    {
+      "directory": "roompair",
+      "source": "roompair/index.html",
+      "url": "https://lab.kidsci.app/roompair/"
+    },
+    {
+      "directory": "waggle",
+      "source": "waggle/index.html",
+      "url": "https://lab.kidsci.app/waggle/"
+    },
+    {
+      "directory": "tunlab",
+      "source": "tunlab/index.html",
+      "url": "https://lab.kidsci.app/tunlab/"
+    },
+    {
+      "directory": "brood",
+      "source": "brood/index.html",
+      "url": "https://lab.kidsci.app/brood/"
+    },
+    {
+      "directory": "tadpool",
+      "source": "tadpool/index.html",
+      "url": "https://lab.kidsci.app/tadpool/"
+    },
+    {
+      "directory": "wolfcare",
+      "source": "wolfcare/index.html",
+      "url": "https://lab.kidsci.app/wolfcare/"
+    },
+    {
+      "directory": "pipaback",
+      "source": "pipaback/index.html",
+      "url": "https://lab.kidsci.app/pipaback/"
+    },
+    {
+      "directory": "milkpath",
+      "source": "milkpath/index.html",
+      "url": "https://lab.kidsci.app/milkpath/"
+    },
+    {
+      "directory": "birdtime",
+      "source": "birdtime/index.html",
+      "url": "https://lab.kidsci.app/birdtime/"
+    },
+    {
+      "directory": "seedride",
+      "source": "seedride/index.html",
+      "url": "https://lab.kidsci.app/seedride/"
+    },
+    {
+      "directory": "circuit",
+      "source": "circuit/index.html",
+      "url": "https://lab.kidsci.app/circuit/"
+    },
+    {
+      "directory": "diveoxy",
+      "source": "diveoxy/index.html",
+      "url": "https://lab.kidsci.app/diveoxy/"
+    },
+    {
+      "directory": "codalab",
+      "source": "codalab/index.html",
+      "url": "https://lab.kidsci.app/codalab/"
+    },
+    {
+      "directory": "locust",
+      "source": "locust/index.html",
+      "url": "https://lab.kidsci.app/locust/"
+    },
+    {
+      "directory": "froglife",
+      "source": "froglife/index.html",
+      "url": "https://lab.kidsci.app/froglife/"
+    },
+    {
+      "directory": "icecell",
+      "source": "icecell/index.html",
+      "url": "https://lab.kidsci.app/icecell/"
+    },
+    {
+      "directory": "skinoxy",
+      "source": "skinoxy/index.html",
+      "url": "https://lab.kidsci.app/skinoxy/"
+    },
+    {
+      "directory": "regrow",
+      "source": "regrow/index.html",
+      "url": "https://lab.kidsci.app/regrow/"
+    },
+    {
+      "directory": "molt",
+      "source": "molt/index.html",
+      "url": "https://lab.kidsci.app/molt/"
+    },
+    {
+      "directory": "monarch",
+      "source": "monarch/index.html",
+      "url": "https://lab.kidsci.app/monarch/"
+    },
+    {
+      "directory": "foodweb",
+      "source": "foodweb/index.html",
+      "url": "https://lab.kidsci.app/foodweb/"
+    },
+    {
+      "directory": "migrate",
+      "source": "migrate/index.html",
+      "url": "https://lab.kidsci.app/migrate/"
+    },
+    {
+      "directory": "puflight",
+      "source": "puflight/index.html",
+      "url": "https://lab.kidsci.app/puflight/"
+    },
+    {
+      "directory": "fishpass",
+      "source": "fishpass/index.html",
+      "url": "https://lab.kidsci.app/fishpass/"
+    },
+    {
+      "directory": "camtrap",
+      "source": "camtrap/index.html",
+      "url": "https://lab.kidsci.app/camtrap/"
+    },
+    {
+      "directory": "spotid",
+      "source": "spotid/index.html",
+      "url": "https://lab.kidsci.app/spotid/"
+    },
+    {
+      "directory": "flyland",
+      "source": "flyland/index.html",
+      "url": "https://lab.kidsci.app/flyland/"
+    },
+    {
+      "directory": "wetgrid",
+      "source": "wetgrid/index.html",
+      "url": "https://lab.kidsci.app/wetgrid/"
+    },
+    {
+      "directory": "dodoisl",
+      "source": "dodoisl/index.html",
+      "url": "https://lab.kidsci.app/dodoisl/"
+    },
+    {
+      "directory": "kelpweb",
+      "source": "kelpweb/index.html",
+      "url": "https://lab.kidsci.app/kelpweb/"
+    },
+    {
+      "directory": "lever",
+      "source": "lever/index.html",
+      "url": "https://lab.kidsci.app/lever/"
+    },
+    {
+      "directory": "buoy",
+      "source": "buoy/index.html",
+      "url": "https://lab.kidsci.app/buoy/"
+    },
+    {
+      "directory": "hydjack",
+      "source": "hydjack/index.html",
+      "url": "https://lab.kidsci.app/hydjack/"
+    },
+    {
+      "directory": "windlab",
+      "source": "windlab/index.html",
+      "url": "https://lab.kidsci.app/windlab/"
+    },
+    {
+      "directory": "doppler",
+      "source": "doppler/index.html",
+      "url": "https://lab.kidsci.app/doppler/"
+    },
+    {
+      "directory": "heatpath",
+      "source": "heatpath/index.html",
+      "url": "https://lab.kidsci.app/heatpath/"
+    },
+    {
+      "directory": "phase",
+      "source": "phase/index.html",
+      "url": "https://lab.kidsci.app/phase/"
+    },
+    {
+      "directory": "seisloc",
+      "source": "seisloc/index.html",
+      "url": "https://lab.kidsci.app/seisloc/"
+    },
+    {
+      "directory": "plates",
+      "source": "plates/index.html",
+      "url": "https://lab.kidsci.app/plates/"
+    },
+    {
+      "directory": "gasrise",
+      "source": "gasrise/index.html",
+      "url": "https://lab.kidsci.app/gasrise/"
+    },
+    {
+      "directory": "waterlog",
+      "source": "waterlog/index.html",
+      "url": "https://lab.kidsci.app/waterlog/"
+    },
+    {
+      "directory": "sandgrid",
+      "source": "sandgrid/index.html",
+      "url": "https://lab.kidsci.app/sandgrid/"
+    },
+    {
+      "directory": "tracklab",
+      "source": "tracklab/index.html",
+      "url": "https://lab.kidsci.app/tracklab/"
+    },
+    {
+      "directory": "heatflow",
+      "source": "heatflow/index.html",
+      "url": "https://lab.kidsci.app/heatflow/"
+    },
+    {
+      "directory": "ensolab",
+      "source": "ensolab/index.html",
+      "url": "https://lab.kidsci.app/ensolab/"
+    },
+    {
+      "directory": "seasons",
+      "source": "seasons/index.html",
+      "url": "https://lab.kidsci.app/seasons/"
+    },
+    {
+      "directory": "moonview",
+      "source": "moonview/index.html",
+      "url": "https://lab.kidsci.app/moonview/"
+    },
+    {
+      "directory": "mercbeat",
+      "source": "mercbeat/index.html",
+      "url": "https://lab.kidsci.app/mercbeat/"
+    },
+    {
+      "directory": "masslab",
+      "source": "masslab/index.html",
+      "url": "https://lab.kidsci.app/masslab/"
+    },
+    {
+      "directory": "marsmsg",
+      "source": "marsmsg/index.html",
+      "url": "https://lab.kidsci.app/marsmsg/"
+    },
+    {
+      "directory": "nudgelab",
+      "source": "nudgelab/index.html",
+      "url": "https://lab.kidsci.app/nudgelab/"
+    },
+    {
+      "directory": "areabeat",
+      "source": "areabeat/index.html",
+      "url": "https://lab.kidsci.app/areabeat/"
+    },
+    {
+      "directory": "aurorlab",
+      "source": "aurorlab/index.html",
+      "url": "https://lab.kidsci.app/aurorlab/"
+    },
+    {
+      "directory": "seapadd",
+      "source": "seapadd/index.html",
+      "url": "https://lab.kidsci.app/seapadd/"
+    },
+    {
+      "directory": "airfish",
+      "source": "airfish/index.html",
+      "url": "https://lab.kidsci.app/airfish/"
+    },
+    {
+      "directory": "batecho",
+      "source": "batecho/index.html",
+      "url": "https://lab.kidsci.app/batecho/"
+    },
+    {
+      "directory": "croceye",
+      "source": "croceye/index.html",
+      "url": "https://lab.kidsci.app/croceye/"
+    },
+    {
+      "directory": "eyegrid",
+      "source": "eyegrid/index.html",
+      "url": "https://lab.kidsci.app/eyegrid/"
+    },
+    {
+      "directory": "birdnav",
+      "source": "birdnav/index.html",
+      "url": "https://lab.kidsci.app/birdnav/"
+    },
+    {
+      "directory": "toucan",
+      "source": "toucan/index.html",
+      "url": "https://lab.kidsci.app/toucan/"
+    },
+    {
+      "directory": "scalearm",
+      "source": "scalearm/index.html",
+      "url": "https://lab.kidsci.app/scalearm/"
+    },
+    {
+      "directory": "silklab",
+      "source": "silklab/index.html",
+      "url": "https://lab.kidsci.app/silklab/"
+    },
+    {
+      "directory": "webpulse",
+      "source": "webpulse/index.html",
+      "url": "https://lab.kidsci.app/webpulse/"
+    },
+    {
+      "directory": "shellock",
+      "source": "shellock/index.html",
+      "url": "https://lab.kidsci.app/shellock/"
+    },
+    {
+      "directory": "deepred",
+      "source": "deepred/index.html",
+      "url": "https://lab.kidsci.app/deepred/"
+    },
+    {
+      "directory": "webgeom",
+      "source": "webgeom/index.html",
+      "url": "https://lab.kidsci.app/webgeom/"
+    },
+    {
+      "directory": "beaver",
+      "source": "beaver/index.html",
+      "url": "https://lab.kidsci.app/beaver/"
+    },
+    {
+      "directory": "weavelab",
+      "source": "weavelab/index.html",
+      "url": "https://lab.kidsci.app/weavelab/"
+    },
+    {
+      "directory": "dungnav",
+      "source": "dungnav/index.html",
+      "url": "https://lab.kidsci.app/dungnav/"
+    },
+    {
+      "directory": "dungflow",
+      "source": "dungflow/index.html",
+      "url": "https://lab.kidsci.app/dungflow/"
+    },
+    {
+      "directory": "antfarm",
+      "source": "antfarm/index.html",
+      "url": "https://lab.kidsci.app/antfarm/"
+    },
+    {
+      "directory": "reefpair",
+      "source": "reefpair/index.html",
+      "url": "https://lab.kidsci.app/reefpair/"
+    },
+    {
+      "directory": "fishsort",
+      "source": "fishsort/index.html",
+      "url": "https://lab.kidsci.app/fishsort/"
+    },
+    {
+      "directory": "filter",
+      "source": "filter/index.html",
+      "url": "https://lab.kidsci.app/filter/"
+    },
+    {
+      "directory": "leaflim",
+      "source": "leaflim/index.html",
+      "url": "https://lab.kidsci.app/leaflim/"
+    },
+    {
+      "directory": "xylem",
+      "source": "xylem/index.html",
+      "url": "https://lab.kidsci.app/xylem/"
+    },
+    {
+      "directory": "seedlab",
+      "source": "seedlab/index.html",
+      "url": "https://lab.kidsci.app/seedlab/"
+    },
+    {
+      "directory": "camday",
+      "source": "camday/index.html",
+      "url": "https://lab.kidsci.app/camday/"
+    },
+    {
+      "directory": "bitmail",
+      "source": "bitmail/index.html",
+      "url": "https://lab.kidsci.app/bitmail/"
+    },
+    {
+      "directory": "classify",
+      "source": "classify/index.html",
+      "url": "https://lab.kidsci.app/classify/"
+    },
+    {
+      "directory": "netmsg",
+      "source": "netmsg/index.html",
+      "url": "https://lab.kidsci.app/netmsg/"
+    },
+    {
+      "directory": "evsteps",
+      "source": "evsteps/index.html",
+      "url": "https://lab.kidsci.app/evsteps/"
+    },
+    {
+      "directory": "backrun",
+      "source": "backrun/index.html",
+      "url": "https://lab.kidsci.app/backrun/"
+    },
+    {
+      "directory": "jawbite",
+      "source": "jawbite/index.html",
+      "url": "https://lab.kidsci.app/jawbite/"
+    },
+    {
+      "directory": "toothrow",
+      "source": "toothrow/index.html",
+      "url": "https://lab.kidsci.app/toothrow/"
+    },
+    {
+      "directory": "octomsg",
+      "source": "octomsg/index.html",
+      "url": "https://lab.kidsci.app/octomsg/"
+    },
+    {
+      "directory": "sunwarm",
+      "source": "sunwarm/index.html",
+      "url": "https://lab.kidsci.app/sunwarm/"
+    },
+    {
+      "directory": "oxyflow",
+      "source": "oxyflow/index.html",
+      "url": "https://lab.kidsci.app/oxyflow/"
+    },
+    {
+      "directory": "headpres",
+      "source": "headpres/index.html",
+      "url": "https://lab.kidsci.app/headpres/"
+    },
+    {
+      "directory": "wombcube",
+      "source": "wombcube/index.html",
+      "url": "https://lab.kidsci.app/wombcube/"
+    },
+    {
+      "directory": "newton",
+      "source": "newton/index.html",
+      "url": "https://lab.kidsci.app/newton/"
+    },
+    {
+      "directory": "mathquiz",
+      "source": "mathquiz/index.html",
+      "url": "https://lab.kidsci.app/mathquiz/"
+    },
+    {
+      "directory": "rainbow",
+      "source": "rainbow-optics.html",
+      "url": "https://lab.kidsci.app/rainbow/"
+    },
+    {
+      "directory": "parker",
+      "source": "parker-solar-probe.html",
+      "url": "https://lab.kidsci.app/parker/"
+    },
+    {
+      "directory": "archi",
+      "source": "archimedes-lab.html",
+      "url": "https://lab.kidsci.app/archi/"
+    }
+  ],
+  "validation": {
+    "localHTMLReferencesChecked": 1273,
+    "versionHashesChecked": 979,
+    "jsFilesSyntaxChecked": 711,
+    "scriptBlocksSyntaxChecked": 721,
+    "runtimeCoverSelectionsChecked": 136,
+    "protectedGitBlobsUnchanged": 13,
+    "homepageBrowserSizes": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        1366,
+        768
+      ]
+    ],
+    "browserScope": "Homepage search, topic filter, empty result, and navigation; catalog remapped links; supplementary Archimedes 3D buoyancy/lever/language checks. Existing full-series QA is prior local evidence, not a fresh end-to-end retest of every deployed page.",
+    "notTested": [
+      "physical mobile touch",
+      "Safari",
+      "actual podcast audio"
+    ]
+  },
+  "preservedGitFiles": [
+    {
+      "path": "404.html",
+      "gitBlob": "436eb6c5eb8f95385508b6e7319d2f768c597f4f",
+      "packagedBlob": "436eb6c5eb8f95385508b6e7319d2f768c597f4f",
+      "unchanged": true
+    },
+    {
+      "path": "CNAME",
+      "gitBlob": "aec38c604385fad257e43e3cf285985eaba40e51",
+      "packagedBlob": "aec38c604385fad257e43e3cf285985eaba40e51",
+      "unchanged": true
+    },
+    {
+      "path": "README.md",
+      "gitBlob": "c61093b06dec0e2b53df20c49861f69553da8a45",
+      "packagedBlob": "c61093b06dec0e2b53df20c49861f69553da8a45",
+      "unchanged": true
+    },
+    {
+      "path": "google13d9c0ce95e86b0b.html",
+      "gitBlob": "e8c2f58c9111fc209c9803376e407ae40422e6e0",
+      "packagedBlob": "e8c2f58c9111fc209c9803376e407ae40422e6e0",
+      "unchanged": true
+    },
+    {
+      "path": "science-good-listen.png",
+      "gitBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "packagedBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "unchanged": true
+    },
+    {
+      "path": "solar-system/index.html",
+      "gitBlob": "4b8b332899a3b0cc72717cda4fa0ad5291bd8894",
+      "packagedBlob": "4b8b332899a3b0cc72717cda4fa0ad5291bd8894",
+      "unchanged": true
+    },
+    {
+      "path": "solar-system/science-good-listen.png",
+      "gitBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "packagedBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "unchanged": true
+    },
+    {
+      "path": "taipei-101/index.html",
+      "gitBlob": "cf729e67ed29361be2026c18b1c23a4694f09bbe",
+      "packagedBlob": "cf729e67ed29361be2026c18b1c23a4694f09bbe",
+      "unchanged": true
+    },
+    {
+      "path": "taipei-101/science-good-listen.png",
+      "gitBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "packagedBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "unchanged": true
+    },
+    {
+      "path": "tesla-roadster/index.html",
+      "gitBlob": "534877ccd20d566e835efb7f1dd7e260afeac119",
+      "packagedBlob": "534877ccd20d566e835efb7f1dd7e260afeac119",
+      "unchanged": true
+    },
+    {
+      "path": "tesla-roaster/index.html",
+      "gitBlob": "f4b251be03881c0c8ad07921eba264b8ddafdae5",
+      "packagedBlob": "f4b251be03881c0c8ad07921eba264b8ddafdae5",
+      "unchanged": true
+    },
+    {
+      "path": "tesla-roaster/og-wall.jpg",
+      "gitBlob": "142d597c79b0d695b34d7181ca80c5fa2deeb1eb",
+      "packagedBlob": "142d597c79b0d695b34d7181ca80c5fa2deeb1eb",
+      "unchanged": true
+    },
+    {
+      "path": "tesla-roaster/science-good-listen.png",
+      "gitBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "packagedBlob": "891b917fc5a555a52b33fc6c47f93eea60265bdf",
+      "unchanged": true
+    }
+  ]
+}

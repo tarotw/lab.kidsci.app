@@ -1,0 +1,32 @@
+.wetgrid #plot{width:100%;height:330px;display:block;touch-action:pan-y pinch-zoom;font-family:system-ui}.wetgrid [data-cell]{cursor:pointer;touch-action:pan-y pinch-zoom;outline:none}.wetgrid [data-cell]:focus-visible>rect{stroke:#fff;stroke-width:7px}.wetgrid .view{position:sticky;top:8px;align-self:start;z-index:5}.w-reads{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:4px 12px}.w-reads span{background:#091624;border-radius:8px;padding:4px;font-size:12px}.w-reads b{display:block;font-size:22px;color:var(--cyan)}.wetgrid #status{font-size:13px;min-height:40px;margin:5px 12px 10px}.w-pair{display:grid;grid-template-columns:1fr 1fr;gap:5px}.w-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.w-tools button,.w-pair button{font-size:12px;padding:5px;min-width:44px}.control-title{font-size:13px;margin:6px 0}.wetgrid .unit{font-size:11px;text-align:left;margin:5px 0}.wetgrid #picked{min-height:32px}.w-target{display:flex;align-items:center;gap:5px;margin:7px 0}.w-target span{font-size:13px;margin-right:4px}.w-target button{min-width:44px}.wetgrid main>.card{max-width:1240px;margin:12px auto}.w-comparisons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.w-comparisons article{padding:10px;border:1px solid var(--line);border-radius:12px}.w-comparisons svg{width:100%;height:210px}.w-comparisons p{margin:6px 0;font-size:13px}.w-comparisons b{margin-left:.25em;color:var(--gold);white-space:nowrap}.w-comparisons small{color:var(--muted);display:block}.wetgrid #route-text{overflow-wrap:anywhere}.wetgrid .podcast img{object-fit:contain}.wetgrid footer a{min-height:44px;display:inline-flex;align-items:center}.wetgrid .source a{overflow-wrap:anywhere}.wetgrid summary{min-height:44px;cursor:pointer}
+@media(max-width:760px){.wetgrid .heading{margin:6px auto}.wetgrid .heading h1{font-size:21px}.wetgrid .eyebrow,.wetgrid .question{display:none}.wetgrid #plot{height:auto;aspect-ratio:660/550}.wetgrid .scene-header{font-size:11px;padding:5px 8px}.w-reads{margin:3px 8px}.w-reads span{font-size:10px;padding:3px}.w-reads b{font-size:16px}.wetgrid #status{font-size:11px;min-height:30px;margin:4px 8px 7px}.wetgrid main>.card{margin:10px}.wetgrid .controls{padding:10px}.w-comparisons svg{height:135px}.w-comparisons h3{font-size:14px}.w-comparisons p{font-size:12px}}
+@media(max-width:360px){.wetgrid .heading h1{font-size:18px}.wetgrid .logo{width:70px}.wetgrid .switch button{min-width:44px;font-size:11px;padding:3px 4px}.wetgrid #status{font-size:10px;min-height:30px}.w-tools button,.w-pair button{font-size:11px}.w-comparisons article{padding:7px}.w-comparisons svg{height:100px}}
+@media(max-height:500px) and (min-width:600px){.wetgrid #plot{height:250px;aspect-ratio:auto}.wetgrid .heading{margin:4px auto}.wetgrid .heading h1{font-size:20px}.wetgrid .eyebrow,.wetgrid .question{display:none}.wetgrid .scene-header{padding:4px 8px;font-size:10px}.w-reads{margin:2px 8px}.w-reads span{font-size:10px;padding:2px}.w-reads b{font-size:14px}.wetgrid #status{font-size:10px;min-height:30px;margin:3px 8px 6px}}
+
+/* Current readability and native focus spacing; model coordinates unchanged. */
+.wetgrid .w-legend{font-size:14px;margin:5px 8px 8px;line-height:1.35}
+.wetgrid #plot>text:last-child{display:none}
+.wetgrid .unit,.wetgrid .control-title,.wetgrid #status,.wetgrid #picked,.wetgrid .w-tools button,.wetgrid .w-pair button,.wetgrid .w-target span{font-size:14px}
+.wetgrid .w-reads span{font-size:14px}.wetgrid .w-reads b{font-size:20px}
+.wetgrid #status{min-height:0;margin:10px 0 0}
+html:has(body.wetgrid){scroll-padding-bottom:12px}
+@media(max-width:760px) and (min-height:501px){
+.wetgrid .heading{display:none}
+html:has(body.wetgrid){scroll-padding-top:calc(var(--wetgrid-view-height,350px) + 16px)}
+}
+
+@media(max-height:500px) and (min-width:600px){
+.wetgrid .heading{display:none}
+.wetgrid #plot{height:244px}
+.wetgrid .w-legend{margin:2px 8px 4px;font-size:14px}
+.wetgrid .scene-header{font-size:13px}
+.wetgrid .w-reads span{font-size:14px;white-space:nowrap;padding:2px}
+.wetgrid .w-reads b{font-size:18px}
+}
+
+@media(max-height:500px) and (min-width:600px){
+.wetgrid .scene-header{line-height:1.3;padding:2px 8px}
+.wetgrid .w-reads span{line-height:1.15}
+.wetgrid .w-reads b{line-height:1.1}
+.wetgrid .w-legend{line-height:1.2;margin:0 8px 2px}
+}

@@ -1,0 +1,33 @@
+.bitmail .view{position:sticky;top:8px;align-self:start;z-index:5}.bitmail #scene{width:100%;height:285px;display:block;touch-action:pan-y pinch-zoom}.bitmail svg text{fill:#d7e6ee;font:26px system-ui}.bitmail svg .bit{font-size:36px;font-weight:700}.bitmail .near{display:flex;gap:8px;justify-content:space-around;padding:6px;font-size:12px}.bitmail .near b{display:block;color:var(--gold);font-size:16px}.bitmail #status{font-size:13px;min-height:68px;margin:4px 10px}.bitmail .legend{font-size:12px;margin:4px 10px}.bitmail .controls h3{font-size:13px;margin:8px 0 3px}.bitmail .four,.bitmail .five,.bitmail .two,.bitmail .three{display:grid;gap:5px;margin:4px 0}.bitmail .four{grid-template-columns:repeat(4,1fr)}.bitmail .five{grid-template-columns:repeat(5,1fr)}.bitmail .two{grid-template-columns:repeat(2,1fr)}.bitmail .three{grid-template-columns:repeat(3,1fr)}.bitmail .controls button{min-width:44px;min-height:44px;font-size:12px;padding:4px;white-space:normal}.bitmail #send{width:100%;background:#214451}.bitmail .draftbits button{font-size:18px}.bitmail .unit{font-size:12px;text-align:left;margin:4px 0}.bitmail main>.card{max-width:1240px;margin:14px auto}.bitmail .cardgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.bitmail .cardgrid button{min-height:60px;padding:5px;min-width:0;font-size:12px}.bitmail .cardgrid b{display:block;color:var(--gold)}.bitmail .ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:12px;text-align:center}.bitmail .ledger b{display:block;font-size:18px;color:var(--gold)}.bitmail #decoded{color:var(--gold);min-height:24px}.bitmail .tablewrap{overflow-x:auto}.bitmail table{width:100%;border-collapse:collapse;font-size:13px}.bitmail th,.bitmail td{padding:5px;text-align:left;border-bottom:1px solid var(--line)}.bitmail pre{white-space:pre-wrap;font-size:12px}.bitmail summary,.bitmail footer a{display:flex;align-items:center;min-height:44px}.bitmail footer a{display:inline-flex}.bitmail .podcast img{object-fit:contain}.bitmail .switch button{min-width:44px}.bitmail button:disabled{opacity:.45}.bitmail button[aria-pressed=true]{border-color:var(--cyan);background:#264450}.bitmail .mini{font-size:11px;color:var(--muted)}@media(max-width:760px){.bitmail .heading{margin:5px auto}.bitmail .heading h1{font-size:20px}.bitmail .eyebrow,.bitmail .question{display:none}.bitmail #scene{height:155px}.bitmail .near{font-size:10px}.bitmail .near b{font-size:13px}.bitmail #status{font-size:11px;min-height:62px}.bitmail .legend{font-size:10px}.bitmail .controls{padding:10px}.bitmail .controls button{font-size:11px}.bitmail .draftbits button{font-size:17px}.bitmail main>.card{margin:10px}.bitmail .ledger{grid-template-columns:1fr 1fr}.bitmail .cardgrid{grid-template-columns:repeat(4,1fr)}.bitmail svg text{font-size:28px}}@media(max-width:360px){.bitmail .logo{width:70px}.bitmail .heading h1{font-size:18px}.bitmail #scene{height:140px}.bitmail #status{font-size:10px;min-height:60px}.bitmail .cardgrid{grid-template-columns:repeat(2,1fr)}}@media(max-height:500px) and (min-width:600px){.bitmail #scene{height:140px}.bitmail #status{font-size:11px;min-height:62px}.bitmail .near{font-size:10px}.bitmail .near b{font-size:13px}.bitmail .legend{font-size:10px}}
+
+.bitmail .near>span{flex:1;min-width:0;text-align:center;overflow-wrap:anywhere}
+
+/* Keep the live packet visible while children reach every primary control. */
+.bitmail .brand{min-height:44px}
+.bitmail .quick-tip{font-size:14px;line-height:1.3;margin:5px 10px 9px;color:var(--cyan)}
+.bitmail .controls #status{font-size:14px;line-height:1.4;min-height:0;margin:10px 0}
+.bitmail .controls .legend{font-size:14px;line-height:1.4;margin:8px 0}
+.bitmail .controls .unit{font-size:14px;line-height:1.4}
+.bitmail .controls button{font-size:14px;line-height:1.25}
+.bitmail #sources a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:760px){
+ .bitmail .view{top:4px}
+ .bitmail .near{font-size:12px;line-height:1.25;gap:4px}
+ .bitmail .near b{font-size:14px}
+ .bitmail svg text{font-size:34px}
+ .bitmail #scene{height:140px}
+ .bitmail .quick-tip{font-size:13px;margin:4px 8px 7px}
+ .bitmail .controls h3{font-size:14px;line-height:1.3}
+ .bitmail .controls button{font-size:13px}
+ .bitmail .draftbits button{font-size:17px}
+}
+@media(max-height:500px) and (min-width:600px){
+ .bitmail .heading{display:none}
+ .bitmail .lab{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding:8px 10px}
+ .bitmail .view{top:4px}
+ .bitmail .near{font-size:12px;line-height:1.25}
+ .bitmail .near b{font-size:14px}
+ .bitmail #scene{height:140px}
+}
+
+@media(max-width:360px){.bitmail #near-check{font-size:12px;overflow-wrap:normal}}

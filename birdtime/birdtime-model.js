@@ -1,0 +1,6 @@
+'use strict';
+((root)=>{const WIDTH=12,PEAK=10,TOTAL=120,LAG=20,SENSITIVITY=4,defaults={temp:0,arrival:40,shift:0};
+function valid(p){if(!p||typeof p!=='object')throw new TypeError('parameters');for(const[k,lo,hi,step]of[['temp',-2,4,.5],['arrival',20,80,1],['shift',-20,20,1]])if(typeof p[k]!=='number'||!Number.isFinite(p[k])||p[k]<lo||p[k]>hi||!Number.isInteger(p[k]/step))throw new RangeError(k);}
+function rate(day,center){return PEAK*Math.max(0,1-Math.abs(day-center)/WIDTH);}
+function calculate(p){valid(p);const foodPeak=60-SENSITIVITY*p.temp+p.shift,arrival=p.arrival+p.shift,needPeak=arrival+LAG,gap=needPeak-foodPeak,d=Math.abs(gap),overlap=TOTAL*Math.max(0,1-d/(2*WIDTH))**2;const days=[0,140,foodPeak-WIDTH,foodPeak,foodPeak+WIDTH,needPeak-WIDTH,needPeak,needPeak+WIDTH,(foodPeak+needPeak)/2].sort((a,b)=>a-b),points=[...new Set(days)].map(day=>({day,food:rate(day,foodPeak),need:rate(day,needPeak),match:Math.min(rate(day,foodPeak),rate(day,needPeak))}));return{foodPeak,arrival,needPeak,gap,overlap,unmatched:TOTAL-overlap,unused:TOTAL-overlap,percent:100*overlap/TOTAL,totalFood:TOTAL,totalNeed:TOTAL,points};}
+const api={WIDTH,PEAK,TOTAL,LAG,SENSITIVITY,defaults,valid,rate,calculate};root.BirdTimeModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;})(typeof window!=='undefined'?window:globalThis);

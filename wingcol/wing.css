@@ -1,0 +1,15 @@
+.wing-lab .heading{margin:10px auto}.wing-lab .heading h1{font-size:27px}.wing-scene{display:block;width:100%;height:260px;touch-action:pan-y pinch-zoom}.wing-lab .scene-header{gap:6px;padding:7px 10px}.wing-lab #clock{white-space:nowrap}.wing-lab .scene-note{font-size:12px;padding:4px 10px;min-height:34px}.wing-lab .actions{padding:5px;gap:4px}.wing-lab .actions button{min-width:0;white-space:normal;padding:4px}.wing-tools{grid-column:1/-1;font-size:12px}.wing-tools p{margin:4px 0}.wing-lab .choices{gap:4px;margin:4px 0}.wing-lab .choices button{min-width:0;flex:1;font-size:12px;padding:4px}.wing-lab .control{margin:3px 0}.wing-lab .hint{font-size:13px;min-height:38px}.wing-lab input[type=range]{height:44px}.wing-ledger{font-size:12px;padding:3px 10px;color:#efb96c}.wing-comparison{display:grid;grid-template-columns:1fr 1fr;gap:8px}.wing-comparison article{border:1px solid var(--line);border-radius:12px;padding:10px}.wing-comparison .wing-scene{height:220px}.wing-patch{display:inline-block;width:36px;height:23px;border:1px solid #a6b7c9;border-radius:6px;vertical-align:middle;margin-right:6px}.wing-lab .formula{white-space:pre-wrap;font-size:12px}.wing-lab .source a{overflow-wrap:anywhere}
+@media(max-width:760px){.wing-lab .heading{margin:7px auto}.wing-lab .heading h1{font-size:20px}.wing-lab .eyebrow,.wing-lab .question{display:none}.wing-scene{height:190px}.wing-lab .scene-header{font-size:10px}.wing-lab .view{top:6px}.wing-lab .scene-note{font-size:10px;min-height:28px}.wing-ledger{font-size:10px}.wing-lab .controls.compact{padding:10px}.wing-lab .hint{font-size:12px}.wing-comparison{grid-template-columns:1fr}.wing-comparison .wing-scene{height:200px}.wing-lights button{flex-basis:40%!important}}
+@media(max-width:360px){.wing-scene{height:180px}.wing-lab .heading h1{font-size:18px}.wing-lab .control label{font-size:12px}.wing-lab .logo{width:78px}.wing-lab .scene-header{padding:5px 8px}.wing-patch{width:25px}}
+@media(min-width:1000px){.wing-lab .controls.compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-height:500px) and (min-width:600px){.wing-lab .heading{margin:4px auto}.wing-lab .eyebrow,.wing-lab .question{display:none}.wing-lab .heading h1{font-size:19px}.wing-scene{height:180px}.wing-lab .scene-header{font-size:10px}.wing-lab .scene-note{font-size:10px}.wing-comparison{grid-template-columns:1fr 1fr}}
+
+/* E11: readable live optical status without altering Canvas geometry. */
+.wing-lab .scene-header,.wing-lab .scene-note,.wing-ledger{font-size:14px;line-height:1.4}
+.wing-lab .scene-header strong{min-width:0}
+@media(max-width:760px){.wing-lab .scene-header,.wing-lab .scene-note,.wing-ledger{font-size:14px}.wing-lab .scene-note{min-height:0}}
+@media(max-height:500px) and (min-width:600px){.wing-scene{height:180px}}
+
+/* Keep the three view descriptions from covering the currently used phone controls. */
+@media(max-width:760px){.wing-lab .scene-note{min-height:64px}}
+@media(max-height:500px) and (min-width:600px){.wing-lab .scene-note{min-height:44px}}

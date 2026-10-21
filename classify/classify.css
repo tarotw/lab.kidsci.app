@@ -1,0 +1,36 @@
+.classify .view{position:sticky;top:8px;align-self:start;z-index:5}.classify #scene{display:block;width:100%;height:290px;touch-action:pan-y pinch-zoom}.classify svg text{fill:#d7e6ee;font:25px system-ui}.classify .near{display:flex;justify-content:space-around;gap:6px;padding:6px;font-size:12px}.classify .near>span{flex:1;min-width:0;text-align:center}.classify .near b{display:block;color:var(--gold);font-size:16px}.classify #status{font-size:13px;min-height:70px;margin:4px 10px}.classify .legend{font-size:12px;margin:4px 10px}.classify .two,.classify .three{display:grid;gap:5px;margin:4px 0}.classify .two{grid-template-columns:repeat(2,1fr)}.classify .three{grid-template-columns:repeat(3,1fr)}.classify .controls h3{font-size:13px;margin:8px 0 3px}.classify .controls button,.classify .controls select{min-width:44px;min-height:44px;font-size:12px;padding:4px}.classify .controls select{width:100%;background:#182c3c;color:var(--text);border:1px solid var(--line);border-radius:8px}.classify .control{margin:4px 0}.classify .control label{display:flex;justify-content:space-between;font-size:13px}.classify output{color:var(--gold)}.classify input{min-height:44px}.classify .unit{font-size:12px;text-align:left;margin:4px 0}.classify main>.card{max-width:1240px;margin:14px auto}.classify .ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:12px;text-align:center}.classify .ledger b{display:block;font-size:18px;color:var(--gold)}.classify .tablewrap{overflow-x:auto}.classify table{width:100%;border-collapse:collapse;font-size:12px}.classify th,.classify td{padding:5px;border-bottom:1px solid var(--line);text-align:left}.classify pre{white-space:pre-wrap;font-size:12px}.classify summary,.classify footer a{display:flex;align-items:center;min-height:44px}.classify footer a{display:inline-flex}.classify .podcast img{object-fit:contain}.classify .switch button{min-width:44px}.classify button[aria-pressed=true]{border-color:var(--cyan);background:#264450}.classify #selected-info{font-size:12px;color:var(--gold)}@media(max-width:760px){.classify .heading{margin:5px auto}.classify .heading h1{font-size:20px}.classify .eyebrow,.classify .question{display:none}.classify #scene{height:155px}.classify .near{font-size:10px}.classify .near b{font-size:13px}.classify #status{font-size:11px;min-height:66px}.classify .legend{font-size:10px}.classify .controls{padding:10px}.classify .controls button,.classify .controls select{font-size:11px}.classify main>.card{margin:10px}.classify .ledger{grid-template-columns:1fr 1fr}}@media(max-width:360px){.classify .logo{width:70px}.classify .heading h1{font-size:18px}.classify #scene{height:135px}.classify #status{font-size:10px;min-height:64px}}@media(max-height:500px) and (min-width:600px){.classify #scene{height:135px}.classify #status{font-size:11px;min-height:65px}.classify .near{font-size:10px}.classify .near b{font-size:13px}.classify .legend{font-size:10px}}
+@media(min-width:1000px){.classify .controls{display:grid;grid-template-columns:1fr 1fr;gap:5px;align-content:start}.classify .controls>.two,.classify .controls>.three{margin:0}.classify .controls>h3,.classify .controls>.unit{grid-column:1/-1}.classify .controls h3{margin:3px 0}.classify #selected-info{margin:4px;align-self:center}}
+@media(min-width:1000px){.classify .controls>.unit{font-size:11px;line-height:1.35;margin:2px 0}}
+
+/* Keep each direct control within sight of the current prediction. */
+.classify .brand{min-height:44px}
+.classify .quick-tip{font-size:14px;line-height:1.3;margin:5px 10px 9px;color:var(--cyan)}
+.classify .controls .legend,.classify .controls #status{font-size:14px;line-height:1.4;min-height:0;margin:8px 0;grid-column:1/-1}
+.classify .controls #status{order:2}
+.classify #sources a{display:inline-flex;align-items:center;min-height:44px}
+.classify .controls>.number-entry-hint{order:3;grid-column:1/-1}
+.classify .controls button,.classify .controls select{font-size:14px;line-height:1.25}
+@media(max-width:760px){
+ .classify .view{position:sticky;top:4px;z-index:5}
+ .classify .controls{display:flex;flex-direction:column}
+ .classify #scene{height:168px}
+ .classify svg text{font-size:30px}
+ .classify .near{font-size:12px;line-height:1.25}
+ .classify .near b{font-size:14px}
+ .classify .quick-tip{font-size:13px;margin:4px 8px 7px}
+ .classify .controls h3,.classify .control label{font-size:14px}
+ .classify .controls button,.classify .controls select{font-size:13px}
+}
+@media(max-height:500px) and (min-width:600px){
+ .classify .heading{display:none}
+ .classify .lab{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding:8px 10px}
+ .classify #scene{height:185px}
+ .classify svg text{font-size:27px}
+ .classify .near{font-size:12px;line-height:1.25}
+ .classify .near b{font-size:14px}
+ .classify .view{top:4px}
+}
+@media(min-width:1000px){
+ .classify .lab{grid-template-columns:minmax(0,1fr) minmax(520px,1fr)}
+ .classify .controls>.two:has(#small){grid-column:1/-1;grid-template-columns:repeat(4,minmax(0,1fr))}
+}

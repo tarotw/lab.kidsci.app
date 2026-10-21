@@ -1,0 +1,41 @@
+/* Loaded only by F09. Numeric/animal geometry is unchanged. */
+.reef-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:6px 8px}
+.reef-tile{min-width:0;padding:6px;border:1px solid var(--line);border-radius:10px;background:#132a3e;text-align:left}
+.reef-tile[aria-pressed=true]{background:#24465b;border-color:var(--cyan)}
+.reef-tile .reef-title{display:block;font-size:14px;line-height:1.25;margin:0 0 3px;font-weight:600;min-height:18px}
+.reef-current{color:var(--cyan)}
+.reef-tile-body{display:grid;grid-template-columns:46px minmax(0,1fr);gap:3px;align-items:center}
+.reef-tile-body svg{display:block;width:46px;height:56px}
+.reef-score{display:block;font-size:14px;line-height:1.2;margin:2px 0}
+.reef-score span,.reef-score strong{display:block;white-space:nowrap;font-weight:400}
+.reef-score strong{color:var(--cyan);font-weight:650}
+.reef-score small{font-size:14px;font-weight:400}
+.reef-lab .scene-header,.reef-lab .scene-note{font-size:14px;line-height:1.35}
+.reef-lab .scene-header{padding:5px 8px;gap:6px}.reef-lab .scene-header strong{min-width:0;flex:1}
+.reef-lab #clock{flex:none;white-space:nowrap}
+.reef-lab .scene-note{padding:3px 8px 6px}
+.reef-lab .controls{display:flex;flex-direction:column}
+.reef-lab .controls>.actions,.reef-lab .controls>.control{order:0}
+.reef-lab .controls>.hint{order:1;font-size:14px;line-height:1.35}
+.reef-lab .controls>.actions{padding:0 0 6px}.reef-lab .actions button{font-size:14px;min-height:44px}
+.reef-lab .control label,.reef-lab .choices button,.reef-lab .saved{font-size:14px}
+.reef-lab input[type=range]{height:44px}
+.reef-lab .podcast img.logo-fallback{object-fit:contain}
+.reef-lab .metric span,.reef-lab .metric em{font-size:14px;line-height:1.35}
+.reef-lab .source p,.reef-lab .source li,.reef-lab .podcast h3,.reef-lab .podcast a{font-size:14px}
+@media(min-width:1000px) and (min-height:501px){
+ .reef-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:10px}
+ .reef-tile{padding:8px}.reef-tile-body{grid-template-columns:58px minmax(0,1fr)}
+ .reef-tile-body svg{width:58px;height:68px}
+}
+@media(max-width:760px) and (orientation:portrait){
+ .reef-lab .heading{margin:6px auto}.reef-lab .heading h1{font-size:20px;margin:0}
+ .reef-lab .heading .eyebrow,.reef-lab .heading .question{display:none}
+ .reef-lab .view{top:6px}.reef-lab .controls.compact{display:flex;gap:0}
+ .reef-lab .saved{grid-template-columns:1fr}
+ .reef-lab .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .reef-lab .metric:last-child{grid-column:1/-1}
+}
+@media(max-height:500px) and (min-width:600px){
+ .reef-lab .heading{display:none}.reef-lab .view{position:sticky;top:6px;z-index:3}
+}

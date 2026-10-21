@@ -1,0 +1,9 @@
+'use strict';
+((root)=>{
+const defaults={tree:'A',range:320,gap:80,delay:50,time:120},trees={A:{x:140,y:150},B:{x:260,y:320},C:{x:660,y:240}},N=32,END=120;
+function valid(p){if(!p||typeof p!=='object'||!Object.hasOwn(trees,p.tree))throw new RangeError('tree');for(const[k,lo,hi,step]of[['range',0,400,20],['gap',0,240,20],['delay',20,100,10],['time',0,120,10]])if(typeof p[k]!=='number'||!Number.isFinite(p[k])||p[k]<lo||p[k]>hi||!Number.isInteger(p[k]/step))throw new RangeError(k);}
+function position(p,t){const a=trees[p.tree],sign=p.tree==='C'?-1:1;return{x:a.x+sign*p.range*Math.sin(Math.PI*t/END),y:a.y+.2*p.range*Math.sin(2*Math.PI*t/END)};}
+function habitat(p,x){return p.gap===0||Math.abs(x-400)>=p.gap/2?'forest':'gap';}
+function calculate(p){valid(p);let seed=224,remaining=0,forest=0,gap=0,across=0,sum=0,max=0;const seeds=[],a=trees[p.tree];for(let i=0;i<N;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const release=p.delay+18*(2*seed/4294967296-1),pos=position(p,release),d=Math.hypot(pos.x-a.x,pos.y-a.y),released=release<=p.time,site=habitat(p,pos.x);if(!released)remaining++;else{if(site==='forest'){forest++;if((a.x<400&&pos.x>400)||(a.x>400&&pos.x<400))across++;}else gap++;sum+=d;max=Math.max(max,d);}seeds.push({id:i+1,release,...pos,distance:d,released,site});}const released=N-remaining,track=[];for(let t=0;t<=p.time;t++)track.push({time:t,...position(p,t)});return{seeds,remaining,forest,gap,across,released,mean:released?sum/released:null,max:released?max:null,bird:position(p,p.time),track,source:a,time:p.time,local:{forest:N,gap:0,remaining:0,across:0,mean:0,max:0},total:N};}
+const api={defaults,trees,N,END,valid,position,habitat,calculate};root.SeedRideModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);

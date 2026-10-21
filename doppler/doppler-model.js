@@ -1,0 +1,9 @@
+'use strict';
+(function(root){const defaults={speed:.4,x:1.5,y:1},limits={speed:[0,.6,.1],x:[-2,2,.5],y:[.5,2.5,.5]},c=1,realC=343,sourceX=-3,period=1,total=9,end=14,audioSource=440;
+function valid(p){for(const[k,[lo,hi,step]]of Object.entries(limits))if(!p||!Number.isFinite(p[k])||p[k]<lo-1e-9||p[k]>hi+1e-9||Math.abs((p[k]-lo)/step-Math.round((p[k]-lo)/step))>1e-8)throw new RangeError('doppler '+k);}
+function events(p){valid(p);return Array.from({length:total},(_,i)=>{const emission=i*period,x=sourceX+p.speed*emission,distance=Math.hypot(p.x-x,p.y),arrival=emission+distance/c;return{id:i+1,emission,x,y:0,distance,arrival};});}
+function snapshot(p,time){valid(p);if(!Number.isFinite(time)||time<0||time>end)throw new RangeError('time');const all=events(p),received=all.filter(e=>e.arrival<=time+1e-10),last=received.at(-1),previous=received.at(-2),interval=previous?last.arrival-previous.arrival:null,ratio=interval===null?null:period/interval;return{p:{...p},time,source:{x:sourceX+p.speed*time,y:0},all,received,count:received.length,interval,ratio,audio:ratio===null?null:audioSource*ratio,waves:all.filter(e=>e.emission<=time+1e-10).map(e=>({...e,radius:Math.max(0,c*(time-e.emission)),reached:e.arrival<=time+1e-10})),finished:time===end};}
+function next(p,time){const a=events(p).find(e=>e.arrival>time+1e-8);return a?Math.min(end,a.arrival):end;}
+function interval(p,i){const all=events(p);if(!Number.isInteger(i)||i<1||i>=total)throw new RangeError('pair');const dt=all[i].arrival-all[i-1].arrival;return{first:all[i-1],second:all[i],interval:dt,ratio:period/dt,audio:audioSource*period/dt};}
+const api={defaults,limits,c,realC,sourceX,period,total,end,audioSource,valid,events,snapshot,next,interval};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.DopplerModel=api;
+})(typeof window!=='undefined'?window:globalThis);

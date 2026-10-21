@@ -1,0 +1,59 @@
+.dung-lab .heading{margin:10px auto}.dung-lab .heading h1{font-size:27px}.dung-scene{display:block;width:100%;height:270px;touch-action:pan-y pinch-zoom}.dung-scene text{font:12px system-ui;fill:#d3e5ea}.dung-lab .scene-header{padding:6px 10px;gap:4px}.dung-lab .scene-note{padding:3px 10px;min-height:26px}.dung-ledger{padding:3px 10px;font-size:12px;color:#efb96c}.dung-inspector{display:flex;align-items:center;gap:8px;padding:2px 8px;min-height:48px}.dung-inspector select{width:76px;padding:3px}.dung-inspector span{font-size:12px;flex:1}.dung-lab .actions{padding:4px;gap:4px}.dung-lab .actions button{min-width:44px;white-space:normal;padding:3px;font-size:12px}.dung-timeline{padding:0 10px;height:60px}.dung-timeline label{display:block;height:16px;font-size:11px}.dung-lab input[type=range]{height:44px}.dung-tools{grid-column:1/-1;font-size:12px}.dung-tools p{margin:4px 0}.dung-lab .choices{gap:4px;margin:4px 0}.dung-lab .choices button{flex:1;min-width:44px;padding:3px;font-size:12px}.dung-lab .hint{min-height:38px;font-size:13px}.dung-lab .control{margin:3px 0}.dung-comparison{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dung-comparison article{border:1px solid var(--line);border-radius:12px;padding:10px}.dung-comparison .dung-scene{height:230px}.dung-lab .formula{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}.dung-lab .source a{overflow-wrap:anywhere}.dung-lab .metric strong{font-size:19px;overflow-wrap:anywhere}.dung-lab .switch button{min-width:44px}.dung-lab button:disabled{opacity:.55;cursor:default}
+@media(max-width:760px){.dung-lab .heading{margin:7px auto}.dung-lab .heading h1{font-size:20px}.dung-lab .eyebrow,.dung-lab .question{display:none}.dung-scene{height:180px}.dung-scene text{font-size:18px}.dung-lab .scene-header{font-size:10px}.dung-lab .scene-note{font-size:10px;min-height:22px}.dung-ledger{font-size:10px}.dung-lab .view{top:6px}.dung-inspector span{font-size:10px}.dung-lab .actions button{font-size:10px}.dung-lab .controls.compact{padding:10px}.dung-lab .hint{font-size:12px}.dung-comparison{grid-template-columns:1fr}.dung-comparison .dung-scene{height:235px}.dung-lab .metric strong{font-size:15px}}
+@media(max-width:360px){.dung-scene{height:145px}.dung-lab .heading h1{font-size:18px}.dung-lab .logo{width:78px}.dung-lab .control label{font-size:12px}.dung-lab .scene-header{padding:4px 8px}.dung-lab .scene-note{padding:2px 8px}.dung-inspector{gap:4px}.dung-inspector select{width:66px}}
+@media(max-height:500px) and (min-width:600px){.dung-lab .heading{margin:4px auto}.dung-lab .heading h1{font-size:19px}.dung-lab .eyebrow,.dung-lab .question{display:none}.dung-scene{height:140px}.dung-scene text{font-size:18px}.dung-lab .scene-header{font-size:10px;padding:4px 8px}.dung-lab .scene-note{font-size:10px;min-height:20px}.dung-ledger{font-size:10px}.dung-inspector{min-height:44px}.dung-inspector span{font-size:10px}.dung-lab .actions button{font-size:10px}.dung-comparison{grid-template-columns:1fr 1fr}}
+
+.dung-lab .round-ledger{overflow-x:auto}.dung-lab table{border-collapse:collapse;width:100%;font-size:12px}.dung-lab th,.dung-lab td{padding:6px;border-bottom:1px solid var(--line);text-align:right}.dung-lab th:first-child,.dung-lab td:first-child{text-align:left}.dung-lab .trace{overflow-wrap:anywhere}.dung-lab .flow-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;font-size:12px}.dung-lab .flow-list p{margin:0}
+@media(max-height:500px) and (min-width:600px){.dung-lab .controls.compact{display:flex;flex-direction:column}.dung-lab .controls.compact>h2{order:0}.dung-lab .controls.compact>.hint{order:1}.dung-lab .controls.compact>.dung-tools{order:2}.dung-lab .controls.compact>.control{order:3}}
+
+/* F06: keep observation compact; round/ID controls follow in their own panel. */
+.dung-column{min-width:0}
+.dung-time-controls{border:1px solid var(--line);border-radius:16px;background:linear-gradient(140deg,#122538,#0c1726);margin-top:8px;padding:3px 0 7px;min-width:0}
+.dung-lab .dung-timeline{height:auto;min-height:88px;padding:0 10px}
+.dung-lab .dung-timeline label{height:auto;min-height:18px;font-size:14px;line-height:1.35}
+.dung-lab .dung-timeline .number-entry-hint{font-size:12px;line-height:1.35;margin:4px 0}
+.dung-lab .scene-header,.dung-lab .scene-note,.dung-ledger,.dung-inspector span{font-size:14px;line-height:1.35}
+.dung-lab .scene-header strong{flex:1;min-width:0}.dung-lab #clock{flex:none}
+.dung-lab .actions button,.dung-lab .choices button{font-size:14px}
+.dung-lab .dung-scene text{font-size:14px}
+.dung-lab .hint,.dung-lab .dung-tools{font-size:14px}
+@media(max-width:760px) and (orientation:portrait){
+ .dung-lab .dung-column{display:contents}
+ .dung-lab .dung-scene{height:190px}
+ .dung-lab .dung-scene text{font-size:20px}
+ .dung-lab .view{top:6px}
+ .dung-lab .scene-header{padding:5px 8px}
+ .dung-lab .scene-note{padding:3px 8px;min-height:0}
+ .dung-lab .dung-ledger{padding:3px 8px}
+ .dung-lab .dung-time-controls{margin-top:0}
+ .dung-lab .controls.compact{display:flex;flex-direction:column}
+ .dung-lab .controls.compact>.control,.dung-lab .controls.compact>.dung-tools{order:0}
+ .dung-lab .controls.compact>.hint{order:1}
+ .dung-lab .dung-inspector{min-height:52px;padding:4px 8px}
+ .dung-lab .dung-inspector select{width:76px}
+ .dung-lab .dung-comparison .dung-scene{height:235px}
+}
+@media(max-height:500px) and (min-width:600px){
+ .dung-lab .heading{display:none}
+ .dung-lab .dung-scene{height:160px}
+ .dung-lab .dung-scene text{font-size:21px}
+ .dung-lab .dung-column{min-width:0}
+ .dung-lab .scene-header{padding:3px 8px}
+ .dung-lab .scene-note,.dung-lab .dung-ledger{padding:2px 8px;min-height:0}
+ .dung-lab .controls.compact>.hint{order:4}
+ .dung-lab .dung-comparison .dung-scene{height:235px}
+}
+
+/* Stretch the left column to the controls height, keeping its model sticky. */
+@media(max-height:500px) and (min-width:600px){
+ .dung-lab .dung-column{align-self:stretch}
+ .dung-lab .view{position:sticky;top:6px;z-index:3}
+ .dung-lab .controls.compact>.dung-tools{order:0}
+ .dung-lab .controls.compact>.control{order:1}
+ .dung-lab .controls.compact>.dung-tools:last-child{order:2}
+ .dung-lab .controls.compact>.hint{order:3}
+ .dung-lab .dung-scene{height:155px}
+ .dung-lab .dung-inspector{min-height:44px;padding:0 8px}
+}
+
+.dung-lab .podcast img{object-fit:contain;background:#071422}

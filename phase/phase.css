@@ -1,0 +1,22 @@
+.phase .view{position:sticky;top:8px;align-self:start;z-index:5}.phase #plot{display:block;width:100%;height:290px;touch-action:pan-y pinch-zoom}.h-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}.h-near{text-align:center;padding:6px 8px;font-size:13px}.h-near b{display:block;font-size:22px;color:var(--gold)}.phase #status{margin:5px 12px 10px;min-height:40px;font-size:12px}.phase .control label{display:flex;justify-content:space-between;gap:8px}.phase output{white-space:nowrap;color:var(--gold)}.phase .controls button{font-size:13px;padding:5px}.phase .unit{text-align:left;font-size:11px}.phase main>.card{max-width:1240px;margin:12px auto}.phase .readings b,.phase .h-results b{display:block;color:var(--gold);font-size:22px}.h-results article{padding:12px;border:1px solid var(--line);border-radius:12px}.phase summary{min-height:44px;cursor:pointer}.phase .podcast img{object-fit:contain}.phase footer a{display:inline-flex;align-items:center;min-height:44px}.energy{height:12px;background:#071422;border:1px solid #455668;border-radius:6px;overflow:hidden}.energy i{display:block;height:100%;background:var(--cyan)}.energy.gold i{background:var(--gold)}.w-info{margin:4px 0 10px;text-align:center;font-size:13px}.w-info b{color:var(--cyan)}.phase .control input{height:44px}.phase .switch button{min-width:44px}
+@media(max-width:760px){.phase .heading{margin:6px auto}.phase .heading h1{font-size:20px}.phase .eyebrow,.phase .question{display:none}.phase #plot{height:165px}.h-near{font-size:11px;padding:4px 8px}.h-near b{font-size:18px}.phase #status{font-size:11px;min-height:34px;margin:4px 8px 8px}.phase .controls{padding:10px}.phase main>.card{margin:10px}.phase .control label{font-size:12px}.h-results h3{font-size:15px}.h-results p{font-size:12px}}
+@media(max-width:360px){.phase #plot{height:140px}.phase .heading h1{font-size:18px}.phase .logo{width:70px}.phase #status{font-size:10px}.phase .controls button{font-size:12px}}
+@media(max-height:500px) and (min-width:600px){.phase #plot{height:140px}.phase .heading{margin:4px auto}.h-near{font-size:11px;padding:3px 8px}.h-near b{font-size:16px}.phase #status{font-size:11px;min-height:32px;margin:3px 8px 6px}}
+
+.phase table{width:100%;border-collapse:collapse;font-size:13px}.phase th,.phase td{padding:7px 5px;border-bottom:1px solid var(--line);text-align:right}.phase th:first-child,.phase td:first-child{text-align:left}.phase #curve{display:block;width:100%;height:auto}.phase .view canvas{object-fit:contain}.phase .coefficient{display:grid;grid-template-columns:1fr 1fr;gap:8px}.phase #canvas-error{font-size:12px}
+
+.phase #lift{color:var(--cyan)}
+
+.h-near{display:grid;grid-template-columns:1fr 1fr}.h-three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:6px 0}.phase .controls .h-pair{margin:6px 0}.phase .control label{font-size:13px}.phase table{font-size:12px}.phase td,.phase th{padding:8px 4px}.phase button:disabled{opacity:.5}
+
+.phase #curve{width:100%;height:auto}.phase .ledger{display:grid;grid-template-columns:1fr 1fr;gap:8px}.phase .ledger b{display:block;color:var(--gold)}.phase #restart{width:100%;margin:6px 0}.phase .phase-note{font-size:12px}.phase .h-results b{font-size:18px}
+
+.p-scene-key{display:none}
+@media(max-width:760px),(max-height:500px){.phase #plot text{display:none}.p-scene-key{display:block;font-size:14px;line-height:1.3;margin:4px 8px}.p-scene-key p{margin:4px 0}.phase .heading{display:none}.phase #status{min-height:0}}
+
+.p-curve-axis{display:none}
+@media(max-width:760px),(max-height:500px){.phase #curve text{font-size:32px}.phase #curve text:last-child{display:none}.p-curve-axis{display:block;font-size:14px;line-height:1.4;margin:4px 0 8px}}
+
+@media(max-width:760px),(max-height:500px){.phase #curve text:nth-child(4){display:none}}
+
+@media(max-height:500px) and (min-width:600px){.phase #curve{height:180px}}

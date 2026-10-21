@@ -1,0 +1,47 @@
+.foodweb #web-scene{width:100%;height:320px;display:block;touch-action:pan-y pinch-zoom}.foodweb #web-scene text{font:22px system-ui;fill:var(--text)}.foodweb #web-scene .node-value{font-size:24px;font-weight:650}.foodweb #web-scene .small{font-size:20px}.foodweb #web-scene .edge-value{font-size:20px;fill:var(--cyan)}.foodweb .view{position:sticky;top:8px;align-self:start;z-index:5}.f-reads{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:4px 12px}.f-reads span{background:#091624;border-radius:8px;padding:5px;font-size:13px}.f-reads b{display:block;font-size:22px;color:var(--cyan)}.foodweb #status{font-size:13px;min-height:42px;margin:6px 12px}.foodweb #nutrient-note{font-size:11px;min-height:32px;color:var(--muted);margin:4px 12px}.f-links,.f-select{display:grid;grid-template-columns:1fr 1fr;gap:5px;grid-column:1/-1}.f-links button,.f-select button{white-space:normal;min-width:0;padding:6px;font-size:12px}.f-links span{display:block;color:var(--muted);font-size:11px}.f-select{margin-top:8px;grid-template-columns:repeat(4,1fr)}.foodweb #node-title{font-size:16px;margin:8px 0 0;grid-column:1/-1}.foodweb #selected-read{font-size:12px;margin:2px 0 6px;grid-column:1/-1}.f-actions{display:flex;gap:5px;flex-wrap:wrap;grid-column:1/-1}.f-actions button{flex:1;white-space:normal;font-size:12px;padding:6px}.foodweb .card{margin-top:12px}.f-receipt{color:var(--cyan);font-size:24px;overflow-wrap:anywhere}.f-table{overflow-x:auto}.f-table table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}.f-table th,.f-table td{padding:8px;text-align:right;border-bottom:1px solid var(--line)}.f-table th:first-child{text-align:left}.f-table caption{text-align:left;padding:8px 0}.f-pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.f-pairs article{border:1px solid var(--line);border-radius:12px;padding:12px}.f-pairs p{display:flex;justify-content:space-between;gap:8px;font-size:13px}.f-pairs b{color:var(--gold)}.foodweb .source a{overflow-wrap:anywhere}.foodweb .podcast img{object-fit:contain}.foodweb summary{min-height:44px;cursor:pointer}.foodweb footer a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:760px){.foodweb .heading{margin:6px auto}.foodweb .heading h1{font-size:21px}.foodweb .eyebrow,.foodweb .question{display:none}.foodweb #web-scene{height:230px}.foodweb .scene-header{font-size:11px;padding:6px 8px}.f-reads{margin:3px 8px}.f-reads span{font-size:10px;padding:3px}.f-reads b{font-size:16px}.foodweb #status{font-size:12px;min-height:38px;margin:5px 8px}.foodweb #nutrient-note{font-size:10px;min-height:27px;margin:4px 8px}.foodweb .control label{font-size:12px}.f-select button{font-size:11px}.f-receipt{font-size:19px}}
+@media(max-width:360px){.foodweb .heading h1{font-size:19px}.foodweb #web-scene{height:195px}.foodweb #status{font-size:11px;min-height:34px}.f-reads span{font-size:9px}.f-reads b{font-size:15px}.f-select button{font-size:10px}.f-pairs{grid-template-columns:1fr}.f-links button{font-size:11px}}
+@media(max-height:500px) and (min-width:600px){.foodweb .heading{margin:4px auto}.foodweb .heading h1{font-size:20px}.foodweb .eyebrow,.foodweb .question{display:none}.foodweb #web-scene{height:190px}.foodweb .scene-header{font-size:10px;padding:4px 8px}.f-reads{margin:3px 8px}.f-reads span{font-size:10px;padding:3px}.f-reads b{font-size:15px}.foodweb #status{font-size:11px;min-height:33px;margin:4px 8px}.foodweb #nutrient-note{font-size:9px;min-height:23px}.f-links button{font-size:11px}}
+@media(min-width:1000px){.foodweb .controls.compact .control-top{flex-wrap:nowrap}.foodweb .controls.compact .control-top label{flex:1;min-width:0}.foodweb .controls.compact .number{flex:none}}
+
+.f-select span{display:block;font-size:11px;color:var(--cyan)}
+
+.foodweb .controls input[type=range]{height:44px}.foodweb .f-select button{overflow-wrap:anywhere}
+@media(max-width:360px){.foodweb .logo{width:70px}.foodweb .switch button{min-width:44px;font-size:11px;padding:3px 4px}}
+.foodweb main>.card{max-width:1240px;margin:12px auto}
+@media(max-width:760px){.foodweb main>.card{margin:10px}}
+
+/* Current native review: readable labels and adjacent controls. */
+.foodweb #web-scene{height:245px}.foodweb .controls.compact{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.foodweb #status,.foodweb #nutrient-note,.foodweb #selected-read,.foodweb .scene-header,.foodweb .control label,.foodweb .unit,.foodweb .f-links button,.foodweb .f-links span,.foodweb .f-select button,.foodweb .f-select span,.foodweb .f-actions button,.foodweb .f-reads span{font-size:14px}
+.foodweb #status,.foodweb #nutrient-note{min-height:0}.foodweb .f-links button,.foodweb .f-select button,.foodweb .f-actions button{min-height:44px}
+.foodweb #node-title{display:block;font-size:16px}.foodweb .f-select{grid-template-columns:repeat(2,1fr);margin-top:0}
+@media(max-width:760px){.foodweb .heading{display:none}.foodweb .logo{width:80px}.foodweb #web-scene{height:230px}.foodweb #web-scene text,.foodweb #web-scene .node-value,.foodweb #web-scene .small,.foodweb #web-scene .edge-value{font-size:32px}.foodweb .controls.compact{display:flex;flex-direction:column;gap:6px}.foodweb .f-reads b{font-size:18px}.foodweb .f-select{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:360px){.foodweb .logo{width:72px}.foodweb #web-scene{height:195px}}
+@media(max-height:500px) and (min-width:600px){.foodweb .heading{display:none}.foodweb #web-scene{height:150px}.foodweb #web-scene text,.foodweb #web-scene .node-value,.foodweb #web-scene .small,.foodweb #web-scene .edge-value{font-size:40px}.foodweb .controls.compact{display:flex;flex-direction:column;gap:6px}.foodweb .scene-header{font-size:14px}.foodweb .f-reads b{font-size:18px}}
+
+.foodweb .controls #status{grid-column:1/-1;margin:2px 0;font-size:14px}.foodweb .view #nutrient-note{line-height:1.3}.foodweb .f-links span{overflow-wrap:anywhere}
+
+/* Readable HTML labels and live organism account cards. */
+.foodweb .f-drawing{position:relative;--drawing-height:245px;height:var(--drawing-height)}
+.foodweb #web-scene{height:100%}.foodweb #web-scene text{display:none}
+.foodweb .f-label-layer{position:absolute;top:0;left:50%;width:min(100%,calc(var(--drawing-height) * 600 / 430));height:100%;transform:translateX(-50%);pointer-events:none}
+.foodweb .f-label{position:absolute;transform:translate(-50%,-100%);white-space:nowrap;font-size:14px;line-height:1;color:var(--text)}
+.foodweb .f-flow{color:var(--cyan)}.foodweb .f-value{font-weight:650}.foodweb .f-long-name{transform:translate(-50%,-100%) scaleX(.85)}
+@media(max-width:760px){.foodweb .f-drawing{--drawing-height:230px}.foodweb .f-long-name{transform:translate(-50%,-100%) scaleX(.8)}}
+@media(max-width:360px){.foodweb .f-drawing{--drawing-height:195px}}
+@media(max-height:500px) and (min-width:600px){.foodweb .f-drawing{--drawing-height:150px}.foodweb .f-long-name{transform:translate(-50%,-100%) scaleX(.65)}}
+
+.foodweb .f-flow{background:#142737;padding:1px 3px;border-radius:3px}
+
+.foodweb .controls.compact .control-top label{font-size:14px}.foodweb .controls.compact .unit{font-size:14px}
+@media(min-width:1000px){.foodweb .controls.compact{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.foodweb .f-select{grid-template-columns:repeat(4,minmax(0,1fr))}.foodweb .controls.compact .control-top{flex-direction:column;align-items:stretch;gap:2px}.foodweb .controls.compact .control-top label{flex:none;min-height:42px}.foodweb .controls.compact .number{width:100%}.foodweb .controls.compact .unit{display:block;text-align:left}}
+
+.foodweb .f-node-reads{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:4px 10px;font-size:14px;line-height:1.2}.foodweb .f-node-reads span{background:#091624;border:1px solid var(--line);border-radius:6px;padding:4px;white-space:nowrap}.foodweb .f-node-reads span[aria-current=true]{border-color:var(--cyan)}.foodweb .f-node-reads b{display:block;font-size:16px;color:var(--cyan)}
+@media(max-width:760px){.foodweb .f-drawing{--drawing-height:180px}}
+@media(max-width:360px){.foodweb .f-drawing{--drawing-height:145px}.foodweb .f-node-reads{margin:4px 6px}}
+@media(max-height:500px) and (min-width:600px){.foodweb .f-drawing{--drawing-height:96px}}
+
+/* Native keyboard focus must clear the sticky observation on portrait screens. */
+html.foodweb-page{scroll-padding-top:8px}
+@media(max-width:760px) and (orientation:portrait){.foodweb .controls button,.foodweb .controls input{scroll-margin-top:calc(var(--foodweb-view-height,400px) + 8px);scroll-margin-bottom:8px}}

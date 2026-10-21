@@ -1,0 +1,41 @@
+.netmsg .view{position:sticky;top:8px;align-self:start;z-index:5}.netmsg #scene{width:100%;height:260px;display:block;touch-action:pan-y pinch-zoom}.netmsg svg text{fill:#e1edf2;font:24px system-ui}.netmsg svg .edge-time{font-size:18px;paint-order:stroke;stroke:#102130;stroke-width:4px}.netmsg svg .packet-id{font-size:15px;font-weight:700;fill:#102130}.netmsg .near{display:flex;gap:5px;align-items:center;justify-content:space-around;padding:6px;font-size:11px}.netmsg .near span{text-align:center;flex:1;min-width:0}.netmsg .near b{display:block;color:var(--gold);font-size:17px}.netmsg #clock{white-space:nowrap}.netmsg #message{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:3px 10px}.netmsg #message span{padding:3px;border:1px solid #507587;text-align:center;font-size:14px}.netmsg #message small{display:inline-block;margin-right:5px;color:#b6d2df}.netmsg .received{background:#244b52}.netmsg .missing{background:#1a2d3d;color:#87a5b6}.netmsg .arrival{font-size:11px;margin:4px 10px}.netmsg #status{font-size:13px;min-height:65px;margin:4px 10px}.netmsg .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.netmsg .actions button{min-height:44px;min-width:0;white-space:normal;font-size:12px;padding:4px}.netmsg .controls h3{font-size:13px;margin:4px 0}.netmsg .four,.netmsg .two,.netmsg .three{display:grid;gap:5px;margin:5px 0}.netmsg .four{grid-template-columns:repeat(4,1fr)}.netmsg .two{grid-template-columns:repeat(2,1fr)}.netmsg .three{grid-template-columns:repeat(3,1fr)}.netmsg .controls button{min-width:44px;min-height:44px;white-space:normal;font-size:12px;padding:4px}.netmsg label{display:block;font-size:12px;margin-top:6px}.netmsg label b{color:var(--gold);float:right}.netmsg select{width:100%;min-height:44px;background:#162c3b;color:#edf6fb;border:1px solid #567d8c;border-radius:8px;padding:4px;font-size:14px}.netmsg input[type=range]{width:100%;min-height:44px;touch-action:pan-y pinch-zoom}.netmsg #loss,.netmsg #reset{width:100%}.netmsg .unit{font-size:11px;margin:4px 0;line-height:1.4;text-align:left}.netmsg main>.card{max-width:1240px;margin:14px auto}.netmsg .ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;font-size:12px}.netmsg .ledger b{display:block;color:var(--gold);font-size:19px}.netmsg .tablewrap{overflow-x:auto}.netmsg table{width:100%;border-collapse:collapse;font-size:12px}.netmsg th,.netmsg td{text-align:left;padding:5px;border-bottom:1px solid var(--line)}.netmsg pre{white-space:pre-wrap;font-size:12px}.netmsg summary,.netmsg footer a{display:flex;align-items:center;min-height:44px}.netmsg footer a{display:inline-flex}.netmsg .podcast img{object-fit:contain}.netmsg .switch button{min-width:44px}.netmsg button[aria-pressed=true]{border-color:var(--cyan);background:#264b54}.netmsg button:disabled{opacity:.45}@media(max-width:760px){.netmsg .heading{margin:5px auto}.netmsg .heading h1{font-size:20px}.netmsg .eyebrow,.netmsg .question{display:none}.netmsg #scene{height:145px}.netmsg .near{font-size:10px}.netmsg .near b{font-size:13px}.netmsg #clock{font-size:12px}.netmsg #status{font-size:11px;min-height:63px}.netmsg #message span{font-size:11px;padding:3px 0}.netmsg #message small{margin-right:3px}.netmsg .actions button{font-size:11px}.netmsg .controls{padding:10px}.netmsg .controls button{font-size:11px}.netmsg main>.card{margin:10px}.netmsg .ledger{grid-template-columns:repeat(2,1fr)}}@media(max-width:360px){.netmsg .logo{width:70px}.netmsg .heading h1{font-size:18px}.netmsg #scene{height:125px}.netmsg #status{font-size:10px;min-height:60px}}@media(max-height:500px) and (min-width:600px){.netmsg #scene{height:115px}.netmsg .near{font-size:10px}.netmsg .near b{font-size:13px}.netmsg #clock{font-size:12px}.netmsg #status{font-size:11px;min-height:55px}.netmsg #message span{font-size:12px}.netmsg .actions button{font-size:11px}}
+@media(min-width:1000px){.netmsg .controls{display:grid;grid-template-columns:1fr 1fr;gap:5px;align-content:start}.netmsg .controls h3,.netmsg .controls .four,.netmsg .controls .two,.netmsg .controls .three,.netmsg #reset,.netmsg #notice{grid-column:1/-1}.netmsg .controls .four,.netmsg .controls .two,.netmsg .controls .three{margin:0}.netmsg .controls label{align-self:center;margin:0;font-size:11px}.netmsg .controls .unit{align-self:center;margin:0;font-size:10px;line-height:1.35}.netmsg .controls input{margin:0}.netmsg #notice,.netmsg #notice:empty{display:block;min-height:28px}}
+
+/* A compact live packet view keeps all link and timing changes observable. */
+.netmsg .brand{min-height:44px}
+.netmsg .controls #status{font-size:14px;line-height:1.4;min-height:0;margin:8px 0;grid-column:1/-1}
+.netmsg .controls>.number-entry-hint{order:3;grid-column:1/-1}
+.netmsg #sources a{display:inline-flex;align-items:center;min-height:44px}
+.netmsg .controls button{font-size:14px;line-height:1.25}
+.netmsg .controls label{font-size:14px;line-height:1.25}
+.netmsg .controls .unit{font-size:13px}
+.netmsg .arrival{font-size:13px}
+@media(max-width:760px){
+ .netmsg .view{top:4px}
+ .netmsg .controls{display:flex;flex-direction:column}
+ .netmsg .near{font-size:11px;line-height:1.25}
+ .netmsg .near b{font-size:14px}
+ .netmsg #scene{height:135px}
+ .netmsg svg text{font-size:30px}
+ .netmsg svg .edge-time{font-size:26px}
+ .netmsg svg .packet-id{font-size:22px}
+ .netmsg #message span{font-size:12px}
+ .netmsg .arrival{font-size:12px}
+ .netmsg .actions{padding:0 10px 8px}
+ .netmsg .actions button{font-size:12px;line-height:1.25}
+ .netmsg .controls button{font-size:13px}
+}
+@media(max-height:500px) and (min-width:600px){
+ .netmsg .heading{display:none}
+ .netmsg .lab{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding:8px 10px}
+ .netmsg .view{top:4px}
+ .netmsg #scene{height:125px}
+ .netmsg .near{font-size:11px;line-height:1.25}
+ .netmsg .near b{font-size:14px}
+ .netmsg svg text{font-size:28px}
+ .netmsg svg .edge-time{font-size:24px}
+ .netmsg .actions{padding:0 10px 8px}
+}
+@media(min-width:1000px){
+ .netmsg .lab{grid-template-columns:minmax(0,1fr) minmax(520px,1fr)}
+}

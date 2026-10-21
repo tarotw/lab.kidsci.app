@@ -1,0 +1,7 @@
+'use strict';
+((root)=>{const defaults={attach:25,bite:55,gape:30,force:50},origin={x:-10,y:40},jawLength=60;
+function valid(p){for(const[k,max,step]of[['attach',40,5],['bite',60,5],['gape',60,5],['force',100,10]])if(!p||!Number.isInteger(p[k])||p[k]<0||p[k]>max||p[k]%step)throw new RangeError('jaw setting '+k);}
+function geometry(attach,bite,gape){const t=gape*Math.PI/180,insertion={x:attach*Math.cos(t),y:-attach*Math.sin(t)},tooth={x:bite*Math.cos(t),y:-bite*Math.sin(t)},dx=origin.x-insertion.x,dy=origin.y-insertion.y,length=Math.hypot(dx,dy),unit={x:dx/length,y:dy/length},inputArm=insertion.x*unit.y-insertion.y*unit.x,outputArm=tooth.x,dot=insertion.x*unit.x+insertion.y*unit.y,perpendicular={x:insertion.x-dot*unit.x,y:insertion.y-dot*unit.y};return{theta:t,insertion,tooth,length,unit,inputArm,outputArm,perpendicular};}
+function solve(p){valid(p);const g=geometry(p.attach,p.bite,p.gape),torque=p.force*g.inputArm,defined=p.bite>0,advantage=defined?g.inputArm/g.outputArm:null,biteForce=defined?p.force*advantage:null,delta=p.gape===0?0:1,next=geometry(p.attach,p.bite,p.gape-delta),shortening=g.length-next.length,rise=next.tooth.y-g.tooth.y,velocityRatio=defined&&g.inputArm>1e-12?g.outputArm/g.inputArm:null;return{...g,torque,defined,advantage,biteForce,delta,shortening,rise,velocityRatio,next,closingPossible:p.force>0&&g.inputArm>1e-12};}
+const api={defaults,origin,jawLength,valid,geometry,solve};root.JawBiteModel=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);
